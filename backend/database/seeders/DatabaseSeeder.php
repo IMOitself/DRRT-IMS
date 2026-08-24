@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Buns;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,15 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        Buns::create([
+            'filling' => 'hotdog',
+            'days_old' => 3
+        ]);
+        Buns::create([
+            'filling' => 'peanut',
+            'days_old' => 1
         ]);
     }
 }
