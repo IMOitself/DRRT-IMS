@@ -115,7 +115,7 @@ The proposed system will **not replace the records maintained by the Student Org
 
 ## essential stuffs for development
 <details>
-<summary>ui designs by the ui designers</summary>
+<summary>ui designs by ui designers (htmlpreview)</summary>
 
 
 ### student role (landing page)
@@ -150,6 +150,10 @@ The proposed system will **not replace the records maintained by the Student Org
 
 </details>
 
-<details><summary>database schema</summary>
+<details><summary>database schema by sqa</summary>
   <img width="1203" height="640" alt="revised_DRRT_IMS_DIAGRAMS-1  ERD drawio" src="https://github.com/user-attachments/assets/f0d8d832-d60d-474f-880b-e206b7e28ac4" />
+</details>
+
+<details><summary>trallalero</summary>
+  https://trello.com/b/rcb0FEpP
 </details>
