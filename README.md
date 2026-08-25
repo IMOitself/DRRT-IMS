@@ -8,6 +8,69 @@
 > [!TIP]
 > **GOAL:** make at least 800kb worth of code to overthrow the top language, html.
 
+## essential stuffs for development
+<details>
+<summary>ui designs by ui designers (htmlpreview)</summary>
+
+
+### student role (landing page)
+- [~~(NO MORE THEY SAID) interactive_campus_hazard_map.html~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/(NO%20MORE%20THEY%20SAID)%20interactive_campus_hazard_map.html)
+- [join_drrt_membership_information.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/join_drrt_membership_information.html)
+- [application_form.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/application_form.html)
+- [public_events_preparedness_bulletins.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/public_events_preparedness_bulletins.html)
+- [public_home_preparedness_landing_page.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/public_home_preparedness_landing_page.html)
+
+### member role
+- [announcements.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/announcements.html)
+- [member_dashboard_updated.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/member_dashboard_updated.html)
+- [my_attendance_records.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/my_attendance_records.html)
+- [my_digital_id_updated.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/my_digital_id_updated.html)
+- [training_hub.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/training_hub.html)
+
+### officer role
+- [incident_vault.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/incident_vault.html)
+- [manual_attendance_logger_pro.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/manual_attendance_logger_pro.html)
+- [member_roster.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/member_roster.html)
+- [new_incident_report_workspace.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/new_incident_report_workspace.html)
+- [officer_dashboard.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/officer_dashboard.html)
+- [training_management.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/training_management.html)
+
+### adviser role
+- [approvals_activity_requests.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/approvals_activity_requests.html)
+- [bylaw_governance_roster_audit.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/bylaw_governance_roster_audit.html)
+- [executive_dashboard.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/executive_dashboard.html)
+- [executive_reports_hub.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/executive_reports_hub.html)
+- [incident_audit_vault.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/incident_audit_vault.html)
+
+
+</details>
+
+<details><summary>diagrams</summary>
+
+### erd
+<img width="1164" height="909" alt="group3_designs-1  ERD drawio" src="https://github.com/user-attachments/assets/0e996e50-a437-40b1-bbfb-373b36fda005" />
+
+### class diagram
+<img width="1081" height="602" alt="group3_designs-2  Class Diagram drawio" src="https://github.com/user-attachments/assets/20412fa7-9555-49d0-89b1-cef31055d8e2" />
+
+### use case diagram
+<img width="932" height="1811" alt="group3_designs-3  Use Case Diagram drawio" src="https://github.com/user-attachments/assets/6a9f9ea0-1eb6-4f3b-8764-a6ec573bff0a" />
+
+### system architecture
+<img width="878" height="626" alt="group3_designs-4  System Architecture drawio" src="https://github.com/user-attachments/assets/fe151c83-b734-4a17-a68c-4101d9b715e0" />
+
+### context dfd
+<img width="1030" height="596" alt="group3_designs-5  Context DFD drawio" src="https://github.com/user-attachments/assets/00b9de76-7cb1-4516-8ed6-d74793d9ffd8" />
+
+### database schema
+<img width="3101" height="1190" alt="group3_designs-6  Database Schema drawio" src="https://github.com/user-attachments/assets/05f55c41-05fe-4d8c-a3ee-2c100807f07b" />
+
+</details>
+
+<details><summary>trallalero</summary>
+  https://trello.com/b/rcb0FEpP
+</details>
+
 <details><summary>about</summary>
 
 ## **1\. Proposed Title**
@@ -114,67 +177,4 @@ The proposed system will **not replace the records maintained by the Student Org
 
 > The proposed project was identified after examining the current operations of the **DRRT LVCC Apalit Chapter** and discussing its existing workflow with the organization's officers. While the organization actively supports disaster preparedness and emergency response within the school, many of its administrative p**rocesses remain fragmented** **across paper documents, spreadsheets, and cloud storage.** These practices increase the time required to manage records and make it difficult to maintain consistent and secure information. The proposed DRRT-IMS aims to address these operational challenges by **providing a centralized information management system** that supports the organization's existing responsibilities without changing its established procedures.
 
-</details>
-
-## essential stuffs for development
-<details>
-<summary>ui designs by ui designers (htmlpreview)</summary>
-
-
-### student role (landing page)
-- [~~(NO MORE THEY SAID) interactive_campus_hazard_map.html~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/(NO%20MORE%20THEY%20SAID)%20interactive_campus_hazard_map.html)
-- [join_drrt_membership_information.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/join_drrt_membership_information.html)
-- [application_form.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/application_form.html)
-- [public_events_preparedness_bulletins.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/public_events_preparedness_bulletins.html)
-- [public_home_preparedness_landing_page.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/1student%20(landing%20page)/public_home_preparedness_landing_page.html)
-
-### member role
-- [announcements.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/announcements.html)
-- [member_dashboard_updated.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/member_dashboard_updated.html)
-- [my_attendance_records.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/my_attendance_records.html)
-- [my_digital_id_updated.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/my_digital_id_updated.html)
-- [training_hub.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/2member/training_hub.html)
-
-### officer role
-- [incident_vault.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/incident_vault.html)
-- [manual_attendance_logger_pro.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/manual_attendance_logger_pro.html)
-- [member_roster.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/member_roster.html)
-- [new_incident_report_workspace.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/new_incident_report_workspace.html)
-- [officer_dashboard.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/officer_dashboard.html)
-- [training_management.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/3officer/training_management.html)
-
-### adviser role
-- [approvals_activity_requests.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/approvals_activity_requests.html)
-- [bylaw_governance_roster_audit.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/bylaw_governance_roster_audit.html)
-- [executive_dashboard.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/executive_dashboard.html)
-- [executive_reports_hub.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/executive_reports_hub.html)
-- [incident_audit_vault.html](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS/blob/master/ui-design/4adviser/incident_audit_vault.html)
-
-
-</details>
-
-<details><summary>diagrams</summary>
-
-### erd
-<img width="1164" height="909" alt="group3_designs-1  ERD drawio" src="https://github.com/user-attachments/assets/0e996e50-a437-40b1-bbfb-373b36fda005" />
-
-### class diagram
-<img width="1081" height="602" alt="group3_designs-2  Class Diagram drawio" src="https://github.com/user-attachments/assets/20412fa7-9555-49d0-89b1-cef31055d8e2" />
-
-### use case diagram
-<img width="932" height="1811" alt="group3_designs-3  Use Case Diagram drawio" src="https://github.com/user-attachments/assets/6a9f9ea0-1eb6-4f3b-8764-a6ec573bff0a" />
-
-### system architecture
-<img width="878" height="626" alt="group3_designs-4  System Architecture drawio" src="https://github.com/user-attachments/assets/fe151c83-b734-4a17-a68c-4101d9b715e0" />
-
-### context dfd
-<img width="1030" height="596" alt="group3_designs-5  Context DFD drawio" src="https://github.com/user-attachments/assets/00b9de76-7cb1-4516-8ed6-d74793d9ffd8" />
-
-### database schema
-<img width="3101" height="1190" alt="group3_designs-6  Database Schema drawio" src="https://github.com/user-attachments/assets/05f55c41-05fe-4d8c-a3ee-2c100807f07b" />
-
-</details>
-
-<details><summary>trallalero</summary>
-  https://trello.com/b/rcb0FEpP
 </details>
