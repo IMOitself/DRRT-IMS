@@ -153,9 +153,25 @@ The proposed system will **not replace the records maintained by the Student Org
 
 </details>
 
-<details><summary>database schema by sqa</summary>
-  
-<img width="1083" height="885" alt="revised_DRRT_IMS_DIAGRAMS-1-1  ERD drawio" src="https://github.com/user-attachments/assets/7926109a-7355-4c36-8423-ddaa2274b963" />
+<details><summary>diagrams</summary>
+
+### erd
+<img width="1164" height="909" alt="group3_designs-1  ERD drawio" src="https://github.com/user-attachments/assets/0e996e50-a437-40b1-bbfb-373b36fda005" />
+
+### class diagram
+<img width="1081" height="602" alt="group3_designs-2  Class Diagram drawio" src="https://github.com/user-attachments/assets/20412fa7-9555-49d0-89b1-cef31055d8e2" />
+
+### use case diagram
+<img width="932" height="1811" alt="group3_designs-3  Use Case Diagram drawio" src="https://github.com/user-attachments/assets/6a9f9ea0-1eb6-4f3b-8764-a6ec573bff0a" />
+
+### system architecture
+<img width="878" height="626" alt="group3_designs-4  System Architecture drawio" src="https://github.com/user-attachments/assets/fe151c83-b734-4a17-a68c-4101d9b715e0" />
+
+### context dfd
+<img width="1030" height="596" alt="group3_designs-5  Context DFD drawio" src="https://github.com/user-attachments/assets/00b9de76-7cb1-4516-8ed6-d74793d9ffd8" />
+
+### database schema
+<img width="3101" height="1190" alt="group3_designs-6  Database Schema drawio" src="https://github.com/user-attachments/assets/05f55c41-05fe-4d8c-a3ee-2c100807f07b" />
 
 </details>
 
