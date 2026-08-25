@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DRRT Member Roster - Officer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-tint": "#0c56d0",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003d9b",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-variant": "#dae2fd",
+                        "on-background": "#131b2e",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "on-surface-variant": "#434654",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "outline": "#737685",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbcf",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d6",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-container": "#a33500",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "tertiary": "#7b2600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">DRRT Member Roster</span>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Roster</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Vault</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Training</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Security Officer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-32">
+  <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Active Roster Context Header -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Disaster Response Team Directory</p>
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs">Active Responder Roster</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage personnel records, squad assignments, and status.</p>
+        </div>
+        <button class="bg-primary text-on-primary hover:bg-primary-container transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2 shadow-sm self-start sm:self-auto">
+          <span class="material-symbols-outlined text-[18px]">add</span> Add Member
+        </button>
+      </div>
+    </section>
+
+    <!-- Live Roster Summary -->
+    <div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
+      <div class="font-label-md text-on-surface">Total Personnel: <span class="text-primary font-bold">142 Registered</span></div>
+      <div class="flex gap-4 font-body-sm">
+        <div class="flex items-center gap-1.5 text-[#166534] font-medium"><span class="w-2 h-2 rounded-full bg-[#166534]"></span> Active: 112</div>
+        <div class="flex items-center gap-1.5 text-[#854d0e] font-medium"><span class="w-2 h-2 rounded-full bg-[#ca8a04]"></span> Flagged: 10</div>
+        <div class="flex items-center gap-1.5 text-error font-medium"><span class="w-2 h-2 rounded-full bg-error"></span> Inactive: 20</div>
+      </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="space-y-3">
+      <!-- Search Bar -->
+      <div class="relative w-full">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+        <input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-colors" placeholder="Search by name, ID, course, or squad..." type="text">
+      </div>
+
+      <!-- Rapid Filter Pills -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-on-surface text-surface font-label-sm text-label-sm flex-shrink-0">All Members (142)</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">Active Only (112)</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">1st Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">2nd Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">3rd Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">4th Year</button>
+      </div>
+
+      <!-- Duty Squad Dropdown Filter -->
+      <div class="relative w-full max-w-xs">
+        <select class="w-full appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface text-sm rounded-lg block p-2.5 focus:ring-primary focus:border-primary pr-8 font-body-sm shadow-sm">
+          <option selected>All Squads / Duty Teams</option>
+          <option value="medical">Medical Squad</option>
+          <option value="sar">Search & Rescue</option>
+          <option value="logistics">Logistics</option>
+          <option value="comm">Comm Duty</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+          <span class="material-symbols-outlined text-[20px]">arrow_drop_down</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member List Cards -->
+    <section class="space-y-2">
+      
+      <!-- Member Item 1 (Active) -->
+      <div class="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+           data-name="Santos, Maria Clara" data-id="2024-0192" data-course="BSIT • 3rd Year" data-status="Active" data-email="msantos@university.edu" data-phone="+1 555-0192" data-attendance="94%" data-incidents="12"
+           onclick="openDrawer(this)">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">SM</div>
+          <div class="min-w-0">
+            <p class="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">Santos, Maria Clara</p>
+            <p class="text-[11px] text-on-surface-variant truncate">ID: 2024-0192 • BSIT - 3rd Year</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">Active</span>
+          <span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+        </div>
+      </div>
+
+      <!-- Member Item 2 (Flagged) -->
+      <div class="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+           data-name="De Leon, Juan" data-id="2025-0441" data-course="BSCS • 2nd Year" data-status="Flagged" data-email="jdeleon@university.edu" data-phone="+1 555-0144" data-attendance="78%" data-incidents="5"
+           onclick="openDrawer(this)">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">DL</div>
+          <div class="min-w-0">
+            <p class="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">De Leon, Juan</p>
+            <p class="text-[11px] text-on-surface-variant truncate">ID: 2025-0441 • BSCS - 2nd Year</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20">Flagged</span>
+          <span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+        </div>
+      </div>
+
+      <!-- Member Item 3 (Inactive) -->
+      <div class="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group opacity-80 hover:opacity-100"
+           data-name="Mendoza, Jose" data-id="2026-0082" data-course="BSEMC • 1st Year" data-status="Inactive" data-email="jmendoza@university.edu" data-phone="+1 555-0188" data-attendance="62%" data-incidents="19"
+           onclick="openDrawer(this)">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">MJ</div>
+          <div class="min-w-0">
+            <p class="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">Mendoza, Jose</p>
+            <p class="text-[11px] text-on-surface-variant truncate">ID: 2026-0082 • BSEMC - 1st Year</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">Inactive</span>
+          <span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+        </div>
+      </div>
+
+      <!-- Member Item 4 (Active) -->
+      <div class="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+           data-name="Aquino, Andrea" data-id="2023-0115" data-course="BSIT • 4th Year" data-status="Active" data-email="aaquino@university.edu" data-phone="+1 555-0123" data-attendance="98%" data-incidents="3"
+           onclick="openDrawer(this)">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">AA</div>
+          <div class="min-w-0">
+            <p class="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">Aquino, Andrea</p>
+            <p class="text-[11px] text-on-surface-variant truncate">ID: 2023-0115 • BSIT - 4th Year</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">Active</span>
+          <span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<!-- Member Profile Drawer -->
+<aside class="fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col" id="member-drawer">
+  <!-- Drawer Header -->
+  <div class="flex items-center justify-between p-4 border-b border-outline-variant bg-surface-container-low">
+    <h3 class="font-headline-md text-body-lg font-bold text-on-surface m-0">Member Profile</h3>
+    <button aria-label="Close" class="hover:bg-surface-container-high rounded-full p-2 transition-colors text-on-surface-variant" onclick="closeDrawer()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  
+  <!-- Drawer Content -->
+  <div class="flex-grow overflow-y-auto p-6 space-y-6">
+    <div class="flex flex-col items-center text-center">
+      <div id="drawer-initials" class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3">SM</div>
+      <h3 class="font-headline-md text-xl font-bold text-on-surface m-0" id="drawer-name">Santos, Maria Clara</h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5" id="drawer-id">ID: 2024-0192</p>
+      <span class="inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3" id="drawer-status">Active</span>
+    </div>
+
+    <div class="space-y-4">
+      <div class="border-t border-outline-variant pt-4">
+        <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">Academic & Contact</p>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div>
+            <p class="text-xs text-on-surface-variant font-medium">Program / Year</p>
+            <p class="font-body-sm text-on-surface font-semibold" id="drawer-course">BSIT • 3rd Year</p>
+          </div>
+          <div>
+            <p class="text-xs text-on-surface-variant font-medium">Phone</p>
+            <p class="font-body-sm text-on-surface font-semibold" id="drawer-phone">+1 555-0192</p>
+          </div>
+          <div class="col-span-2">
+            <p class="text-xs text-on-surface-variant font-medium">Email Address</p>
+            <p class="font-body-sm text-primary font-semibold" id="drawer-email">msantos@university.edu</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-outline-variant pt-4">
+        <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">Duty Performance</p>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+            <p class="font-headline-lg text-headline-lg text-primary font-bold m-0" id="drawer-attendance">94%</p>
+            <p class="font-label-sm text-xs text-on-surface-variant mt-1">Attendance Rate</p>
+          </div>
+          <div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+            <p class="font-headline-lg text-headline-lg text-primary font-bold m-0" id="drawer-incidents">12</p>
+            <p class="font-label-sm text-xs text-on-surface-variant mt-1">Incidents Handled</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer Actions -->
+  <div class="p-4 border-t border-outline-variant bg-surface flex gap-3">
+    <button class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
+      Edit
+    </button>
+    <button class="flex-1 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-sm hover:bg-primary-container transition-colors shadow-sm">
+      Message
+    </button>
+  </div>
+</aside>
+
+<!-- Drawer Overlay -->
+<div class="fixed inset-0 bg-on-surface/20 z-[65] hidden transition-opacity" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">how_to_reg</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">group</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Roster</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">model_training</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+</nav>
+
+<script>
+    const drawer = document.getElementById('member-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+
+    const statusBadgeStyles = {
+        Active: "bg-[#dcfce7] text-[#166534] border border-[#166534]/20",
+        Flagged: "bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20",
+        Inactive: "bg-surface-container-highest text-on-surface-variant border border-outline-variant"
+    };
+
+    function openDrawer(card) {
+        const data = card.dataset;
+
+        document.getElementById('drawer-name').textContent = data.name;
+        document.getElementById('drawer-id').textContent = `ID: ${data.id}`;
+        document.getElementById('drawer-course').textContent = data.course;
+        document.getElementById('drawer-phone').textContent = data.phone;
+        document.getElementById('drawer-email').textContent = data.email;
+        document.getElementById('drawer-attendance').textContent = data.attendance;
+        document.getElementById('drawer-incidents').textContent = data.incidents;
+
+        // Initials avatar
+        const initials = data.name.split(',').map(n => n.trim()[0]).join('');
+        document.getElementById('drawer-initials').textContent = initials;
+
+        // Status badge
+        const statusEl = document.getElementById('drawer-status');
+        statusEl.className = `inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider ${statusBadgeStyles[data.status] || statusBadgeStyles.Active}`;
+        statusEl.textContent = data.status;
+
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>

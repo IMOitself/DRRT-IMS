@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Training &amp; Event Management - DRRT Officer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-tint": "#0c56d0",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003d9b",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-variant": "#dae2fd",
+                        "on-background": "#131b2e",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "on-surface-variant": "#434654",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "outline": "#737685",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbcf",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d6",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-container": "#a33500",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "tertiary": "#7b2600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">Training &amp; Events</span>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Roster</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Vault</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Training</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full relative">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Security Officer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-24 md:pb-12">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Page Header & Action -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
+      <div>
+        <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">DRRT Officer Development</p>
+        <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs font-bold">Training &amp; Event Management</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage, schedule, and track operational readiness programs.</p>
+      </div>
+
+      <button class="bg-primary text-on-primary px-4 py-2.5 rounded-lg font-label-md text-sm flex items-center justify-center shadow-sm hover:bg-primary-container transition-colors gap-2 w-full md:w-auto font-bold">
+        <span class="material-symbols-outlined text-[18px]">add</span> Schedule New Training
+      </button>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <div class="flex overflow-x-auto no-scrollbar border-b border-outline-variant">
+      <button class="px-5 py-3 font-label-md text-label-md text-primary font-bold border-b-2 border-primary whitespace-nowrap">
+        Upcoming Trainings
+      </button>
+      <button class="px-5 py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">
+        Completed
+      </button>
+      <button class="px-5 py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">
+        Drafts &amp; Templates
+      </button>
+    </div>
+
+    <!-- Search & Filters Bar -->
+    <div class="flex flex-col sm:flex-row gap-3">
+      <div class="relative flex-1">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+        <input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-colors" placeholder="Search trainings by title, instructor, or location..." type="text">
+      </div>
+      <button class="flex items-center justify-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md shadow-sm">
+        <span class="material-symbols-outlined text-[18px]">filter_list</span>
+        Filters
+      </button>
+    </div>
+
+    <!-- Training Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+      
+      <!-- Card 1 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary transition-colors flex flex-col">
+        <div class="h-28 w-full bg-surface-container-high relative">
+          <div class="w-full h-full bg-cover bg-center opacity-90" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBl38Qa11jXnXF0P0uBhOvW3R6UR6w9W4qO9zY9K9a-L2tmTd1u9NtJ9OcdHvEOb_KlbLDtD4UUqtPU5g9B0lvLkZo-1QFITXJTPCFhEIFRpdRQPHvlZMPbPrV5RTDcsQOdnAoI-lim2oJ3oyUP358FzsvYvH0QfWpZyiK99DosNbi0EbDAXt27ra6LjpXTTSZZ9lWzenhArS6leMVurZYEoSq3SMD_QWkXR4qzwnpwMD3tCvN2xogMfA')"></div>
+          <div class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider font-bold flex items-center gap-1 shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">event_available</span> Open
+          </div>
+        </div>
+        <div class="p-md flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-headline-md text-headline-md-mobile font-bold text-on-surface line-clamp-2">Basic Fire Fighting &amp; Evacuation Drill</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Mandatory annual compliance and emergency evacuation drill for Sector A personnel.</p>
+          </div>
+          
+          <div class="space-y-2 font-body-sm text-body-sm text-on-surface-variant pt-2 border-t border-outline-variant">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+              <span>Oct 24, 2026 • 09:00 AM - 12:00 PM</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">location_on</span>
+              <span>North Wing Plaza, Main Campus</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">person</span>
+              <span>Instructor: Cpt. Reynolds</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+              <span class="text-on-surface font-medium">Capacity</span>
+              <span class="text-primary font-bold">38 / 50 Enrolled</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+              <div class="h-full bg-primary-container rounded-full" style="width: 76%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="px-md py-3 border-t border-outline-variant bg-surface-container-low flex justify-end gap-2">
+          <button class="px-3 py-1.5 font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface border border-outline-variant rounded-lg bg-surface hover:bg-surface-container-high transition-colors font-semibold">Edit Details</button>
+          <button class="px-3 py-1.5 font-label-sm text-label-sm bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors font-semibold">View Roster</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-tertiary transition-colors flex flex-col">
+        <div class="h-28 w-full bg-surface-container-high relative">
+          <div class="w-full h-full bg-cover bg-center opacity-90" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV7g4qgIBwEZJVdNmMvlH9crWD4TOzQe8OFn-kfi7d6UAoJd9UepGa-07RkaOd1lAafpKDNW7yl6d9WOg335wA2aiy8FvsnBRcrxoTumNjUYe3AOphxIXAk_9FV7ZBB-c9VqbCUBw7IKho1WyJlK5kPt70-mvNzwHmrmjHb92z01xmANvF0DzVe8Mhdm6CH-SQdubOvUHR0-8Z5CEl2lbgHyqJF2i8KsmLcU0AotshaHWknZdEiUvTeA')"></div>
+          <div class="absolute top-3 right-3 bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary-fixed-dim px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider font-bold flex items-center gap-1 shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">warning</span> Almost Full
+          </div>
+        </div>
+        <div class="p-md flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-headline-md text-headline-md-mobile font-bold text-on-surface line-clamp-2">Advanced Crisis Negotiation Tactics</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Specialized intensive seminar for Response Team Leaders and Incident Commanders.</p>
+          </div>
+          
+          <div class="space-y-2 font-body-sm text-body-sm text-on-surface-variant pt-2 border-t border-outline-variant">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-tertiary">calendar_month</span>
+              <span>Nov 02, 2026 • 01:00 PM - 05:00 PM</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-tertiary">videocam</span>
+              <span>Virtual Briefing Room B</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-tertiary">person</span>
+              <span>Instructor: Dr. Aris Thorne</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+              <span class="text-on-surface font-medium">Capacity</span>
+              <span class="text-tertiary font-bold">14 / 15 Enrolled</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+              <div class="h-full bg-tertiary rounded-full" style="width: 93%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="px-md py-3 border-t border-outline-variant bg-surface-container-low flex justify-end gap-2">
+          <button class="px-3 py-1.5 font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface border border-outline-variant rounded-lg bg-surface hover:bg-surface-container-high transition-colors font-semibold">Edit Details</button>
+          <button class="px-3 py-1.5 font-label-sm text-label-sm bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors font-semibold">View Roster</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary transition-colors flex flex-col">
+        <div class="h-28 w-full bg-surface-container-high relative">
+          <div class="w-full h-full bg-cover bg-center opacity-90" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdMcwB4DkPBhOZa79f3gnBZwhfaxGZzSnRWGHJrQUTUz8XLnfYARCCdO1Z3XB3MvQZUufhgNa6mbZQfuRn0XzoxjdwWrqqabbW-LDZ9luH6Y3xPnb-caZ2sr-wRL7uRoy_HQFWgVvBXzWEDTlap147fVnx2F9Nc7WnibRhQlzYCd3rvRQrieNZ2qHacnsXszJAQ7x9DBqvqqTkQ6ZQJSyhz25GL_OWZsdc0VRTZK2pxVj_iIb5vp3OfQ')"></div>
+          <div class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider font-bold flex items-center gap-1 shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">event_available</span> Open
+          </div>
+        </div>
+        <div class="p-md flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-headline-md text-headline-md-mobile font-bold text-on-surface line-clamp-2">Cyber-Physical Security Integration</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Comprehensive briefing on cross-system monitoring and emergency protocol updates.</p>
+          </div>
+          
+          <div class="space-y-2 font-body-sm text-body-sm text-on-surface-variant pt-2 border-t border-outline-variant">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+              <span>Nov 15, 2026 • 10:00 AM - 11:30 AM</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">location_on</span>
+              <span>Briefing Theater 1</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary">person</span>
+              <span>Instructor: IT Sec Ops Team</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+              <span class="text-on-surface font-medium">Capacity</span>
+              <span class="text-primary font-bold">12 / 100 Enrolled</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+              <div class="h-full bg-primary-container rounded-full" style="width: 12%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="px-md py-3 border-t border-outline-variant bg-surface-container-low flex justify-end gap-2">
+          <button class="px-3 py-1.5 font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface border border-outline-variant rounded-lg bg-surface hover:bg-surface-container-high transition-colors font-semibold">Edit Details</button>
+          <button class="px-3 py-1.5 font-label-sm text-label-sm bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors font-semibold">View Roster</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">how_to_reg</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Roster</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">model_training</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+</nav>
+
+</body>
+</html>

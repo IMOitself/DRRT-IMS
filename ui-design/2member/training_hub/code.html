@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Training Hub - Member Portal</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "compliance-yellow": "#ca8a04",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0c1c30",
+                        "premium-gradient-end": "#002d70",
+                        "surface": "#faf8ff",
+                        "tertiary": "#7b2600",
+                        "premium-gradient-start": "#0052cc",
+                        "surface-container-highest": "#dae2fc",
+                        "background": "#faf8ff",
+                        "on-surface": "#131b2e",
+                        "primary-container": "#0052cc",
+                        "secondary": "#505f76",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-secondary-fixed-variant": "#39485e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#131b2e",
+                        "inverse-surface": "#283044",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "progress-ring-track": "#eaedff",
+                        "on-secondary-container": "#56657c",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary-container": "#9b3d16",
+                        "surface-variant": "#dae2fc",
+                        "compliance-red": "#dc2626",
+                        "on-primary-container": "#c4d2ff",
+                        "outline-variant": "#c3c6d6",
+                        "compliance-green": "#16a34a",
+                        "surface-container-high": "#e1e7ff",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-container": "#ffc6b3",
+                        "outline": "#737685",
+                        "on-primary-fixed": "#001848",
+                        "on-primary": "#ffffff",
+                        "primary": "#003d9b",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-tint": "#0c56d0",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-tertiary-fixed-variant": "#802a03",
+                        "surface-dim": "#d2d9f4",
+                        "secondary-container": "#d4e3ff",
+                        "inverse-primary": "#b2c5ff",
+                        "on-surface-variant": "#434654",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b8c7e2",
+                        "secondary-fixed": "#d4e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #131b2e;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background-color: rgba(250, 248, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 61, 155, 0.08), 0 8px 10px -6px rgba(0, 61, 155, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Header -->
+<header class="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
+  <div class="max-w-screen-xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <div class="w-9 h-9 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+        <img alt="Member profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6fcEQGWD_wHG87CJlkLKiFNdVfF7IyT-9TWVUivcp9bWwNyJpUxWrd8j0X1yV9HpYGWyPExPs7mkXS69TXAf7edfcGnxtvPXkNZuh4xA5Fj5vmuTMRxXgdoiv32Cz7t9M4UQv4uiMj3AX-kiLVUqYKSKwouUubND5eA-f5wc73A4MviFW9Hrzz1Q-90HMKZHQHwA_7t5VAnbFwapusECCW-3bwlzVPP-va-0bwpVa5UeZjT8Jh5tHHQ">
+      </div>
+      <h1 class="font-headline-md text-headline-md font-bold text-primary">Member Portal</h1>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Training</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Alerts</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">ID Card</a>
+    </nav>
+
+    <button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-screen-xl w-full mx-auto px-margin-mobile md:px-margin-desktop py-lg pb-28 md:pb-12 space-y-lg">
+  
+  <!-- Page Title Header -->
+  <div>
+    <h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface font-bold">Training Hub</h2>
+    <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant mt-1">Enhance your skills, register for certifications, and manage active deployments.</p>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="flex space-x-6 border-b border-outline-variant/60 overflow-x-auto pb-xs scrollbar-none">
+    <button class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-2 px-1 whitespace-nowrap">Available Programs</button>
+    <button class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-2 px-1 whitespace-nowrap transition-colors">My Registrations</button>
+    <button class="font-label-md text-label-md text-on-surface-variant hover:text-primary pb-2 px-1 whitespace-nowrap transition-colors">Certificates &amp; Records</button>
+  </div>
+
+  <!-- Training Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+    
+    <!-- Card 1: Advanced Disaster Response -->
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-md md:p-lg flex flex-col justify-between card-hover transition-all duration-300 shadow-sm">
+      <div>
+        <div class="flex justify-between items-center mb-sm">
+          <span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full font-semibold">Specialized</span>
+          <span class="bg-surface-container text-primary font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1 font-semibold">
+            <span class="material-symbols-outlined text-[14px]">group</span> 15 slots left
+          </span>
+        </div>
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-xs">Advanced Disaster Response</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Tactical coordination and resource management in high-stress disaster environments.</p>
+        
+        <div class="space-y-1.5 mb-lg">
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span> Oct 12 - Oct 14
+          </div>
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-primary">location_on</span> Regional HQ, Room B
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-full bg-progress-ring-track h-2 rounded-full mb-3 overflow-hidden">
+          <div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+        </div>
+        <button class="w-full h-12 bg-primary text-on-primary font-label-md text-label-md font-semibold rounded-xl hover:bg-primary-container transition-all active:scale-[0.98] shadow-sm">
+          Enroll Now
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 2: Basic Life Support -->
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-md md:p-lg flex flex-col justify-between card-hover transition-all duration-300 shadow-sm">
+      <div>
+        <div class="flex justify-between items-center mb-sm">
+          <span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full font-semibold">Core Requirement</span>
+          <span class="bg-compliance-green/15 text-compliance-green font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-[14px] filled-icon">check_circle</span> Enrolled
+          </span>
+        </div>
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-xs">Basic Life Support</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Essential CPR, AED usage, and initial emergency medical response techniques.</p>
+        
+        <div class="space-y-1.5 mb-lg">
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span> Sep 28 (Upcoming)
+          </div>
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-primary">location_on</span> Online Portal
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-full bg-progress-ring-track h-2 rounded-full mb-3 overflow-hidden">
+          <div class="bg-compliance-green h-full rounded-full" style="width: 100%"></div>
+        </div>
+        <button class="w-full h-12 bg-surface-container-high text-primary font-label-md text-label-md font-semibold rounded-xl border border-outline-variant/60 hover:bg-surface-variant transition-all active:scale-[0.98]">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 3: Logistics Management -->
+    <div class="bg-surface-container-low/70 rounded-2xl border border-outline-variant p-md md:p-lg flex flex-col justify-between opacity-90 shadow-sm">
+      <div>
+        <div class="flex justify-between items-center mb-sm">
+          <span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full font-semibold">Leadership</span>
+          <span class="bg-error-container text-error font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1 font-bold">
+            <span class="material-symbols-outlined text-[14px]">block</span> Full
+          </span>
+        </div>
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-xs">Logistics Management</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Supply chain optimization and deployment strategies for large-scale disaster operations.</p>
+        
+        <div class="space-y-1.5 mb-lg">
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-outline">calendar_month</span> Nov 05 - Nov 07
+          </div>
+          <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px] text-outline">location_on</span> Main Campus
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="w-full bg-progress-ring-track h-2 rounded-full mb-3 overflow-hidden">
+          <div class="bg-outline h-full rounded-full" style="width: 100%"></div>
+        </div>
+        <button class="w-full h-12 bg-surface-container-high text-on-surface-variant font-label-md text-label-md font-semibold rounded-xl cursor-not-allowed opacity-70">
+          Join Waitlist
+        </button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-lg">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">calendar_today</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 transition-all">
+    <span class="material-symbols-outlined filled-icon">school</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">notifications</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Alerts</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">badge</span>
+    <span class="font-label-sm text-label-sm mt-0.5">ID Card</span>
+  </button>
+</nav>
+
+</body>
+</html>

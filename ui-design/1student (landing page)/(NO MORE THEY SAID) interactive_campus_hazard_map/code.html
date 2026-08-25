@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Campus Hazard Map - DRRT Portal</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#0c1c30",
+                      "primary-container": "#0052cc",
+                      "outline": "#737685",
+                      "on-tertiary-fixed-variant": "#812800",
+                      "surface-container-low": "#f3f3fd",
+                      "surface-container-highest": "#e1e2ec",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#39485e",
+                      "on-primary-fixed-variant": "#0040a2",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#b2c5ff",
+                      "status-warning": "#ca8a04",
+                      "tertiary-fixed-dim": "#ffb59b",
+                      "tertiary-container": "#a33500",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#dae2ff",
+                      "status-success": "#16a34a",
+                      "on-tertiary-container": "#ffc6b2",
+                      "inverse-surface": "#2e3038",
+                      "on-surface-variant": "#434654",
+                      "on-error": "#ffffff",
+                      "secondary": "#505f76",
+                      "error-container": "#ffdad6",
+                      "primary": "#003d9b",
+                      "tertiary": "#7b2600",
+                      "surface-tint": "#0c56d0",
+                      "inverse-on-surface": "#f0f0fb",
+                      "on-surface": "#191b23",
+                      "surface": "#faf8ff",
+                      "on-secondary-container": "#56657c",
+                      "secondary-container": "#d4e3ff",
+                      "secondary-fixed": "#d4e3ff",
+                      "on-error-container": "#93000a",
+                      "map-assembly": "#059669",
+                      "surface-container-high": "#e7e7f2",
+                      "on-primary-fixed": "#001848",
+                      "background": "#faf8ff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#b2c5ff",
+                      "secondary-fixed-dim": "#b8c7e2",
+                      "map-evacuation": "#2563eb",
+                      "surface-dim": "#d9d9e4",
+                      "surface-variant": "#e1e2ec",
+                      "outline-variant": "#c3c6d6",
+                      "map-hazard": "#ea580c",
+                      "on-background": "#191b23",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#faf8ff",
+                      "on-primary-container": "#c4d2ff",
+                      "on-tertiary-fixed": "#380d00",
+                      "status-critical": "#dc2626",
+                      "tertiary-fixed": "#ffdbcf",
+                      "surface-container": "#ededf8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "label-md": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "body-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #191b23;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background-color: rgba(250, 248, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 61, 155, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Header -->
+<header class="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
+  <div class="max-w-screen-xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+        <span class="material-symbols-outlined text-[24px]">shield</span>
+      </div>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+          DRRT Portal
+          <span class="font-label-sm text-label-sm text-primary font-semibold bg-primary-fixed px-2 py-0.5 rounded-full uppercase tracking-wider">LVCC</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant" aria-label="Main Navigation">
+      <a href="#" class="hover:text-primary transition-colors py-1">Home</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1" aria-current="page">Map</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Events</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Join</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button class="font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95">
+        Login
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="flex-grow w-full">
+  <!-- Main Canvas Container with generous vertical spacing (space-y-6 md:space-y-8) -->
+  <main class="max-w-5xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6 md:space-y-8">
+    
+    <!-- Sub-header & Floor Selector Card -->
+    <section class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <span class="font-label-sm text-label-sm font-bold text-primary tracking-wider uppercase">Interactive Campus Safety</span>
+          <h2 class="font-display-lg text-2xl md:text-3xl font-bold text-on-surface mt-1">LVCC Apalit Campus Hazard Map</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">Real-time hazard zones, designated assembly points, and emergency evacuation paths.</p>
+        </div>
+
+        <!-- Floor Selector Dropdown -->
+        <div class="w-full md:w-auto shrink-0">
+          <button class="w-full md:w-72 flex items-center justify-between bg-surface border border-outline-variant rounded-xl px-4 py-3 hover:bg-surface-container-low transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-secondary text-[20px]">layers</span>
+              <span class="font-body-md text-body-md font-semibold text-on-surface">Main Campus - All Floors</span>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Map Container -->
+    <section class="relative w-full rounded-2xl border border-outline-variant/80 bg-surface-container-highest overflow-hidden shadow-sm h-[400px] md:h-[500px]">
+      
+      <!-- Illustrative Map Background Image -->
+      <div class="absolute inset-0 bg-cover bg-center opacity-90 scale-105 origin-center transition-transform duration-700 ease-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgRrz5gmGN17tTtywuS9LIou7QvVdcI2ZqommvY9bziGPFLs7id8PRVUvMSspIhvLUv4KKluBcRiVP3LZaASiwudFuN2E9knWgrPqKq6ot07-969MIEwJX_YHVSUfy9BafnfEGkhUye8MIvO4pshGaidOTX6dx7RzfkbdHKcNlfSe-tDrsP-cncLd0wJD23diOJZislf6CEzpAkspQBGKvZqQaxLv653doJTPQ99gK30QsOEZ2328gmw')"></div>
+      
+      <!-- Evacuation Route Line Overlay (SVG) -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 400">
+        <path class="opacity-80" d="M 50 150 L 150 150 L 200 250 L 350 250" fill="none" stroke="#2563eb" stroke-dasharray="8 8" stroke-width="4"></path>
+        <polygon class="opacity-80" fill="#2563eb" points="350,240 365,250 350,260"></polygon>
+      </svg>
+
+      <!-- Pins -->
+      <!-- Assembly Area Pin A -->
+      <button class="absolute top-[35%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-map-assembly rounded-full flex items-center justify-center border-2 border-surface shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-4 focus:ring-map-assembly/30 z-20 cursor-pointer" onclick="openDrawer('assembly_a')" aria-label="Assembly Area Zone A">
+        <span class="material-symbols-outlined text-on-primary text-[22px] filled-icon">groups</span>
+        <span class="absolute -bottom-1 -right-1 bg-surface text-on-surface font-label-sm text-[10px] leading-none px-1.5 py-0.5 rounded shadow-sm border border-outline-variant font-bold">A</span>
+      </button>
+
+      <!-- Hazard Zone Pin -->
+      <button class="absolute top-[60%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-map-hazard/20 border-2 border-map-hazard rounded-full flex items-center justify-center shadow-lg hover:bg-map-hazard/30 transition-colors focus:outline-none focus:ring-4 focus:ring-map-hazard/30 z-20 cursor-pointer" onclick="openDrawer('hazard_lab')" aria-label="Hazard Zone Chemical Lab">
+        <span class="material-symbols-outlined text-map-hazard animate-pulse text-[26px] filled-icon">warning</span>
+      </button>
+
+      <!-- First Aid Pin -->
+      <button class="absolute top-[20%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 w-9 h-9 bg-surface rounded-xl flex items-center justify-center border-2 border-status-critical shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-4 focus:ring-status-critical/30 z-20 cursor-pointer" onclick="openDrawer('first_aid')" aria-label="First Aid Station">
+        <span class="material-symbols-outlined text-status-critical text-[20px] filled-icon">medical_services</span>
+      </button>
+
+      <!-- Map Overlay Controls: Floating Filters -->
+      <div class="absolute bottom-4 left-4 flex flex-col gap-2.5 z-30">
+        <button aria-label="Toggle Evacuation Routes" class="w-10 h-10 bg-surface/90 backdrop-blur-md rounded-xl shadow-md flex items-center justify-center border border-outline-variant hover:bg-surface transition-all active:scale-95">
+          <span class="material-symbols-outlined text-map-evacuation text-[20px]">route</span>
+        </button>
+        <button aria-label="Toggle Assembly Areas" class="w-10 h-10 bg-surface/90 backdrop-blur-md rounded-xl shadow-md flex items-center justify-center border border-outline-variant hover:bg-surface transition-all active:scale-95">
+          <span class="material-symbols-outlined text-map-assembly text-[20px]">groups</span>
+        </button>
+        <button aria-label="Toggle Hazard Zones" class="w-10 h-10 bg-surface/90 backdrop-blur-md rounded-xl shadow-md flex items-center justify-center border border-outline-variant hover:bg-surface transition-all opacity-60 active:scale-95">
+          <span class="material-symbols-outlined text-map-hazard text-[20px]">warning</span>
+        </button>
+      </div>
+
+      <!-- Map Overlay Controls: Zoom -->
+      <div class="absolute bottom-4 right-4 flex flex-col bg-surface/90 backdrop-blur-md rounded-xl shadow-md border border-outline-variant overflow-hidden z-30">
+        <button aria-label="Zoom In" class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-high transition-colors active:bg-surface-variant">
+          <span class="material-symbols-outlined text-on-surface-variant">add</span>
+        </button>
+        <div class="w-full h-px bg-outline-variant/60"></div>
+        <button aria-label="Zoom Out" class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-high transition-colors active:bg-surface-variant">
+          <span class="material-symbols-outlined text-on-surface-variant">remove</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Protocol Quick Guide Section -->
+    <section class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm">
+      <div class="mb-6">
+        <h3 class="font-headline-md text-xl md:text-2xl font-bold text-on-surface">Protocol Quick Guide</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Essential safety instructions during campus emergencies.</p>
+      </div>
+
+      <!-- Protocol Cards Grid with distinct gap (gap-6) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Protocol Card 1 -->
+        <article class="bg-surface border border-outline-variant/80 rounded-xl p-5 shadow-sm card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-primary filled-icon text-[22px]">earthquake</span>
+              </div>
+              <h4 class="font-label-md text-label-md font-bold text-on-surface">Earthquake Protocol</h4>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Drop, Cover, and Hold On. Wait for the shaking to stop before moving safely to designated assembly areas.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-primary font-label-sm font-semibold">
+            <span>Read Full Steps</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </div>
+        </article>
+
+        <!-- Protocol Card 2 -->
+        <article class="bg-surface border border-outline-variant/80 rounded-xl p-5 shadow-sm card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-error filled-icon text-[22px]">local_fire_department</span>
+              </div>
+              <h4 class="font-label-md text-label-md font-bold text-on-surface">Fire Drill Route</h4>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Use the nearest fire stairwell. Do not use elevators. Follow marked blue evacuation lines on floor maps.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-primary font-label-sm font-semibold">
+            <span>Read Full Steps</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </div>
+        </article>
+
+        <!-- Protocol Card 3 -->
+        <article class="bg-surface border border-outline-variant/80 rounded-xl p-5 shadow-sm card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-primary filled-icon text-[22px]">water_drop</span>
+              </div>
+              <h4 class="font-label-md text-label-md font-bold text-on-surface">Flood Safety</h4>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Move to upper floors immediately. Avoid electrical equipment and submerged wiring in affected ground areas.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-primary font-label-sm font-semibold">
+            <span>Read Full Steps</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Info Drawer (Bottom Sheet) -->
+<div id="drawer-overlay" class="fixed inset-0 bg-on-surface/40 z-[55] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="closeDrawer()"></div>
+<div id="info-drawer" class="fixed bottom-0 left-0 w-full bg-surface rounded-t-3xl shadow-2xl z-[60] transform translate-y-full transition-transform duration-300 ease-in-out pb-8 pt-4 border-t border-outline-variant max-w-2xl left-1/2 -translate-x-1/2">
+  
+  <!-- Drag Handle -->
+  <div class="w-12 h-1.5 bg-outline-variant rounded-full mx-auto mb-5 cursor-pointer" onclick="closeDrawer()"></div>
+  
+  <div id="drawer-content" class="px-6">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-map-assembly">
+            <span class="material-symbols-outlined text-on-primary text-[14px] filled-icon">groups</span>
+          </span>
+          <span class="font-label-sm text-label-sm text-map-assembly font-bold tracking-wider uppercase">Assembly Area</span>
+        </div>
+        <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Zone A - Main Quad</h2>
+      </div>
+      <button class="p-2 bg-surface-container hover:bg-surface-container-high rounded-full transition-colors" onclick="closeDrawer()" aria-label="Close details">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+
+    <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+      Primary gathering point for all occupants of the main administrative and library buildings during a general evacuation.
+    </p>
+
+    <div class="space-y-4 bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-4 mb-6">
+      <div class="flex items-center gap-4">
+        <div class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[20px]">group</span>
+        </div>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Capacity</p>
+          <p class="font-body-md text-body-md text-on-surface font-bold">500 Students</p>
+        </div>
+      </div>
+      <div class="h-px w-full bg-outline-variant/50"></div>
+      <div class="flex items-center gap-4">
+        <div class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[20px]">badge</span>
+        </div>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Assigned Responder</p>
+          <p class="font-body-md text-body-md text-on-surface font-bold">Engr. Maria Santos</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold hover:bg-primary-container transition-all shadow-sm flex items-center justify-center gap-2 active:scale-[0.98]">
+      <span class="material-symbols-outlined text-[18px]">description</span>
+      <span>View Safety Guidelines</span>
+    </button>
+  </div>
+</div>
+
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-lg" aria-label="Mobile Navigation">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">home</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Home</span>
+  </button>
+  
+  <!-- Active Tab for Map -->
+  <button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-4 py-1.5 font-bold shadow-md scale-95 transition-all relative" aria-current="page">
+    <span class="material-symbols-outlined filled-icon">map</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Map</span>
+  </button>
+
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">event</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Events</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">person_add</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Join</span>
+  </button>
+</nav>
+
+<!-- Drawer Logic Script -->
+<script>
+    const drawer = document.getElementById('info-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+
+    function openDrawer(pinType) {
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+            overlay.classList.remove('opacity-0');
+            drawer.classList.remove('translate-y-full');
+        }, 10);
+    }
+
+    function closeDrawer() {
+        drawer.classList.add('translate-y-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+</script>
+
+</body>
+</html>

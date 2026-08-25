@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Officer Dashboard - DRRT Officer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-tint": "#0c56d0",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003d9b",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-variant": "#dae2fd",
+                        "on-background": "#131b2e",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "on-surface-variant": "#434654",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "outline": "#737685",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbcf",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d6",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-container": "#a33500",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "tertiary": "#7b2600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">Officer Dashboard</span>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Dashboard</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Roster</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Vault</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Training</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full relative">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+        <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Security Officer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-24 md:pb-12">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Welcome Context Header -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
+      <div>
+        <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Disaster Response & Readiness Team</p>
+        <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs font-bold">Welcome back, Officer Santos</h2>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-on-surface-variant font-body-sm text-body-sm mt-1">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">schedule</span> System Time: 02:45 PM</span>
+          <span class="text-outline-variant">•</span>
+          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Active Duty: On-Call</span>
+          <span class="text-outline-variant">•</span>
+          <span class="font-mono text-outline font-medium">Badge #DRRT-104</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap sm:flex-nowrap gap-2 w-full md:w-auto">
+        <button class="flex-1 sm:flex-initial bg-primary text-on-primary px-3.5 py-2 rounded-lg font-label-md text-sm flex items-center justify-center shadow-sm hover:bg-primary-container transition-colors gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">add</span> Quick Attendance
+        </button>
+        <button class="flex-1 sm:flex-initial bg-surface-container-lowest border border-error text-error px-3.5 py-2 rounded-lg font-label-md text-sm flex items-center justify-center hover:bg-error-container/30 transition-colors gap-1.5 font-bold">
+          <span class="material-symbols-outlined text-[18px]">add_alert</span> Log Incident
+        </button>
+        <button class="flex-1 sm:flex-initial bg-surface-container-lowest border border-outline-variant text-on-surface px-3.5 py-2 rounded-lg font-label-md text-sm flex items-center justify-center hover:bg-surface-container-low transition-colors gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">event</span> Schedule
+        </button>
+      </div>
+    </section>
+
+    <!-- KPIs Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+      <!-- KPI 1 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm relative overflow-hidden hover:border-primary transition-colors">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Active Members</span>
+          <span class="material-symbols-outlined text-primary bg-primary-fixed p-1.5 rounded-lg">groups</span>
+        </div>
+        <div class="flex items-end justify-between mt-3">
+          <div class="font-display-lg text-display-lg text-on-surface leading-none font-bold">142</div>
+          <div class="flex items-center text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-label-sm text-label-sm font-semibold">
+            <span class="material-symbols-outlined text-[14px] mr-0.5">arrow_upward</span> +5
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm relative overflow-hidden hover:border-primary transition-colors">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Avg Attendance</span>
+          <span class="material-symbols-outlined text-primary bg-primary-fixed p-1.5 rounded-lg">fact_check</span>
+        </div>
+        <div class="flex items-end justify-between mt-3">
+          <div class="font-display-lg text-display-lg text-on-surface leading-none font-bold">88.4<span class="text-[24px] text-outline">%</span></div>
+          <div class="flex items-center text-on-surface-variant font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span> Stable
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm relative overflow-hidden hover:border-error transition-colors">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Incidents Logged</span>
+          <span class="material-symbols-outlined text-error bg-error-container p-1.5 rounded-lg">warning</span>
+        </div>
+        <div class="flex items-end justify-between mt-3">
+          <div class="font-display-lg text-display-lg text-on-surface leading-none font-bold">6</div>
+          <div class="text-on-surface-variant font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded font-medium">
+            All resolved
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm relative overflow-hidden hover:border-tertiary transition-colors">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Pending Training</span>
+          <span class="material-symbols-outlined text-tertiary bg-tertiary-fixed p-1.5 rounded-lg">model_training</span>
+        </div>
+        <div class="flex items-end justify-between mt-3">
+          <div class="font-display-lg text-display-lg text-on-surface leading-none font-bold">24</div>
+          <div class="flex items-center text-tertiary font-label-sm text-label-sm bg-tertiary-fixed/50 border border-tertiary-fixed-dim px-2 py-0.5 rounded font-bold">
+            <span class="material-symbols-outlined text-[14px] mr-1">schedule</span> Action req.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analytics Chart & Activity Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+      <!-- Analytics Chart -->
+      <section class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-md flex flex-col min-h-[400px]">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h3 class="font-headline-md text-headline-md-mobile text-on-surface font-bold">Monthly Activity Attendance</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Trends breakdown by year level (Jan - May)</p>
+          </div>
+          <button class="text-on-surface-variant hover:text-primary p-2 rounded-full hover:bg-surface-container-low transition-colors">
+            <span class="material-symbols-outlined">more_vert</span>
+          </button>
+        </div>
+        <div class="flex-1 relative w-full h-[280px]">
+          <canvas id="attendanceChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Recent Activity Timeline -->
+      <section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-md flex flex-col">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-headline-md text-headline-md-mobile text-on-surface font-bold">Recent Activity</h3>
+          <button class="text-primary font-label-md text-label-md hover:underline font-bold">View All</button>
+        </div>
+        <div class="flex-1 relative pl-6 space-y-6 before:absolute before:inset-y-2 before:left-[11px] before:w-0.5 before:bg-outline-variant">
+          <!-- Item 1 -->
+          <div class="relative">
+            <div class="absolute -left-[30px] top-0.5 w-6 h-6 rounded-full bg-error-container text-error flex items-center justify-center border-2 border-surface-container-lowest z-10 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">warning</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface"><span class="font-bold">Officer Cruz</span> created Incident <a class="text-primary font-semibold hover:underline" href="#">#INC-089</a></p>
+            <p class="font-label-sm text-label-sm text-outline mt-0.5 font-medium">10 mins ago</p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="relative">
+            <div class="absolute -left-[30px] top-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center border-2 border-surface-container-lowest z-10 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">fact_check</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface">Attendance logged for <span class="font-bold">Alpha Squad</span> (24/25 present)</p>
+            <p class="font-label-sm text-label-sm text-outline mt-0.5 font-medium">1 hour ago</p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="relative">
+            <div class="absolute -left-[30px] top-0.5 w-6 h-6 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center border-2 border-surface-container-lowest z-10 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">edit_document</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface">System generated Weekly Roster Report</p>
+            <p class="font-label-sm text-label-sm text-outline mt-0.5 font-medium">3 hours ago</p>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="relative">
+            <div class="absolute -left-[30px] top-0.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center border-2 border-surface-container-lowest z-10 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">model_training</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface"><span class="font-bold">Sgt. Reyes</span> scheduled CPR Recertification</p>
+            <p class="font-label-sm text-label-sm text-outline mt-0.5 font-medium">Yesterday, 14:30</p>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="relative">
+            <div class="absolute -left-[30px] top-0.5 w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center border-2 border-surface-container-lowest z-10 shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">security</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface">Vault access granted to <span class="font-bold">Officer Santos</span></p>
+            <p class="font-label-sm text-label-sm text-outline mt-0.5 font-medium">Yesterday, 09:15</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">how_to_reg</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Roster</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">model_training</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+</nav>
+
+<script>
+  // Chart.js initialization
+  document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('attendanceChart').getContext('2d');
+      
+      const primaryColor = '#0052cc';
+      const secondaryColor = '#505f76';
+      const tertiaryColor = '#a33500';
+      const gridColor = '#e2e7ff';
+      const textColor = '#434654';
+      
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+              datasets: [
+                  {
+                      label: '1st Year',
+                      data: [65, 72, 80, 75, 85],
+                      backgroundColor: primaryColor,
+                      borderRadius: 6,
+                      barPercentage: 0.65,
+                      categoryPercentage: 0.75
+                  },
+                  {
+                      label: '2nd Year',
+                      data: [55, 60, 68, 62, 70],
+                      backgroundColor: secondaryColor,
+                      borderRadius: 6,
+                      barPercentage: 0.65,
+                      categoryPercentage: 0.75
+                  },
+                  {
+                      label: '3rd Year',
+                      data: [45, 50, 48, 55, 60],
+                      backgroundColor: tertiaryColor,
+                      borderRadius: 6,
+                      barPercentage: 0.65,
+                      categoryPercentage: 0.75
+                  }
+              ]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: {
+                  mode: 'index',
+                  intersect: false,
+              },
+              plugins: {
+                  legend: {
+                      position: 'top',
+                      align: 'end',
+                      labels: {
+                          usePointStyle: true,
+                          boxWidth: 8,
+                          font: {
+                              family: "'Geist', sans-serif",
+                              size: 12,
+                              weight: '500'
+                          },
+                          color: textColor
+                      }
+                  },
+                  tooltip: {
+                      backgroundColor: '#131b2e',
+                      titleFont: { family: "'Geist', sans-serif", size: 14, weight: '600' },
+                      bodyFont: { family: "'Inter', sans-serif", size: 13 },
+                      padding: 12,
+                      cornerRadius: 8,
+                      displayColors: true
+                  }
+              },
+              scales: {
+                  x: {
+                      grid: {
+                          display: false,
+                          drawBorder: false
+                      },
+                      ticks: {
+                          font: {
+                              family: "'Geist', sans-serif",
+                              size: 12,
+                              weight: '500'
+                          },
+                          color: textColor
+                      }
+                  },
+                  y: {
+                      grid: {
+                          color: gridColor,
+                          drawBorder: false
+                      },
+                      ticks: {
+                          font: {
+                              family: "'Geist', sans-serif",
+                              size: 12
+                          },
+                          color: textColor,
+                          stepSize: 20
+                      },
+                      beginAtZero: true,
+                      max: 100
+                  }
+              }
+          }
+      });
+  });
+</script>
+</body>
+</html>

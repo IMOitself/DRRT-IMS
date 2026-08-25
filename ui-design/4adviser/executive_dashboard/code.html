@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Adviser Portal - Executive Dashboard</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "executive-gold": "#D4AF37",
+                        "executive-gold-dark": "#B5932a",
+                        "executive-gold-light": "#f7f0d7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf8ff",
+                        "surface-container-highest": "#e3e1e8",
+                        "background": "#faf8ff",
+                        "on-surface": "#131b2e",
+                        "primary": "#D4AF37",
+                        "primary-container": "#f7f0d7",
+                        "on-primary-container": "#382900",
+                        "secondary": "#505f76",
+                        "surface-container-low": "#f4f3fa",
+                        "surface-container-high": "#e9e7ee",
+                        "outline-variant": "#c3c6d6",
+                        "outline": "#737685",
+                        "on-surface-variant": "#434654",
+                        "tertiary": "#7b2600",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #131b2e;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background-color: rgba(250, 248, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.15), 0 8px 10px -6px rgba(212, 175, 55, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Header (Aligned with Executive Design Architecture) -->
+<header class="glass-header sticky top-0 w-full z-50 border-b-2 border-executive-gold/40 shadow-sm">
+  <div class="max-w-screen-xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full overflow-hidden border-2 border-executive-gold shadow-sm flex-shrink-0">
+        <img alt="Adviser profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6q1-HViHp8fRTJSUs2dirHG86cDJOuTnG_5BTacf1Twf9doRldDNJARB_aCm9Wm3qrE_IFKZkLXVig8IayjLkAg6cICaidan4ZYwuuR07ZAaT_A5lLkP_bqqfEcGlOC18PdUBC_ocxyGlRQspSRjb5HCtA5GIabcJHkeLelC4ourzC2Y1t1y1MV7HZII7I5FDwziYcKmlB5dq7dbi81_jwgViFTAPOhV15hwNPUFKzIeud8unrk05Sw">
+      </div>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          Adviser Portal
+          <span class="font-label-sm text-label-sm text-on-surface font-semibold bg-executive-gold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">L4 Security</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant" aria-label="Main Navigation">
+      <a href="#" class="text-on-surface font-bold border-b-2 border-executive-gold py-1" aria-current="page">Dashboard</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Vault</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Bylaws</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Reports</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Approvals</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-executive-gold/10 hover:text-executive-gold transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button aria-label="Settings" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-executive-gold/10 hover:text-executive-gold transition-colors">
+        <span class="material-symbols-outlined">settings</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-screen-xl w-full mx-auto px-margin-mobile md:px-margin-desktop py-lg pb-28 md:pb-12 space-y-lg">
+  
+  <!-- Page Title Header -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md border-b border-outline-variant/60 pb-md">
+    <div>
+      <h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface font-bold">Executive Summary &amp; Governance Hub</h2>
+      <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant mt-1 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px] text-executive-gold">verified_user</span>
+        <span>Chapter Adviser Oversight | LVCC Apalit Chapter</span>
+      </p>
+    </div>
+    
+    <!-- Controls / Action Button -->
+    <div class="flex items-center gap-2">
+      <button class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-label-md text-label-md font-semibold transition-all shadow-sm active:scale-[0.98]">
+        <span class="material-symbols-outlined text-[18px]">download</span>
+        <span>Export Audit Report</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI Grid -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-sm md:gap-md" aria-label="Executive Key Performance Indicators">
+    <!-- Card 1: Active Roster -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg flex flex-col justify-between card-hover transition-all duration-300 shadow-sm relative overflow-hidden">
+      <div class="flex items-start justify-between mb-sm">
+        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Roster</span>
+        <span class="material-symbols-outlined text-secondary text-[22px]">groups</span>
+      </div>
+      <div>
+        <div class="font-headline-lg text-headline-lg text-on-surface font-bold">142</div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Total Verified Members</p>
+      </div>
+    </div>
+
+    <!-- Card 2: Bylaws Compliance -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg flex flex-col justify-between card-hover transition-all duration-300 shadow-sm relative overflow-hidden">
+      <div class="flex items-start justify-between mb-sm">
+        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Bylaws Compliance</span>
+        <span class="material-symbols-outlined text-executive-gold text-[22px]">policy</span>
+      </div>
+      <div>
+        <div class="font-headline-lg text-headline-lg text-executive-gold font-bold">88.4%</div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-executive-gold">trending_up</span>
+          <span>Above baseline</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 3: Critical Incidents -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg flex flex-col justify-between border-t-4 border-t-executive-gold card-hover transition-all duration-300 shadow-sm relative overflow-hidden">
+      <div class="flex items-start justify-between mb-sm">
+        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+          Critical Incidents
+          <span class="material-symbols-outlined text-[14px] text-executive-gold" title="Security Clearance Required">lock</span>
+        </span>
+        <span class="material-symbols-outlined text-error text-[22px]">warning</span>
+      </div>
+      <div>
+        <div class="font-headline-lg text-headline-lg text-on-surface font-bold flex items-baseline gap-2">
+          2 <span class="text-on-surface-variant font-body-sm text-body-sm font-normal">/ 18 YTD</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-executive-gold">check_circle</span>
+          <span>All Resolved</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 4: Pending Approvals -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg flex flex-col justify-between border-t-4 border-t-executive-gold card-hover transition-all duration-300 shadow-sm relative overflow-hidden">
+      <div class="flex items-start justify-between mb-sm">
+        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+          Pending Approvals
+          <span class="material-symbols-outlined text-[14px] text-executive-gold" title="Security Clearance Required">lock</span>
+        </span>
+        <span class="material-symbols-outlined text-executive-gold text-[22px]">pending_actions</span>
+      </div>
+      <div>
+        <div class="font-headline-lg text-headline-lg text-executive-gold font-bold">3</div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Awaiting Advisor Signature</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charts Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-md md:gap-lg">
+    <!-- Chart 1: Participation -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg card-hover transition-all duration-300 shadow-sm flex flex-col">
+      <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-6">Member Participation vs. Bylaw Standard</h3>
+      <div class="flex-1 relative min-h-[220px] flex items-end gap-4 justify-between border-b border-l border-outline-variant/60 pb-2 pl-2 mt-4">
+        <!-- Target Line -->
+        <div class="absolute w-full h-[1px] border-t-2 border-dashed border-error top-[20%] left-0 z-10">
+          <span class="absolute -top-6 left-1 font-label-sm text-label-sm text-error font-bold">80% Min Benchmark</span>
+        </div>
+        <!-- Bars -->
+        <div class="flex flex-col items-center w-full group relative z-20">
+          <div class="w-8 md:w-12 h-[75%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors"></div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2">Q1</span>
+        </div>
+        <div class="flex flex-col items-center w-full group relative z-20">
+          <div class="w-8 md:w-12 h-[82%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors"></div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2">Q2</span>
+        </div>
+        <div class="flex flex-col items-center w-full group relative z-20">
+          <div class="w-8 md:w-12 h-[90%] bg-executive-gold rounded-t-lg group-hover:bg-executive-gold-dark transition-colors"></div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2">Q3</span>
+        </div>
+        <div class="flex flex-col items-center w-full group relative z-20">
+          <div class="w-8 md:w-12 h-[85%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors"></div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2">Q4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 2: Incident Breakdown -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg card-hover transition-all duration-300 shadow-sm flex flex-col justify-between">
+      <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-6">Campus Incident Breakdown</h3>
+      <div class="flex-1 flex flex-col justify-center gap-4">
+        <div class="flex items-center gap-4">
+          <span class="font-label-sm text-label-sm text-on-surface-variant w-16 text-right">Minor</span>
+          <div class="flex-1 h-5 bg-surface-container-high rounded-full overflow-hidden flex">
+            <div class="h-full bg-secondary w-[60%] rounded-full"></div>
+          </div>
+          <span class="font-label-sm text-label-sm font-bold w-8 text-on-surface">12</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="font-label-sm text-label-sm text-on-surface-variant w-16 text-right">Moderate</span>
+          <div class="flex-1 h-5 bg-surface-container-high rounded-full overflow-hidden flex">
+            <div class="h-full bg-executive-gold w-[20%] rounded-full"></div>
+          </div>
+          <span class="font-label-sm text-label-sm font-bold w-8 text-on-surface">4</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="font-label-sm text-label-sm text-on-surface-variant w-16 text-right">Critical</span>
+          <div class="flex-1 h-5 bg-surface-container-high rounded-full overflow-hidden flex">
+            <div class="h-full bg-error w-[10%] rounded-full"></div>
+          </div>
+          <span class="font-label-sm text-label-sm font-bold w-8 text-on-surface">2</span>
+        </div>
+      </div>
+      <div class="mt-6 pt-md border-t border-outline-variant/40 flex flex-wrap gap-md justify-center">
+        <div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant"><span class="w-3 h-3 bg-secondary rounded-full"></span> Minor Policy</div>
+        <div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant"><span class="w-3 h-3 bg-executive-gold rounded-full"></span> Escalated</div>
+        <div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant"><span class="w-3 h-3 bg-error rounded-full"></span> Board Review</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance Panels Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-md md:gap-lg">
+    <!-- Panel 1: Sanctions -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden card-hover transition-all duration-300 shadow-sm flex flex-col">
+      <div class="p-md md:p-lg border-b border-outline-variant/60 flex justify-between items-center bg-surface-container-low/50">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-executive-gold">gavel</span>
+          <span>Flagged Member Sanctions</span>
+        </h3>
+        <span class="bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full font-bold">2 Pending</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-outline-variant/40 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container-low/30">
+              <th class="px-md py-sm font-semibold">Member ID</th>
+              <th class="px-md py-sm font-semibold">Violation Type</th>
+              <th class="px-md py-sm font-semibold text-right">Action Required</th>
+            </tr>
+          </thead>
+          <tbody class="font-body-sm text-body-sm divide-y divide-outline-variant/30">
+            <tr class="hover:bg-surface-container-low/40 transition-colors">
+              <td class="px-md py-md font-mono font-bold text-on-surface">LVCC-992</td>
+              <td class="px-md py-md text-on-surface-variant">Attendance Deficit</td>
+              <td class="px-md py-md text-right">
+                <button class="font-label-md text-label-md text-on-surface hover:text-executive-gold font-semibold inline-flex items-center gap-1 transition-colors">
+                  <span>Review</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-low/40 transition-colors">
+              <td class="px-md py-md font-mono font-bold text-on-surface">LVCC-104</td>
+              <td class="px-md py-md text-error font-semibold">Code of Conduct</td>
+              <td class="px-md py-md text-right">
+                <button class="font-label-md text-label-md px-3 py-1.5 rounded-xl border border-executive-gold text-on-surface hover:bg-executive-gold/10 font-semibold transition-all inline-flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">lock</span>
+                  <span>Authorize Sanction</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Panel 2: Incident Logs -->
+    <div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl overflow-hidden card-hover transition-all duration-300 shadow-sm flex flex-col">
+      <div class="p-md md:p-lg border-b border-outline-variant/60 flex justify-between items-center bg-surface-container-low/50">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-executive-gold">history_edu</span>
+          <span>Unsigned Incident Logs</span>
+        </h3>
+        <span class="bg-executive-gold-light text-on-primary-container font-label-sm text-label-sm px-2.5 py-1 rounded-full font-bold">2 Action Required</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-outline-variant/40 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container-low/30">
+              <th class="px-md py-sm font-semibold">Log Ref</th>
+              <th class="px-md py-sm font-semibold">Date</th>
+              <th class="px-md py-sm font-semibold text-right">Signature</th>
+            </tr>
+          </thead>
+          <tbody class="font-body-sm text-body-sm divide-y divide-outline-variant/30">
+            <tr class="hover:bg-surface-container-low/40 transition-colors">
+              <td class="px-md py-md font-mono text-on-surface-variant">INC-2023-08A</td>
+              <td class="px-md py-md text-on-surface">Oct 12, 2023</td>
+              <td class="px-md py-md text-right">
+                <button class="font-label-md text-label-md px-4 py-1.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm">
+                  Sign Off
+                </button>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-low/40 transition-colors">
+              <td class="px-md py-md font-mono text-on-surface-variant">INC-2023-09B</td>
+              <td class="px-md py-md text-on-surface">Oct 14, 2023</td>
+              <td class="px-md py-md text-right">
+                <button class="font-label-md text-label-md px-4 py-1.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm">
+                  Sign Off
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Bottom Navigation Bar (Exact Executive Gold Mobile Navigation Standard) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t-2 border-executive-gold/40 shadow-lg" aria-label="Mobile Bottom Navigation">
+  <!-- Active Tab for Dashboard -->
+  <button class="flex flex-col items-center justify-center bg-executive-gold text-slate-950 rounded-xl px-3.5 py-1.5 font-bold shadow-md scale-95 transition-all relative" aria-current="page">
+    <span class="w-2 h-2 bg-slate-950 rounded-full absolute top-1 right-2"></span>
+    <span class="material-symbols-outlined filled-icon">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">shield</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">gavel</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Bylaws</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">description</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Reports</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">fact_check</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Approvals</span>
+  </button>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Attendance Logger - DRRT Officer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-tint": "#0c56d0",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003d9b",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-variant": "#dae2fd",
+                        "on-background": "#131b2e",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "on-surface-variant": "#434654",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "outline": "#737685",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbcf",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d6",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-container": "#a33500",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "tertiary": "#7b2600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">Attendance Logger</span>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Attendance</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Roster</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Vault</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Training</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Security Officer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-52 md:pb-36">
+  <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Active Session Context Header -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-sm">
+      <div class="flex items-start justify-between">
+        <div>
+          <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Attendance Session Active</p>
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs">Earthquake Drill 2026</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">October 24, 2026 • 8:00 AM</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded font-label-sm text-label-sm uppercase font-semibold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Live
+        </span>
+      </div>
+      <div class="flex items-center gap-2 text-on-surface-variant border-t border-outline-variant pt-3 mt-3">
+        <span class="material-symbols-outlined text-[18px]">location_on</span>
+        <p class="font-body-sm text-body-sm font-medium">LVCC Main Campus</p>
+      </div>
+    </section>
+
+    <!-- Live Attendance Summary -->
+    <div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
+      <div class="font-label-md text-on-surface">Checked In: <span class="text-primary font-bold">112 / 142</span></div>
+      <div class="flex gap-4 font-body-sm">
+        <div class="flex items-center gap-1.5 text-[#166534] font-medium"><span class="w-2 h-2 rounded-full bg-[#166534]"></span> Present: 102</div>
+        <div class="flex items-center gap-1.5 text-[#854d0e] font-medium"><span class="w-2 h-2 rounded-full bg-[#ca8a04]"></span> Late: 10</div>
+        <div class="flex items-center gap-1.5 text-error font-medium"><span class="w-2 h-2 rounded-full bg-error"></span> Absent: 30</div>
+      </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="space-y-3">
+      <!-- Search Bar -->
+      <div class="relative w-full">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+        <input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-colors" placeholder="Search by name, ID, or squad..." type="text">
+      </div>
+
+      <!-- Rapid Level Filters -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-on-surface text-surface font-label-sm text-label-sm flex-shrink-0">All Members (142)</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">1st Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">2nd Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">3rd Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">4th Year</button>
+        <button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">Unchecked Only (58)</button>
+      </div>
+
+      <!-- Duty Squad Dropdown Filter -->
+      <div class="relative w-full max-w-xs">
+        <select class="w-full appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface text-sm rounded-lg block p-2.5 focus:ring-primary focus:border-primary pr-8 font-body-sm shadow-sm">
+          <option selected>All Squads / Duty Teams</option>
+          <option value="medical">Medical Squad</option>
+          <option value="sar">Search & Rescue</option>
+          <option value="logistics">Logistics</option>
+          <option value="comm">Comm Duty</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+          <span class="material-symbols-outlined text-[20px]">arrow_drop_down</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Action Trigger Bar -->
+    <div class="flex flex-col sm:flex-row gap-2">
+      <button class="flex-1 bg-[#dcfce7] text-[#166534] border border-[#166534]/30 hover:bg-[#bbf7d0] transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">done_all</span> Mark Filtered Present
+      </button>
+      <button class="flex-1 bg-surface-container-lowest border border-error/40 text-error hover:bg-error-container/40 transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">rule</span> Mark Remaining Absent
+      </button>
+    </div>
+
+    <!-- Roster Grid with A-Z Jump Rail -->
+    <section class="flex gap-2 pr-4 md:pr-8" id="manual-view">
+      <div class="flex-1 space-y-2">
+        
+        <!-- Member Item 1 (Present) -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-outline transition-colors">
+          <div class="flex items-center gap-3 overflow-hidden">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">SM</div>
+            <div class="min-w-0">
+              <p class="font-label-md text-on-surface truncate">Santos, Maria Clara</p>
+              <p class="text-[11px] text-on-surface-variant truncate">ID: 2024-0192 • BSIT - 3rd Year</p>
+            </div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <button class="min-w-[40px] px-2 h-9 rounded bg-[#dcfce7] border border-[#166534]/20 text-[#166534] text-[12px] font-bold flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">check</span> <span class="hidden sm:inline">Present</span>
+            </button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">L</button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">A</button>
+          </div>
+        </div>
+
+        <!-- Member Item 2 (Late) -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-outline transition-colors">
+          <div class="flex items-center gap-3 overflow-hidden">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">DL</div>
+            <div class="min-w-0">
+              <p class="font-label-md text-on-surface truncate">De Leon, Juan</p>
+              <p class="text-[11px] text-on-surface-variant truncate">ID: 2025-0441 • BSCS - 2nd Year</p>
+            </div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">P</button>
+            <button class="min-w-[40px] px-2 h-9 rounded bg-[#fef08a] border border-[#ca8a04]/20 text-[#854d0e] text-[12px] font-bold flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">schedule</span> <span class="hidden sm:inline">Late</span>
+            </button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">A</button>
+          </div>
+        </div>
+
+        <!-- Member Item 3 (Absent) -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-outline transition-colors">
+          <div class="flex items-center gap-3 overflow-hidden">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">MJ</div>
+            <div class="min-w-0">
+              <p class="font-label-md text-on-surface truncate">Mendoza, Jose</p>
+              <p class="text-[11px] text-on-surface-variant truncate">ID: 2026-0082 • BSEMC - 1st Year</p>
+            </div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">P</button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest text-on-surface-variant hover:bg-surface-dim transition-colors text-[12px] font-bold">L</button>
+            <button class="min-w-[40px] px-2 h-9 rounded bg-error-container border border-error/20 text-error text-[12px] font-bold flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">close</span> <span class="hidden sm:inline">Absent</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Member Item 4 (Unchecked) -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-outline transition-colors">
+          <div class="flex items-center gap-3 overflow-hidden">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">AA</div>
+            <div class="min-w-0">
+              <p class="font-label-md text-on-surface truncate">Aquino, Andrea</p>
+              <p class="text-[11px] text-on-surface-variant truncate">ID: 2023-0115 • BSIT - 4th Year</p>
+            </div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <button class="w-9 h-9 rounded bg-surface-container-highest hover:bg-[#dcfce7] hover:text-[#166534] text-on-surface-variant transition-colors text-[12px] font-bold">P</button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest hover:bg-[#fef08a] hover:text-[#854d0e] text-on-surface-variant transition-colors text-[12px] font-bold">L</button>
+            <button class="w-9 h-9 rounded bg-surface-container-highest hover:bg-error-container hover:text-error text-on-surface-variant transition-colors text-[12px] font-bold">A</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- A-Z Jump Rail -->
+      <div class="fixed right-1 md:right-4 top-[32%] flex flex-col gap-[2px] text-[10px] md:text-[11px] font-bold text-on-surface-variant py-2 px-1 bg-surface-container-highest rounded-full h-fit z-30 shadow-sm border border-outline-variant">
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">A</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">B</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">C</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">D</span>
+        <span class="text-center text-outline scale-75 opacity-50 w-4 h-4">•</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">M</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full bg-primary text-on-primary shadow-sm">S</span>
+        <span class="text-center text-outline scale-75 opacity-50 w-4 h-4">•</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">X</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">Y</span>
+        <span class="cursor-pointer hover:text-primary hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-surface">Z</span>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Sticky Sync Action Bar -->
+<div class="fixed bottom-[64px] md:bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="flex items-center gap-2 text-on-surface">
+      <span class="material-symbols-outlined text-primary-container">sync_saved_locally</span>
+      <span class="font-label-md text-label-md">Unsaved Changes: 4 Members Updated</span>
+    </div>
+    <div class="flex w-full sm:w-auto gap-3">
+      <button class="flex-1 sm:flex-none px-5 py-2 rounded-lg bg-surface border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+        Reset Filters
+      </button>
+      <button class="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">cloud_sync</span> Save &amp; Sync
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">how_to_reg</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Roster</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">model_training</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+</nav>
+
+</body>
+</html>

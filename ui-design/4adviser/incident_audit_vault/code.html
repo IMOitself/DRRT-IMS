@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Adviser Portal - DRRT Audit Vault</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "executive-gold": "#D4AF37",
+                        "executive-gold-dark": "#B5932a",
+                        "executive-gold-light": "#f7f0d7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf8ff",
+                        "surface-container-highest": "#e3e1e8",
+                        "background": "#faf8ff",
+                        "on-surface": "#131b2e",
+                        "primary": "#D4AF37",
+                        "primary-container": "#f7f0d7",
+                        "on-primary-container": "#382900",
+                        "secondary": "#505f76",
+                        "surface-container-low": "#f4f3fa",
+                        "surface-container-high": "#e9e7ee",
+                        "outline-variant": "#c3c6d6",
+                        "outline": "#737685",
+                        "on-surface-variant": "#434654",
+                        "tertiary": "#7b2600",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #131b2e;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background-color: rgba(250, 248, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.12), 0 8px 10px -6px rgba(212, 175, 55, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Header -->
+<header class="glass-header sticky top-0 w-full z-50 border-b-2 border-executive-gold/40 shadow-sm">
+  <div class="max-w-screen-xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full overflow-hidden border-2 border-executive-gold shadow-sm flex-shrink-0">
+        <img alt="Senior Adviser Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlCqBDttcs00VsWLs3fy6-i_BCk5SXUukiGGsmcPj1AN_HJQgoO3d9uD0B5UVMM8njmhWpGnSCwklCR_rq_EHNx7UTtRzs52d8hX-51TH2ky69b9MCxNbF9iK2AUTYlkSgN4USJnExVFRLevmS_b6IVmS6AxEa2kXI0aQNAuIlFUQ_6eP-mIKdQoQ4zExy_6Xs7fml2y7gVS2myoImXo0ZePa_adxPnnI2OzKPoQ_g2Vid9E9wy1gAUw">
+      </div>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          Adviser Portal
+          <span class="font-label-sm text-label-sm text-on-surface font-semibold bg-executive-gold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">L4 Security</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant" aria-label="Main Navigation">
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Dashboard</a>
+      <a href="#" class="text-on-surface font-bold border-b-2 border-executive-gold py-1" aria-current="page">Vault</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Bylaws</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Reports</a>
+      <a href="#" class="hover:text-executive-gold transition-colors py-1">Approvals</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-executive-gold/10 hover:text-executive-gold transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button aria-label="Settings" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-executive-gold/10 hover:text-executive-gold transition-colors">
+        <span class="material-symbols-outlined">settings</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="flex-grow w-full">
+  <!-- Main Canvas -->
+  <main class="max-w-5xl mx-auto w-full px-margin-mobile md:px-margin-desktop py-lg pb-28 md:pb-12 space-y-lg">
+    
+    <!-- Restricted Access Warning Banner -->
+    <div class="bg-red-950/90 text-red-100 border border-red-500/40 px-md py-3 rounded-xl flex items-center justify-center gap-3 shadow-sm backdrop-blur-sm">
+      <span class="material-symbols-outlined text-[22px] text-red-400 shrink-0 filled-icon">lock</span>
+      <span class="font-label-md text-label-md tracking-wider uppercase font-bold text-center">
+        RESTRICTED ACCESS: DATA PRIVACY ACT OF 2012 (R.A. 10173) AUDIT VAULT
+      </span>
+    </div>
+
+    <!-- Page Header -->
+    <header class="border-b border-outline-variant/60 pb-md">
+      <h2 class="font-display-lg text-headline-lg md:text-display-lg font-bold text-on-surface">Confidential Incident Vault</h2>
+      <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant mt-1">
+        Secure repository for auditing and reviewing high-severity privacy incidents. Access is strictly monitored and logged.
+      </p>
+    </header>
+
+    <!-- Filters Panel -->
+    <section class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg shadow-sm card-hover transition-all duration-300">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+        
+        <!-- Search Input -->
+        <div class="md:col-span-4">
+          <label class="block font-label-sm text-label-sm font-semibold text-on-surface-variant mb-1.5" for="vault-search">Search ID / Keyword</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-[20px]">search</span>
+            <input id="vault-search" class="w-full bg-surface border border-outline-variant rounded-xl pl-10 pr-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors" placeholder="e.g. INC-2024-092" type="text">
+          </div>
+        </div>
+
+        <!-- Date Range Select -->
+        <div class="md:col-span-3">
+          <label class="block font-label-sm text-label-sm font-semibold text-on-surface-variant mb-1.5" for="date-range">Date Range</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-[20px]">calendar_today</span>
+            <select id="date-range" class="w-full bg-surface border border-outline-variant rounded-xl pl-10 pr-10 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors appearance-none cursor-pointer">
+              <option>Last 30 Days</option>
+              <option>Last Quarter</option>
+              <option>Year to Date</option>
+              <option>Custom Range</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Severity Select -->
+        <div class="md:col-span-3">
+          <label class="block font-label-sm text-label-sm font-semibold text-on-surface-variant mb-1.5" for="severity">Severity</label>
+          <div class="relative">
+            <select id="severity" class="w-full bg-surface border border-outline-variant rounded-xl px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors appearance-none cursor-pointer pr-10">
+              <option>All Severities</option>
+              <option>Critical</option>
+              <option>High</option>
+              <option>Medium</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Filter Action -->
+        <div class="md:col-span-2">
+          <button class="w-full py-2.5 px-4 rounded-xl border-2 border-executive-gold text-on-surface hover:bg-executive-gold/10 font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">filter_list</span>
+            <span>Filter</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Incident Cards List -->
+    <div class="space-y-4">
+      
+      <!-- Card 1: Critical Severity -->
+      <article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg shadow-sm card-hover transition-all duration-300 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-red-600"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span class="font-label-md text-label-md font-mono font-bold text-on-surface">INC-2024-092</span>
+              <span class="inline-flex items-center gap-1 bg-red-100 text-red-800 border border-red-300 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-bold">
+                <span class="material-symbols-outlined text-[14px]">warning</span> Critical
+              </span>
+            </div>
+            <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Unauthorized Data Access - Customer DB</h3>
+            <div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-sm flex-wrap">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 24, 2024 14:30 EST
+              </span>
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">person</span> Reported by: SysAdmin-04
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-start md:items-end gap-2.5 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant/40">
+            <span class="font-label-sm text-label-sm text-outline font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">pending_actions</span> Pending Review
+            </span>
+            <button class="w-full md:w-auto px-5 py-2.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-label-md text-label-md font-bold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-[0.98]">
+              <span class="material-symbols-outlined text-[18px]">lock</span>
+              <span>Review Confidential File</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: High Severity -->
+      <article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg shadow-sm card-hover transition-all duration-300 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span class="font-label-md text-label-md font-mono font-bold text-on-surface">INC-2024-091</span>
+              <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-900 border border-amber-300 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-bold">
+                <span class="material-symbols-outlined text-[14px]">priority_high</span> High
+              </span>
+            </div>
+            <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Potential API Key Leak</h3>
+            <div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-sm flex-wrap">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 22, 2024 09:15 EST
+              </span>
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">person</span> Reported by: Automated Scanner
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-start md:items-end gap-2.5 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant/40">
+            <span class="font-label-sm text-label-sm text-executive-gold font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">gavel</span> Audited
+            </span>
+            <button class="w-full md:w-auto px-5 py-2.5 rounded-xl border-2 border-executive-gold text-on-surface hover:bg-executive-gold/10 font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">lock_open</span>
+              <span>View Audit Record</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Low Severity / Resolved -->
+      <article class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-md md:p-lg shadow-sm card-hover transition-all duration-300 relative overflow-hidden opacity-85">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span class="font-label-md text-label-md font-mono font-bold text-on-surface">INC-2024-088</span>
+              <span class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-900 border border-emerald-300 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-bold">
+                <span class="material-symbols-outlined text-[14px]">info</span> Low
+              </span>
+            </div>
+            <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Phishing Attempt Reported - Internal</h3>
+            <div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-sm flex-wrap">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 20, 2024 11:05 EST
+              </span>
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-outline">person</span> Reported by: HR Dept
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-start md:items-end gap-2.5 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant/40">
+            <span class="font-label-sm text-label-sm text-emerald-700 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">check_circle</span> Resolved
+            </span>
+            <button class="w-full md:w-auto px-5 py-2.5 rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md font-semibold transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">lock_clock</span>
+              <span>Archive File</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+</div>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t-2 border-executive-gold/40 shadow-lg" aria-label="Mobile Navigation">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  
+  <!-- Active Tab for Vault -->
+  <button class="flex flex-col items-center justify-center bg-executive-gold text-slate-950 rounded-xl px-3.5 py-1.5 font-bold shadow-md scale-95 transition-all relative" aria-current="page">
+    <span class="w-2 h-2 bg-slate-950 rounded-full absolute top-1 right-2"></span>
+    <span class="material-symbols-outlined filled-icon">shield</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">gavel</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Bylaws</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">description</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Reports</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-executive-gold px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">fact_check</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Approvals</span>
+  </button>
+</nav>
+
+</body>
+</html>

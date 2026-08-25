@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DRRT Official Announcements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "compliance-yellow": "#ca8a04",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0c1c30",
+                        "surface": "#faf8ff",
+                        "tertiary": "#7b2600",
+                        "surface-container-highest": "#dae2fc",
+                        "background": "#faf8ff",
+                        "on-surface": "#131b2e",
+                        "primary-container": "#0052cc",
+                        "secondary": "#505f76",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-secondary-fixed-variant": "#39485e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#131b2e",
+                        "inverse-surface": "#283044",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-secondary-container": "#56657c",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary-container": "#9b3d16",
+                        "surface-variant": "#dae2fc",
+                        "compliance-red": "#dc2626",
+                        "on-primary-container": "#c4d2ff",
+                        "outline-variant": "#c3c6d6",
+                        "compliance-green": "#16a34a",
+                        "surface-container-high": "#e1e7ff",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-container": "#ffc6b3",
+                        "outline": "#737685",
+                        "on-primary-fixed": "#001848",
+                        "on-primary": "#ffffff",
+                        "primary": "#003d9b",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-tint": "#0c56d0",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-tertiary-fixed-variant": "#802a03",
+                        "surface-dim": "#d2d9f4",
+                        "secondary-container": "#d4e3ff",
+                        "inverse-primary": "#b2c5ff",
+                        "on-surface-variant": "#434654",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b8c7e2",
+                        "secondary-fixed": "#d4e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant bg-surface sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary">Member Portal</span>
+    </div>
+
+    <!-- Top Navigation derived directly from Mobile Bottom Nav items -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Alerts</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Training</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">ID Card</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high transition-colors p-2 rounded-full relative">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Member Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbKBi41bOmDEMQKpe9mONcXjuPdnjKOIyWquwYdiiDjaaJ1M9lBr_iQJLwaQMXs5XOC5FcOBEqOn2OAeWkxMyDQRyNhUCzPOiaCCkV4UgNBmTUwShkzgL8janoSdvUj_zefWUaiL3-J3OoBV373dHye7pW8QCRRbgtmTCFRgha_1oImXA6unfItciHKY0VFvvTeLczQh3iqau6axTpKivOF7Md878HR74iWGTJQT_75NuiSp4vAMBMug"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-24 md:pb-12">
+  <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Screen Title -->
+    <div class="mb-lg">
+      <h1 class="font-display-lg text-display-lg text-on-surface tracking-tight font-bold">Announcements</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-xs">Official directives and operational updates.</p>
+    </div>
+
+    <!-- Feed Container -->
+    <div class="space-y-md">
+      
+      <!-- Urgent Alert Card -->
+      <article class="bg-surface-container-lowest rounded-xl border border-compliance-red/30 shadow-sm p-md relative overflow-hidden transition-all hover:border-compliance-red cursor-pointer">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-compliance-red"></div>
+        
+        <header class="flex justify-between items-start mb-sm pl-2">
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" alt="Officer Santos Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApE81KhZNqldRRwuyyRXle_karzBuIUDp0D5xvOoCXaE9ZlS9Wy8wVJFXCrBz3FqP-clWe7h_aKsYmq26MBrDq2ONrQouNu84ZVOlPxX2yemiT5zGxYtXXSbW5hBCA3JXLP2X114zuKdKl9swpf7exkjmH-rMPIT4pArVXkqJgNmlqU1ECbKL6WtEaKZmVhVHjmb0NGBRe5gr3ULmTulpu5sHXfmaL1DDFO9dhgJCCDmI0fMIRjLQY7g">
+            <div>
+              <h3 class="font-label-md text-label-md text-on-surface font-bold">Officer Santos</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Command Staff • 10m ago</p>
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-compliance-red text-on-error font-label-sm text-label-sm uppercase tracking-wider font-bold shadow-sm">
+            <span class="material-symbols-outlined text-[14px] filled-icon">error</span>
+            Urgent
+          </span>
+        </header>
+
+        <div class="pl-2 space-y-2">
+          <h4 class="font-headline-md text-headline-md-mobile font-bold text-on-surface">Emergency Drill Rescheduled</h4>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Due to unexpected weather systems moving through Sector 4, tomorrow's full-scale evacuation drill is postponed to 0800hrs Thursday. Ensure all go-bags are repacked accordingly.
+          </p>
+        </div>
+      </article>
+
+      <!-- Standard Update Card 1 -->
+      <article class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md transition-all hover:border-primary cursor-pointer">
+        <header class="flex justify-between items-start mb-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">campaign</span>
+            </div>
+            <div>
+              <h3 class="font-label-md text-label-md text-on-surface font-bold">HR Department</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Logistics • 2h ago</p>
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase tracking-wider font-bold">
+            Notice
+          </span>
+        </header>
+
+        <div class="space-y-2">
+          <h4 class="font-headline-md text-headline-md-mobile font-bold text-on-surface">New Uniform Issue Protocol</h4>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Starting next Monday, all requests for Class B uniform replacements must be submitted via the new digital requisition portal. Paper forms will no longer be accepted at the quartermaster desk.
+          </p>
+        </div>
+      </article>
+
+      <!-- Standard Update Card 2 -->
+      <article class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md transition-all hover:border-compliance-yellow cursor-pointer">
+        <header class="flex justify-between items-start mb-sm">
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" alt="Dr. Chen Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM110tmZmlWYn25ouGPu4YN1DlFKmsas04jupME7EyjLjeGAIi9NRr9LYHORkv7z5X-KqQSD4hcdXhz4KHGOx1KlbP8gKA2jroUslj5DzLrz595wqPR6FcZRvAxChX5o3qxNHJB2Mcspy1kKM4Y8QL1QEsftp6Uh8Q0cyMdXGvPpuxQurIn4NNZP69NWGdlmscSnupEPbvfyaVDn9DYWqmkLatPJjt8i-YACa-8BALx8HBvINNY5iRSA">
+            <div>
+              <h3 class="font-label-md text-label-md text-on-surface font-bold">Dr. Chen</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Medical Bay • Yesterday</p>
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-compliance-yellow/15 text-compliance-yellow border border-compliance-yellow/30 font-label-sm text-label-sm uppercase tracking-wider font-bold">
+            <span class="material-symbols-outlined text-[14px]">warning</span>
+            Advisory
+          </span>
+        </header>
+
+        <div class="space-y-2">
+          <h4 class="font-headline-md text-headline-md-mobile font-bold text-on-surface">Seasonal Flu Shots Required</h4>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            All active field agents are required to receive their seasonal booster by end of month to maintain compliance status. Walk-ins are accepted at MedBay 2 between 0900 and 1600 daily.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">notifications</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Alerts</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">calendar_today</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">school</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">badge</span>
+    <span class="font-label-sm text-label-sm mt-0.5">ID</span>
+  </button>
+</nav>
+
+</body>
+</html>

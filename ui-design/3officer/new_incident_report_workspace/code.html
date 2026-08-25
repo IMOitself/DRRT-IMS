@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>New Incident Reporting - DRRT Officer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-tint": "#0c56d0",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#003d9b",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "surface-variant": "#dae2fd",
+                        "on-background": "#131b2e",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "on-surface-variant": "#434654",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "outline": "#737685",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbcf",
+                        "secondary": "#505f76",
+                        "outline-variant": "#c3c6d6",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-container": "#a33500",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "tertiary": "#7b2600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+    <div class="flex items-center gap-sm">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shield</span>
+      </button>
+      <span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">Incident Vault</span>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+      <a href="#" class="hover:text-primary transition-colors py-1">Dashboard</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Attendance</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Roster</a>
+      <a href="#" class="text-primary font-bold border-b-2 border-primary py-1">Vault</a>
+      <a href="#" class="hover:text-primary transition-colors py-1">Training</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+        <img class="w-full h-full object-cover" alt="Security Officer Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"/>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-52 md:pb-36">
+  <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+    
+    <!-- Context Header -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-sm">
+      <div class="flex items-start justify-between">
+        <div>
+          <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Encrypted First-Aid &amp; Clinical Log</p>
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs">New Incident Report</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Record medical interventions, personnel vitals, and emergency responses.</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary-fixed-dim/40 px-2.5 py-1 rounded font-label-sm text-label-sm uppercase font-semibold">
+          <span class="material-symbols-outlined text-[14px]">lock</span> Encrypted Mode
+        </span>
+      </div>
+      <div class="flex items-center gap-2 text-on-surface-variant border-t border-outline-variant pt-3 mt-3">
+        <span class="font-label-sm text-label-sm bg-surface-container text-on-surface px-2 py-0.5 rounded font-mono font-bold">INC-2026-0892</span>
+        <p class="font-body-sm text-body-sm">R.A. 10173 Data Privacy Protocol Active</p>
+      </div>
+    </section>
+
+    <!-- Strict Confidentiality Callout -->
+    <div class="bg-error-container/40 border border-error/20 p-md rounded-lg flex gap-md items-start shadow-sm">
+      <span class="material-symbols-outlined text-error mt-0.5 flex-shrink-0">shield_lock</span>
+      <div>
+        <h3 class="font-label-md text-label-md text-on-error-container mb-0.5">Strict Confidentiality Notice</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">This record is classified as sensitive personal medical information. All inputs are end-to-end encrypted under the Data Privacy Act of 2012 (R.A. 10173). Unauthorized disclosure is subject to legal sanctions.</p>
+      </div>
+    </div>
+
+    <!-- Section 1: Patient Identification -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+      <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold border-b border-outline-variant pb-xs">1. Patient Identification</p>
+      
+      <!-- Patient Category Toggle Buttons -->
+      <div class="flex bg-surface-container rounded-lg p-1">
+        <button class="flex-1 bg-surface-container-lowest text-primary font-label-md text-label-md py-2 rounded shadow-sm font-bold">LVCC Student</button>
+        <button class="flex-1 text-on-surface-variant hover:text-on-surface font-label-md text-label-md py-2 transition-colors">Faculty / Staff</button>
+        <button class="flex-1 text-on-surface-variant hover:text-on-surface font-label-md text-label-md py-2 transition-colors">Guest / Visitor</button>
+      </div>
+
+      <!-- ID Lookup Field -->
+      <div class="flex gap-2">
+        <div class="relative flex-1">
+          <input class="w-full h-11 border border-outline-variant rounded-lg px-3 pt-3 pb-1 bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors peer" id="student-id" placeholder=" " type="text" value="2023-0145">
+          <label class="absolute text-xs text-on-surface-variant left-3 top-1 font-label-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary" for="student-id">Student ID Number</label>
+        </div>
+        <button class="bg-primary text-on-primary px-5 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">search</span> Lookup
+        </button>
+      </div>
+
+      <!-- Patient Information Card -->
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-md flex gap-md items-center shadow-sm">
+        <img class="w-16 h-16 rounded-full object-cover border border-outline-variant shrink-0" alt="Student Profile Photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgikfHXFcBfqrh6v23Z9IzFdWiPI7kqo3PXLOq3fqLF8Z-BEHDORxv_3eqHb-PbqadrfBgqwF90Izp8G9DHd8UHwsftTEEpgQ64vAiv0WCYjBJnB3SObyrhPi1rzw4xsjUDJ-S-D70__inuMy0W1BKU-k73AutHl_1_QI6Jgdjw6uOtIJWH8XpWQt8uz50XLVFimKvvpA04gJpF3Ttbl9dCmM7QqrB1rktIUL690W__PWF0x5f8vW9DQ"/>
+        <div class="flex-1 min-w-0">
+          <h4 class="font-headline-md text-headline-md text-on-surface truncate">Juan De La Cruz</h4>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">BS Information Technology • 3rd Year</p>
+          <div class="flex items-center gap-1 mt-1 text-error">
+            <span class="material-symbols-outlined text-[15px]">emergency</span>
+            <p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Emergency: +63 917 *** **45 (Mother)</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-[#166534] bg-[#dcfce7] p-1.5 rounded-full border border-[#166534]/20 flex-shrink-0">check_circle</span>
+      </div>
+    </section>
+
+    <!-- Section 2: Event Details -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+      <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold border-b border-outline-variant pb-xs">2. Event Details</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+        <div class="relative">
+          <div class="w-full h-11 border border-outline-variant rounded-lg px-3 flex items-center justify-between bg-surface-container-low text-on-surface font-body-sm">
+            <span class="font-body-md text-body-md text-on-surface font-medium">Oct 24, 2026 | 10:14 AM</span>
+            <span class="material-symbols-outlined text-on-surface-variant">calendar_today</span>
+          </div>
+          <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">Date &amp; Time</span>
+        </div>
+
+        <div class="relative">
+          <select class="w-full h-11 border border-outline-variant rounded-lg px-3 font-body-md text-body-md bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none appearance-none">
+            <option>Main Quadrangle</option>
+            <option>Gymnasium</option>
+            <option>IT Laboratory</option>
+            <option>University Clinic</option>
+            <option>Student Center</option>
+          </select>
+          <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">Campus Location</span>
+          <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+        </div>
+      </div>
+
+      <div class="relative">
+        <input class="w-full h-11 border border-outline-variant rounded-lg px-3 pt-3 pb-1 bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors peer" id="location-details" placeholder=" " type="text" value="Near the main gate entrance food stalls">
+        <label class="absolute text-xs text-on-surface-variant left-3 top-1 font-label-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary" for="location-details">Specific Spot / Landmark Details</label>
+      </div>
+    </section>
+
+    <!-- Section 3: Severity Assessment -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+      <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold border-b border-outline-variant pb-xs">3. Severity Assessment</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-sm">
+        <!-- Minor Option -->
+        <div class="border border-outline-variant rounded-lg p-md hover:bg-surface-container-low cursor-pointer transition-colors opacity-70">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined text-[#166534]">local_hospital</span>
+            <h4 class="font-label-md text-label-md text-on-surface font-bold">MINOR</h4>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Basic first aid required. No immediate danger to life or limb.</p>
+        </div>
+
+        <!-- Moderate Option (Selected) -->
+        <div class="border-2 border-[#ca8a04] bg-[#fef08a]/20 rounded-lg p-md cursor-pointer transition-colors relative shadow-sm">
+          <div class="absolute top-3 right-3 w-3 h-3 bg-[#ca8a04] rounded-full animate-pulse"></div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined text-[#854d0e]">healing</span>
+            <h4 class="font-label-md text-label-md text-[#854d0e] font-bold">MODERATE</h4>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Requires medical attention, clinic evaluation. Non-life threatening.</p>
+        </div>
+
+        <!-- Critical Option -->
+        <div class="border border-outline-variant rounded-lg p-md hover:bg-surface-container-low cursor-pointer transition-colors opacity-70">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined text-error">emergency</span>
+            <h4 class="font-label-md text-label-md text-on-surface font-bold">CRITICAL</h4>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Immediate threat to life. Requires emergency medical services (EMS).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Clinical Vitals & Actions -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+      <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold border-b border-outline-variant pb-xs">4. Clinical Vitals &amp; First Aid</p>
+      
+      <div class="relative">
+        <select class="w-full h-11 border border-outline-variant rounded-lg px-3 font-body-md text-body-md bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none appearance-none">
+          <option>Fainting / Dizziness</option>
+          <option>Laceration / Cut</option>
+          <option>Sports Injury (Sprain/Strain)</option>
+          <option>Allergic Reaction</option>
+          <option>Heat Exhaustion</option>
+        </select>
+        <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">Incident Classification</span>
+        <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+      </div>
+
+      <!-- Vitals Form Grid -->
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-md space-y-sm">
+        <h4 class="font-label-sm text-label-sm text-primary uppercase font-bold mb-2">Initial Vitals (Optional)</h4>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-sm">
+          <input class="w-full h-10 border border-outline-variant rounded px-3 font-body-sm text-body-sm bg-surface-container-lowest focus:border-primary focus:outline-none" placeholder="BP (120/80)" type="text">
+          <input class="w-full h-10 border border-outline-variant rounded px-3 font-body-sm text-body-sm bg-surface-container-lowest focus:border-primary focus:outline-none" placeholder="Pulse (82 bpm)" type="text">
+          <input class="w-full h-10 border border-outline-variant rounded px-3 font-body-sm text-body-sm bg-surface-container-lowest focus:border-primary focus:outline-none" placeholder="SpO2 (98%)" type="text">
+          <input class="w-full h-10 border border-outline-variant rounded px-3 font-body-sm text-body-sm bg-surface-container-lowest focus:border-primary focus:outline-none" placeholder="Temp (36.6 °C)" type="text">
+        </div>
+      </div>
+
+      <div class="relative">
+        <textarea class="w-full border border-outline-variant rounded-lg p-3 font-body-md text-body-md bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none" placeholder="Describe patient condition, symptoms observed, and specific first-aid steps administered..." rows="4"></textarea>
+        <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">First-Aid Administered &amp; Observations</span>
+      </div>
+    </section>
+
+    <!-- Section 5: Disposition & Responding Personnel -->
+    <section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-md">
+      <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold border-b border-outline-variant pb-xs">5. Disposition &amp; Responding Officers</p>
+      
+      <div class="relative">
+        <select class="w-full h-11 border border-outline-variant rounded-lg px-3 font-body-md text-body-md bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none appearance-none">
+          <option>Transported to University Clinic</option>
+          <option>Treated and released back to class</option>
+          <option>Emergency Services Contacted (911 / Ambulance)</option>
+          <option>Parent / Guardian Contacted for Pickup</option>
+        </select>
+        <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">Final Action Taken</span>
+        <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+      </div>
+
+      <!-- Responding Officers Chips -->
+      <div class="relative">
+        <div class="w-full min-h-11 border border-outline-variant rounded-lg p-2 flex flex-wrap gap-2 items-center bg-surface-container-lowest focus-within:border-primary">
+          <div class="bg-surface-container-high border border-outline-variant flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body-sm text-body-sm text-on-surface font-medium">
+            Officer Santos <span class="material-symbols-outlined text-[16px] cursor-pointer text-on-surface-variant hover:text-error transition-colors">close</span>
+          </div>
+          <div class="bg-surface-container-high border border-outline-variant flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body-sm text-body-sm text-on-surface font-medium">
+            Officer Cruz <span class="material-symbols-outlined text-[16px] cursor-pointer text-on-surface-variant hover:text-error transition-colors">close</span>
+          </div>
+          <input class="border-none bg-transparent outline-none flex-1 min-w-[120px] font-body-sm text-body-sm focus:ring-0 p-1" placeholder="Add officer..." type="text">
+        </div>
+        <span class="absolute -top-2 left-2 bg-surface-container-lowest px-1 font-label-sm text-[11px] text-on-surface-variant font-bold">Responding Officers</span>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Sticky Sync / Save Action Bar -->
+<div class="fixed bottom-[64px] md:bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="flex items-center gap-2 text-on-surface-variant">
+      <span class="material-symbols-outlined text-primary">save</span>
+      <span class="font-label-md text-label-md text-on-surface">Draft Record Saved (Auto)</span>
+    </div>
+    <div class="flex w-full sm:w-auto gap-3">
+      <button class="flex-1 sm:flex-none px-5 py-2 rounded-lg bg-surface border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+        Discard Draft
+      </button>
+      <button class="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-tertiary text-on-tertiary font-label-md text-label-md hover:bg-tertiary-container transition-colors shadow-sm flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">lock</span> Encrypt &amp; Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">how_to_reg</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Attendance</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Roster</span>
+  </button>
+  <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+    <span class="material-symbols-outlined filled-icon">security</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Vault</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined">model_training</span>
+    <span class="font-label-sm text-label-sm mt-0.5">Training</span>
+  </button>
+</nav>
+
+</body>
+</html>
