@@ -68,6 +68,8 @@
 </details>
 
 <details><summary>trallalero</summary>
+  <img width="1919" height="835" alt="Screenshot 2026-08-25 181209" src="https://github.com/user-attachments/assets/deb3f7c5-fc1e-4c1d-92c1-2dfd589735e8" />
+
   https://trello.com/b/rcb0FEpP
 </details>
 
