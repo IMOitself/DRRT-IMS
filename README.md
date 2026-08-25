@@ -1,9 +1,11 @@
 # DRRT-IMS
-Disaster Response and Rescue Team Information Management System (DRRT-IMS) for LVCC Apalit
 
 > [!NOTE]
-> work in progress :D
+> currently some initial micro managing stuff is happening. like an appetizer before the main dish idk.<br>
+> just need to rewire some braincells to be able to stay motivated and organized.<br>
+> will modify this readme often for updates :D
 
+## essential stuffs for development
 <details>
 <summary>ui designs by the ui designers</summary>
 
@@ -39,3 +41,9 @@ Disaster Response and Rescue Team Information Management System (DRRT-IMS) for L
 
 
 </details>
+
+<details><summary>database schema</summary>
+  <img width="1203" height="640" alt="revised_DRRT_IMS_DIAGRAMS-1  ERD drawio" src="https://github.com/user-attachments/assets/f0d8d832-d60d-474f-880b-e206b7e28ac4" />
+</details>
+
+
