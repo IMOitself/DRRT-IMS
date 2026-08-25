@@ -1,9 +1,12 @@
 # DRRT-IMS
 
 > [!NOTE]
-> currently some initial micro managing stuff is happening. like an appetizer before the main dish idk.<br>
-> just need to rewire some braincells to be able to stay motivated and organized.<br>
+> currently some initial micro managing stuff is happening.<br>
+> just need to rewire some braincells to stay motivated and organized for the long run.<br>
 > will modify this readme often for updates :D
+
+> [!TIP]
+> **GOAL:** make at least 800kb worth of code to overthrow the top language, html.
 
 <details><summary>about</summary>
 
