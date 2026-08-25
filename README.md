@@ -1,8 +1,11 @@
 # DRRT-IMS
 Disaster Response and Rescue Team Information Management System (DRRT-IMS) for LVCC Apalit
 
+> [!NOTE]
+> work in progress :D
+
 <details>
-<summary>ui designs</summary>
+<summary>ui designs by the ui designers</summary>
 
 
 ### student role (landing page)
