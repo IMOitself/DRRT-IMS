@@ -151,7 +151,9 @@ The proposed system will **not replace the records maintained by the Student Org
 </details>
 
 <details><summary>database schema by sqa</summary>
-  <img width="1203" height="640" alt="revised_DRRT_IMS_DIAGRAMS-1  ERD drawio" src="https://github.com/user-attachments/assets/f0d8d832-d60d-474f-880b-e206b7e28ac4" />
+  
+<img width="1083" height="885" alt="revised_DRRT_IMS_DIAGRAMS-1-1  ERD drawio" src="https://github.com/user-attachments/assets/7926109a-7355-4c36-8423-ddaa2274b963" />
+
 </details>
 
 <details><summary>trallalero</summary>
