@@ -69,7 +69,7 @@
 
 ## **1\. Proposed Title**
 
-* Disaster Response and Rescue Team Information Management System (DRRT-IMS-ui-designs) for the LVCC Apalit Chapter
+* Disaster Response and Rescue Team Information Management System (DRRT-IMS) for the LVCC Apalit Chapter
 
 ## **2\. Background of the Organization**
 
@@ -85,7 +85,7 @@ Attendance monitoring is another challenge because **attendance records** serve 
 
 ## **4\. Proposed Solution**
 
-This study proposes the development of the **Disaster Response and Rescue Team Information Management System (DRRT-IMS-ui-designs)**, a web-based information management system designed for the LVCC Apalit Chapter. The system will centralize membership records, attendance monitoring, training management, and incident logging within a single platform. It will **reduce repetitive manual encoding**, simplify r**ecord retrieval**, and support **attendance monitoring** based on the organization's **bylaws.**
+This study proposes the development of the **Disaster Response and Rescue Team Information Management System (DRRT-IMS)**, a web-based information management system designed for the LVCC Apalit Chapter. The system will centralize membership records, attendance monitoring, training management, and incident logging within a single platform. It will **reduce repetitive manual encoding**, simplify r**ecord retrieval**, and support **attendance monitoring** based on the organization's **bylaws.**
 
 The proposed system will also implement **role-based access control** to protect confidential incident records by limiting access to authorized officers and advisers. In addition, s**tudents** will be able to access **public information such as hazard maps, DRRT activities, training schedules, and membership information** without exposing sensitive organizational records. By providing a c**entralized and organized platform**, the proposed system aims to improve the efficiency of r**ecord management** while supporting the **daily operations of the organization.**
 
@@ -93,7 +93,7 @@ The proposed system will also implement **role-based access control** to protect
 
 ### **General Objective**
 
-To develop a web-based Disaster Response and Rescue Team Information Management System (DRRT-IMS-ui-designs) that centralizes the management of membership, attendance, training activities, and incident records for the LVCC Apalit Chapter.
+To develop a web-based Disaster Response and Rescue Team Information Management System (DRRT-IMS) that centralizes the management of membership, attendance, training activities, and incident records for the LVCC Apalit Chapter.
 
 ### **Specific Objectives**
 
@@ -107,7 +107,7 @@ The proposed system aims to:
 
 ## **6\. Scope of the System**
 
-The proposed DRRT-IMS-ui-designs will be developed exclusively for the **Disaster Response and Rescue Team of La Verdad Christian College – Apalit Chapter**. The system will manage membership records, attendance, training activities, incident reports, and organizational announcements through a centralized web-based platform. It will also include a campus hazard mapping page and public information for students who are interested in the organization.
+The proposed DRRT-IMS will be developed exclusively for the **Disaster Response and Rescue Team of La Verdad Christian College – Apalit Chapter**. The system will manage membership records, attendance, training activities, incident reports, and organizational announcements through a centralized web-based platform. It will also include a campus hazard mapping page and public information for students who are interested in the organization.
 
 The system will implement role-based access control. Officers and the adviser will have access to administrative functions and confidential incident records, while members will only access information relevant to them. Regular students will only be able to view public information and submit membership applications.
 
@@ -169,6 +169,6 @@ The proposed system will **not replace the records maintained by the Student Org
 
 ## **11\. Why This Project?**
 
-> The proposed project was identified after examining the current operations of the **DRRT LVCC Apalit Chapter** and discussing its existing workflow with the organization's officers. While the organization actively supports disaster preparedness and emergency response within the school, many of its administrative p**rocesses remain fragmented** **across paper documents, spreadsheets, and cloud storage.** These practices increase the time required to manage records and make it difficult to maintain consistent and secure information. The proposed DRRT-IMS-ui-designs aims to address these operational challenges by **providing a centralized information management system** that supports the organization's existing responsibilities without changing its established procedures.
+> The proposed project was identified after examining the current operations of the **DRRT LVCC Apalit Chapter** and discussing its existing workflow with the organization's officers. While the organization actively supports disaster preparedness and emergency response within the school, many of its administrative p**rocesses remain fragmented** **across paper documents, spreadsheets, and cloud storage.** These practices increase the time required to manage records and make it difficult to maintain consistent and secure information. The proposed DRRT-IMS aims to address these operational challenges by **providing a centralized information management system** that supports the organization's existing responsibilities without changing its established procedures.
 
 </details>
