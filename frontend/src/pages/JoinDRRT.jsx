@@ -187,7 +187,7 @@ export default function JoinDRRT() {
                                 </div>
                                 {/* Action Button */}
                                 <div className="mt-8 pt-6 border-t border-outline-variant/40">
-                                    <Link to="/join-form">
+                                    <Link to="/join-form" onClick={() => window.scrollTo(0, 0)}>
                                         <button className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                             <span>Start Application Form</span>
                                             <span className="material-symbols-outlined text-[18px]">
