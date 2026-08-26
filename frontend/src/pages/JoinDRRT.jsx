@@ -8,7 +8,7 @@ export default function JoinDRRT() {
     return (
         <>
             <title>Join DRRT - Student Portal</title>
-            <Header/>
+            <Header />
 
             <div className="flex-grow w-full">
                 {/* Main Container */}
@@ -281,7 +281,7 @@ export default function JoinDRRT() {
                 </main>
             </div>
 
-            <BottomNav/>
+            <BottomNav />
         </>
     )
 }

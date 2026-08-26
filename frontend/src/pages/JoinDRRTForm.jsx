@@ -264,38 +264,38 @@ export default function JoinDRRTForm() {
                         </fieldset>
                         {/* Section 3: Document Attachments */}
                         {/* Required Downloads Card */}
-                            <article className="bg-surface-container border border-outline-variant/80 rounded-2xl p-6 shadow-sm">
-                                <div className="flex items-center gap-3 mb-5">
-                                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                        <span className="material-symbols-outlined text-[20px] filled-icon">
-                                            folder
-                                        </span>
-                                    </div>
-                                    <h2 className="font-headline-md text-lg font-bold text-on-surface">
-                                        Required Resources
-                                    </h2>
+                        <article className="bg-surface-container border border-outline-variant/80 rounded-2xl p-6 shadow-sm">
+                            <div className="flex items-center gap-3 mb-5">
+                                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span className="material-symbols-outlined text-[20px] filled-icon">
+                                        folder
+                                    </span>
                                 </div>
-                                <div className="space-y-3">
-                                    <a href="#" className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/80 card-hover transition-all group">
-                                        <div className="flex items-center gap-3">
-                                            <span className="material-symbols-outlined text-error text-[24px] filled-icon">
-                                                picture_as_pdf
-                                            </span>
-                                            <div>
-                                                <h3 className="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">
-                                                    Parent Consent Form
-                                                </h3>
-                                                <p className="font-body-sm text-[12px] text-on-surface-variant">
-                                                    PDF Document • 450 KB
-                                                </p>
-                                            </div>
+                                <h2 className="font-headline-md text-lg font-bold text-on-surface">
+                                    Required Resources
+                                </h2>
+                            </div>
+                            <div className="space-y-3">
+                                <a href="#" className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/80 card-hover transition-all group">
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-error text-[24px] filled-icon">
+                                            picture_as_pdf
+                                        </span>
+                                        <div>
+                                            <h3 className="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">
+                                                Parent Consent Form
+                                            </h3>
+                                            <p className="font-body-sm text-[12px] text-on-surface-variant">
+                                                PDF Document • 450 KB
+                                            </p>
                                         </div>
-                                        <span className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">
-                                            download
-                                        </span>
-                                    </a>
-                                </div>
-                            </article>
+                                    </div>
+                                    <span className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">
+                                        download
+                                    </span>
+                                </a>
+                            </div>
+                        </article>
 
                         <fieldset className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-outline-variant/40 pb-3">
