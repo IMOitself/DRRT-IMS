@@ -213,33 +213,7 @@ export default function JoinDRRT() {
                                     </h2>
                                 </div>
                                 <div className="space-y-3">
-                                    {/* Resource Item 1 */}
-                                    <a
-                                        href="#"
-                                        className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/80 card-hover transition-all group"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="material-symbols-outlined text-error text-[24px] filled-icon">
-                                                picture_as_pdf
-                                            </span>
-                                            <div>
-                                                <h3 className="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">
-                                                    Student Primer
-                                                </h3>
-                                                <p className="font-body-sm text-[12px] text-on-surface-variant">
-                                                    PDF Document • 1.8 MB
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <span className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">
-                                            download
-                                        </span>
-                                    </a>
-                                    {/* Resource Item 2 */}
-                                    <a
-                                        href="#"
-                                        className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/80 card-hover transition-all group"
-                                    >
+                                    <a href="#" className="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/80 card-hover transition-all group">
                                         <div className="flex items-center gap-3">
                                             <span className="material-symbols-outlined text-error text-[24px] filled-icon">
                                                 picture_as_pdf
