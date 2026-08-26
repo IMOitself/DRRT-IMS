@@ -1,16 +1,11 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+// TODO: move the logic on an actual main or landing page instead of this default one
+import JoinDRRT from './pages/JoinDRRT'
 
-  return (
-    <>
-    </>
-  )
+function App() {
+  return <JoinDRRT/>
 }
 
 export default App
