@@ -27,7 +27,7 @@ export default function JoinDRRTForm() {
     return (
         <>
             <title>DRRT Membership Application - Student Portal</title>
-            <Header/>
+            <Header />
 
             <div className="flex-grow w-full">
                 {/* Main Form Container */}
@@ -393,16 +393,12 @@ export default function JoinDRRTForm() {
                         </fieldset>
                         {/* Submission Actions */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-                            <button
-                                type="button"
-                                className="w-full sm:w-auto px-6 py-3 rounded-xl border border-outline-variant text-secondary font-label-md font-bold hover:bg-surface-container-low transition-all"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]"
-                            >
+                            <Link to="/join" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-outline-variant text-secondary font-label-md font-bold hover:bg-surface-container-low transition-all">
+                                <button type="button" className="w-full text-center">
+                                    Cancel
+                                </button>
+                            </Link>
+                            <button type="submit" className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>
@@ -410,8 +406,8 @@ export default function JoinDRRTForm() {
                     </form>
                 </main>
             </div>
-            
-            <BottomNav/>
+
+            <BottomNav />
         </>
 
     )
