@@ -1,4 +1,5 @@
 import './JoinDRRT.css'
+import { Link } from "react-router-dom";
 
 export default function JoinDRRT() {
     return (
@@ -231,12 +232,14 @@ export default function JoinDRRT() {
                                 </div>
                                 {/* Action Button */}
                                 <div className="mt-8 pt-6 border-t border-outline-variant/40">
-                                    <button className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
-                                        <span>Start Application Form</span>
-                                        <span className="material-symbols-outlined text-[18px]">
-                                            arrow_forward
-                                        </span>
-                                    </button>
+                                    <Link to="/join-form">
+                                        <button className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                                            <span>Start Application Form</span>
+                                            <span className="material-symbols-outlined text-[18px]">
+                                                arrow_forward
+                                            </span>
+                                        </button>
+                                    </Link>
                                 </div>
                             </article>
                         </div>

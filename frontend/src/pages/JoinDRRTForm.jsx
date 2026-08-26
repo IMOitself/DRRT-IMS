@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function JoinDRRTForm() {
     return (
         <>
@@ -5,8 +7,8 @@ export default function JoinDRRTForm() {
             {/* Fonts & Icons */}
             <link href="https://fonts.googleapis.com" rel="preconnect" />
             <link crossOrigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-            <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
             {/* Top Navigation Header */}
             <header className="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
                 <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
@@ -53,15 +55,14 @@ export default function JoinDRRTForm() {
                 {/* Main Form Container */}
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Navigation Back Link */}
-                    <a
-                        href="#"
-                        className="inline-flex items-center gap-2 text-primary font-label-md font-semibold hover:underline"
-                    >
-                        <span className="material-symbols-outlined text-[18px]">
-                            arrow_back
-                        </span>
-                        <span>Back to Recruitment Overview</span>
-                    </a>
+                    <Link to="/join">
+                        <a className="inline-flex items-center gap-2 text-primary font-label-md font-semibold hover:underline">
+                            <span className="material-symbols-outlined text-[18px]">
+                                arrow_back
+                            </span>
+                            <span>Back to Recruitment Overview</span>
+                        </a>
+                    </Link>
                     {/* Form Banner Header */}
                     <section className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-bl-full pointer-events-none" />
