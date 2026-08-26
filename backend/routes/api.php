@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MembershipApplicationController;
+use App\Http\Controllers\MembershipApplicationsController;
 
-Route::post('/membership-applications', [MembershipApplicationController::class, 'store']);
+Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);

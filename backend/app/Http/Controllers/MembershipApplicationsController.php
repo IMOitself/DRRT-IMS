@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MembershipApplication;
 
-class MembershipApplicationController extends Controller
+class MembershipApplicationsController extends Controller
 {
     /**
      * Display a listing of the resource.
