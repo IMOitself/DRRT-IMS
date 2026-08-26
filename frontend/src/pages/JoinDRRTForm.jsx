@@ -19,6 +19,11 @@ export default function JoinDRRTForm() {
         class_schedule: null,
     });
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        console.log(formData)
+    };
+
     return (
         <>
             <title>DRRT Membership Application - Student Portal</title>
@@ -73,13 +78,13 @@ export default function JoinDRRTForm() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Student ID */}
                                 <div>
-                                    <label
-                                        htmlFor="student-id"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="student-id" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Student ID Number <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.student_id}
+                                        onChange={handleChange}
+
                                         type="text"
                                         id="student-id"
                                         name="student_id"
@@ -90,13 +95,12 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Full Name */}
                                 <div>
-                                    <label
-                                        htmlFor="full-name"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="full-name" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Full Name <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.full_name}
+                                        onChange={handleChange}
                                         type="text"
                                         id="full-name"
                                         name="full_name"
@@ -107,22 +111,20 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Academic Program */}
                                 <div>
-                                    <label
-                                        htmlFor="program"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="program" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Academic Program / Course <span className="text-error">*</span>
                                     </label>
                                     <select
+                                        value={formData.course}
+                                        onChange={handleChange}
                                         id="program"
-                                        name="program"
+                                        name="course"
                                         required=""
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
-                                        <option value="" disabled="" selected="">
+                                        <option value="" disabled="">
                                             Select Course
                                         </option>
-                                        <option value="BSIT">BS Information Technology</option>
                                         <option value="BSIS">BS Information Systems</option>
                                         <option value="BSA">BS Accountancy</option>
                                         <option value="BSBA">BS Business Administration</option>
@@ -132,19 +134,18 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Year Level */}
                                 <div>
-                                    <label
-                                        htmlFor="year-level"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="year-level" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Year Level <span className="text-error">*</span>
                                     </label>
                                     <select
+                                        value={formData.year_level}
+                                        onChange={handleChange}
                                         id="year-level"
                                         name="year_level"
                                         required=""
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
-                                        <option value="" disabled="" selected="">
+                                        <option value="" disabled="">
                                             Select Year Level
                                         </option>
                                         <option value={1}>1st Year</option>
@@ -170,13 +171,12 @@ export default function JoinDRRTForm() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Institutional Email */}
                                 <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="email" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         LVCC Institutional Email <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         type="email"
                                         id="email"
                                         name="email"
@@ -187,16 +187,15 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Mobile Number */}
                                 <div>
-                                    <label
-                                        htmlFor="mobile"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="mobile" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Mobile Number <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.phone_number}
+                                        onChange={handleChange}
                                         type="tel"
                                         id="mobile"
-                                        name="mobile"
+                                        name="phone_number"
                                         required=""
                                         placeholder="09XX-XXX-XXXX"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
@@ -204,16 +203,15 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Emergency Contact Name */}
                                 <div>
-                                    <label
-                                        htmlFor="emergency-name"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="emergency-name" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Emergency Contact Person <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.emergency_person_name}
+                                        onChange={handleChange}
                                         type="text"
                                         id="emergency-name"
-                                        name="emergency_name"
+                                        name="emergency_person_name"
                                         required=""
                                         placeholder="Parent or Guardian Name"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
@@ -221,13 +219,12 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Emergency Contact Phone */}
                                 <div>
-                                    <label
-                                        htmlFor="emergency-phone"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="emergency-phone" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Emergency Contact Phone <span className="text-error">*</span>
                                     </label>
                                     <input
+                                        value={formData.emergency_phone}
+                                        onChange={handleChange}
                                         type="tel"
                                         id="emergency-phone"
                                         name="emergency_phone"
@@ -238,19 +235,18 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Blood Type */}
                                 <div className="md:col-span-2">
-                                    <label
-                                        htmlFor="blood-type"
-                                        className="block font-label-md text-label-md font-semibold text-on-surface mb-1"
-                                    >
+                                    <label htmlFor="blood-type" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
                                         Blood Type <span className="text-error">*</span>
                                     </label>
                                     <select
+                                        value={formData.blood_type}
+                                        onChange={handleChange}
                                         id="blood-type"
                                         name="blood_type"
                                         required=""
                                         className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
-                                        <option value="" disabled="" selected="">
+                                        <option value="" disabled="">
                                             Select Blood Type
                                         </option>
                                         <option value="A+">A+</option>
@@ -323,7 +319,9 @@ export default function JoinDRRTForm() {
                                         Upload signed PDF or Image (Max 5MB)
                                     </p>
                                     <input
+                                        onChange={handleChange}
                                         type="file"
+                                        name="consent_form"
                                         required=""
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
@@ -338,7 +336,9 @@ export default function JoinDRRTForm() {
                                         Upload official schedule copy to verify duty availability
                                     </p>
                                     <input
+                                        onChange={handleChange}
                                         type="file"
+                                        name="class_schedule"
                                         required=""
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
@@ -362,7 +362,9 @@ export default function JoinDRRTForm() {
                                 {/* Article IV Agreement */}
                                 <label className="flex items-start gap-3 cursor-pointer">
                                     <input
+                                        onChange={handleChange}
                                         type="checkbox"
+                                        name="agreed_article4"
                                         required=""
                                         className="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary rounded-md"
                                     />
@@ -375,7 +377,9 @@ export default function JoinDRRTForm() {
                                 {/* Article X Uniform Policy Agreement */}
                                 <label className="flex items-start gap-3 cursor-pointer">
                                     <input
+                                        onChange={handleChange}
                                         type="checkbox"
+                                        name="agreed_article10"
                                         required=""
                                         className="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary rounded-md"
                                     />
