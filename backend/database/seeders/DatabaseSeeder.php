@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\MembershipApplication;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -38,6 +39,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'capt. erwin smith',
             'email' => 'apple@gmail.com',
             'role' => 'adviser'
+        ]);
+
+        MembershipApplication::factory()->create([
+            'status'      => 'pending',
+            'user_id'     => 1,
+            'reviewer_id' => 4,
         ]);
     }
 }
