@@ -1,11 +1,12 @@
-# DRRT-IMS-ui-designs
+# DRRT-IMS
 
 > [!NOTE]
-> currently some initial micro managing stuff is happening.<br>
-> just need to rewire some braincells to stay motivated and organized for the long run.<br>
-> will modify this readme often for updates :D
+> current progress:<br>
+>
+> <img width="1919" height="823" alt="Screenshot 2026-08-26 144159" src="https://github.com/user-attachments/assets/132c84e9-5995-4a10-8d39-da1f7d9b3c97" />
+> https://trello.com/b/rcb0FEpP
 
-## essential stuffs for development
+## essential stuff for development
 <details>
 <summary>ui designs (w/ htmlpreview)</summary>
 
@@ -62,12 +63,6 @@
 ### database schema
 <img width="3101" height="1190" alt="group3_designs-6  Database Schema drawio" src="https://github.com/user-attachments/assets/05f55c41-05fe-4d8c-a3ee-2c100807f07b" />
 
-</details>
-
-<details><summary>trallalero</summary>
-  <img width="1919" height="835" alt="Screenshot 2026-08-25 181209" src="https://github.com/user-attachments/assets/deb3f7c5-fc1e-4c1d-92c1-2dfd589735e8" />
-
-  https://trello.com/b/rcb0FEpP
 </details>
 
 <details><summary>about</summary>
