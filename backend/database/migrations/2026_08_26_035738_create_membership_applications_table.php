@@ -17,6 +17,17 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('reviewer_id')->constrained('users');
             $table->timestamp('date_applied')->useCurrent();
+            $table->string('student_id');
+            $table->string('full_name');
+            $table->string('course');
+            $table->integer('year_level');
+            $table->string('email');
+            $table->string('phone_number', 20);
+            $table->string('emergency_person_name');
+            $table->string('emergency_phone', 20);
+            $table->string('blood_type');
+            $table->string('consent_form'); // file path
+            $table->string('class_schedule'); // file path
             $table->timestamps();
         });
     }

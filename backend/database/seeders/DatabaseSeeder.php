@@ -40,11 +40,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'apple@gmail.com',
             'role' => 'adviser'
         ]);
-
-        MembershipApplication::factory()->create([
-            'status'      => 'pending',
-            'user_id'     => 1,
-            'reviewer_id' => 4,
-        ]);
     }
 }

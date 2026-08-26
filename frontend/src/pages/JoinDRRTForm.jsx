@@ -4,6 +4,20 @@ import Header from "../components/Header"
 import BottomNav from "../components/BottomNav";
 
 export default function JoinDRRTForm() {
+    const [formData, setFormData] = useState({
+        student_id: '',
+        full_name: '',
+        course: '',
+        year_level: '',
+        email: '',
+        phone_number: '',
+        emergency_person_name: '',
+        emergency_phone: '',
+        blood_type: '',
+        consent_form: null,
+        class_schedule: null,
+    });
+
     return (
         <>
             <title>DRRT Membership Application - Student Portal</title>
