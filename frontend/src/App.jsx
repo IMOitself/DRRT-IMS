@@ -1,12 +1,17 @@
-import { useState } from 'react'
 import './App.css'
 
-// TODO: move the logic on an actual main or landing page instead of this default one
+import { Routes, Route } from "react-router-dom";
 import JoinDRRT from './pages/JoinDRRT'
 import JoinDRRTForm from './pages/JoinDRRTForm'
 
 function App() {
-  return <JoinDRRTForm/>
+  return (
+    <Routes>
+      <Route path="/" element={<JoinDRRT/>}/> {/* temporarily */}
+      <Route path="/join" element={<JoinDRRT/>}/>
+      <Route path="/join-form" element={<JoinDRRTForm/>}/>
+    </Routes>
+  )
 }
 
 export default App
