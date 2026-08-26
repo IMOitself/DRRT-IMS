@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status', ['pending', 'approve', 'rejected'])->default('pending');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('reviewer_id')->constrained('users');
+            $table->foreignId('reviewer_id')->nullable()->constrained('users');
             $table->timestamp('date_applied')->useCurrent();
             $table->string('student_id');
             $table->string('full_name');

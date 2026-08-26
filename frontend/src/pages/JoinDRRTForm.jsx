@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "../components/Header"
 import BottomNav from "../components/BottomNav";
 
+import axios from 'axios';
+
 export default function JoinDRRTForm() {
     const [formData, setFormData] = useState({
         student_id: '',
@@ -22,6 +24,14 @@ export default function JoinDRRTForm() {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         console.log(formData)
+    };
+
+    const handleSubmit = (e) => {
+        axios
+            .post("http://localhost:8000/api/membership-applications", formData)
+            .then((res) => console.log(res.data))
+            .catch((err) => console.error(err));
+        e.preventDefault();
     };
 
     return (
@@ -398,7 +408,7 @@ export default function JoinDRRTForm() {
                                     Cancel
                                 </button>
                             </Link>
-                            <button type="submit" className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                            <button type="submit" onClick={handleSubmit} className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>
