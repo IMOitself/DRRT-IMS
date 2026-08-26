@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens extracted from the HTML's compiled Tailwind theme */
+  --color-primary: rgb(0 61 155);
+  --color-primary-fixed: rgb(218 226 255);
+  --color-primary-container: rgb(0 82 204);
+  --color-on-primary: rgb(255 255 255);
+  --color-secondary: rgb(80 95 118);
+  --color-secondary-container: rgb(212 227 255);
+  --color-on-secondary-container: rgb(86 101 124);
+  --color-background: rgb(250 248 255);
+  --color-surface: rgb(250 248 255);
+  --color-surface-container: rgb(237 237 248);
+  --color-surface-container-low: rgb(243 243 253);
+  --color-surface-container-high: rgb(231 231 242);
+  --color-surface-container-lowest: rgb(255 255 255);
+  --color-on-surface: rgb(25 27 35);
+  --color-on-surface-variant: rgb(67 70 84);
+  --color-outline-variant: rgb(195 198 214);
+  --color-error: rgb(186 26 26);
+  --color-status-success: rgb(22 163 74);
+
+  /* Font families */
+  --font-headline-md: "Geist", sans-serif;
+  --font-display-lg: "Geist", sans-serif;
+  --font-label-md: "Geist", sans-serif;
+  --font-label-sm: "Geist", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+}
