@@ -55,13 +55,11 @@ export default function JoinDRRTForm() {
                 {/* Main Form Container */}
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Navigation Back Link */}
-                    <Link to="/join">
-                        <a className="inline-flex items-center gap-2 text-primary font-label-md font-semibold hover:underline">
-                            <span className="material-symbols-outlined text-[18px]">
-                                arrow_back
-                            </span>
-                            <span>Back to Recruitment Overview</span>
-                        </a>
+                    <Link to="/join" className="inline-flex items-center gap-2 text-primary font-label-md font-semibold hover:underline">
+                        <span className="material-symbols-outlined text-[18px]">
+                            arrow_back
+                        </span>
+                        <span>Back to Recruitment Overview</span>
                     </Link>
                     {/* Form Banner Header */}
                     <section className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
