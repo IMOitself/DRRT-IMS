@@ -117,7 +117,7 @@ export default function JoinDRRTForm() {
                                         name="full_name"
                                         required
                                         pattern="[a-zA-Z\s]+,\s*[a-zA-Z\s]+(\s+[a-zA-Z]\.?)?"
-                                        title="Full name, for example: Dela Cruz, Juan D. (include the comma)"
+                                        title="Full name, for example: Ackerman, Levi A. (include the comma)"
                                         placeholder="Surname, Firstname M."
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -185,7 +185,7 @@ export default function JoinDRRTForm() {
                                 {/* Institutional Email */}
                                 <div>
                                     <label htmlFor="email" className="block font-label-md text-label-md font-semibold text-on-surface mb-1">
-                                        LVCC Institutional Email <span className="text-error">*</span>
+                                        LV Email <span className="text-error">*</span>
                                     </label>
                                     <input
                                         value={formData.email}
@@ -194,7 +194,10 @@ export default function JoinDRRTForm() {
                                         id="email"
                                         name="email"
                                         required
+                                        pattern="@laverdad\.edu\.ph$"
+                                        title="Your La Verdad email for example: levi.ackerman@laverdad.edu.ph"
                                         placeholder="student@laverdad.edu.ph"
+
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
                                 </div>
