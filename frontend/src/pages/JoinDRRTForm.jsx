@@ -418,7 +418,7 @@ export default function JoinDRRTForm() {
                                     Cancel
                                 </button>
                             </Link>
-                            <button type="submit" className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                            <button type="submit" className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>
