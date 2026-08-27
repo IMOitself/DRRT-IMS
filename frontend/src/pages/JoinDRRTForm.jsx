@@ -35,8 +35,11 @@ export default function JoinDRRTForm() {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        localStorage.setItem(SAVED_FORM_DATA_KEY, JSON.stringify(formData));
     };
+
+    useEffect(() => {
+        if (formData) localStorage.setItem(SAVED_FORM_DATA_KEY, JSON.stringify(formData));
+    }, [formData]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
