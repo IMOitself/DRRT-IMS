@@ -114,12 +114,109 @@ export default function JoinDRRTFormStatus() {
                                 </li>
                             </ol>
                         </div>
+                        <h2 className="font-headline-md text-md font-bold text-on-surface flex items-center gap-2">
+                            <span className="material-symbols-outlined text-primary text-[20px]">
+                                info
+                            </span>
+                            Submitted Application Details:
+                        </h2>
+                        <div className="bg-surface-container-low border border-outline-variant/50 rounded-xl p-4 text-left space-y-3">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Student ID:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.student_id}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Full Name:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.full_name}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Course:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.course}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Year Level:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.year_level}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Email:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.email}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Phone Number:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.phone_number}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Emergency Person:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.emergency_person_name}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Emergency Phone:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.emergency_phone}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Blood Type:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    {application.data?.blood_type}
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-outline-variant/40 pb-3">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Consent Form:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    <a href={application.data?.consent_form} target="_blank" rel="noopener noreferrer">
+                                        View Consent Form
+                                    </a>
+                                </span>
+                            </div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                <span className="font-body-sm text-on-surface-variant">
+                                    Class Schedule:
+                                </span>
+                                <span className="font-label-md font-bold text-primary font-mono text-base">
+                                    <a href={application.data?.class_schedule} target="_blank" rel="noopener noreferrer">
+                                        View Class Schedule
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
                         {/* Action Buttons */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <Link
-                                to="/"
-                                className="w-full sm:w-auto px-6 py-3 rounded-xl border border-outline-variant text-secondary font-label-md font-bold hover:bg-surface-container-low transition-all text-center"
-                            >
+                            <Link to="/" className="w-full sm:w-auto px-6 py-3 rounded-xl border border-outline-variant text-secondary font-label-md font-bold hover:bg-surface-container-low transition-all text-center">
                                 Back to Home
                             </Link>
                         </div>
