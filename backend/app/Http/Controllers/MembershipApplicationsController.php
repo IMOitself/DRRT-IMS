@@ -21,7 +21,7 @@ class MembershipApplicationsController extends Controller
     public function store(Request $request)
     {
         $application = MembershipApplication::create([
-            'user_id' => $request->input('user_id', 1),
+            'user_id' => $request->input('user_id', 1), // TODO: change this to the actual logged in user id
             'student_id' => $request->input('student_id'),
             'full_name' => $request->input('full_name'),
             'course' => $request->input('course'),

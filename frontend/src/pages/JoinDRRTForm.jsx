@@ -17,8 +17,8 @@ export default function JoinDRRTForm() {
         emergency_person_name: '',
         emergency_phone: '',
         blood_type: '',
-        consent_form: null,
-        class_schedule: null,
+        consent_form: null, // TODO: for now its a file path, but we need this to be an actual file
+        class_schedule: null, // TODO: for now its a file path, but we need this to be an actual file
     });
 
     const handleChange = (e) => {
