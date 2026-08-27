@@ -1,5 +1,6 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
+import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -25,12 +26,12 @@ export default function Home() {
                                 proactive safety across our entire campus community.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center md:justify-start">
-                                <button className="bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                                <Link to="/join" className="bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                     <span className="material-symbols-outlined text-[18px]">
                                         person_add
                                     </span>
                                     <span>Join DRRT Team</span>
-                                </button>
+                                </Link>
                                 <button className="bg-surface border border-outline-variant hover:bg-surface-container-low text-primary font-label-md text-label-md font-bold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
                                     <span className="material-symbols-outlined text-[18px]">map</span>
                                     <span>Explore Campus Safety</span>
@@ -287,9 +288,9 @@ export default function Home() {
                             resilient and secure campus environment for everyone.
                         </p>
                         <div className="pt-2">
-                            <button className="bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3 rounded-xl shadow-md active:scale-[0.98]">
+                            <Link to="/join" className="bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3 rounded-xl shadow-md active:scale-[0.98]">
                                 View Membership Guide
-                            </button>
+                            </Link>
                         </div>
                     </section>
                 </main>
