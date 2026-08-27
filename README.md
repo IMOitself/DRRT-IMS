@@ -3,7 +3,7 @@
 > [!NOTE]
 > current progress:<br>
 >
-> <img width="1919" height="823" alt="Screenshot 2026-08-26 144159" src="https://github.com/user-attachments/assets/132c84e9-5995-4a10-8d39-da1f7d9b3c97" />
+> <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/13d7caf8-dc22-48d5-a66c-1f599dcd098d" />
 > https://trello.com/b/rcb0FEpP
 
 ## essential stuff for development
