@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
@@ -8,6 +8,8 @@ import axios from 'axios';
 
 export default function JoinDRRTForm() {
     useEffect(() => { window.scrollTo(0, 0); }, []);
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         student_id: '',
@@ -32,7 +34,7 @@ export default function JoinDRRTForm() {
         e.preventDefault();
         axios
             .post("http://localhost:8000/api/membership-applications", formData)
-            .then((res) => console.log(res.data))
+            .then((res) => navigate(`/join-form/${res.data.application_id}`))
             .catch((err) => console.error(err));
     };
 

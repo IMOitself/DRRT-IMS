@@ -1,7 +1,11 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
+import { useParams } from "react-router-dom";
 
 export default function JoinDRRTFormStatus() {
+    const { id } = useParams();
+    console.log(id);
+
     return (
         <>
             <title>Application Submitted - DRRT Student Portal</title>

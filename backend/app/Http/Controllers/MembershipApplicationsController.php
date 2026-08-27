@@ -36,7 +36,7 @@ class MembershipApplicationsController extends Controller
             'class_schedule' => $request->input('class_schedule')
         ]);
 
-        return response()->json(['status' => 'ok', 'data' => $application]);
+        return response()->json(['status' => 'ok', 'application_id' => $application->id]);
     }
 
     /**

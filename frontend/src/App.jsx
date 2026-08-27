@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<JoinDRRT/>}/> {/* temporarily */}
       <Route path="/join" element={<JoinDRRT/>}/>
       <Route path="/join-form" element={<JoinDRRTForm/>}/>
-      <Route path="/join-form/i" element={<JoinDRRTFormStatus/>}/>
+      <Route path="/join-form/:id" element={<JoinDRRTFormStatus/>}/>
     </Routes>
   )
 }
