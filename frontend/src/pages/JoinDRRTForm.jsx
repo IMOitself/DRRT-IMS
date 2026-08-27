@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
 import BottomNav from "../components/BottomNav";
@@ -7,6 +7,8 @@ import BottomNav from "../components/BottomNav";
 import axios from 'axios';
 
 export default function JoinDRRTForm() {
+    useEffect(() => { window.scrollTo(0, 0); }, []);
+
     const [formData, setFormData] = useState({
         student_id: '',
         full_name: '',
