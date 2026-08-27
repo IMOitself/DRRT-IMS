@@ -38,8 +38,8 @@ export default function Home() {
                                 </button>
                             </div>
                         </div>
-                        <div className="hidden lg:flex shrink-0 w-44 h-44 rounded-full bg-primary/10 border-2 border-primary/20 items-center justify-center text-primary shadow-inner">
-                            <span className="material-symbols-outlined text-[80px] filled-icon">
+                        <div className="hidden md:flex shrink-0 w-52 h-52 rounded-full bg-primary/10 border-2 border-primary/20 items-center justify-center text-primary shadow-inner">
+                            <span className="material-symbols-outlined !text-[110px] filled-icon">
                                 health_and_safety
                             </span>
                         </div>

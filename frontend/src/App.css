@@ -5,10 +5,10 @@ body {
     min-height: max(884px, 100dvh);
 }
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0;
 }
 .filled-icon {
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0;
 }
 .glass-header {
     background-color: rgba(250, 248, 255, 0.9);
