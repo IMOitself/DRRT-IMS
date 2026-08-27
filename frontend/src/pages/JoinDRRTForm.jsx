@@ -194,7 +194,7 @@ export default function JoinDRRTForm() {
                                         id="email"
                                         name="email"
                                         required
-                                        pattern="@laverdad\.edu\.ph$"
+                                        pattern=".+@laverdad\.edu\.ph"
                                         title="Your La Verdad email for example: levi.ackerman@laverdad.edu.ph"
                                         placeholder="student@laverdad.edu.ph"
 
