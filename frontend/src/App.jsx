@@ -3,6 +3,7 @@ import './App.css'
 import { Routes, Route } from "react-router-dom";
 import JoinDRRT from './pages/JoinDRRT'
 import JoinDRRTForm from './pages/JoinDRRTForm'
+import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<JoinDRRT/>}/> {/* temporarily */}
       <Route path="/join" element={<JoinDRRT/>}/>
       <Route path="/join-form" element={<JoinDRRTForm/>}/>
+      <Route path="/join-form/i" element={<JoinDRRTFormStatus/>}/>
     </Routes>
   )
 }
