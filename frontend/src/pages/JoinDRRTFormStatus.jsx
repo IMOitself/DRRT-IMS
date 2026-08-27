@@ -1,10 +1,22 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function JoinDRRTFormStatus() {
     const { id } = useParams();
-    console.log(id);
+
+    const [application, setApplication] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8000/api/membership-applications/${id}`)
+            .then((res) => setApplication(res.data))
+            .catch((err) => console.error(err));
+    }, [id]);
+
+    console.log(application);
 
     return (
         <>
@@ -43,7 +55,7 @@ export default function JoinDRRTFormStatus() {
                                     Application Reference:
                                 </span>
                                 <span className="font-label-md font-bold text-primary font-mono text-base">
-                                    #DRRT-2026-0894
+                                    {id}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
@@ -52,7 +64,7 @@ export default function JoinDRRTFormStatus() {
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 font-label-sm font-semibold text-status-warning bg-status-warning/10 px-2.5 py-0.5 rounded-full w-fit">
                                     <span className="w-2 h-2 rounded-full bg-status-warning animate-pulse" />
-                                    Pending Officer Review
+                                    {application.data?.status.toUpperCase()}
                                 </span>
                             </div>
                         </div>
@@ -104,21 +116,12 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {/* Action Buttons */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <a
-                                href="#"
+                            <Link
+                                to="/"
                                 className="w-full sm:w-auto px-6 py-3 rounded-xl border border-outline-variant text-secondary font-label-md font-bold hover:bg-surface-container-low transition-all text-center"
                             >
                                 Back to Home
-                            </a>
-                            <a
-                                href="#"
-                                className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]"
-                            >
-                                <span className="material-symbols-outlined text-[18px]">
-                                    download
-                                </span>
-                                <span>Download Submission Summary</span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </main>
