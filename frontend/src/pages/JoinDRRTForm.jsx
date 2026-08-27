@@ -99,7 +99,9 @@ export default function JoinDRRTForm() {
                                         id="student-id"
                                         name="student_id"
                                         required
-                                        placeholder="e.g. 2026-01234"
+                                        pattern="^\d{2}-?\d{5}[a-zA-Z]{3}$"
+                                        title="Same format in your school ID, for example: 24-00123ABC or 2400123ABC"
+                                        placeholder="e.g. 24-00123ABC"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
                                 </div>
