@@ -336,7 +336,8 @@ export default function JoinDRRTForm() {
                                         <span className="text-error">*</span>
                                     </label>
                                     <p className="font-body-sm text-body-sm text-on-surface-variant mb-2">
-                                        Upload signed PDF or Image (Max 5MB)
+                                        Download Parent Consent Form above and ask your parents to sign it. Then upload the signed document. <br/>
+                                        Accepted formats: PDF, PNG, JPG, JPEG (Max 5MB)
                                     </p>
                                     <input
                                         onChange={handleChange}
