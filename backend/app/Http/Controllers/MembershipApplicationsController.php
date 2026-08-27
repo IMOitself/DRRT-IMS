@@ -12,7 +12,8 @@ class MembershipApplicationsController extends Controller
      */
     public function index()
     {
-        //
+        $applications = MembershipApplication::all();
+        return response()->json(['status' => 'ok', 'data' => $applications]);
     }
 
     /**
@@ -41,9 +42,9 @@ class MembershipApplicationsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(MembershipApplication $application)
     {
-        //
+        return response()->json(['status' => 'ok', 'data' => $application]);
     }
 
     /**
