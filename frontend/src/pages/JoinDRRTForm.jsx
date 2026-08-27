@@ -94,7 +94,6 @@ export default function JoinDRRTForm() {
                                     <input
                                         value={formData.student_id}
                                         onChange={handleChange}
-
                                         type="text"
                                         id="student-id"
                                         name="student_id"
@@ -117,7 +116,9 @@ export default function JoinDRRTForm() {
                                         id="full-name"
                                         name="full_name"
                                         required
-                                        placeholder="Last Name, First Name M.I."
+                                        pattern="[a-zA-Z\s]+,\s*[a-zA-Z\s]+(\s+[a-zA-Z]\.?)?"
+                                        title="Full name, for example: Dela Cruz, Juan D. (include the comma)"
+                                        placeholder="Surname, Firstname M."
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
                                 </div>
