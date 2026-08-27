@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
     return (
         <header className="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
@@ -16,23 +18,16 @@ export default function Header() {
                     </div>
                 </div>
                 {/* Desktop Navigation Links */}
-                <nav
-                    className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant"
-                    aria-label="Main Navigation"
-                >
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant" aria-label="Main Navigation">
+                    <Link to="/" className="hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1">
                         Home
-                    </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    </Link>
+                    <Link to="/events" className="hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1">
                         Events
-                    </a>
-                    <a
-                        href="#"
-                        className="text-primary font-bold border-b-2 border-primary py-1"
-                        aria-current="page"
-                    >
+                    </Link>
+                    <Link to="/join" className="hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1">
                         Join
-                    </a>
+                    </Link>
                 </nav>
                 <div className="flex items-center gap-3">
                     <button className="font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95">
