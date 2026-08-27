@@ -213,7 +213,9 @@ export default function JoinDRRTForm() {
                                         id="mobile"
                                         name="phone_number"
                                         required
-                                        placeholder="09XX-XXX-XXXX"
+                                        pattern="[0-9]{11}"
+                                        title="Your personal number for example: 09123456789 (11 digits)"
+                                        placeholder="09123456789"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
                                 </div>
@@ -245,7 +247,9 @@ export default function JoinDRRTForm() {
                                         id="emergency-phone"
                                         name="emergency_phone"
                                         required
-                                        placeholder="09XX-XXX-XXXX"
+                                        pattern="[0-9]{11}"
+                                        title="Emergency contact person's number for example: 09123456789 (11 digits)"
+                                        placeholder="09123456789"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
                                 </div>
