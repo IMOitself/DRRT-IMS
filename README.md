@@ -15,6 +15,7 @@
 - [~~interactive_campus_hazard_map~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/(NO%20MORE%20THEY%20SAID)%20interactive_campus_hazard_map.html)
 - [join_drrt_membership_information](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html)
 - [application_form](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html)
+- [application_form_submitted](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html)
 - [public_events_preparedness_bulletins](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html)
 - [public_home_preparedness_landing_page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html)
 
