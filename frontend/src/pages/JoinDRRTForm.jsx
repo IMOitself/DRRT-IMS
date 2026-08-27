@@ -45,7 +45,10 @@ export default function JoinDRRTForm() {
         e.preventDefault();
         axios
             .post("http://localhost:8000/api/membership-applications", formData)
-            .then((res) => navigate(`/join-form/${res.data.application_id}`))
+            .then((res) => {
+                localStorage.removeItem(SAVED_FORM_DATA_KEY);
+                navigate(`/join-form/${res.data.application_id}`);
+            })
             .catch((err) => console.error(err));
     };
 
