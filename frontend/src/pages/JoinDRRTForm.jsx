@@ -27,11 +27,11 @@ export default function JoinDRRTForm() {
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         axios
             .post("http://localhost:8000/api/membership-applications", formData)
             .then((res) => console.log(res.data))
             .catch((err) => console.error(err));
-        e.preventDefault();
     };
 
     return (
@@ -72,7 +72,7 @@ export default function JoinDRRTForm() {
                         </p>
                     </section>
                     {/* Interactive Registration Form */}
-                    <form className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Section 1: Student Information */}
                         <fieldset className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-outline-variant/40 pb-3">
@@ -98,7 +98,7 @@ export default function JoinDRRTForm() {
                                         type="text"
                                         id="student-id"
                                         name="student_id"
-                                        required=""
+                                        required
                                         placeholder="e.g. 2026-01234"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -114,7 +114,7 @@ export default function JoinDRRTForm() {
                                         type="text"
                                         id="full-name"
                                         name="full_name"
-                                        required=""
+                                        required
                                         placeholder="Last Name, First Name M.I."
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -129,7 +129,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         id="program"
                                         name="course"
-                                        required=""
+                                        required
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
                                         <option value="" disabled="">
@@ -152,7 +152,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         id="year-level"
                                         name="year_level"
-                                        required=""
+                                        required
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
                                         <option value="" disabled="">
@@ -190,7 +190,7 @@ export default function JoinDRRTForm() {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        required=""
+                                        required
                                         placeholder="student@laverdad.edu.ph"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -206,7 +206,7 @@ export default function JoinDRRTForm() {
                                         type="tel"
                                         id="mobile"
                                         name="phone_number"
-                                        required=""
+                                        required
                                         placeholder="09XX-XXX-XXXX"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -222,7 +222,7 @@ export default function JoinDRRTForm() {
                                         type="text"
                                         id="emergency-name"
                                         name="emergency_person_name"
-                                        required=""
+                                        required
                                         placeholder="Parent or Guardian Name"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -238,7 +238,7 @@ export default function JoinDRRTForm() {
                                         type="tel"
                                         id="emergency-phone"
                                         name="emergency_phone"
-                                        required=""
+                                        required
                                         placeholder="09XX-XXX-XXXX"
                                         className="w-full px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     />
@@ -253,7 +253,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         id="blood-type"
                                         name="blood_type"
-                                        required=""
+                                        required
                                         className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm"
                                     >
                                         <option value="" disabled="">
@@ -332,7 +332,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="file"
                                         name="consent_form"
-                                        required=""
+                                        required
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
                                     />
@@ -349,7 +349,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="file"
                                         name="class_schedule"
-                                        required=""
+                                        required
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
                                     />
@@ -375,7 +375,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="checkbox"
                                         name="agreed_article4"
-                                        required=""
+                                        required
                                         className="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary rounded-md"
                                     />
                                     <span className="font-body-sm text-body-sm text-on-surface leading-relaxed">
@@ -390,7 +390,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="checkbox"
                                         name="agreed_article10"
-                                        required=""
+                                        required
                                         className="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary rounded-md"
                                     />
                                     <span className="font-body-sm text-body-sm text-on-surface leading-relaxed">
@@ -408,7 +408,7 @@ export default function JoinDRRTForm() {
                                     Cancel
                                 </button>
                             </Link>
-                            <button type="submit" onClick={handleSubmit} className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                            <button type="submit" className="w-full sm:w-auto bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>
