@@ -6,12 +6,14 @@ import BottomNav from "../components/BottomNav";
 
 import axios from 'axios';
 
+const SAVED_FORM_DATA_KEY = "drrt_form_data";
+
 export default function JoinDRRTForm() {
     useEffect(() => { window.scrollTo(0, 0); }, []);
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         student_id: '',
         full_name: '',
         course: '',
@@ -23,11 +25,17 @@ export default function JoinDRRTForm() {
         blood_type: '',
         consent_form: null, // TODO: for now its a file path, but we need this to be an actual file
         class_schedule: null, // TODO: for now its a file path, but we need this to be an actual file
+    };
+
+    const [formData, setFormData] = useState(() => {
+        const savedData = localStorage.getItem(SAVED_FORM_DATA_KEY);
+        if (savedData) return JSON.parse(savedData);
+        return initialFormData;
     });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log(formData)
+        localStorage.setItem(SAVED_FORM_DATA_KEY, JSON.stringify(formData));
     };
 
     const handleSubmit = (e) => {
