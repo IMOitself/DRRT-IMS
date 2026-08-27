@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "frontend :D",
+      "type": "shell",
+      "windows": { "command": "powershell.exe", "args": ["-NoExit", "-Command", "cls; cd frontend"] },
+      "linux":   { "command": "bash", "args": ["-c", "clear; cd frontend && exec bash"] },
+      "osx":     { "command": "bash", "args": ["-c", "clear; cd frontend && exec bash"] },
+      "presentation": { "group": "frontend", "panel": "dedicated", "reveal": "always", "focus": false },
+      "problemMatcher": []
+    },
+    {
+      "label": "npm run dev",
+      "type": "shell",
+      "windows": { "command": "powershell.exe", "args": ["-NoExit", "-Command", "cls; cd frontend; npm run dev"] },
+      "linux":   { "command": "bash", "args": ["-c", "clear; cd frontend && npm run dev"] },
+      "osx":     { "command": "bash", "args": ["-c", "clear; cd frontend && npm run dev"] },
+      "presentation": { "group": "frontend", "panel": "dedicated", "reveal": "always", "focus": false },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "backend :D",
+      "type": "shell",
+      "windows": { "command": "powershell.exe", "args": ["-NoExit", "-Command", "cls; cd backend"] },
+      "linux":   { "command": "bash", "args": ["-c", "clear; cd backend && exec bash"] },
+      "osx":     { "command": "bash", "args": ["-c", "clear; cd backend && exec bash"] },
+      "presentation": { "group": "backend", "panel": "dedicated", "reveal": "always", "focus": false },
+      "problemMatcher": []
+    },
+    {
+      "label": "php artisan serve",
+      "type": "shell",
+      "windows": { "command": "powershell.exe", "args": ["-NoExit", "-Command", "cls; cd backend; php artisan serve"] },
+      "linux":   { "command": "bash", "args": ["-c", "clear; cd backend && php artisan serve"] },
+      "osx":     { "command": "bash", "args": ["-c", "clear; cd backend && php artisan serve"] },
+      "presentation": { "group": "backend", "panel": "dedicated", "reveal": "always", "focus": false },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "auto run frontend and backend :D",
+      "dependsOn": ["frontend :D", "npm run dev", "backend :D", "php artisan serve"],
+      "dependsOrder": "parallel",
+      "runOptions": { "runOn": "folderOpen" },
+      "problemMatcher": []
+    }
+  ]
+}
