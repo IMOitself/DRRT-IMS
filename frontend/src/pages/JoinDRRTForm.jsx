@@ -6,7 +6,7 @@ import BottomNav from "../components/BottomNav";
 
 import api from "../api/axios";
 
-const SAVED_FORM_DATA_KEY = "drrt_form_data";
+const SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
     const navigate = useNavigate();
