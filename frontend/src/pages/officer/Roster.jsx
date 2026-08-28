@@ -306,9 +306,7 @@ export default function Roster() {
                                     <p className="text-xs text-on-surface-variant font-medium">
                                         Phone
                                     </p>
-                                    <p
-                                        className="font-body-sm text-on-surface font-semibold"
-                                    >
+                                    <p className="font-body-sm text-on-surface font-semibold">
                                         {selectedMember.phone_number}
                                     </p>
                                 </div>
@@ -316,10 +314,48 @@ export default function Roster() {
                                     <p className="text-xs text-on-surface-variant font-medium">
                                         Email Address
                                     </p>
-                                    <p
-                                        className="font-body-sm text-primary font-semibold"
-                                    >
+                                    <p className="font-body-sm text-primary font-semibold">
                                         {selectedMember.email}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Emergency Contact
+                                    </p>
+                                    <p className="font-body-sm text-on-surface font-semibold">
+                                        {selectedMember.emergency_person_name}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Emergency Contact Phone
+                                    </p>
+                                    <p className="font-body-sm text-on-surface font-semibold">
+                                        {selectedMember.emergency_phone}
+                                    </p>
+                                </div>
+                                <div className="col-span-2">
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Blood Type
+                                    </p>
+                                    <p className="font-body-sm text-on-surface font-semibold">
+                                        {selectedMember.blood_type}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Consent Form
+                                    </p>
+                                    <p className="font-body-sm text-on-surface font-semibold">
+                                        {selectedMember.consent_form}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Class Schedule
+                                    </p>
+                                    <p className="font-body-sm text-on-surface font-semibold">
+                                        {selectedMember.class_schedule}
                                     </p>
                                 </div>
                             </div>
