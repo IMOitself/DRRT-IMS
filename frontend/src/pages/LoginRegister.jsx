@@ -76,7 +76,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.removeItem('token');
                 console.log(res.data)
-                navigate('/')
+                // navigate('/')
             })
             .catch((err) => console.error(err));
     }
