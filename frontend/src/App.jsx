@@ -7,11 +7,13 @@ import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
 import Home from './pages/Home';
 import Events from './pages/Events';
 import Roster from './pages/officer/Roster';
+import LoginRegister from './pages/LoginRegister';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/login-register" element={<LoginRegister/>}/>
       <Route path="/events" element={<Events/>}/>
       <Route path="/join" element={<JoinDRRT/>}/>
       <Route path="/join-form" element={<JoinDRRTForm/>}/>
