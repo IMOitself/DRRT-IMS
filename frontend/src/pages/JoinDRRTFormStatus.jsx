@@ -50,7 +50,7 @@ export default function JoinDRRTFormStatus() {
                             <h1 className="font-display-lg text-2xl md:text-3xl font-bold text-on-surface">
                                 Your Application Has Been Submitted!
                             </h1>
-                            <p className="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto leading-relaxed">
+                            <p className="font-body-md text-body-md text-on-surface-variant mx-auto leading-relaxed">
                                 Thank you for applying to join the Disaster Response and Readiness
                                 Team (DRRT) LVCC Apalit Chapter.
                             </p>
