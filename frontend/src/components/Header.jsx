@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -53,9 +53,9 @@ export default function Header() {
                     </NavLink>
                 </nav>
                 <div className="flex items-center gap-3">
-                    <button className={`${isLoggedIn ? "hidden" : ""} font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
+                    <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
-                    </button>
+                    </Link>
                     <div className={`${isLoggedIn ? "" : "hidden"} w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0`}>
                             <img
                                 className="w-full h-full object-cover"
