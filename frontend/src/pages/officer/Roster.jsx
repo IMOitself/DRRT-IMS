@@ -201,7 +201,7 @@ export default function Roster() {
                                                 {application.full_name}
                                             </p>
                                             <p className="text-[11px] text-on-surface-variant truncate">
-                                                ID: {application.student_id} • {application.course}
+                                                ID: {application.student_id} • {application.course + " " + application.year_level}
                                             </p>
                                         </div>
                                     </div>
@@ -299,7 +299,7 @@ export default function Roster() {
                                     <p
                                         className="font-body-sm text-on-surface font-semibold"
                                     >
-                                        {selectedMember.course}
+                                        {selectedMember.course + " " + selectedMember.year_level}
                                     </p>
                                 </div>
                                 <div>
