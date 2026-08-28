@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../api/axios';
+import { useState } from 'react';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -13,6 +14,8 @@ export default function Login() {
     const EMAIL_MEMBER = 'levi.ackerman@gmail.com'
     const PASSWORD_MEMBER = 'shinzousasageyo'
 
+    const [displayResponse, setDisplayResponse] = useState('');
+
     const testLoginAsOfficer = () => {
         api
             .post("/login", {
@@ -22,10 +25,10 @@ export default function Login() {
             })
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
-                console.log(res.data)
+                setDisplayResponse(res.data.message);
                 navigate('/officer/roster')
             })
-            .catch((err) => console.error(err))
+            .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
     const testLoginAsMember = () => {
         api
@@ -39,7 +42,7 @@ export default function Login() {
                 console.log(res.data)
                 navigate(location.state?.from || '/');// go back to previous page
             })
-            .catch((err) => console.error(err));
+            .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
 
     const testRegisterAsMember = () => {
@@ -54,7 +57,7 @@ export default function Login() {
                 console.log(res.data)
                 navigate(location.state?.from || '/');// go back to previous page
             })
-            .catch((err) => console.error(err));
+            .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
 
     const testLogout = () => {
@@ -65,7 +68,7 @@ export default function Login() {
                 console.log(res.data)
                 // navigate('/')
             })
-            .catch((err) => console.error(err));
+            .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
 
     return (
@@ -82,6 +85,7 @@ export default function Login() {
             <button onClick={testLogout} className='hover:bg-primary-container transition-all active:scale-95'>
                 test logout
             </button>
+            <textarea value={displayResponse} className="w-full"/>
         </div>
     )
 }
