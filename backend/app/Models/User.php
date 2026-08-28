@@ -30,10 +30,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
-    public function isAdmin(): bool
+
+    public function isOfficer(): bool
     {
-        return $this->role === 'admin';
+        return $this->role === 'officer';
     }
 
     public function hasRole(string $role): bool
