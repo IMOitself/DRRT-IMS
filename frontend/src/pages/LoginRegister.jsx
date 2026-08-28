@@ -63,17 +63,25 @@ export default function Login() {
             .then((res) => {
                 localStorage.removeItem('token');
                 console.log(res.data)
-                navigate('/')
+                // navigate('/')
             })
             .catch((err) => console.error(err));
     }
 
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
-            <button onClick={testRegisterAsMember}> test register as Member</button>
-            <button onClick={testLoginAsMember}> test login as Member</button>
-            <button onClick={testLoginAsOfficer}> test login as Officer</button>
-            <button onClick={testLogout}> test logout</button>
+            <button onClick={testRegisterAsMember} className='hover:bg-primary-container transition-all active:scale-95'>
+                test register as Member
+            </button>
+            <button onClick={testLoginAsMember} className='hover:bg-primary-container transition-all active:scale-95'>
+                test login as Member
+            </button>
+            <button onClick={testLoginAsOfficer} className='hover:bg-primary-container transition-all active:scale-95'>
+                test login as Officer
+            </button>
+            <button onClick={testLogout} className='hover:bg-primary-container transition-all active:scale-95'>
+                test logout
+            </button>
         </div>
     )
 }
