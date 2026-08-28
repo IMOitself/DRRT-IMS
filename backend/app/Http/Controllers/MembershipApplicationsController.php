@@ -13,7 +13,7 @@ class MembershipApplicationsController extends Controller
     public function index()
     {
         $applications = MembershipApplication::all();
-        return response()->json(['status' => 'ok', 'data' => $applications]);
+        return response()->json(['data' => $applications], 200);
     }
 
     /**
@@ -36,7 +36,7 @@ class MembershipApplicationsController extends Controller
             'class_schedule' => $request->input('class_schedule')
         ]);
 
-        return response()->json(['status' => 'ok', 'application_id' => $application->id]);
+        return response()->json(['application_id' => $application->id], 201);
     }
 
     /**
@@ -44,7 +44,7 @@ class MembershipApplicationsController extends Controller
      */
     public function show(MembershipApplication $application)
     {
-        return response()->json(['status' => 'ok', 'data' => $application]);
+        return response()->json(['data' => $application], 200);
     }
 
     /**
