@@ -41,9 +41,13 @@ export default function Roster() {
     const handleReject = () => {
         api
             .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: officer.id })
-            .then((res) => {
-                console.log(res.data.data);
-                setMembersApplication(res.data.data);
+            .then(() => {
+                setMembersApplication((prev) =>
+                    prev.map((app) =>
+                        app.id === selectedMember.id ? { ...app, status: "rejected" } : app
+                    )
+                );
+                setSelectedMember((prev) => ({ ...prev, status: "rejected" }));
             })
             .catch((err) => console.error(err));
     };
@@ -51,9 +55,13 @@ export default function Roster() {
     const handleApprove = () => {
         api
             .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: officer.id })
-            .then((res) => {
-                console.log(res.data.data);
-                setMembersApplication(res.data.data);
+            .then(() => {
+                setMembersApplication((prev) =>
+                    prev.map((app) =>
+                        app.id === selectedMember.id ? { ...app, status: "approved" } : app
+                    )
+                );
+                setSelectedMember((prev) => ({ ...prev, status: "approved" }));
             })
             .catch((err) => console.error(err));
     };
