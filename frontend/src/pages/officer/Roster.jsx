@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Roster() {
+    const [membersApplication, setMembersApplication] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         api
@@ -16,12 +17,19 @@ export default function Roster() {
                 }
             })
             .catch((err) => console.error(err));
+        api
+            .get("/membership-applications")
+            .then((res) => {
+                console.log(res.data.data);
+                setMembersApplication(res.data.data);
+            })
+            .catch((err) => console.error(err));
     }, []);
 
     return (
         <>
             <title>DRRT Member Roster - Officer Portal</title>
-            
+
             {/* Top Navigation Bar */}
             <header className="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
@@ -99,17 +107,17 @@ export default function Roster() {
                     <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
                         <div className="font-label-md text-on-surface">
                             Total Personnel:{" "}
-                            <span className="text-primary font-bold">142 Registered</span>
+                            <span className="text-primary font-bold">{membersApplication.length} Registered</span>
                         </div>
                         <div className="flex gap-4 font-body-sm">
                             <div className="flex items-center gap-1.5 text-[#166534] font-medium">
-                                <span className="w-2 h-2 rounded-full bg-[#166534]" /> Active: 112
+                                <span className="w-2 h-2 rounded-full bg-[#166534]" /> Active: 0
                             </div>
                             <div className="flex items-center gap-1.5 text-[#854d0e] font-medium">
-                                <span className="w-2 h-2 rounded-full bg-[#ca8a04]" /> Flagged: 10
+                                <span className="w-2 h-2 rounded-full bg-[#ca8a04]" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
                             </div>
                             <div className="flex items-center gap-1.5 text-error font-medium">
-                                <span className="w-2 h-2 rounded-full bg-error" /> Inactive: 20
+                                <span className="w-2 h-2 rounded-full bg-error" /> Inactive: 0
                             </div>
                         </div>
                     </div>
@@ -129,10 +137,10 @@ export default function Roster() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-on-surface text-surface font-label-sm text-label-sm flex-shrink-0">
-                                All Members (142)
+                                All Members ({membersApplication.length})
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
-                                Active Only (112)
+                                Active Only (0)
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 1st Year
@@ -165,146 +173,62 @@ export default function Roster() {
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
-                        {/* Member Item 1 (Active) */}
-                        <div
-                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
-                            data-name="Santos, Maria Clara"
-                            data-id="2024-0192"
-                            data-course="BSIT • 3rd Year"
-                            data-status="Active"
-                            data-email="msantos@university.edu"
-                            data-phone="+1 555-0192"
-                            data-attendance="94%"
-                            data-incidents={12}
-                            onclick="openDrawer(this)"
-                        >
-                            <div className="flex items-center gap-3 overflow-hidden">
-                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
-                                    SM
+                        {membersApplication.map((application) => {
+                            return (
+                                <div
+                                    className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+                                    data-name={application.full_name}
+                                    data-id={application.student_id}
+                                    data-course={application.course}
+                                    data-status={application.status}
+                                    data-email={application.email}
+                                    data-phone={application.phone_number}
+                                // data-attendance="78%"
+                                // data-incidents={5}
+                                // onclick="openDrawer(this)" //TODO: implement this same as in ui-designs
+                                >
+                                    <div className="flex items-center gap-3 overflow-hidden">
+                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                            {application.full_name.split(' ').map((n) => n[0]).join('')}
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                                {application.full_name}
+                                            </p>
+                                            <p className="text-[11px] text-on-surface-variant truncate">
+                                                ID: {application.student_id} • {application.course}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                        {application.status === 'pending' ? (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20">
+                                                {application.status}
+                                            </span>
+                                        ) : application.status === 'rejected' ? (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                                {application.status}
+                                            </span>
+                                        ) : application.status === 'active' ? (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
+                                                Active
+                                            </span>
+                                        ) : application.status === 'inactive' ? (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                                Inactive
+                                            </span>
+                                        ) : (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                                {application.status}
+                                            </span>
+                                        )}
+                                        <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                            chevron_right
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="min-w-0">
-                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
-                                        Santos, Maria Clara
-                                    </p>
-                                    <p className="text-[11px] text-on-surface-variant truncate">
-                                        ID: 2024-0192 • BSIT - 3rd Year
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
-                                    Active
-                                </span>
-                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
-                                    chevron_right
-                                </span>
-                            </div>
-                        </div>
-                        {/* Member Item 2 (Flagged) */}
-                        <div
-                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
-                            data-name="De Leon, Juan"
-                            data-id="2025-0441"
-                            data-course="BSCS • 2nd Year"
-                            data-status="Flagged"
-                            data-email="jdeleon@university.edu"
-                            data-phone="+1 555-0144"
-                            data-attendance="78%"
-                            data-incidents={5}
-                            onclick="openDrawer(this)"
-                        >
-                            <div className="flex items-center gap-3 overflow-hidden">
-                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
-                                    DL
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
-                                        De Leon, Juan
-                                    </p>
-                                    <p className="text-[11px] text-on-surface-variant truncate">
-                                        ID: 2025-0441 • BSCS - 2nd Year
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20">
-                                    Flagged
-                                </span>
-                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
-                                    chevron_right
-                                </span>
-                            </div>
-                        </div>
-                        {/* Member Item 3 (Inactive) */}
-                        <div
-                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group opacity-80 hover:opacity-100"
-                            data-name="Mendoza, Jose"
-                            data-id="2026-0082"
-                            data-course="BSEMC • 1st Year"
-                            data-status="Inactive"
-                            data-email="jmendoza@university.edu"
-                            data-phone="+1 555-0188"
-                            data-attendance="62%"
-                            data-incidents={19}
-                            onclick="openDrawer(this)"
-                        >
-                            <div className="flex items-center gap-3 overflow-hidden">
-                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
-                                    MJ
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
-                                        Mendoza, Jose
-                                    </p>
-                                    <p className="text-[11px] text-on-surface-variant truncate">
-                                        ID: 2026-0082 • BSEMC - 1st Year
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
-                                    Inactive
-                                </span>
-                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
-                                    chevron_right
-                                </span>
-                            </div>
-                        </div>
-                        {/* Member Item 4 (Active) */}
-                        <div
-                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
-                            data-name="Aquino, Andrea"
-                            data-id="2023-0115"
-                            data-course="BSIT • 4th Year"
-                            data-status="Active"
-                            data-email="aaquino@university.edu"
-                            data-phone="+1 555-0123"
-                            data-attendance="98%"
-                            data-incidents={3}
-                            onclick="openDrawer(this)"
-                        >
-                            <div className="flex items-center gap-3 overflow-hidden">
-                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
-                                    AA
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
-                                        Aquino, Andrea
-                                    </p>
-                                    <p className="text-[11px] text-on-surface-variant truncate">
-                                        ID: 2023-0115 • BSIT - 4th Year
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
-                                    Active
-                                </span>
-                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
-                                    chevron_right
-                                </span>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </section>
                 </div>
             </main>
