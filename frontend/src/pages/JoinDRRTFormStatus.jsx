@@ -1,20 +1,27 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 
 export default function JoinDRRTFormStatus() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [application, setApplication] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:8000/api/membership-applications/${id}`)
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login-register");
+            return;
+        }
+
+        api
+            .get(`/membership-applications/${id}`)
             .then((res) => setApplication(res.data))
             .catch((err) => console.error(err));
-    }, [id]);
+    }, [id, navigate]);
 
     console.log(application);
 

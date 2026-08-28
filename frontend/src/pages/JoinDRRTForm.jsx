@@ -4,14 +4,21 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header"
 import BottomNav from "../components/BottomNav";
 
-import axios from 'axios';
+import api from "../api/axios";
 
 const SAVED_FORM_DATA_KEY = "drrt_form_data";
 
 export default function JoinDRRTForm() {
-    useEffect(() => { window.scrollTo(0, 0); }, []);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login-register");
+        }
+    }, [navigate]);
 
     const initialFormData = {
         student_id: '',
@@ -43,8 +50,8 @@ export default function JoinDRRTForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .post("http://localhost:8000/api/membership-applications", formData)
+        api
+            .post("/membership-applications", formData)
             .then((res) => {
                 localStorage.removeItem(SAVED_FORM_DATA_KEY);
                 navigate(`/join-form/${res.data.application_id}`);
