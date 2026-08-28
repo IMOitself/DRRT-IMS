@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* TODO: simplify the styles and all after all pages has been added */
   /* Color tokens */
   --color-primary: #003d9b;
   --color-primary-fixed: #dae2ff;
@@ -13,13 +16,13 @@
   --color-inverse-primary: #b2c5ff;
 
   --color-secondary: #505f76;
-  --color-secondary-fixed: #d4e3ff;
-  --color-secondary-fixed-dim: #b8c7e2;
-  --color-secondary-container: #d4e3ff;
+  --color-secondary-fixed: #d3e4fe;
+  --color-secondary-fixed-dim: #b7c8e1;
+  --color-secondary-container: #d0e1fb;
   --color-on-secondary: #ffffff;
-  --color-on-secondary-fixed: #0c1c30;
-  --color-on-secondary-fixed-variant: #39485e;
-  --color-on-secondary-container: #56657c;
+  --color-on-secondary-fixed: #0b1c30;
+  --color-on-secondary-fixed-variant: #38485d;
+  --color-on-secondary-container: #54647a;
 
   --color-tertiary: #7b2600;
   --color-tertiary-fixed: #ffdbcf;
@@ -31,22 +34,22 @@
   --color-on-tertiary-container: #ffc6b2;
 
   --color-background: #faf8ff;
-  --color-on-background: #191b23;
+  --color-on-background: #131b2e;
 
   --color-surface: #faf8ff;
-  --color-surface-dim: #d9d9e4;
+  --color-surface-dim: #d2d9f4;
   --color-surface-bright: #faf8ff;
-  --color-surface-variant: #e1e2ec;
-  --color-surface-container: #ededf8;
+  --color-surface-variant: #dae2fd;
+  --color-surface-container: #eaedff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f3fd;
-  --color-surface-container-high: #e7e7f2;
-  --color-surface-container-highest: #e1e2ec;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
   --color-surface-tint: #0c56d0;
-  --color-on-surface: #191b23;
+  --color-on-surface: #131b2e;
   --color-on-surface-variant: #434654;
-  --color-inverse-surface: #2e3038;
-  --color-inverse-on-surface: #f0f0fb;
+  --color-inverse-surface: #283044;
+  --color-inverse-on-surface: #eef0ff;
 
   --color-outline: #737685;
   --color-outline-variant: #c3c6d6;
@@ -74,4 +77,124 @@
   --font-body-lg: "Inter", sans-serif;
   --font-body-md: "Inter", sans-serif;
   --font-body-sm: "Inter", sans-serif;
+
+  /* Spacing */
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 32px;
+  --spacing-base: 4px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-gutter: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #faf8ff;
+  color: #131b2e;
+  min-height: max(884px, 100dvh);
+}
+
+/* TW3 forms plugin base styles */
+input:where(:not([type='button']):not([type='reset']):not([type='submit']):not([type='checkbox']):not([type='radio']):not([type='file'])),
+select,
+textarea {
+  appearance: none;
+  background-color: #fff;
+  border-color: #6b7280;
+  border-width: 1px;
+  border-radius: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+select:where(:not([multiple]):not([size])) {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.geist-font {
+  font-family: 'Geist', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.filled-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.text-headline-lg-mobile {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-label-sm {
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.text-label-md {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+.text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
