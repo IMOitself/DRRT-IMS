@@ -360,15 +360,15 @@ export default function Roster() {
                                 </div>
                             </div>
                         </div>
+                        {selectedMember.status === "pending" ? ("") : (
                         <div className="border-t border-outline-variant pt-4">
                             <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
                                 Duty Performance
                             </p>
-                            <div className="grid grid-cols-2 gap-3">
+                            
+                                <div className="grid grid-cols-2 gap-3">
                                 <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                    <p
-                                        className="font-headline-lg text-headline-lg text-primary font-bold m-0"
-                                    >
+                                    <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
                                         N/A
                                     </p>
                                     <p className="font-label-sm text-xs text-on-surface-variant mt-1">
@@ -376,9 +376,7 @@ export default function Roster() {
                                     </p>
                                 </div>
                                 <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                    <p
-                                        className="font-headline-lg text-headline-lg text-primary font-bold m-0"
-                                    >
+                                    <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
                                         N/A
                                     </p>
                                     <p className="font-label-sm text-xs text-on-surface-variant mt-1">
@@ -387,6 +385,7 @@ export default function Roster() {
                                 </div>
                             </div>
                         </div>
+                        )}
                     </div>
                     </>
                     )}
