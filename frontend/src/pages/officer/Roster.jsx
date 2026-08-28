@@ -257,155 +257,167 @@ export default function Roster() {
                 {/* Drawer Content */}
                 <div className="flex-grow overflow-y-auto p-6 space-y-6">
                     {selectedMember && (
-                    <>
-                    <div className="flex flex-col items-center text-center">
-                        <div
-                            className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3"
-                        >
-                            {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <h3
-                            className="font-headline-md text-xl font-bold text-on-surface m-0"
-                        >
-                            {selectedMember.full_name}
-                        </h3>
-                        <p
-                            className="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
-                        >
-                            ID: {selectedMember.student_id}
-                        </p>
-                        <span
-                            className={`inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3 ${
-                                selectedMember.status === 'active'
-                                    ? 'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'
-                                    : selectedMember.status === 'pending'
-                                    ? 'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'
-                                    : 'bg-surface-container-highest text-on-surface-variant border border-outline-variant'
-                            }`}
-                        >
-                            {selectedMember.status}
-                        </span>
-                    </div>
-                    <div className="space-y-4">
-                        <div className="border-t border-outline-variant pt-4">
-                            <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
-                                Academic &amp; Contact
-                            </p>
-                            <div className="grid grid-cols-2 gap-3 text-sm">
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Program / Year
-                                    </p>
-                                    <p
-                                        className="font-body-sm text-on-surface font-semibold"
-                                    >
-                                        {selectedMember.course + " " + selectedMember.year_level}
-                                    </p>
+                        <>
+                            <div className="flex flex-col items-center text-center">
+                                <div
+                                    className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3"
+                                >
+                                    {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
                                 </div>
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Phone
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.phone_number}
-                                    </p>
-                                </div>
-                                <div className="col-span-2">
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Email Address
-                                    </p>
-                                    <p className="font-body-sm text-primary font-semibold">
-                                        {selectedMember.email}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Emergency Contact
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.emergency_person_name}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Emergency Contact Phone
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.emergency_phone}
-                                    </p>
-                                </div>
-                                <div className="col-span-2">
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Blood Type
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.blood_type}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Consent Form
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.consent_form}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-on-surface-variant font-medium">
-                                        Class Schedule
-                                    </p>
-                                    <p className="font-body-sm text-on-surface font-semibold">
-                                        {selectedMember.class_schedule}
-                                    </p>
-                                </div>
+                                <h3
+                                    className="font-headline-md text-xl font-bold text-on-surface m-0"
+                                >
+                                    {selectedMember.full_name}
+                                </h3>
+                                <p
+                                    className="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                                >
+                                    ID: {selectedMember.student_id}
+                                </p>
+                                <span
+                                    className={`inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3 ${selectedMember.status === 'active'
+                                            ? 'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'
+                                            : selectedMember.status === 'pending'
+                                                ? 'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'
+                                                : 'bg-surface-container-highest text-on-surface-variant border border-outline-variant'
+                                        }`}
+                                >
+                                    {selectedMember.status}
+                                </span>
                             </div>
-                        </div>
-                        {selectedMember.status === "pending" ? ("") : (
-                        <div className="border-t border-outline-variant pt-4">
-                            <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
-                                Duty Performance
-                            </p>
-                            
-                                <div className="grid grid-cols-2 gap-3">
-                                <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                    <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
-                                        N/A
+                            <div className="space-y-4">
+                                <div className="border-t border-outline-variant pt-4">
+                                    <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                        Academic &amp; Contact
                                     </p>
-                                    <p className="font-label-sm text-xs text-on-surface-variant mt-1">
-                                        Attendance Rate
-                                    </p>
+                                    <div className="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Program / Year
+                                            </p>
+                                            <p
+                                                className="font-body-sm text-on-surface font-semibold"
+                                            >
+                                                {selectedMember.course + " " + selectedMember.year_level}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Phone
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.phone_number}
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2">
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Email Address
+                                            </p>
+                                            <p className="font-body-sm text-primary font-semibold">
+                                                {selectedMember.email}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Emergency Contact
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.emergency_person_name}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Emergency Contact Phone
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.emergency_phone}
+                                            </p>
+                                        </div>
+                                        <div className="col-span-2">
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Blood Type
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.blood_type}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Consent Form
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.consent_form}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-on-surface-variant font-medium">
+                                                Class Schedule
+                                            </p>
+                                            <p className="font-body-sm text-on-surface font-semibold">
+                                                {selectedMember.class_schedule}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                    <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
-                                        N/A
-                                    </p>
-                                    <p className="font-label-sm text-xs text-on-surface-variant mt-1">
-                                        Incidents Handled
-                                    </p>
-                                </div>
+                                {selectedMember.status === "pending" ? ("") : (
+                                    <div className="border-t border-outline-variant pt-4">
+                                        <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                            Duty Performance
+                                        </p>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+                                                <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
+                                                    N/A
+                                                </p>
+                                                <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                                    Attendance Rate
+                                                </p>
+                                            </div>
+                                            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+                                                <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
+                                                    N/A
+                                                </p>
+                                                <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                                    Incidents Handled
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </div>
-                        )}
-                    </div>
-                    </>
+                        </>
                     )}
                 </div>
                 {/* Drawer Actions */}
-                <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
-                    <button className="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
-                        Edit
-                    </button>
-                    <button className="flex-1 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-sm hover:bg-primary-container transition-colors shadow-sm">
-                        Message
-                    </button>
-                </div>
+                {selectedMember.status === "pending" ? (
+                    <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
+                        <button className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">close</span>
+                            Reject
+                        </button>
+                        <button className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-green-700 transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">check</span>
+                            Approve
+                        </button>
+                    </div>
+                ) : (
+                    <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
+                        <button className="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
+                            Edit
+                        </button>
+                        <button className="flex-1 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-sm hover:bg-primary-container transition-colors shadow-sm">
+                            Message
+                        </button>
+                    </div>
+                )}
             </aside>
             {/* Drawer Overlay */}
             {drawerOpen && (
-            <div
-                className="fixed inset-0 bg-on-surface/20 z-[65] transition-opacity"
-                onClick={closeDrawer}
-            />
+                <div
+                    className="fixed inset-0 bg-on-surface/20 z-[65] transition-opacity"
+                    onClick={closeDrawer}
+                />
             )}
             {/* Bottom Navigation Bar (Mobile) */}
             <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
