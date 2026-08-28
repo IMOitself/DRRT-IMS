@@ -6,15 +6,14 @@ export default function Roster() {
     const [membersApplication, setMembersApplication] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
+    const [officer, setOfficer] = useState(null);
     const navigate = useNavigate();
 
-    // Opens the drawer and sets the selected member
     function openDrawer(application) {
         setSelectedMember(application);
         setDrawerOpen(true);
     }
 
-    // Closes the drawer
     function closeDrawer() {
         setDrawerOpen(false);
     }
@@ -23,7 +22,7 @@ export default function Roster() {
             .get(`/user`)
             .then((res) => {
                 if (res.data.role === 'officer') {
-                    navigate("/officer/roster");
+                    setOfficer(res.data);
                 } else {
                     alert("You are not authorized to access this page");
                     navigate("/");
@@ -38,6 +37,26 @@ export default function Roster() {
             })
             .catch((err) => console.error(err));
     }, []);
+
+    const handleReject = () => {
+        api
+            .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: officer.id })
+            .then((res) => {
+                console.log(res.data.data);
+                setMembersApplication(res.data.data);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const handleApprove = () => {
+        api
+            .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: officer.id })
+            .then((res) => {
+                console.log(res.data.data);
+                setMembersApplication(res.data.data);
+            })
+            .catch((err) => console.error(err));
+    };
 
     return (
         <>
@@ -390,13 +409,13 @@ export default function Roster() {
                     )}
                 </div>
                 {/* Drawer Actions */}
-                {selectedMember.status === "pending" ? (
+                {selectedMember && selectedMember.status === "pending" ? (
                     <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
-                        <button className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
+                        <button onClick={handleReject} className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">close</span>
                             Reject
                         </button>
-                        <button className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-green-700 transition-colors shadow-sm flex items-center justify-center gap-2">
+                        <button onClick={handleApprove} className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-green-700 transition-colors shadow-sm flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">check</span>
                             Approve
                         </button>
