@@ -18,27 +18,28 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'background character',
-            'email' => 'imabackgroundcharacter@gmail.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'background character',
+        //     'email' => 'imabackgroundcharacter@gmail.com',
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'sasha braus',
+        //     'email' => 'potato@gmail.com',
+        //     'role' => 'member'
+        // ]);
+
+        // User::factory()->create([
+        //     'name' => 'king fritz',
+        //     'email' => 'king.fritz@gmail.com',
+        //     'role' => 'adviser'
+        // ]);
 
         User::factory()->create([
-            'name' => 'sasha braus',
-            'email' => 'potato@gmail.com',
-            'role' => 'member'
-        ]);
-
-        User::factory()->create([
-            'name' => 'levi ackerman',
-            'email' => 'janitor@gmail.com',
+            'name' => 'Captain Erwin',
+            'email' => 'captain.erwin@gmail.com',
+            'password' => 'shinzousasageyo',
             'role' => 'officer'
-        ]);
-
-        User::factory()->create([
-            'name' => 'capt. erwin smith',
-            'email' => 'apple@gmail.com',
-            'role' => 'adviser'
         ]);
     }
 }

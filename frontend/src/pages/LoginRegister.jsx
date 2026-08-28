@@ -42,20 +42,6 @@ export default function Login() {
             .catch((err) => console.error(err));
     }
 
-    const testRegisterAsOfficer = () => {
-        api
-            .post("/register", {
-                name: NAME_OFFICER,
-                email: EMAIL_OFFICER,
-                password: PASSWORD_OFFICER,
-            })
-            .then((res) => {
-                localStorage.setItem('token', res.data.token);
-                console.log(res.data)
-                navigate('/officer/roster');
-            })
-            .catch((err) => console.error(err));
-    }
     const testRegisterAsMember = () => {
         api
             .post("/register", {
@@ -84,11 +70,9 @@ export default function Login() {
 
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
-            <button onClick={testRegisterAsOfficer}> test register as Officer</button>
             <button onClick={testRegisterAsMember}> test register as Member</button>
-
-            <button onClick={testLoginAsOfficer}> test login as Officer</button>
             <button onClick={testLoginAsMember}> test login as Member</button>
+            <button onClick={testLoginAsOfficer}> test login as Officer</button>
             <button onClick={testLogout}> test logout</button>
         </div>
     )
