@@ -156,7 +156,7 @@ export default function Roster() {
                             </button>
                         </div>
                         {/* Duty Squad Dropdown Filter */}
-                        <div className="relative w-full max-w-xs">
+                        <div className="relative w-fit">
                             <select className="w-full appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface text-sm rounded-lg block p-2.5 focus:ring-primary focus:border-primary pr-8 font-body-sm shadow-sm">
                                 <option selected="">All Squads / Duty Teams</option>
                                 <option value="medical">Medical Squad</option>
