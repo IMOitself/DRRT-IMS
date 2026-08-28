@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
@@ -10,13 +10,14 @@ const SAVED_FORM_DATA_KEY = "drrt_form_data";
 
 export default function JoinDRRTForm() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
         const token = localStorage.getItem("token");
         if (!token) {
-            navigate("/login-register");
+            navigate("/login-register", { state: { from: location.pathname } });
         }
     }, [navigate]);
 

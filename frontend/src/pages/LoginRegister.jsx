@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../api/axios';
 
 export default function Login() {
     const navigate = useNavigate();
-    
+    const location = useLocation();
+
     const NAME_OFFICER = 'Captain Erwin'
     const EMAIL_OFFICER = 'captain.erwin@gmail.com'
     const PASSWORD_OFFICER = 'shinzousasageyo'
@@ -22,7 +23,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 console.log(res.data)
-                // navigate('/officer/roster')
+                navigate('/officer/roster')
             })
             .catch((err) => console.error(err))
     }
@@ -36,7 +37,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 console.log(res.data)
-                // navigate('/');
+                navigate(location.state?.from || '/');// go back to previous page
             })
             .catch((err) => console.error(err));
     }
@@ -51,7 +52,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 console.log(res.data)
-                // navigate('/officer/roster');
+                navigate('/officer/roster');
             })
             .catch((err) => console.error(err));
     }
@@ -65,7 +66,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.setItem('token', res.data.token);
                 console.log(res.data)
-                // navigate('/');
+                navigate(location.state?.from || '/');// go back to previous page
             })
             .catch((err) => console.error(err));
     }
@@ -76,7 +77,7 @@ export default function Login() {
             .then((res) => {
                 localStorage.removeItem('token');
                 console.log(res.data)
-                // navigate('/')
+                navigate('/')
             })
             .catch((err) => console.error(err));
     }
