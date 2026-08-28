@@ -52,7 +52,13 @@ class MembershipApplicationsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $application = MembershipApplication::find($id);
+        $application->update([
+            'status' => $request->input('status'),
+            'reviewer_id' => $request->input('reviewer_id')
+        ]);
+
+        return response()->json(['application_id' => $application->id], 200);
     }
 
     /**

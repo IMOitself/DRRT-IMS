@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('membership_applications', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pending', 'approve', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('reviewer_id')->nullable()->constrained('users');
             $table->timestamp('date_applied')->useCurrent();
