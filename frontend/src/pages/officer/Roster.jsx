@@ -4,7 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 export default function Roster() {
     const [membersApplication, setMembersApplication] = useState([]);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [selectedMember, setSelectedMember] = useState(null);
     const navigate = useNavigate();
+
+    // Opens the drawer and sets the selected member
+    function openDrawer(application) {
+        setSelectedMember(application);
+        setDrawerOpen(true);
+    }
+
+    // Closes the drawer
+    function closeDrawer() {
+        setDrawerOpen(false);
+    }
     useEffect(() => {
         api
             .get(`/user`)
@@ -177,15 +190,7 @@ export default function Roster() {
                             return (
                                 <div
                                     className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
-                                    data-name={application.full_name}
-                                    data-id={application.student_id}
-                                    data-course={application.course}
-                                    data-status={application.status}
-                                    data-email={application.email}
-                                    data-phone={application.phone_number}
-                                // data-attendance="78%"
-                                // data-incidents={5}
-                                // onclick="openDrawer(this)" //TODO: implement this same as in ui-designs
+                                    onClick={() => openDrawer(application)}
                                 >
                                     <div className="flex items-center gap-3 overflow-hidden">
                                         <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
@@ -234,8 +239,7 @@ export default function Roster() {
             </main>
             {/* Member Profile Drawer */}
             <aside
-                className="fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col"
-                id="member-drawer"
+                className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
             >
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between p-4 border-b border-outline-variant bg-surface-container-low">
@@ -245,37 +249,41 @@ export default function Roster() {
                     <button
                         aria-label="Close"
                         className="hover:bg-surface-container-high rounded-full p-2 transition-colors text-on-surface-variant"
-                        onclick="closeDrawer()"
+                        onClick={closeDrawer}
                     >
                         <span className="material-symbols-outlined">close</span>
                     </button>
                 </div>
                 {/* Drawer Content */}
                 <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                    {selectedMember && (
+                    <>
                     <div className="flex flex-col items-center text-center">
                         <div
-                            id="drawer-initials"
                             className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3"
                         >
-                            SM
+                            {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
                         </div>
                         <h3
                             className="font-headline-md text-xl font-bold text-on-surface m-0"
-                            id="drawer-name"
                         >
-                            Santos, Maria Clara
+                            {selectedMember.full_name}
                         </h3>
                         <p
                             className="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
-                            id="drawer-id"
                         >
-                            ID: 2024-0192
+                            ID: {selectedMember.student_id}
                         </p>
                         <span
-                            className="inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3"
-                            id="drawer-status"
+                            className={`inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3 ${
+                                selectedMember.status === 'active'
+                                    ? 'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'
+                                    : selectedMember.status === 'pending'
+                                    ? 'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'
+                                    : 'bg-surface-container-highest text-on-surface-variant border border-outline-variant'
+                            }`}
                         >
-                            Active
+                            {selectedMember.status}
                         </span>
                     </div>
                     <div className="space-y-4">
@@ -290,9 +298,8 @@ export default function Roster() {
                                     </p>
                                     <p
                                         className="font-body-sm text-on-surface font-semibold"
-                                        id="drawer-course"
                                     >
-                                        BSIT • 3rd Year
+                                        {selectedMember.course}
                                     </p>
                                 </div>
                                 <div>
@@ -301,9 +308,8 @@ export default function Roster() {
                                     </p>
                                     <p
                                         className="font-body-sm text-on-surface font-semibold"
-                                        id="drawer-phone"
                                     >
-                                        +1 555-0192
+                                        {selectedMember.phone_number}
                                     </p>
                                 </div>
                                 <div className="col-span-2">
@@ -312,9 +318,8 @@ export default function Roster() {
                                     </p>
                                     <p
                                         className="font-body-sm text-primary font-semibold"
-                                        id="drawer-email"
                                     >
-                                        msantos@university.edu
+                                        {selectedMember.email}
                                     </p>
                                 </div>
                             </div>
@@ -327,9 +332,8 @@ export default function Roster() {
                                 <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
                                     <p
                                         className="font-headline-lg text-headline-lg text-primary font-bold m-0"
-                                        id="drawer-attendance"
                                     >
-                                        94%
+                                        N/A
                                     </p>
                                     <p className="font-label-sm text-xs text-on-surface-variant mt-1">
                                         Attendance Rate
@@ -338,9 +342,8 @@ export default function Roster() {
                                 <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
                                     <p
                                         className="font-headline-lg text-headline-lg text-primary font-bold m-0"
-                                        id="drawer-incidents"
                                     >
-                                        12
+                                        N/A
                                     </p>
                                     <p className="font-label-sm text-xs text-on-surface-variant mt-1">
                                         Incidents Handled
@@ -349,6 +352,8 @@ export default function Roster() {
                             </div>
                         </div>
                     </div>
+                    </>
+                    )}
                 </div>
                 {/* Drawer Actions */}
                 <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
@@ -361,11 +366,12 @@ export default function Roster() {
                 </div>
             </aside>
             {/* Drawer Overlay */}
+            {drawerOpen && (
             <div
-                className="fixed inset-0 bg-on-surface/20 z-[65] hidden transition-opacity"
-                id="drawer-overlay"
-                onclick="closeDrawer()"
+                className="fixed inset-0 bg-on-surface/20 z-[65] transition-opacity"
+                onClick={closeDrawer}
             />
+            )}
             {/* Bottom Navigation Bar (Mobile) */}
             <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
                 <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
