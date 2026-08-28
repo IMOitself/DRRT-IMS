@@ -1,5 +1,23 @@
+import { useEffect } from "react";
+import api from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Roster() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        api
+            .get(`/user`)
+            .then((res) => {
+                if (res.data.role === 'officer') {
+                    navigate("/officer/roster");
+                } else {
+                    alert("You are not authorized to access this page");
+                    navigate("/");
+                }
+            })
+            .catch((err) => console.error(err));
+    }, []);
+
     return (
         <>
             <title>DRRT Member Roster - Officer Portal</title>
