@@ -1,7 +1,15 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Header() {
     const { pathname } = useLocation();
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) setIsLoggedIn(true);
+    }, []);
     
     return (
         <header className="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
@@ -45,9 +53,16 @@ export default function Header() {
                     </NavLink>
                 </nav>
                 <div className="flex items-center gap-3">
-                    <button className="font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95">
+                    <button className={`${isLoggedIn ? "hidden" : ""} font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </button>
+                    <div className={`${isLoggedIn ? "" : "hidden"} w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0`}>
+                            <img
+                                className="w-full h-full object-cover"
+                                alt="Security Officer Avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"
+                            />
+                        </div>
                 </div>
             </div>
         </header>
