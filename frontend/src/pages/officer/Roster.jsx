@@ -1,0 +1,462 @@
+
+export default function Roster() {
+    return (
+        <>
+            <title>DRRT Member Roster - Officer Portal</title>
+            <style
+                id="tailwind-compiled"
+                dangerouslySetInnerHTML={{
+                    __html: "\n*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:\"\"}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}input:where(:not([type])),input:where([type=date]),input:where([type=datetime-local]),input:where([type=email]),input:where([type=month]),input:where([type=number]),input:where([type=password]),input:where([type=search]),input:where([type=tel]),input:where([type=text]),input:where([type=time]),input:where([type=url]),input:where([type=week]),select,select:where([multiple]),textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0;padding:.5rem .75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000}input:where(:not([type])):focus,input:where([type=date]):focus,input:where([type=datetime-local]):focus,input:where([type=email]):focus,input:where([type=month]):focus,input:where([type=number]):focus,input:where([type=password]):focus,input:where([type=search]):focus,input:where([type=tel]):focus,input:where([type=text]):focus,input:where([type=time]):focus,input:where([type=url]):focus,input:where([type=week]):focus,select:focus,select:where([multiple]):focus,textarea:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);border-color:#2563eb}input::-moz-placeholder,textarea::-moz-placeholder{color:#6b7280;opacity:1}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-meridiem-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-year-field{padding-top:0;padding-bottom:0}select{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\");background-position:right .5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}select:where([multiple]),select:where([size]:not([size=\"1\"])){background-image:none;background-position:0 0;background-repeat:unset;background-size:initial;padding-right:.75rem;-webkit-print-color-adjust:unset;print-color-adjust:unset}input:where([type=checkbox]),input:where([type=radio]){-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}input:where([type=checkbox]){border-radius:0}input:where([type=radio]){border-radius:100%}input:where([type=checkbox]):focus,input:where([type=radio]):focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}input:where([type=checkbox]):checked,input:where([type=radio]):checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}input:where([type=checkbox]):checked{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0'/%3E%3C/svg%3E\")}@media (forced-colors:active) {input:where([type=checkbox]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=radio]):checked{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E\")}@media (forced-colors:active) {input:where([type=radio]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):checked:focus,input:where([type=checkbox]):checked:hover,input:where([type=radio]):checked:focus,input:where([type=radio]):checked:hover{border-color:transparent;background-color:currentColor}input:where([type=checkbox]):indeterminate{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3E%3C/svg%3E\");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}@media (forced-colors:active) {input:where([type=checkbox]):indeterminate{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):indeterminate:focus,input:where([type=checkbox]):indeterminate:hover{border-color:transparent;background-color:currentColor}input:where([type=file]){background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}input:where([type=file]):focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-y-0{top:0;bottom:0}.bottom-0{bottom:0}.left-0{left:0}.left-3{left:.75rem}.right-0{right:0}.top-0{top:0}.top-1\\/2{top:50%}.z-50{z-index:50}.z-\\[65\\]{z-index:65}.z-\\[70\\]{z-index:70}.col-span-2{grid-column:span 2/span 2}.m-0{margin:0}.-mx-margin-mobile{margin-left:-16px;margin-right:-16px}.mx-auto{margin-left:auto;margin-right:auto}.mb-3{margin-bottom:.75rem}.mt-0\\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-3{margin-top:.75rem}.mt-xs{margin-top:4px}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-16{height:4rem}.h-2{height:.5rem}.h-20{height:5rem}.h-8{height:2rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:.5rem}.w-20{width:5rem}.w-8{width:2rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.-translate-y-1\\/2{--tw-translate-y:-50%}.-translate-y-1\\/2,.translate-x-full{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-full{--tw-translate-x:100%}.scale-90{--tw-scale-x:.9;--tw-scale-y:.9}.scale-90,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.gap-sm{gap:8px}.gap-x-4{-moz-column-gap:1rem;column-gap:1rem}.gap-y-2{row-gap:.5rem}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.space-y-md>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(16px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(16px*var(--tw-space-y-reverse))}.space-y-sm>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(8px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(8px*var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-\\[\\#166534\\]\\/20{border-color:rgba(22,101,52,.2)}.border-\\[\\#ca8a04\\]\\/20{border-color:rgba(202,138,4,.2)}.border-outline-variant{--tw-border-opacity:1;border-color:rgb(195 198 214/var(--tw-border-opacity,1))}.border-primary{--tw-border-opacity:1;border-color:rgb(0 61 155/var(--tw-border-opacity,1))}.bg-\\[\\#166534\\]{--tw-bg-opacity:1;background-color:rgb(22 101 52/var(--tw-bg-opacity,1))}.bg-\\[\\#ca8a04\\]{--tw-bg-opacity:1;background-color:rgb(202 138 4/var(--tw-bg-opacity,1))}.bg-\\[\\#dcfce7\\]{--tw-bg-opacity:1;background-color:rgb(220 252 231/var(--tw-bg-opacity,1))}.bg-\\[\\#fef08a\\]{--tw-bg-opacity:1;background-color:rgb(254 240 138/var(--tw-bg-opacity,1))}.bg-error{--tw-bg-opacity:1;background-color:rgb(186 26 26/var(--tw-bg-opacity,1))}.bg-on-surface{--tw-bg-opacity:1;background-color:rgb(19 27 46/var(--tw-bg-opacity,1))}.bg-on-surface\\/20{background-color:rgba(19,27,46,.2)}.bg-primary{--tw-bg-opacity:1;background-color:rgb(0 61 155/var(--tw-bg-opacity,1))}.bg-primary-container{--tw-bg-opacity:1;background-color:rgb(0 82 204/var(--tw-bg-opacity,1))}.bg-surface{--tw-bg-opacity:1;background-color:rgb(250 248 255/var(--tw-bg-opacity,1))}.bg-surface-container-high{--tw-bg-opacity:1;background-color:rgb(226 231 255/var(--tw-bg-opacity,1))}.bg-surface-container-highest{--tw-bg-opacity:1;background-color:rgb(218 226 253/var(--tw-bg-opacity,1))}.bg-surface-container-low{--tw-bg-opacity:1;background-color:rgb(242 243 255/var(--tw-bg-opacity,1))}.bg-surface-container-lowest{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.object-cover{-o-object-fit:cover;object-fit:cover}.p-2{padding:.5rem}.p-2\\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-md{padding:16px}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-margin-mobile{padding-left:16px;padding-right:16px}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\\.5{padding-top:.625rem;padding-bottom:.625rem}.py-lg{padding-top:24px;padding-bottom:24px}.pb-1{padding-bottom:.25rem}.pb-32{padding-bottom:8rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}.pr-8{padding-right:2rem}.pt-4{padding-top:1rem}.text-center{text-align:center}.font-body-md,.font-body-sm{font-family:Inter}.font-headline-lg,.font-headline-lg-mobile,.font-headline-md,.font-label-md,.font-label-sm{font-family:Geist}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\\[11px\\]{font-size:11px}.text-\\[18px\\]{font-size:18px}.text-\\[20px\\]{font-size:20px}.text-body-lg{font-size:18px;line-height:28px;font-weight:400}.text-body-md{font-size:16px;line-height:24px;font-weight:400}.text-body-sm{font-size:14px;line-height:20px;font-weight:400}.text-headline-lg{font-size:32px;line-height:40px;letter-spacing:-.01em;font-weight:600}.text-headline-lg-mobile{font-size:24px;line-height:32px;font-weight:600}.text-label-sm{font-size:12px;line-height:14px;letter-spacing:.05em;font-weight:500}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tracking-wider{letter-spacing:.05em}.text-\\[\\#166534\\]{--tw-text-opacity:1;color:rgb(22 101 52/var(--tw-text-opacity,1))}.text-\\[\\#854d0e\\]{--tw-text-opacity:1;color:rgb(133 77 14/var(--tw-text-opacity,1))}.text-error{--tw-text-opacity:1;color:rgb(186 26 26/var(--tw-text-opacity,1))}.text-on-primary{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-on-primary-container{--tw-text-opacity:1;color:rgb(196 210 255/var(--tw-text-opacity,1))}.text-on-surface{--tw-text-opacity:1;color:rgb(19 27 46/var(--tw-text-opacity,1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(67 70 84/var(--tw-text-opacity,1))}.text-outline{--tw-text-opacity:1;color:rgb(115 118 133/var(--tw-text-opacity,1))}.text-primary{--tw-text-opacity:1;color:rgb(0 61 155/var(--tw-text-opacity,1))}.text-surface{--tw-text-opacity:1;color:rgb(250 248 255/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-80{opacity:.8}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.outline{outline-style:solid}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}.duration-150,.transition-transform{transition-duration:.15s}.duration-300{transition-duration:.3s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.hover\\:border-outline:hover{--tw-border-opacity:1;border-color:rgb(115 118 133/var(--tw-border-opacity,1))}.hover\\:bg-primary-container:hover{--tw-bg-opacity:1;background-color:rgb(0 82 204/var(--tw-bg-opacity,1))}.hover\\:bg-surface-container-high:hover{--tw-bg-opacity:1;background-color:rgb(226 231 255/var(--tw-bg-opacity,1))}.hover\\:bg-surface-container-highest:hover{--tw-bg-opacity:1;background-color:rgb(218 226 253/var(--tw-bg-opacity,1))}.hover\\:bg-surface-container-low:hover{--tw-bg-opacity:1;background-color:rgb(242 243 255/var(--tw-bg-opacity,1))}.hover\\:bg-surface-dim:hover{--tw-bg-opacity:1;background-color:rgb(210 217 244/var(--tw-bg-opacity,1))}.hover\\:text-primary:hover{--tw-text-opacity:1;color:rgb(0 61 155/var(--tw-text-opacity,1))}.hover\\:opacity-100:hover{opacity:1}.focus\\:border-primary:focus{--tw-border-opacity:1;border-color:rgb(0 61 155/var(--tw-border-opacity,1))}.focus\\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\\:ring-primary:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(0 61 155/var(--tw-ring-opacity,1))}.group:hover .group-hover\\:text-primary{--tw-text-opacity:1;color:rgb(0 61 155/var(--tw-text-opacity,1))}.dark\\:border-outline:is(.dark *){--tw-border-opacity:1;border-color:rgb(115 118 133/var(--tw-border-opacity,1))}.dark\\:bg-surface-dim:is(.dark *){--tw-bg-opacity:1;background-color:rgb(210 217 244/var(--tw-bg-opacity,1))}.dark\\:text-primary-fixed:is(.dark *){--tw-text-opacity:1;color:rgb(218 226 255/var(--tw-text-opacity,1))}.dark\\:text-primary-fixed-dim:is(.dark *){--tw-text-opacity:1;color:rgb(178 197 255/var(--tw-text-opacity,1))}.dark\\:hover\\:bg-surface-container-highest:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(218 226 253/var(--tw-bg-opacity,1))}@media (min-width:640px){.sm\\:flex-row{flex-direction:row}.sm\\:items-center{align-items:center}.sm\\:self-auto{align-self:auto}}@media (min-width:768px){.md\\:mx-0{margin-left:0;margin-right:0}.md\\:flex{display:flex}.md\\:hidden{display:none}.md\\:w-\\[400px\\]{width:400px}.md\\:px-0{padding-left:0;padding-right:0}.md\\:px-margin-desktop{padding-left:32px;padding-right:32px}}\n    "
+                }}
+            />
+            <style
+                dangerouslySetInnerHTML={{
+                    __html: "\n        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; min-height: max(884px, 100dvh); }\n        .geist-font { font-family: 'Geist', sans-serif; }\n        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }\n        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }\n        .no-scrollbar::-webkit-scrollbar { display: none; }\n        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }\n    "
+                }}
+            />
+            {/* Top Navigation Bar */}
+            <header className="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+                <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+                    <div className="flex items-center gap-sm">
+                        <button className="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+                            <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim">
+                                shield
+                            </span>
+                        </button>
+                        <span className="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">
+                            DRRT Member Roster
+                        </span>
+                    </div>
+                    {/* Desktop Navigation Links */}
+                    <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Dashboard
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Attendance
+                        </a>
+                        <a
+                            href="#"
+                            className="text-primary font-bold border-b-2 border-primary py-1"
+                        >
+                            Roster
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Vault
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Training
+                        </a>
+                    </nav>
+                    <div className="flex items-center gap-2">
+                        <button className="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+                            <span className="material-symbols-outlined text-on-surface-variant">
+                                notifications
+                            </span>
+                        </button>
+                        <div className="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+                            <img
+                                className="w-full h-full object-cover"
+                                alt="Security Officer Avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            {/* Main Content Canvas */}
+            <main className="flex-grow pb-32">
+                <div className="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
+                    {/* Active Roster Context Header */}
+                    <section className="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-sm">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">
+                                    Disaster Response Team Directory
+                                </p>
+                                <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs">
+                                    Active Responder Roster
+                                </h2>
+                                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                                    Manage personnel records, squad assignments, and status.
+                                </p>
+                            </div>
+                            <button className="bg-primary text-on-primary hover:bg-primary-container transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2 shadow-sm self-start sm:self-auto">
+                                <span className="material-symbols-outlined text-[18px]">add</span>{" "}
+                                Add Member
+                            </button>
+                        </div>
+                    </section>
+                    {/* Live Roster Summary */}
+                    <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
+                        <div className="font-label-md text-on-surface">
+                            Total Personnel:{" "}
+                            <span className="text-primary font-bold">142 Registered</span>
+                        </div>
+                        <div className="flex gap-4 font-body-sm">
+                            <div className="flex items-center gap-1.5 text-[#166534] font-medium">
+                                <span className="w-2 h-2 rounded-full bg-[#166534]" /> Active: 112
+                            </div>
+                            <div className="flex items-center gap-1.5 text-[#854d0e] font-medium">
+                                <span className="w-2 h-2 rounded-full bg-[#ca8a04]" /> Flagged: 10
+                            </div>
+                            <div className="flex items-center gap-1.5 text-error font-medium">
+                                <span className="w-2 h-2 rounded-full bg-error" /> Inactive: 20
+                            </div>
+                        </div>
+                    </div>
+                    {/* Search & Filters */}
+                    <div className="space-y-3">
+                        {/* Search Bar */}
+                        <div className="relative w-full">
+                            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">
+                                search
+                            </span>
+                            <input
+                                className="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-colors"
+                                placeholder="Search by name, ID, course, or squad..."
+                                type="text"
+                            />
+                        </div>
+                        {/* Rapid Filter Pills */}
+                        <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-on-surface text-surface font-label-sm text-label-sm flex-shrink-0">
+                                All Members (142)
+                            </button>
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                                Active Only (112)
+                            </button>
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                                1st Year
+                            </button>
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                                2nd Year
+                            </button>
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                                3rd Year
+                            </button>
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                                4th Year
+                            </button>
+                        </div>
+                        {/* Duty Squad Dropdown Filter */}
+                        <div className="relative w-full max-w-xs">
+                            <select className="w-full appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface text-sm rounded-lg block p-2.5 focus:ring-primary focus:border-primary pr-8 font-body-sm shadow-sm">
+                                <option selected="">All Squads / Duty Teams</option>
+                                <option value="medical">Medical Squad</option>
+                                <option value="sar">Search &amp; Rescue</option>
+                                <option value="logistics">Logistics</option>
+                                <option value="comm">Comm Duty</option>
+                            </select>
+                            <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+                                <span className="material-symbols-outlined text-[20px]">
+                                    arrow_drop_down
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Member List Cards */}
+                    <section className="space-y-2">
+                        {/* Member Item 1 (Active) */}
+                        <div
+                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+                            data-name="Santos, Maria Clara"
+                            data-id="2024-0192"
+                            data-course="BSIT • 3rd Year"
+                            data-status="Active"
+                            data-email="msantos@university.edu"
+                            data-phone="+1 555-0192"
+                            data-attendance="94%"
+                            data-incidents={12}
+                            onclick="openDrawer(this)"
+                        >
+                            <div className="flex items-center gap-3 overflow-hidden">
+                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                    SM
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                        Santos, Maria Clara
+                                    </p>
+                                    <p className="text-[11px] text-on-surface-variant truncate">
+                                        ID: 2024-0192 • BSIT - 3rd Year
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
+                                    Active
+                                </span>
+                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </div>
+                        {/* Member Item 2 (Flagged) */}
+                        <div
+                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+                            data-name="De Leon, Juan"
+                            data-id="2025-0441"
+                            data-course="BSCS • 2nd Year"
+                            data-status="Flagged"
+                            data-email="jdeleon@university.edu"
+                            data-phone="+1 555-0144"
+                            data-attendance="78%"
+                            data-incidents={5}
+                            onclick="openDrawer(this)"
+                        >
+                            <div className="flex items-center gap-3 overflow-hidden">
+                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                    DL
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                        De Leon, Juan
+                                    </p>
+                                    <p className="text-[11px] text-on-surface-variant truncate">
+                                        ID: 2025-0441 • BSCS - 2nd Year
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20">
+                                    Flagged
+                                </span>
+                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </div>
+                        {/* Member Item 3 (Inactive) */}
+                        <div
+                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group opacity-80 hover:opacity-100"
+                            data-name="Mendoza, Jose"
+                            data-id="2026-0082"
+                            data-course="BSEMC • 1st Year"
+                            data-status="Inactive"
+                            data-email="jmendoza@university.edu"
+                            data-phone="+1 555-0188"
+                            data-attendance="62%"
+                            data-incidents={19}
+                            onclick="openDrawer(this)"
+                        >
+                            <div className="flex items-center gap-3 overflow-hidden">
+                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                    MJ
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                        Mendoza, Jose
+                                    </p>
+                                    <p className="text-[11px] text-on-surface-variant truncate">
+                                        ID: 2026-0082 • BSEMC - 1st Year
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                    Inactive
+                                </span>
+                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </div>
+                        {/* Member Item 4 (Active) */}
+                        <div
+                            className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+                            data-name="Aquino, Andrea"
+                            data-id="2023-0115"
+                            data-course="BSIT • 4th Year"
+                            data-status="Active"
+                            data-email="aaquino@university.edu"
+                            data-phone="+1 555-0123"
+                            data-attendance="98%"
+                            data-incidents={3}
+                            onclick="openDrawer(this)"
+                        >
+                            <div className="flex items-center gap-3 overflow-hidden">
+                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                    AA
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                        Aquino, Andrea
+                                    </p>
+                                    <p className="text-[11px] text-on-surface-variant truncate">
+                                        ID: 2023-0115 • BSIT - 4th Year
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
+                                    Active
+                                </span>
+                                <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            {/* Member Profile Drawer */}
+            <aside
+                className="fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col"
+                id="member-drawer"
+            >
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between p-4 border-b border-outline-variant bg-surface-container-low">
+                    <h3 className="font-headline-md text-body-lg font-bold text-on-surface m-0">
+                        Member Profile
+                    </h3>
+                    <button
+                        aria-label="Close"
+                        className="hover:bg-surface-container-high rounded-full p-2 transition-colors text-on-surface-variant"
+                        onclick="closeDrawer()"
+                    >
+                        <span className="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                {/* Drawer Content */}
+                <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                    <div className="flex flex-col items-center text-center">
+                        <div
+                            id="drawer-initials"
+                            className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3"
+                        >
+                            SM
+                        </div>
+                        <h3
+                            className="font-headline-md text-xl font-bold text-on-surface m-0"
+                            id="drawer-name"
+                        >
+                            Santos, Maria Clara
+                        </h3>
+                        <p
+                            className="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                            id="drawer-id"
+                        >
+                            ID: 2024-0192
+                        </p>
+                        <span
+                            className="inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3"
+                            id="drawer-status"
+                        >
+                            Active
+                        </span>
+                    </div>
+                    <div className="space-y-4">
+                        <div className="border-t border-outline-variant pt-4">
+                            <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                Academic &amp; Contact
+                            </p>
+                            <div className="grid grid-cols-2 gap-3 text-sm">
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Program / Year
+                                    </p>
+                                    <p
+                                        className="font-body-sm text-on-surface font-semibold"
+                                        id="drawer-course"
+                                    >
+                                        BSIT • 3rd Year
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Phone
+                                    </p>
+                                    <p
+                                        className="font-body-sm text-on-surface font-semibold"
+                                        id="drawer-phone"
+                                    >
+                                        +1 555-0192
+                                    </p>
+                                </div>
+                                <div className="col-span-2">
+                                    <p className="text-xs text-on-surface-variant font-medium">
+                                        Email Address
+                                    </p>
+                                    <p
+                                        className="font-body-sm text-primary font-semibold"
+                                        id="drawer-email"
+                                    >
+                                        msantos@university.edu
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="border-t border-outline-variant pt-4">
+                            <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                Duty Performance
+                            </p>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+                                    <p
+                                        className="font-headline-lg text-headline-lg text-primary font-bold m-0"
+                                        id="drawer-attendance"
+                                    >
+                                        94%
+                                    </p>
+                                    <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                        Attendance Rate
+                                    </p>
+                                </div>
+                                <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
+                                    <p
+                                        className="font-headline-lg text-headline-lg text-primary font-bold m-0"
+                                        id="drawer-incidents"
+                                    >
+                                        12
+                                    </p>
+                                    <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                        Incidents Handled
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* Drawer Actions */}
+                <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
+                    <button className="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
+                        Edit
+                    </button>
+                    <button className="flex-1 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-sm hover:bg-primary-container transition-colors shadow-sm">
+                        Message
+                    </button>
+                </div>
+            </aside>
+            {/* Drawer Overlay */}
+            <div
+                className="fixed inset-0 bg-on-surface/20 z-[65] hidden transition-opacity"
+                id="drawer-overlay"
+                onclick="closeDrawer()"
+            />
+            {/* Bottom Navigation Bar (Mobile) */}
+            <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">dashboard</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">how_to_reg</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Attendance</span>
+                </button>
+                <button className="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+                    <span className="material-symbols-outlined filled-icon">group</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Roster</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">security</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Vault</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">model_training</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Training</span>
+                </button>
+            </nav>
+        </>
+    )
+}
