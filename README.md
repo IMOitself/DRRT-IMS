@@ -6,6 +6,31 @@
 > <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/13d7caf8-dc22-48d5-a66c-1f599dcd098d" />
 > https://trello.com/b/rcb0FEpP
 
+## installation
+```
+cd frontend
+npm install
+```
+```
+cd backend
+composer install
+```
+to run, open 2 terminals:<br>
+
+terminal 1
+```
+cd frontend
+npm run dev
+```
+terminal 2
+```
+cd backend
+php artisan serve 
+```
+ctrl + click the link on frontend. goodluck :D
+
+<br><br>
+
 ## essential stuff for development
 the stuffs are placed here to make it faster to view. <br>
 might be outdated, view the [docs](https://docs.google.com/document/d/1ITqkJaaK1XKY5Td46PzvDUZHkkc6rVnZNlhvShZtH2Y/edit?usp=sharing) 
