@@ -2,22 +2,28 @@
 
 > [!NOTE]
 > current progress:<br>
->
+> (screenshot is outdated, check the trello link directly)
 > <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/13d7caf8-dc22-48d5-a66c-1f599dcd098d" />
 > https://trello.com/b/rcb0FEpP
 
 ## essential stuff for development
+the stuffs are placed here to make it faster to view. <br>
+might be outdated, view the [docs](https://docs.google.com/document/d/1ITqkJaaK1XKY5Td46PzvDUZHkkc6rVnZNlhvShZtH2Y/edit?usp=sharing) 
 <details>
-<summary>ui designs (w/ htmlpreview)</summary>
+<summary>ui designs</summary>
 
+### [figma](https://www.figma.com/proto/cXKbJkVcVyjgO4n7lHXyyY/DRRT-PROTOTYPE?node-id=86-1478&t=gx2O0FedSpD7iMKI-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=86%3A1872&show-proto-sidebar=1)
 
-### student role (landing page)
-- [~~interactive_campus_hazard_map~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/(NO%20MORE%20THEY%20SAID)%20interactive_campus_hazard_map.html)
-- [join_drrt_membership_information](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html)
-- [application_form](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html)
-- [application_form_submitted](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html)
-- [public_events_preparedness_bulletins](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html)
-- [public_home_preparedness_landing_page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html)
+below are the links to the ui designs that u can actually view live. designed by @m3l-3m.<br>
+links that has dash (~~example~~) have already been translated and put into the project
+
+### student role (default)
+- [~~events page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html)
+- [~~home page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html)
+- [~~join drrt page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html)
+- [~~application form page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html)
+- [~~application form status page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html)
+
 
 ### member role
 - [announcements](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html)
@@ -29,7 +35,7 @@
 ### officer role
 - [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html)
 - [manual_attendance_logger_pro](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html)
-- [member_roster](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html)
+- [~~member roster~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html)
 - [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html)
 - [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html)
 - [training_management](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/training_management.html)
