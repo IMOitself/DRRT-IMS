@@ -217,9 +217,7 @@ export default function Roster() {
                 </div>
             </main>
             {/* Member Profile Drawer */}
-            <aside
-                className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
-            >
+            <aside className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between p-4 border-b border-outline-variant bg-surface-container-low">
                     <h3 className="font-headline-md text-body-lg font-bold text-on-surface m-0">
@@ -238,31 +236,22 @@ export default function Roster() {
                     {selectedMember && (
                         <>
                             <div className="flex flex-col items-center text-center">
-                                <div
-                                    className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3"
-                                >
+                                <div className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3">
                                     {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
                                 </div>
-                                <h3
-                                    className="font-headline-md text-xl font-bold text-on-surface m-0"
-                                >
+                                <h3 className="font-headline-md text-xl font-bold text-on-surface m-0">
                                     {selectedMember.full_name}
                                 </h3>
-                                <p
-                                    className="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
-                                >
+                                <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
                                     ID: {selectedMember.student_id}
                                 </p>
-                                <span
-                                    className={`inline-flex items-center px-3 py-1 rounded text-xs font-bold uppercase tracking-wider mt-3 ${selectedMember.status === 'active'
-                                            ? 'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'
-                                            : selectedMember.status === 'pending'
-                                                ? 'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'
-                                                : 'bg-surface-container-highest text-on-surface-variant border border-outline-variant'
-                                        }`}
-                                >
-                                    {selectedMember.status}
-                                </span>
+
+                                { selectedMember.status === 'active'
+                                    ? <span className={'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'}>{selectedMember.status}</span>
+                                    : selectedMember.status === 'pending'
+                                    ? <span className={'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'}>{selectedMember.status}</span>
+                                    : "" 
+                                }
                             </div>
                             <div className="space-y-4">
                                 <div className="border-t border-outline-variant pt-4">
@@ -274,9 +263,7 @@ export default function Roster() {
                                             <p className="text-xs text-on-surface-variant font-medium">
                                                 Program / Year
                                             </p>
-                                            <p
-                                                className="font-body-sm text-on-surface font-semibold"
-                                            >
+                                            <p className="font-body-sm text-on-surface font-semibold">
                                                 {selectedMember.course + " " + selectedMember.year_level}
                                             </p>
                                         </div>
