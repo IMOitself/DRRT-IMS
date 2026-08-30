@@ -85,7 +85,7 @@ export default function Login() {
             <button onClick={testLogout} className='hover:bg-primary-container transition-all active:scale-95'>
                 test logout
             </button>
-            <textarea value={displayResponse} className="w-full"/>
+            <textarea value={displayResponse} className="w-full" readOnly />
         </div>
     )
 }
