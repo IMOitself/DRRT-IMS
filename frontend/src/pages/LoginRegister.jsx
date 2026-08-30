@@ -79,16 +79,16 @@ export default function Login() {
 
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
-            <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
                 test register as Member
             </button>
-            <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
                 test login as Member
             </button>
-            <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
                 test login as Officer
             </button>
-            <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
                 test logout
             </button>
             <textarea value={displayResponse} className="w-full" readOnly />
