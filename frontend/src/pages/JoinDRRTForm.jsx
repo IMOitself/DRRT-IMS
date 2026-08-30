@@ -16,9 +16,11 @@ export default function JoinDRRTForm() {
         window.scrollTo(0, 0);
 
         const token = localStorage.getItem("token");
-        if (!token) {
-            navigate("/login-register", { state: { from: location.pathname } });
-        }
+        if (!token) navigate("/login-register", { state: { from: location.pathname } });
+        api
+            .get("/user")
+            .then((res) => setFormData({ ...formData, user_id: res.data.id }))
+            .catch((err) => console.error(err));
     }, [navigate]);
 
     const initialFormData = {
@@ -52,19 +54,13 @@ export default function JoinDRRTForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         api
-            .get("/user")
+            .post("/membership-applications", formData)
             .then((res) => {
-                setFormData({ ...formData, user_id: res.data.id });
-                api
-                    .post("/membership-applications", formData)
-                    .then((res) => {
-                        localStorage.removeItem(SAVED_FORM_DATA_KEY);
-                        navigate(`/join-form/${res.data.application_id}`);
-                    })
-                    .catch((err) => console.error(err));
+                localStorage.removeItem(SAVED_FORM_DATA_KEY);
+                navigate(`/join-form/${res.data.application_id}`);
             })
             .catch((err) => console.error(err));
-    };
+    }
 
     const testAutoFillEveryField = () => {
         setFormData({
