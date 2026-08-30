@@ -16,4 +16,15 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+export function logout(navigate) {
+  api
+    .post('/logout')
+    .then(() => {
+      localStorage.removeItem('token');
+      navigate('/');
+      window.location.reload();
+    })
+    .catch((err) => console.error(err));
+}
+
 export default api;
