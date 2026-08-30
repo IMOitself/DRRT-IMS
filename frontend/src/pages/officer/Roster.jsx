@@ -249,11 +249,7 @@ export default function Roster() {
                                             <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
                                                 Inactive
                                             </span>
-                                        ) : (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
-                                                {application.status}
-                                            </span>
-                                        )}
+                                        ) : ('')}
                                         <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
                                             chevron_right
                                         </span>
