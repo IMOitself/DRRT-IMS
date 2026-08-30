@@ -16,7 +16,10 @@ export default function JoinDRRTForm() {
         window.scrollTo(0, 0);
 
         const token = localStorage.getItem("token");
-        if (!token) navigate("/login-register", { state: { from: location.pathname } });
+        if (!token) {
+            navigate("/login-register", { state: { from: location.pathname } });
+            return;
+        }
         api
             .get("/user")
             .then((res) => setFormData({ ...formData, user_id: res.data.id }))
