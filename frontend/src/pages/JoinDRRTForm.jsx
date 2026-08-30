@@ -52,10 +52,16 @@ export default function JoinDRRTForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         api
-            .post("/membership-applications", formData)
+            .get("/user")
             .then((res) => {
-                localStorage.removeItem(SAVED_FORM_DATA_KEY);
-                navigate(`/join-form/${res.data.application_id}`);
+                setFormData({ ...formData, user_id: res.data.id });
+                api
+                    .post("/membership-applications", formData)
+                    .then((res) => {
+                        localStorage.removeItem(SAVED_FORM_DATA_KEY);
+                        navigate(`/join-form/${res.data.application_id}`);
+                    })
+                    .catch((err) => console.error(err));
             })
             .catch((err) => console.error(err));
     };
