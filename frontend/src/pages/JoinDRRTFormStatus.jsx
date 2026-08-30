@@ -23,8 +23,6 @@ export default function JoinDRRTFormStatus() {
             .catch((err) => console.error(err));
     }, [id, navigate]);
 
-    console.log(application);
-
     return (
         <>
             <title>Application Submitted - DRRT Student Portal</title>
