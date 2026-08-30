@@ -41,13 +41,13 @@ export default function JoinDRRTForm() {
         return initialFormData;
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
     useEffect(() => {
         if (formData) localStorage.setItem(SAVED_FORM_DATA_KEY, JSON.stringify(formData));
     }, [formData]);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,6 +58,22 @@ export default function JoinDRRTForm() {
                 navigate(`/join-form/${res.data.application_id}`);
             })
             .catch((err) => console.error(err));
+    };
+
+    const testAutoFillEveryField = () => {
+        setFormData({
+            student_id: "24-00123ABC",
+            full_name: "Braus, Sasha B.",
+            course: "BSIS",
+            year_level: "1",
+            email: "sasha.braus@student.laverdad.edu.ph",
+            phone_number: "09123456789",
+            emergency_person_name: "Jean Kirstein",
+            emergency_phone: "09123456789",
+            blood_type: "Unknown",
+            consent_form: "C:\\fakepath\\consent_form.pdf",
+            class_schedule: "C:\\fakepath\\class_schedule.png",
+        });
     };
 
     return (
@@ -75,6 +91,9 @@ export default function JoinDRRTForm() {
                         </span>
                         <span>Back to Recruitment Overview</span>
                     </Link>
+                    
+                    <br/><button onClick={testAutoFillEveryField}>test auto fill hehe</button>
+
                     {/* Form Banner Header */}
                     <section className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-bl-full pointer-events-none" />
@@ -367,7 +386,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="file"
                                         name="consent_form"
-                                        required
+                                        // required
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
                                     />
@@ -384,7 +403,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="file"
                                         name="class_schedule"
-                                        required
+                                        // required
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-body-sm text-on-surface-variant file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:transition-all cursor-pointer border border-outline-variant rounded-xl p-1"
                                     />
