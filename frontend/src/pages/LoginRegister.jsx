@@ -71,18 +71,24 @@ export default function Login() {
             .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
 
+    const spamProof = (e) => {
+        e.currentTarget.disabled = true;
+        e.currentTarget.style.opacity = 0.5
+        setDisplayResponse("Loading...")
+    }
+
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
-            <button onClick={testRegisterAsMember} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
                 test register as Member
             </button>
-            <button onClick={testLoginAsMember} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
                 test login as Member
             </button>
-            <button onClick={testLoginAsOfficer} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
                 test login as Officer
             </button>
-            <button onClick={testLogout} className='hover:bg-primary-container transition-all active:scale-95'>
+            <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-primary-container transition-all active:scale-95'>
                 test logout
             </button>
             <textarea value={displayResponse} className="w-full" readOnly />
