@@ -13,7 +13,7 @@ npm install
 ```
 ```
 cd backend
-composer install
+composer setup
 ```
 to run, open 2 terminals:<br>
 
