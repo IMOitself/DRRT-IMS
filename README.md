@@ -39,6 +39,8 @@ might be outdated, view the [docs](https://docs.google.com/document/d/1ITqkJaaK1
 
 ### [figma](https://www.figma.com/proto/cXKbJkVcVyjgO4n7lHXyyY/DRRT-PROTOTYPE?node-id=86-1478&t=gx2O0FedSpD7iMKI-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=86%3A1872&show-proto-sidebar=1)
 
+### [ui design html codes](https://github.com/IMOitself/DRRT-IMS-ui-designs)
+
 below are the links to the ui designs that u can actually view live. designed by @m3l-3m.<br>
 links that has dash (~~example~~) have already been translated and put into the project
 
