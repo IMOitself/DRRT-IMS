@@ -20,10 +20,6 @@ export default function JoinDRRTForm() {
             navigate("/login-register", { state: { from: location.pathname } });
             return;
         }
-        api
-            .get("/user")
-            .then((res) => setFormData({ ...formData, user_id: res.data.id }))
-            .catch((err) => console.error(err));
     }, [navigate]);
 
     const initialFormData = {
@@ -56,11 +52,23 @@ export default function JoinDRRTForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         api
-            .post("/membership-applications", formData)
+            .get("/user")
             .then((res) => {
-                localStorage.removeItem(SAVED_FORM_DATA_KEY);
-                navigate(`/join-form/${res.data.application_id}`);
+                const formWithUserID = {
+                    ...formData, user_id: res.data.id,
+                }
+
+                setFormData(formWithUserID);
+
+                api
+                    .post("/membership-applications", formWithUserID)
+                    .then((res) => {
+                        localStorage.removeItem(SAVED_FORM_DATA_KEY);
+                        navigate(`/join-form/${res.data.application_id}`);
+                    })
+                    .catch((err) => console.error(err));
             })
             .catch((err) => console.error(err));
     }
@@ -96,8 +104,8 @@ export default function JoinDRRTForm() {
                         </span>
                         <span>Back to Recruitment Overview</span>
                     </Link>
-                    
-                    <br/><button onClick={testAutoFillEveryField}>test auto fill hehe</button>
+
+                    <br /><button onClick={testAutoFillEveryField}>test auto fill hehe</button>
 
                     {/* Form Banner Header */}
                     <section className="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
@@ -384,7 +392,7 @@ export default function JoinDRRTForm() {
                                         <span className="text-error">*</span>
                                     </label>
                                     <p className="font-body-sm text-body-sm text-on-surface-variant mb-2">
-                                        Download Parent Consent Form above and ask your parents to sign it. Then upload the signed document. <br/>
+                                        Download Parent Consent Form above and ask your parents to sign it. Then upload the signed document. <br />
                                         Accepted formats: PDF, PNG, JPG, JPEG (Max 5MB)
                                     </p>
                                     <input
