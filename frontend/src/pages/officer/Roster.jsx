@@ -46,12 +46,14 @@ export default function Roster() {
         api
             .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: officer.id })
             .then(() => {
-                setMembersApplication((prev) =>
-                    prev.map((app) =>
-                        app.id === selectedMember.id ? { ...app, status: "rejected" } : app
-                    )
+                // Update selected member status
+                setSelectedMember({ ...selectedMember, status: "rejected" });
+
+                // Update the application item in the list
+                const updatedList = membersApplication.map((app) =>
+                    app.id === selectedMember.id ? { ...app, status: "rejected" } : app
                 );
-                setSelectedMember((prev) => ({ ...prev, status: "rejected" }));
+                setMembersApplication(updatedList);
             })
             .catch((err) => console.error(err));
     };
@@ -60,12 +62,12 @@ export default function Roster() {
         api
             .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: officer.id })
             .then(() => {
-                setMembersApplication((prev) =>
-                    prev.map((app) =>
-                        app.id === selectedMember.id ? { ...app, status: "approved" } : app
-                    )
+                setSelectedMember({ ...selectedMember, status: "approved" });
+
+                const updatedList = membersApplication.map((app) =>
+                    app.id === selectedMember.id ? { ...app, status: "approved" } : app
                 );
-                setSelectedMember((prev) => ({ ...prev, status: "approved" }));
+                setMembersApplication(updatedList);
             })
             .catch((err) => console.error(err));
     };
