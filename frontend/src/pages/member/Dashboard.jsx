@@ -1,0 +1,302 @@
+export default function Dashboard() {
+    return (
+        <>
+            <title>Member Dashboard - DRRT Member Portal</title>
+            
+            {/* Top Navigation Bar */}
+            <header className="w-full border-b border-outline-variant bg-surface sticky top-0 z-50">
+                <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
+                    <div className="flex items-center gap-sm">
+                        <button className="hover:bg-surface-container-high transition-colors p-2 rounded-full">
+                            <span className="material-symbols-outlined text-primary">shield</span>
+                        </button>
+                        <span className="font-headline-md text-headline-md-mobile font-bold text-primary">
+                            Member Portal
+                        </span>
+                    </div>
+                    {/* Desktop Navigation Links directly mapped from Mobile Bottom Navigation */}
+                    <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
+                        <a href="#" className="text-primary font-bold border-b-2 border-primary py-1"
+                        >
+                            Dashboard
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Attendance
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Training
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            Alerts
+                        </a>
+                        <a href="#" className="hover:text-primary transition-colors py-1">
+                            ID Card
+                        </a>
+                    </nav>
+                    <div className="flex items-center gap-2">
+                        <button className="hover:bg-surface-container-high transition-colors p-2 rounded-full relative">
+                            <span className="material-symbols-outlined text-on-surface-variant">
+                                notifications
+                            </span>
+                        </button>
+                        <div className="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+                            <img
+                                className="w-full h-full object-cover"
+                                alt="Alex Rivera Profile"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZPHITGvKrDOXrPfitF6BBJ67fhCoSLrfMG7ee_kMkOFnUxtEp4IQ9SlcZAX-fT7wcdf3YZT2bZ7eRh0heXdIn1j3dmWBHijEgkqA7DkYOK8-3HyAm40t_VnYpgAN_wQKeRpDgf0LfjCWBwqAmlm-4j0IvRr_yhhT_fxD9rGhhBw7FjGLg6Vn2dpCGcUShdPvI5NneYXzjPGeDWsM-X2KAmMdcs2yhwQGEhkpfiLjhCVxiOPW9Hl42Jw"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            {/* Main Content Canvas */}
+            <main className="flex-grow pb-24 md:pb-12">
+                <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-xl">
+                    {/* Welcome Header Card */}
+                    <section className="bg-surface-container-lowest border border-outline-variant p-md md:p-lg rounded-xl shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div>
+                            <div className="flex items-center gap-sm flex-wrap">
+                                <h1 className="font-display-lg text-headline-lg md:text-display-lg text-on-surface font-bold">
+                                    Welcome, Alex Rivera
+                                </h1>
+                                <div className="flex items-center gap-1.5 bg-compliance-green/10 text-compliance-green px-3 py-1 rounded-full border border-compliance-green/20">
+                                    <span className="w-2 h-2 rounded-full bg-compliance-green" />
+                                    <span className="font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                                        Active
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="font-body-md text-body-md text-on-surface-variant mt-1">
+                                Student ID: 2021-0984 • Primary Sector Responder
+                            </p>
+                        </div>
+                        {/* Quick Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                            <button className="bg-primary text-on-primary h-11 px-5 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm font-semibold">
+                                <span className="material-symbols-outlined text-[18px]">
+                                    calendar_month
+                                </span>{" "}
+                                Attendance Record
+                            </button>
+                            <button className="bg-surface-container-low text-on-surface border border-outline-variant h-11 px-5 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold">
+                                <span className="material-symbols-outlined text-[18px]">
+                                    visibility
+                                </span>{" "}
+                                Active Drills
+                            </button>
+                        </div>
+                    </section>
+                    {/* Widgets Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+                        {/* Widget 1: Attendance Compliance */}
+                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm hover:border-primary transition-all flex flex-col justify-between">
+                            <div>
+                                <h2 className="font-label-md text-label-md text-on-surface-variant flex items-center gap-2 mb-md font-bold uppercase tracking-wider">
+                                    <span className="material-symbols-outlined text-primary text-[20px]">
+                                        verified
+                                    </span>{" "}
+                                    Attendance Compliance
+                                </h2>
+                            </div>
+                            <div className="flex items-center gap-md">
+                                <div className="relative w-20 h-20 flex-shrink-0">
+                                    <svg
+                                        className="w-full h-full transform -rotate-90"
+                                        viewBox="0 0 36 36"
+                                    >
+                                        <path
+                                            className="text-progress-ring-track"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="3.5"
+                                        />
+                                        <path
+                                            className="text-compliance-green"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeDasharray="85, 100"
+                                            strokeWidth="3.5"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                    <div className="absolute inset-0 flex items-center justify-center font-headline-md text-headline-md font-bold text-on-surface">
+                                        85%
+                                    </div>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="font-label-md text-label-md text-compliance-green font-bold flex items-center gap-1">
+                                        <span className="material-symbols-outlined text-[16px] filled-icon">
+                                            check_circle
+                                        </span>{" "}
+                                        Safe Standing
+                                    </p>
+                                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                                        Exceeds 75% minimum requirement for active duty.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Widget 2: Training Progress */}
+                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm hover:border-primary transition-all flex flex-col justify-between">
+                            <div>
+                                <h2 className="font-label-md text-label-md text-on-surface-variant flex items-center gap-2 mb-md font-bold uppercase tracking-wider">
+                                    <span className="material-symbols-outlined text-primary text-[20px]">
+                                        school
+                                    </span>{" "}
+                                    Training Progress
+                                </h2>
+                            </div>
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-end">
+                                    <span className="font-label-md text-label-md font-bold text-on-surface">
+                                        5/8 Modules Completed
+                                    </span>
+                                    <span className="font-label-md text-label-md text-primary font-bold">
+                                        62%
+                                    </span>
+                                </div>
+                                <div className="w-full bg-progress-ring-track rounded-full h-2.5 overflow-hidden">
+                                    <div
+                                        className="bg-primary h-2.5 rounded-full"
+                                        style={{ width: "62%" }}
+                                    />
+                                </div>
+                                <a         href="#"
+ e="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:underline pt-1"
+                                >
+                                    Resume Module 6{" "}
+                                    <span className="material-symbols-outlined text-[16px]">
+                                        arrow_forward
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        {/* Widget 3: Next Mandatory Event */}
+                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm hover:border-compliance-yellow transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                            <div>
+                                <div className="flex justify-between items-start mb-xs">
+                                    <h2 className="font-label-md text-label-md text-on-surface-variant flex items-center gap-2 font-bold uppercase tracking-wider">
+                                        <span className="material-symbols-outlined text-compliance-yellow text-[20px]">
+                                            event_upcoming
+                                        </span>{" "}
+                                        Next Mandatory Event
+                                    </h2>
+                                    <span className="bg-compliance-yellow/15 text-compliance-yellow border border-compliance-yellow/30 text-label-sm font-label-sm px-2 py-0.5 rounded uppercase font-bold">
+                                        Required
+                                    </span>
+                                </div>
+                                <h3 className="font-headline-md text-headline-md-mobile font-bold text-on-surface mt-2">
+                                    Earthquake &amp; Fire Drill
+                                </h3>
+                                <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5 mt-1">
+                                    <span className="material-symbols-outlined text-[18px]">
+                                        schedule
+                                    </span>{" "}
+                                    Oct 24, 2026 • 10:00 AM
+                                </p>
+                            </div>
+                            <button className="w-full mt-4 bg-surface-container-low border border-outline-variant text-on-surface h-10 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
+                                <span className="material-symbols-outlined text-[18px]">
+                                    calendar_add_on
+                                </span>{" "}
+                                Add to Calendar
+                            </button>
+                        </div>
+                    </div>
+                    {/* Recent Activity Section */}
+                    <section className="space-y-sm">
+                        <div className="flex justify-between items-center mb-xs">
+                            <h2 className="font-headline-md text-headline-md-mobile font-bold text-on-surface">
+                                Recent Activity
+                            </h2>
+                            <a     href="#"
+ sName="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-1"
+                            >
+                                View All{" "}
+                                <span className="material-symbols-outlined text-[16px]">
+                                    arrow_forward
+                                </span>
+                            </a>
+                        </div>
+                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm divide-y divide-outline-variant/60 overflow-hidden">
+                            {/* Activity Item 1 */}
+                            <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
+                                <div className="bg-primary-container/10 text-primary p-2 rounded-full border border-primary/20 flex-shrink-0">
+                                    <span className="material-symbols-outlined text-[20px]">
+                                        fact_check
+                                    </span>
+                                </div>
+                                <div className="flex-grow">
+                                    <p className="font-body-md text-body-md text-on-surface font-semibold">
+                                        Completed Module 5: Emergency Protocols
+                                    </p>
+                                    <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                                        2 days ago • Score: 98%
+                                    </p>
+                                </div>
+                            </div>
+                            {/* Activity Item 2 */}
+                            <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
+                                <div className="bg-compliance-green/10 text-compliance-green p-2 rounded-full border border-compliance-green/20 flex-shrink-0">
+                                    <span className="material-symbols-outlined text-[20px]">
+                                        how_to_reg
+                                    </span>
+                                </div>
+                                <div className="flex-grow">
+                                    <p className="font-body-md text-body-md text-on-surface font-semibold">
+                                        Checked in to Weekly General Assembly
+                                    </p>
+                                    <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                                        Oct 12, 2026 • Verified via QR Scan
+                                    </p>
+                                </div>
+                            </div>
+                            {/* Activity Item 3 */}
+                            <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
+                                <div className="bg-surface-container-high text-on-surface-variant p-2 rounded-full border border-outline-variant flex-shrink-0">
+                                    <span className="material-symbols-outlined text-[20px]">
+                                        badge
+                                    </span>
+                                </div>
+                                <div className="flex-grow">
+                                    <p className="font-body-md text-body-md text-on-surface font-semibold">
+                                        Digital ID Renewed for 2026-2027 Academic Year
+                                    </p>
+                                    <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                                        Sep 1, 2026 • Command Staff Authorization
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            {/* Bottom Navigation Bar (Mobile) */}
+            <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-outline-variant shadow-sm">
+                <button className="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 scale-90 duration-150 ease-in-out">
+                    <span className="material-symbols-outlined filled-icon">dashboard</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Dashboard</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">calendar_today</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Attendance</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">school</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Training</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">notifications</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">Alerts</span>
+                </button>
+                <button className="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest px-3 py-1 rounded-xl transition-colors">
+                    <span className="material-symbols-outlined">badge</span>
+                    <span className="font-label-sm text-label-sm mt-0.5">ID Card</span>
+                </button>
+            </nav>
+        </>
+
+    );
+}

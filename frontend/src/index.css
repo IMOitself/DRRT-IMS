@@ -67,6 +67,9 @@
   --color-map-evacuation: #2563eb;
   --color-map-hazard: #ea580c;
 
+  --color-compliance-green: #16a34a;
+  --color-progress-ring-track: #eaedff;
+
   /* Font families */
   --font-display-lg: "Geist", sans-serif;
   --font-headline-lg: "Geist", sans-serif;
