@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MembershipApplication;
+use App\Models\Member;
 
 class MembershipApplicationsController extends Controller
 {
@@ -57,6 +58,13 @@ class MembershipApplicationsController extends Controller
             'status' => $request->input('status'),
             'reviewer_id' => $request->input('reviewer_id')
         ]);
+
+        if($application->status == 'approved') {
+            $member = Member::create([
+                'user_id' => $application->user_id,
+                'membership_application_id' => $application->id
+            ]);
+        }
 
         return response()->json(['application_id' => $application->id], 200);
     }

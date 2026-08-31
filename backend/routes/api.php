@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembershipApplicationsController;
+use App\Http\Controllers\MembersController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -18,4 +19,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);
     Route::put('/membership-applications/{application}', [MembershipApplicationsController::class, 'update']);
+
+    Route::get('/members', [MembersController::class, 'index']);
 });
