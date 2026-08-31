@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('member_id')->constrained('members')->cascadeOnDelete();
-            // $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-            $table->enum('status', ['present', 'absent', 'late', 'unset'])->default('unset');
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->enum('status', ['present', 'absent', 'late'])->nullable();
             $table->timestamps();
         });
     }
