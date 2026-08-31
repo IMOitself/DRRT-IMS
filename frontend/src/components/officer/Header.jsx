@@ -1,4 +1,3 @@
-import { logout } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AccountDropdown from "../AccountDropdown";
@@ -17,7 +16,7 @@ export default function Header() {
                         </span>
                     </button>
                     <span className="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">
-                        DRRT Member Roster
+                        DRRT Officer Portal
                     </span>
                 </div>
                 {/* Desktop Navigation Links */}
