@@ -1,8 +1,11 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Home() {
+    useEffect(() => { window.scrollTo(0, 0); }, []);
+
     return (
         <>
             <title>DRRT Student Public Portal - Home</title>

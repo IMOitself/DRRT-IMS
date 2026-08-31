@@ -22,6 +22,8 @@ export default function Roster() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        
         api
             .get(`/user`)
             .then((res) => {
