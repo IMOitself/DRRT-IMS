@@ -13,7 +13,9 @@ export default function Home() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        api.get("/user").then((res) => {
+        api
+        .get("/user")
+        .then((res) => {
             if (res.data.role === 'officer') {
                 navigate("/officer/roster"); // TODO: change to officer dashboard
             }
