@@ -1,10 +1,29 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import api from "../api/axios";
 
 export default function Home() {
-    useEffect(() => { window.scrollTo(0, 0); }, []);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        api.get("/user").then((res) => {
+            if (res.data.role === 'officer') {
+                navigate("/officer/roster"); // TODO: change to officer dashboard
+            }
+            if (res.data.role === 'member') {
+                navigate("/member/dashboard");
+            }
+        }).catch((err) => {
+            console.error(err);
+        });
+    }, []);
 
     return (
         <>
