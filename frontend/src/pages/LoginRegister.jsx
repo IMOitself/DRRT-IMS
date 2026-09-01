@@ -80,10 +80,10 @@ export default function Login() {
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
             <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
-                test register as Member
+                test register as Student
             </button>
             <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
-                test login as Member
+                test login as Student
             </button>
             <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
                 test login as Officer
