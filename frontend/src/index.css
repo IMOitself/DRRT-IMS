@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* TODO: simplify the styles after all pages has been added */
+/* simplified styles */
+.small-underlined {
+  @apply inline-flex text-primary text-sm font-bold hover:underline gap-1 pt-1;  
+}
 
 @theme {
-  /* TODO: simplify the styles and all after all pages has been added */
   /* Color tokens */
   --color-primary: #003d9b;
   --color-primary-fixed: #dae2ff;

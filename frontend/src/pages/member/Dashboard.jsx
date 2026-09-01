@@ -1,21 +1,37 @@
 import Header from "../../components/member/Header.jsx";
 import BottomNav from "../../components/member/BottomNav.jsx";
+import { useEffect, useState } from "react";
+import api from "../../api/axios";
 
 export default function Dashboard() {
+
+    const [memberData, setMemberData] = useState([]);
+
+    useEffect(() => {
+        api
+        .get("/user")
+        .then((res) => {
+            
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [])
+
     return (
         <>
             <title>Member Dashboard - DRRT Member Portal</title>
             
             <Header />
 
-            <main className="flex-grow pb-24 md:pb-12">
+            <main className="grow pb-24 md:pb-12">
                 <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-xl">
                     {/* Welcome Header Card */}
                     <section className="bg-surface-container-lowest border border-outline-variant p-md md:p-lg rounded-xl shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
                         <div>
                             <div className="flex items-center gap-sm flex-wrap">
                                 <h1 className="font-display-lg text-headline-lg md:text-display-lg text-on-surface font-bold">
-                                    Welcome, Alex Rivera
+                                    Welcome, Idk Name
                                 </h1>
                                 <div className="flex items-center gap-1.5 bg-compliance-green/10 text-compliance-green px-3 py-1 rounded-full border border-compliance-green/20">
                                     <span className="w-2 h-2 rounded-full bg-compliance-green" />
@@ -25,7 +41,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <p className="font-body-md text-body-md text-on-surface-variant mt-1">
-                                Student ID: 2021-0984 • Primary Sector Responder
+                                Student ID: Idk • BSIS 3
                             </p>
                         </div>
                         {/* Quick Action Buttons */}
@@ -40,7 +56,7 @@ export default function Dashboard() {
                                 <span className="material-symbols-outlined text-[18px]">
                                     visibility
                                 </span>{" "}
-                                Active Drills
+                                View Events
                             </button>
                         </div>
                     </section>
@@ -57,7 +73,7 @@ export default function Dashboard() {
                                 </h2>
                             </div>
                             <div className="flex items-center gap-md">
-                                <div className="relative w-20 h-20 flex-shrink-0">
+                                <div className="relative w-20 h-20 shrink-0">
                                     <svg
                                         className="w-full h-full transform -rotate-90"
                                         viewBox="0 0 36 36"
@@ -91,7 +107,7 @@ export default function Dashboard() {
                                         Safe Standing
                                     </p>
                                     <p className="font-body-sm text-body-sm text-on-surface-variant">
-                                        Exceeds 75% minimum requirement for active duty.
+                                        Based on attendance on last 5 events
                                     </p>
                                 </div>
                             </div>
@@ -109,23 +125,21 @@ export default function Dashboard() {
                             <div className="space-y-3">
                                 <div className="flex justify-between items-end">
                                     <span className="font-label-md text-label-md font-bold text-on-surface">
-                                        5/8 Modules Completed
+                                        6/7 Modules Completed
                                     </span>
                                     <span className="font-label-md text-label-md text-primary font-bold">
-                                        62%
+                                        67%
                                     </span>
                                 </div>
                                 <div className="w-full bg-progress-ring-track rounded-full h-2.5 overflow-hidden">
                                     <div
                                         className="bg-primary h-2.5 rounded-full"
-                                        style={{ width: "62%" }}
+                                        style={{ width: "67%" }}
                                     />
                                 </div>
-                                <a         href="#"
- e="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:underline pt-1"
-                                >
-                                    Resume Module 6{" "}
-                                    <span className="material-symbols-outlined text-[16px]">
+                                <a href="#" className="inline-flex items-center justify-center gap-1 font-label-md text-label-md text-primary font-bold hover:underline pt-1">
+                                    Resume Module 6
+                                    <span className="material-symbols-outlined text-[12px] leading-none">
                                         arrow_forward
                                     </span>
                                 </a>
@@ -139,20 +153,20 @@ export default function Dashboard() {
                                         <span className="material-symbols-outlined text-compliance-yellow text-[20px]">
                                             event_upcoming
                                         </span>{" "}
-                                        Next Mandatory Event
+                                        Upcoming Event
                                     </h2>
                                     <span className="bg-compliance-yellow/15 text-compliance-yellow border border-compliance-yellow/30 text-label-sm font-label-sm px-2 py-0.5 rounded uppercase font-bold">
                                         Required
                                     </span>
                                 </div>
                                 <h3 className="font-headline-md text-headline-md-mobile font-bold text-on-surface mt-2">
-                                    Earthquake &amp; Fire Drill
+                                    Idk Idk Event
                                 </h3>
                                 <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5 mt-1">
                                     <span className="material-symbols-outlined text-[18px]">
                                         schedule
                                     </span>{" "}
-                                    Oct 24, 2026 • 10:00 AM
+                                    Jan 1, 2027 • 08:00 AM
                                 </p>
                             </div>
                             <button className="w-full mt-4 bg-surface-container-low border border-outline-variant text-on-surface h-10 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
@@ -178,15 +192,15 @@ export default function Dashboard() {
                                 </span>
                             </a>
                         </div>
-                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm divide-y divide-outline-variant/60 overflow-hidden">
+                        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm divide-y divide-outline-variant overflow-hidden">
                             {/* Activity Item 1 */}
                             <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-primary-container/10 text-primary p-2 rounded-full border border-primary/20 flex-shrink-0">
+                                <div className="bg-primary-container/10 text-primary p-2 rounded-full border border-primary/20 shrink-0">
                                     <span className="material-symbols-outlined text-[20px]">
                                         fact_check
                                     </span>
                                 </div>
-                                <div className="flex-grow">
+                                <div className="grow">
                                     <p className="font-body-md text-body-md text-on-surface font-semibold">
                                         Completed Module 5: Emergency Protocols
                                     </p>
@@ -197,12 +211,12 @@ export default function Dashboard() {
                             </div>
                             {/* Activity Item 2 */}
                             <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-compliance-green/10 text-compliance-green p-2 rounded-full border border-compliance-green/20 flex-shrink-0">
+                                <div className="bg-compliance-green/10 text-compliance-green p-2 rounded-full border border-compliance-green/20 shrink-0">
                                     <span className="material-symbols-outlined text-[20px]">
                                         how_to_reg
                                     </span>
                                 </div>
-                                <div className="flex-grow">
+                                <div className="grow">
                                     <p className="font-body-md text-body-md text-on-surface font-semibold">
                                         Checked in to Weekly General Assembly
                                     </p>
@@ -213,12 +227,12 @@ export default function Dashboard() {
                             </div>
                             {/* Activity Item 3 */}
                             <div className="p-md flex items-start gap-md hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-surface-container-high text-on-surface-variant p-2 rounded-full border border-outline-variant flex-shrink-0">
+                                <div className="bg-surface-container-high text-on-surface-variant p-2 rounded-full border border-outline-variant shrink-0">
                                     <span className="material-symbols-outlined text-[20px]">
                                         badge
                                     </span>
                                 </div>
-                                <div className="flex-grow">
+                                <div className="grow">
                                     <p className="font-body-md text-body-md text-on-surface font-semibold">
                                         Digital ID Renewed for 2026-2027 Academic Year
                                     </p>
