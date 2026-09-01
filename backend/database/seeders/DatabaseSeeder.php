@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Event;
 use App\Models\MembershipApplication;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -40,6 +41,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'captain.erwin@gmail.com',
             'password' => 'shinzousasageyo',
             'role' => 'officer'
+        ]);
+
+        Event::create([
+            'title' => 'Foundation Week 2027',
+            'description' => 'just the foundation week idk',
+            'date-time' => '2027-01-01 08:00 AM'
         ]);
     }
 }

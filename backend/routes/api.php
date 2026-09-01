@@ -19,6 +19,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);
     Route::put('/membership-applications/{application}', [MembershipApplicationsController::class, 'update']);
-
+    // Route::delete('/membership-applications/{application}', [MembershipApplicationsController::class, 'destroy']);
+    
     Route::get('/members', [MembersController::class, 'index']);
+    // Route::delete('/members/{member}', [MembersController::class, 'destroy']);
+    
+    Route::get('/events', [EventsController::class, 'index']);
+    Route::post('/events', [EventsController::class, 'store']);
+    // Route::put('/events/{event}', [EventsController::class, 'update']);
+    // Route::delete('/events/{event}', [EventsController::class, 'destroy']);
 });
