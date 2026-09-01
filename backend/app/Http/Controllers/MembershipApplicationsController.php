@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MembershipApplication;
 use App\Models\Member;
+use App\Models\User;
 
 class MembershipApplicationsController extends Controller
 {
@@ -63,6 +64,11 @@ class MembershipApplicationsController extends Controller
             $member = Member::create([
                 'user_id' => $application->user_id,
                 'membership_application_id' => $application->id
+            ]);
+
+            $user = User::find($application->user_id);
+            $user->update([
+                'role' => 'member'
             ]);
         }
 
