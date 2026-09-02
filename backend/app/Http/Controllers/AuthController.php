@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\MembershipApplication;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -59,6 +61,10 @@ class AuthController extends Controller
     }
 
     public function user(Request $request){
-        return response()->json($request->user());
+        $user = $request->user();
+        $user->membership_application = MembershipApplication::where('user_id', $user->id)->first();
+        $user->member = Member::where('user_id', $user->id)->first();
+
+        return response()->json($user);
     }
 }
