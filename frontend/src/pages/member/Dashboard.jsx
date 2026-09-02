@@ -11,7 +11,7 @@ export default function Dashboard() {
         api
         .get("/user")
         .then((res) => {
-            
+            setMemberData(res.data);
         })
         .catch((err) => {
             console.error(err);
@@ -31,17 +31,13 @@ export default function Dashboard() {
                         <div>
                             <div className="flex items-center gap-sm flex-wrap">
                                 <h1 className="font-display-lg text-headline-lg md:text-display-lg text-on-surface font-bold">
-                                    Welcome, Idk Name
+                                    Welcome, {memberData.membership_application?.full_name || memberData.name}
                                 </h1>
-                                <div className="flex items-center gap-1.5 bg-compliance-green/10 text-compliance-green px-3 py-1 rounded-full border border-compliance-green/20">
-                                    <span className="w-2 h-2 rounded-full bg-compliance-green" />
-                                    <span className="font-label-sm text-label-sm font-bold uppercase tracking-wider">
-                                        Active
-                                    </span>
-                                </div>
                             </div>
                             <p className="font-body-md text-body-md text-on-surface-variant mt-1">
-                                Student ID: Idk • BSIS 3
+                                Student ID: {memberData.membership_application?.student_id || "loading.."} • {" "}
+                                            {memberData.membership_application?.course || "..."}
+                                            {memberData.membership_application?.year_level || "..."}
                             </p>
                         </div>
                         {/* Quick Action Buttons */}
