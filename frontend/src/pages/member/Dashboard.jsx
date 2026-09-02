@@ -24,7 +24,6 @@ export default function Dashboard() {
         .then((res) => {
             setEvents(res.data);
             setUpcomingEvent(res.data[0]); // TODO: actually fetch the upcoming event based on date
-            console.log(res.data[0])
         })
         .catch((err) => {
             console.error(err);
@@ -166,13 +165,13 @@ export default function Dashboard() {
                                     </span>
                                 </div>
                                 <h3 className="font-headline-md text-headline-md-mobile font-bold text-on-surface mt-2">
-                                    {upcomingEvent?.title || ""}
+                                    {upcomingEvent?.title || "Loading..."}
                                 </h3>
                                 <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5 mt-1">
                                     <span className="material-symbols-outlined text-[18px]">
                                         schedule
                                     </span>{" "}
-                                    {upcomingEvent?.date_time || "loading.."}
+                                    {upcomingEvent?.date_time || "..."}
                                 </p>
                             </div>
                             <button className="w-full mt-4 bg-surface-container-low border border-outline-variant text-on-surface h-10 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
