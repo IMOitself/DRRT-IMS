@@ -6,12 +6,25 @@ import api from "../../api/axios";
 export default function Dashboard() {
 
     const [memberData, setMemberData] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [upcomingEvent, setUpcomingEvent] = useState([]);
 
     useEffect(() => {
         api
         .get("/user")
         .then((res) => {
             setMemberData(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
+        api
+        .get("/events")
+        .then((res) => {
+            setEvents(res.data);
+            setUpcomingEvent(res.data[0]); // TODO: actually fetch the upcoming event based on date
+            console.log(res.data[0])
         })
         .catch((err) => {
             console.error(err);
@@ -70,10 +83,7 @@ export default function Dashboard() {
                             </div>
                             <div className="flex items-center gap-md">
                                 <div className="relative w-20 h-20 shrink-0">
-                                    <svg
-                                        className="w-full h-full transform -rotate-90"
-                                        viewBox="0 0 36 36"
-                                    >
+                                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                                         <path
                                             className="text-progress-ring-track"
                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -156,13 +166,13 @@ export default function Dashboard() {
                                     </span>
                                 </div>
                                 <h3 className="font-headline-md text-headline-md-mobile font-bold text-on-surface mt-2">
-                                    Idk Idk Event
+                                    {upcomingEvent?.title || ""}
                                 </h3>
                                 <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5 mt-1">
                                     <span className="material-symbols-outlined text-[18px]">
                                         schedule
                                     </span>{" "}
-                                    Jan 1, 2027 • 08:00 AM
+                                    {upcomingEvent?.date_time || "loading.."}
                                 </p>
                             </div>
                             <button className="w-full mt-4 bg-surface-container-low border border-outline-variant text-on-surface h-10 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
@@ -179,9 +189,7 @@ export default function Dashboard() {
                             <h2 className="font-headline-md text-headline-md-mobile font-bold text-on-surface">
                                 Recent Activity
                             </h2>
-                            <a     href="#"
- sName="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-1"
-                            >
+                            <a href="#" className="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-1">
                                 View All{" "}
                                 <span className="material-symbols-outlined text-[16px]">
                                     arrow_forward
