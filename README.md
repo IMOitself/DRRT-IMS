@@ -54,7 +54,7 @@ links that has dash (~~example~~) have already been translated and put into the 
 
 ### member role
 - [announcements](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html)
-- [member_dashboard_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html)
+- [~~member_dashboard_updated~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html)
 - [my_attendance_records](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html)
 - [my_digital_id_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html)
 - [training_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/training_hub.html)
