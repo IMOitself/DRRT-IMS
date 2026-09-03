@@ -1,4 +1,4 @@
-import Header from "../../components/member/Header";
+import Header from "../../components/Header";
 import BottomNav from "../../components/member/BottomNav";
 
 export default function Attendance() {

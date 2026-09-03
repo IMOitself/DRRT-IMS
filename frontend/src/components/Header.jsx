@@ -8,6 +8,7 @@ export default function Header() {
     const navigate = useNavigate();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userData, setUserData] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -16,6 +17,7 @@ export default function Header() {
             .get("/user") // TODO: other backend url only for checking if user is logged in
             .then((res) => {
                 setIsLoggedIn(true);
+                setUserData(res.data);
             })
             .catch((err) => {
                 if (err.response.status !== 401) return; // unauthorized
@@ -28,7 +30,7 @@ export default function Header() {
 
     return (
         <header className="glass-header sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
-            <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">
                         <span className="material-symbols-outlined text-[24px]">shield</span>
@@ -42,36 +44,98 @@ export default function Header() {
                         </h1>
                     </div>
                 </div>
-                {/* Desktop Navigation Links */}
-                <nav className="hidden md:flex items-center gap-8 font-geist text-subtext" aria-label="Main Navigation">
-                    <NavLink to="/" className={({ isActive }) =>
-                        isActive
-                            ? "text-blue font-bold border-b-2 border-blue py-1"
-                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                    }>
-                        Home
-                    </NavLink>
-                    <NavLink to="/events" className={({ isActive }) =>
-                        isActive
-                            ? "text-blue font-bold border-b-2 border-blue py-1"
-                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                    }>
-                        Events
-                    </NavLink>
-                    <NavLink to="/join" className={() => {
-                        const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
-                        return isActive
-                            ? "text-blue font-bold border-b-2 border-blue py-1"
-                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                    }}>
-                        Join
-                    </NavLink>
-                </nav>
+
+                {/* officer role */}
+                {userData.role === "officer" ? (
+                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                        <a href="#" className="hover:text-blue transition-colors py-1">
+                            Dashboard
+                        </a>
+                        <a href="#" className="hover:text-blue transition-colors py-1">
+                            Attendance
+                        </a>
+                        <a href="#" className="text-blue font-bold border-b-2 border-blue py-1">
+                            Roster
+                        </a>
+                        <a href="#" className="hover:text-blue transition-colors py-1">
+                            Vault
+                        </a>
+                        <a href="#" className="hover:text-blue transition-colors py-1">
+                            Training
+                        </a>
+                    </nav>
+                ) : userData.role === "member" ? (
+                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                        <NavLink to="/member/dashboard" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Dashboard
+                        </NavLink>
+                        <NavLink to="/member/attendance" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Attendance
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Training
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Alerts
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            ID Card
+                        </NavLink>
+                    </nav>
+                ) : (
+                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                        {/* public */}
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Home
+                        </NavLink>
+                        <NavLink to="/events" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Events
+                        </NavLink>
+                        <NavLink to="/join" className={() => {
+                            const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
+                            return isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }}>
+                            Join
+                        </NavLink>
+                    </nav>
+                )}
+
+
                 <div className="flex items-center gap-3">
                     <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </Link>
-                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border flex-shrink-0`}>
+                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0`}>
                         <img
                             className="w-full h-full object-cover"
                             alt="Security Officer Avatar"

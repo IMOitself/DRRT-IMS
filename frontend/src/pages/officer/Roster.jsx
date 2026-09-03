@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
-import Header from "../../components/officer/Header";
+import Header from "../../components/Header";
 import BottomNav from "../../components/officer/BottomNav";
 
 export default function Roster() {
