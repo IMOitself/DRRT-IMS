@@ -23,7 +23,7 @@ export default function Roster() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         api
             .get(`/user`)
             .then((res) => {
@@ -136,7 +136,7 @@ export default function Roster() {
                         </div>
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-text text-text font-geist text-xs shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0">
                                 All Members ({membersApplication.length})
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
@@ -173,43 +173,40 @@ export default function Roster() {
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
-                        {membersApplication.map((application) => {
-                            return (
-                                <div
-                                    className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-subtext transition-colors cursor-pointer group"
-                                    onClick={() => openDrawer(application)}
-                                >
-                                    <div className="flex items-center gap-3 overflow-hidden">
-                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
-                                            {application.full_name.split(' ').map((n) => n[0]).join('')}
-                                        </div>
-                                        <div className="min-w-0">
-                                            <p className="font-geist text-text truncate group-hover:text-blue transition-colors">
-                                                {application.full_name}
-                                            </p>
-                                            <p className="text-[11px] text-subtext truncate">
-                                                ID: {application.student_id} • {application.course + " " + application.year_level}
-                                            </p>
-                                        </div>
+                        {membersApplication.map((application) =>
+                            <div
+                                className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-subtext transition-colors cursor-pointer group"
+                                onClick={() => openDrawer(application)}>
+                                <div className="flex items-center gap-3 overflow-hidden">
+                                    <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
+                                        {application.full_name.split(' ').map((n) => n[0]).join('')}
                                     </div>
-                                    <div className="flex items-center gap-2 shrink-0">
-                                        {application.status === 'pending' ? (
-                                            <span className={"bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit"}>
-                                                <span className={"bg-yellow animate-pulse w-2 h-2 rounded-full"} />
-                                                {application.status.toUpperCase()}
-                                            </span>
-                                        ) : application.status === 'inactive' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
-                                                Inactive
-                                            </span>
-                                        ) : ('')}
-                                        <span className="material-symbols-outlined text-subtext text-[18px]">
-                                            chevron_right
-                                        </span>
+                                    <div className="min-w-0">
+                                        <p className="font-geist text-text truncate group-hover:text-blue transition-colors">
+                                            {application.full_name}
+                                        </p>
+                                        <p className="text-[11px] text-subtext truncate">
+                                            ID: {application.student_id} • {application.course + " " + application.year_level}
+                                        </p>
                                     </div>
                                 </div>
-                            )
-                        })}
+                                <div className="flex items-center gap-2 shrink-0">
+                                    {application.status === 'pending' ? (
+                                        <span className={"bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit"}>
+                                            <span className={"bg-yellow animate-pulse w-2 h-2 rounded-full"} />
+                                            {application.status.toUpperCase()}
+                                        </span>
+                                    ) : application.status === 'inactive' ? (
+                                        <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
+                                            Inactive
+                                        </span>
+                                    ) : ('')}
+                                    <span className="material-symbols-outlined text-subtext text-[18px]">
+                                        chevron_right
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                     </section>
                 </div>
             </main>
@@ -243,11 +240,11 @@ export default function Roster() {
                                     ID: {selectedMember.student_id}
                                 </p>
 
-                                { selectedMember.status === 'active'
+                                {selectedMember.status === 'active'
                                     ? <span className={'bg-green-bg text-green border border-green-border'}>{selectedMember.status}</span>
                                     : selectedMember.status === 'pending'
-                                    ? <span className={'bg-yellow-bg text-yellow border border-yellow-border'}>{selectedMember.status}</span>
-                                    : "" 
+                                        ? <span className={'bg-yellow-bg text-yellow border border-yellow-border'}>{selectedMember.status}</span>
+                                        : ""
                                 }
                             </div>
                             <div className="space-y-4">
@@ -382,7 +379,7 @@ export default function Roster() {
                     onClick={closeDrawer}
                 />
             )}
-            
+
             <BottomNav />
         </>
     )
