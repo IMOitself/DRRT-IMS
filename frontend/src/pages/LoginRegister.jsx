@@ -79,16 +79,16 @@ export default function Login() {
 
     return (
         <div className='flex justify-center items-center h-screen flex-col gap-4'>
-            <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
+            <button onClick={(e) => { testRegisterAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
                 test register as Student
             </button>
-            <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
+            <button onClick={(e) => { testLoginAsMember(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
                 test login as Student
             </button>
-            <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
+            <button onClick={(e) => { testLoginAsOfficer(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
                 test login as Officer
             </button>
-            <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-on-surface-variant'>
+            <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
                 test logout
             </button>
             <textarea value={displayResponse} className="w-full" readOnly />

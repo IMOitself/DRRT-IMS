@@ -27,51 +27,51 @@ export default function Header() {
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
 
     return (
-        <header className="glass-header sticky top-0 w-full z-50 border-b border-outline-variant/60 shadow-sm">
+        <header className="glass-header sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
             <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
                 <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <div className="w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">
                         <span className="material-symbols-outlined text-[24px]">shield</span>
                     </div>
                     <div>
-                        <h1 className="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+                        <h1 className="font-headline-md text-headline-md font-bold text-blue flex items-center gap-2">
                             DRRT Portal
-                            <span className="font-label-sm text-label-sm text-primary font-semibold bg-primary-fixed px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            <span className="font-label-sm text-label-sm text-blue font-semibold bg-blue-bg px-2 py-0.5 rounded-full uppercase tracking-wider">
                                 LVCC
                             </span>
                         </h1>
                     </div>
                 </div>
                 {/* Desktop Navigation Links */}
-                <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant" aria-label="Main Navigation">
+                <nav className="hidden md:flex items-center gap-8 font-label-md text-subtext" aria-label="Main Navigation">
                     <NavLink to="/" className={({ isActive }) =>
                         isActive
-                            ? "text-primary font-bold border-b-2 border-primary py-1"
-                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                            ? "text-blue font-bold border-b-2 border-blue py-1"
+                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                     }>
                         Home
                     </NavLink>
                     <NavLink to="/events" className={({ isActive }) =>
                         isActive
-                            ? "text-primary font-bold border-b-2 border-primary py-1"
-                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                            ? "text-blue font-bold border-b-2 border-blue py-1"
+                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                     }>
                         Events
                     </NavLink>
                     <NavLink to="/join" className={() => {
                         const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
                         return isActive
-                            ? "text-primary font-bold border-b-2 border-primary py-1"
-                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                            ? "text-blue font-bold border-b-2 border-blue py-1"
+                            : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                     }}>
                         Join
                     </NavLink>
                 </nav>
                 <div className="flex items-center gap-3">
-                    <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
+                    <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-label-md text-label-md bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </Link>
-                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0`}>
+                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border flex-shrink-0`}>
                         <img
                             className="w-full h-full object-cover"
                             alt="Security Officer Avatar"

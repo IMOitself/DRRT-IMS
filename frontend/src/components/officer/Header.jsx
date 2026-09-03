@@ -7,43 +7,43 @@ export default function Header() {
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
 
     return (
-        <header className="w-full border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim sticky top-0 z-50">
+        <header className="w-full border-b border-blue-border dark:border-subtext bg-surface dark:bg-surface-dim sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
                 <div className="flex items-center gap-sm">
                     <button className="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
-                        <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim">
+                        <span className="material-symbols-outlined text-blue dark:text-blue">
                             shield
                         </span>
                     </button>
-                    <span className="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">
+                    <span className="font-headline-md text-headline-md-mobile font-bold text-blue dark:text-blue-bg">
                         DRRT Officer Portal
                     </span>
                 </div>
                 {/* Desktop Navigation Links */}
-                <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                <nav className="hidden md:flex items-center gap-8 font-label-md text-subtext">
+                    <a href="#" className="hover:text-blue transition-colors py-1">
                         Dashboard
                     </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    <a href="#" className="hover:text-blue transition-colors py-1">
                         Attendance
                     </a>
-                    <a href="#" className="text-primary font-bold border-b-2 border-primary py-1">
+                    <a href="#" className="text-blue font-bold border-b-2 border-blue py-1">
                         Roster
                     </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    <a href="#" className="hover:text-blue transition-colors py-1">
                         Vault
                     </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    <a href="#" className="hover:text-blue transition-colors py-1">
                         Training
                     </a>
                 </nav>
                 <div className="flex items-center gap-2">
                     <button className="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
-                        <span className="material-symbols-outlined text-on-surface-variant">
+                        <span className="material-symbols-outlined text-subtext">
                             notifications
                         </span>
                     </button>
-                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className="cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0">
+                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className="cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border flex-shrink-0">
                         <img
                             className="w-full h-full object-cover"
                             alt="Security Officer Avatar"

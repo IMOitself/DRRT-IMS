@@ -84,40 +84,40 @@ export default function Roster() {
             <main className="flex-grow pb-32">
                 <div className="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-md">
                     {/* Active Roster Context Header */}
-                    <section className="bg-surface-container-lowest border border-outline-variant p-md rounded-xl shadow-sm space-y-sm">
+                    <section className="bg-white border border-blue-border p-md rounded-xl shadow-sm space-y-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
-                                <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">
+                                <p className="font-label-sm text-label-sm text-blue uppercase tracking-wider font-bold">
                                     Disaster Response Team Directory
                                 </p>
-                                <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-xs">
+                                <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-text mt-xs">
                                     Active Responder Roster
                                 </h2>
-                                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                                <p className="font-body-sm text-body-sm text-subtext mt-1">
                                     Manage personnel records, squad assignments, and status.
                                 </p>
                             </div>
-                            <button className="bg-primary text-on-primary hover:bg-primary-container transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2 shadow-sm self-start sm:self-auto">
+                            <button className="bg-blue text-white hover:bg-blue transition-colors py-2 px-4 rounded-lg font-label-md text-sm flex items-center justify-center gap-2 shadow-sm self-start sm:self-auto">
                                 <span className="material-symbols-outlined text-[18px]">add</span>{" "}
                                 Add Member
                             </button>
                         </div>
                     </section>
                     {/* Live Roster Summary */}
-                    <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
-                        <div className="font-label-md text-on-surface">
+                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
+                        <div className="font-label-md text-text">
                             Total Personnel:{" "}
-                            <span className="text-primary font-bold">{membersApplication.length} Registered</span>
+                            <span className="text-blue font-bold">{membersApplication.length} Registered</span>
                         </div>
                         <div className="flex gap-4 font-body-sm">
-                            <div className="flex items-center gap-1.5 text-[#166534] font-medium">
-                                <span className="w-2 h-2 rounded-full bg-[#166534]" /> Active: 0
+                            <div className="flex items-center gap-1.5 text-green font-medium">
+                                <span className="w-2 h-2 rounded-full bg-green" /> Active: 0
                             </div>
-                            <div className="flex items-center gap-1.5 text-[#854d0e] font-medium">
-                                <span className="w-2 h-2 rounded-full bg-[#ca8a04]" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
+                            <div className="flex items-center gap-1.5 text-yellow font-medium">
+                                <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
                             </div>
-                            <div className="flex items-center gap-1.5 text-error font-medium">
-                                <span className="w-2 h-2 rounded-full bg-error" /> Inactive: 0
+                            <div className="flex items-center gap-1.5 text-red font-medium">
+                                <span className="w-2 h-2 rounded-full bg-red" /> Inactive: 0
                             </div>
                         </div>
                     </div>
@@ -125,46 +125,46 @@ export default function Roster() {
                     <div className="space-y-3">
                         {/* Search Bar */}
                         <div className="relative w-full">
-                            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">
+                            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-subtext">
                                 search
                             </span>
                             <input
-                                className="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-colors"
+                                className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue font-body-md text-body-md transition-colors"
                                 placeholder="Search by name, ID, course, or squad..."
                                 type="text"
                             />
                         </div>
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-on-surface text-surface font-label-sm text-label-sm flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-text text-text font-label-sm text-label-sm flex-shrink-0">
                                 All Members ({membersApplication.length})
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 Active Only (0)
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 1st Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 2nd Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 3rd Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-label-sm text-label-sm hover:bg-surface-dim transition-colors flex-shrink-0">
                                 4th Year
                             </button>
                         </div>
                         {/* Duty Squad Dropdown Filter */}
                         <div className="relative w-fit">
-                            <select className="w-full appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface text-sm rounded-lg block p-2.5 focus:ring-primary focus:border-primary pr-8 font-body-sm shadow-sm">
+                            <select className="w-full appearance-none bg-white border border-blue-border text-text text-sm rounded-lg block p-2.5 focus:ring-blue focus:border-blue pr-8 font-body-sm shadow-sm">
                                 <option selected="">All Squads / Duty Teams</option>
                                 <option value="medical">Medical Squad</option>
                                 <option value="sar">Search &amp; Rescue</option>
                                 <option value="logistics">Logistics</option>
                                 <option value="comm">Comm Duty</option>
                             </select>
-                            <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+                            <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-subtext">
                                 <span className="material-symbols-outlined text-[20px]">
                                     arrow_drop_down
                                 </span>
@@ -176,41 +176,41 @@ export default function Roster() {
                         {membersApplication.map((application) => {
                             return (
                                 <div
-                                    className="member-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-outline transition-colors cursor-pointer group"
+                                    className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-subtext transition-colors cursor-pointer group"
                                     onClick={() => openDrawer(application)}
                                 >
                                     <div className="flex items-center gap-3 overflow-hidden">
-                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary flex-shrink-0">
+                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue flex-shrink-0">
                                             {application.full_name.split(' ').map((n) => n[0]).join('')}
                                         </div>
                                         <div className="min-w-0">
-                                            <p className="font-label-md text-on-surface truncate group-hover:text-primary transition-colors">
+                                            <p className="font-label-md text-text truncate group-hover:text-blue transition-colors">
                                                 {application.full_name}
                                             </p>
-                                            <p className="text-[11px] text-on-surface-variant truncate">
+                                            <p className="text-[11px] text-subtext truncate">
                                                 ID: {application.student_id} • {application.course + " " + application.year_level}
                                             </p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 flex-shrink-0">
                                         {application.status === 'pending' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20">
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-yellow-bg text-yellow border border-yellow-border">
                                                 {application.status}
                                             </span>
                                         ) : application.status === 'rejected' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
                                                 {application.status}
                                             </span>
                                         ) : application.status === 'active' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-[#dcfce7] text-[#166534] border border-[#166534]/20">
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-green-bg text-green border border-green-border">
                                                 Active
                                             </span>
                                         ) : application.status === 'inactive' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-on-surface-variant border border-outline-variant">
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
                                                 Inactive
                                             </span>
                                         ) : ('')}
-                                        <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+                                        <span className="material-symbols-outlined text-subtext text-[18px]">
                                             chevron_right
                                         </span>
                                     </div>
@@ -221,15 +221,15 @@ export default function Roster() {
                 </div>
             </main>
             {/* Member Profile Drawer */}
-            <aside className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-surface-container-lowest shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-outline-variant flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
-                <div className="flex items-center justify-between p-4 border-b border-outline-variant bg-surface-container-low">
-                    <h3 className="font-headline-md text-body-lg font-bold text-on-surface m-0">
+                <div className="flex items-center justify-between p-4 border-b border-blue-border bg-surface-container-low">
+                    <h3 className="font-headline-md text-body-lg font-bold text-text m-0">
                         Member Profile
                     </h3>
                     <button
                         aria-label="Close"
-                        className="hover:bg-surface-container-high rounded-full p-2 transition-colors text-on-surface-variant"
+                        className="hover:bg-surface-container-high rounded-full p-2 transition-colors text-subtext"
                         onClick={closeDrawer}
                     >
                         <span className="material-symbols-outlined">close</span>
@@ -240,115 +240,115 @@ export default function Roster() {
                     {selectedMember && (
                         <>
                             <div className="flex flex-col items-center text-center">
-                                <div className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-primary border-2 border-outline-variant mb-3">
+                                <div className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-blue border-2 border-blue-border mb-3">
                                     {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
                                 </div>
-                                <h3 className="font-headline-md text-xl font-bold text-on-surface m-0">
+                                <h3 className="font-headline-md text-xl font-bold text-text m-0">
                                     {selectedMember.full_name}
                                 </h3>
-                                <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                                <p className="font-body-sm text-body-sm text-subtext mt-0.5">
                                     ID: {selectedMember.student_id}
                                 </p>
 
                                 { selectedMember.status === 'active'
-                                    ? <span className={'bg-[#dcfce7] text-[#166534] border border-[#166534]/20'}>{selectedMember.status}</span>
+                                    ? <span className={'bg-green-bg text-green border border-green-border'}>{selectedMember.status}</span>
                                     : selectedMember.status === 'pending'
-                                    ? <span className={'bg-[#fef08a] text-[#854d0e] border border-[#ca8a04]/20'}>{selectedMember.status}</span>
+                                    ? <span className={'bg-yellow-bg text-yellow border border-yellow-border'}>{selectedMember.status}</span>
                                     : "" 
                                 }
                             </div>
                             <div className="space-y-4">
-                                <div className="border-t border-outline-variant pt-4">
-                                    <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                <div className="border-t border-blue-border pt-4">
+                                    <p className="font-label-sm text-label-sm text-blue uppercase tracking-wider font-bold mb-3">
                                         Academic &amp; Contact
                                     </p>
                                     <div className="grid grid-cols-2 gap-3 text-sm">
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Program / Year
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.course + " " + selectedMember.year_level}
                                             </p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Phone
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.phone_number}
                                             </p>
                                         </div>
                                         <div className="col-span-2">
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Email Address
                                             </p>
-                                            <p className="font-body-sm text-primary font-semibold">
+                                            <p className="font-body-sm text-blue font-semibold">
                                                 {selectedMember.email}
                                             </p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Emergency Contact
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.emergency_person_name}
                                             </p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Emergency Contact Phone
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.emergency_phone}
                                             </p>
                                         </div>
                                         <div className="col-span-2">
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Blood Type
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.blood_type}
                                             </p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Consent Form
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.consent_form}
                                             </p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-on-surface-variant font-medium">
+                                            <p className="text-xs text-subtext font-medium">
                                                 Class Schedule
                                             </p>
-                                            <p className="font-body-sm text-on-surface font-semibold">
+                                            <p className="font-body-sm text-text font-semibold">
                                                 {selectedMember.class_schedule}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 {selectedMember.status === "pending" ? ("") : (
-                                    <div className="border-t border-outline-variant pt-4">
-                                        <p className="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold mb-3">
+                                    <div className="border-t border-blue-border pt-4">
+                                        <p className="font-label-sm text-label-sm text-blue uppercase tracking-wider font-bold mb-3">
                                             Duty Performance
                                         </p>
 
                                         <div className="grid grid-cols-2 gap-3">
-                                            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                                <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
+                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                                                <p className="font-headline-lg text-headline-lg text-blue font-bold m-0">
                                                     N/A
                                                 </p>
-                                                <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                                <p className="font-label-sm text-xs text-subtext mt-1">
                                                     Attendance Rate
                                                 </p>
                                             </div>
-                                            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3 text-center">
-                                                <p className="font-headline-lg text-headline-lg text-primary font-bold m-0">
+                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                                                <p className="font-headline-lg text-headline-lg text-blue font-bold m-0">
                                                     N/A
                                                 </p>
-                                                <p className="font-label-sm text-xs text-on-surface-variant mt-1">
+                                                <p className="font-label-sm text-xs text-subtext mt-1">
                                                     Incidents Handled
                                                 </p>
                                             </div>
@@ -361,22 +361,22 @@ export default function Roster() {
                 </div>
                 {/* Drawer Actions */}
                 {selectedMember && selectedMember.status === "pending" ? (
-                    <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
-                        <button onClick={handleReject} className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
+                    <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
+                        <button onClick={handleReject} className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">close</span>
                             Reject
                         </button>
-                        <button onClick={handleApprove} className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-green-700 transition-colors shadow-sm flex items-center justify-center gap-2">
+                        <button onClick={handleApprove} className="flex-1 bg-green text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">check</span>
                             Approve
                         </button>
                     </div>
                 ) : (
-                    <div className="p-4 border-t border-outline-variant bg-surface flex gap-3">
-                        <button className="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
+                    <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
+                        <button className="flex-1 bg-white border border-blue-border text-text px-4 py-2 rounded-lg font-label-md text-sm hover:bg-surface-container-low transition-colors">
                             Edit
                         </button>
-                        <button className="flex-1 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-sm hover:bg-primary-container transition-colors shadow-sm">
+                        <button className="flex-1 bg-blue text-white px-4 py-2 rounded-lg font-label-md text-sm hover:bg-blue transition-colors shadow-sm">
                             Message
                         </button>
                     </div>
@@ -385,7 +385,7 @@ export default function Roster() {
             {/* Drawer Overlay */}
             {drawerOpen && (
                 <div
-                    className="fixed inset-0 bg-on-surface/20 z-[65] transition-opacity"
+                    className="fixed inset-0 bg-text/20 z-[65] transition-opacity"
                     onClick={closeDrawer}
                 />
             )}
