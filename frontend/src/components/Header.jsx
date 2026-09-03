@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AccountDropdown from "./AccountDropdown";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../api/axios";
 
 export default function Header() {
@@ -27,6 +27,18 @@ export default function Header() {
     }, []);
 
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) 
+                setAccountDropdownOpen(false);
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [accountDropdownOpen]);
 
     return (
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
@@ -135,16 +147,18 @@ export default function Header() {
                     <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </Link>
-                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0`}>
-                        <img
-                            className="w-full h-full object-cover"
-                            alt="Security Officer Avatar"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"
-                        />
-                    </button>
+                    <div ref={dropdownRef} className="relative">
+                        <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`${isLoggedIn ? "" : "hidden"} cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0`}>
+                            <img
+                                className="w-full h-full object-cover"
+                                alt="Security Officer Avatar"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoIok9cQ3NXBCVrAd2Wwn8DNTgQY92hX9UjJf-Srf_LSbQl6NryNTLqIt5UMLRw7zn_mnlkvz_cwvLk47nUaxjifBfkhPI9t2eq-aiFkrdQxnJQS-ss-yTgCqHWQkes6kdju4v_hSo6_bxqCxAtXDjNn7ZuGAIz85-mZg1dCCS0itCt0idcpbHZEb5blpMEGqWxmZSinf2A2TJNOK28e5mWM_Ps_w5--MQhdWPjIkTVyLNqK9m39WwRQ"
+                            />
+                        </button>
+                        <AccountDropdown navigate={navigate} isOpen={accountDropdownOpen} />
+                    </div>
                 </div>
             </div>
-            <AccountDropdown navigate={navigate} isOpen={accountDropdownOpen} />
         </header>
     )
 }
