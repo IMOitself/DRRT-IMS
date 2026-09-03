@@ -97,30 +97,6 @@ export default function Attendance() {
                                     Attended
                                 </span>
                             </div>
-                            {/* Excused */}
-                            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center text-center shadow-sm hover:border-compliance-yellow transition-all">
-                                <span className="material-symbols-outlined text-compliance-yellow mb-1 text-3xl">
-                                    info
-                                </span>
-                                <span className="font-display-lg text-display-lg font-bold text-on-surface leading-none">
-                                    1
-                                </span>
-                                <span className="font-label-sm text-label-sm text-on-surface-variant mt-1.5 font-semibold uppercase tracking-wider">
-                                    Excused
-                                </span>
-                            </div>
-                            {/* Unexcused */}
-                            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center text-center shadow-sm hover:border-compliance-red transition-all">
-                                <span className="material-symbols-outlined text-compliance-red mb-1 text-3xl">
-                                    warning
-                                </span>
-                                <span className="font-display-lg text-display-lg font-bold text-on-surface leading-none">
-                                    1
-                                </span>
-                                <span className="font-label-sm text-label-sm text-on-surface-variant mt-1.5 font-semibold uppercase tracking-wider">
-                                    Unexcused
-                                </span>
-                            </div>
                         </div>
                     </div>
                     {/* Right Column / Bottom Stack: Attendance History List */}
@@ -137,32 +113,6 @@ export default function Attendance() {
                             </button>
                         </div>
                         <div className="space-y-md">
-                            {/* History Card 1: Present */}
-                            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary flex-shrink-0">
-                                        <span className="material-symbols-outlined text-[24px]">
-                                            event
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-headline-md text-headline-md text-on-surface font-semibold text-lg">
-                                            General Assembly
-                                        </h4>
-                                        <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]">
-                                                calendar_today
-                                            </span>{" "}
-                                            Oct 15, 2026 • 09:00 AM
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
-                                    <span className="bg-compliance-green/10 text-compliance-green border border-compliance-green/30 px-3 py-1 rounded-full font-label-sm text-label-sm font-bold uppercase tracking-wider">
-                                        Present
-                                    </span>
-                                </div>
-                            </div>
                             {/* History Card 2: Absent */}
                             <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                 <div className="flex items-center gap-4">
@@ -184,39 +134,10 @@ export default function Attendance() {
                                     </div>
                                 </div>
                                 <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                                    <span className="bg-compliance-red/10 text-compliance-red border border-compliance-red/30 px-3 py-1 rounded-full font-label-sm text-label-sm font-bold uppercase tracking-wider">
-                                        Absent
+                                    <span className="bg-compliance-green/10 text-compliance-green border border-compliance-green/30 px-3 py-1 rounded-full font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                                        Present
                                     </span>
-                                    <button className="font-label-sm text-label-sm text-primary font-bold hover:underline">
-                                        Request Correction
-                                    </button>
-                                </div>
-                            </div>
-                            {/* History Card 3: Late */}
-                            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-compliance-yellow/10 border border-compliance-yellow/20 flex items-center justify-center text-compliance-yellow flex-shrink-0">
-                                        <span className="material-symbols-outlined text-[24px]">
-                                            medical_services
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-headline-md text-headline-md text-on-surface font-semibold text-lg">
-                                            First Aid Refresher
-                                        </h4>
-                                        <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]">
-                                                calendar_today
-                                            </span>{" "}
-                                            Aug 12, 2026 • 10:30 AM
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                                    <span className="bg-compliance-yellow/10 text-compliance-yellow border border-compliance-yellow/30 px-3 py-1 rounded-full font-label-sm text-label-sm font-bold uppercase tracking-wider">
-                                        Late
-                                    </span>
-                                    <button className="font-label-sm text-label-sm text-primary font-bold hover:underline">
+                                    <button className="font-label-sm text-label-sm text-primary font-bold hover:underline cursor-pointer">
                                         Request Correction
                                     </button>
                                 </div>
