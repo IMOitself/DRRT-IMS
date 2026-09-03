@@ -30,7 +30,7 @@ export default function JoinDRRTFormStatus() {
             <title>Application Submitted - DRRT Student Portal</title>
             <Header />
 
-            <div className="flex-grow w-full flex items-center justify-center">
+            <div className="grow w-full flex items-center justify-center">
                 {/* Main Confirmation Container */}
                 <main className="max-w-2xl mx-auto w-full px-4 md:px-8 py-10 pb-28 md:pb-12 space-y-6">
                     <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden text-center space-y-6">
@@ -61,7 +61,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Application Reference:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {id}
                                 </span>
                             </div>
@@ -132,7 +132,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Student ID:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.student_id}
                                 </span>
                             </div>
@@ -140,15 +140,14 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Full Name:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.full_name}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
                                 <span className="text-subtext">
-                                    Course:
-                                </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                                                    </span>
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.course}
                                 </span>
                             </div>
@@ -156,7 +155,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Year Level:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.year_level}
                                 </span>
                             </div>
@@ -164,7 +163,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Email:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.email}
                                 </span>
                             </div>
@@ -172,7 +171,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Phone Number:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.phone_number}
                                 </span>
                             </div>
@@ -180,7 +179,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Emergency Person:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.emergency_person_name}
                                 </span>
                             </div>
@@ -188,7 +187,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Emergency Phone:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.emergency_phone}
                                 </span>
                             </div>
@@ -196,7 +195,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Blood Type:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.blood_type}
                                 </span>
                             </div>
@@ -204,7 +203,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Consent Form:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     <a href={application.data?.consent_form} target="_blank" rel="noopener noreferrer">
                                         View Consent Form
                                     </a>
@@ -214,7 +213,7 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Class Schedule:
                                 </span>
-                                <span className="font-geist font-bold text-blue font-mono text-base">
+                                <span className="font-bold text-blue font-mono text-base">
                                     <a href={application.data?.class_schedule} target="_blank" rel="noopener noreferrer">
                                         View Class Schedule
                                     </a>
