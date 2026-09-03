@@ -44,13 +44,13 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {/* Main Headline */}
                         <div className="space-y-2">
-                            <span className="font-label-sm text-label-sm font-bold text-green bg-green-bg px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                            <span className="font-geist text-xs font-bold text-green bg-green-bg px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                                 Application Received
                             </span>
-                            <h1 className="font-display-lg text-2xl md:text-3xl font-bold text-text">
+                            <h1 className="font-geist text-2xl md:text-3xl font-bold text-text">
                                 Your Application Has Been Submitted!
                             </h1>
-                            <p className="font-body-md text-body-md text-subtext mx-auto leading-relaxed">
+                            <p className="text-base text-subtext mx-auto leading-relaxed">
                                 Thank you for applying to join the Disaster Response and Readiness
                                 Team (DRRT) LVCC Apalit Chapter.
                             </p>
@@ -58,18 +58,18 @@ export default function JoinDRRTFormStatus() {
                         {/* Reference Details Card */}
                         <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 text-left space-y-3">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Application Reference:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {id}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Current Status:
                                 </span>
-                                <span className="inline-flex items-center gap-1.5 font-label-sm font-semibold text-yellow bg-yellow-bg px-2.5 py-0.5 rounded-full w-fit">
+                                <span className="inline-flex items-center gap-1.5 font-geist font-semibold text-yellow bg-yellow-bg px-2.5 py-0.5 rounded-full w-fit">
                                     <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
                                     {application.data?.status.toUpperCase()}
                                 </span>
@@ -77,15 +77,15 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {/* Review Timeline Instructions */}
                         <div className="text-left space-y-4 pt-2">
-                            <h2 className="font-headline-md text-md font-bold text-text flex items-center gap-2">
+                            <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
                                 <span className="material-symbols-outlined text-blue text-[20px]">
                                     info
                                 </span>
                                 What Happens Next?
                             </h2>
-                            <ol className="space-y-3 font-body-sm text-subtext">
+                            <ol className="space-y-3 text-subtext">
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-label-sm flex items-center justify-center shrink-0 mt-0.5">
+                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
                                         1
                                     </div>
                                     <div>
@@ -97,7 +97,7 @@ export default function JoinDRRTFormStatus() {
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-label-sm flex items-center justify-center shrink-0 mt-0.5">
+                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
                                         2
                                     </div>
                                     <div>
@@ -108,7 +108,7 @@ export default function JoinDRRTFormStatus() {
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-label-sm flex items-center justify-center shrink-0 mt-0.5">
+                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
                                         3
                                     </div>
                                     <div>
@@ -121,7 +121,7 @@ export default function JoinDRRTFormStatus() {
                                 </li>
                             </ol>
                         </div>
-                        <h2 className="font-headline-md text-md font-bold text-text flex items-center gap-2">
+                        <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
                             <span className="material-symbols-outlined text-blue text-[20px]">
                                 info
                             </span>
@@ -129,92 +129,92 @@ export default function JoinDRRTFormStatus() {
                         </h2>
                         <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 text-left space-y-3">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Student ID:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.student_id}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Full Name:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.full_name}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Course:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.course}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Year Level:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.year_level}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Email:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.email}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Phone Number:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.phone_number}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Emergency Person:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.emergency_person_name}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Emergency Phone:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.emergency_phone}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Blood Type:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     {application.data?.blood_type}
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Consent Form:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     <a href={application.data?.consent_form} target="_blank" rel="noopener noreferrer">
                                         View Consent Form
                                     </a>
                                 </span>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                <span className="font-body-sm text-subtext">
+                                <span className="text-subtext">
                                     Class Schedule:
                                 </span>
-                                <span className="font-label-md font-bold text-blue font-mono text-base">
+                                <span className="font-geist font-bold text-blue font-mono text-base">
                                     <a href={application.data?.class_schedule} target="_blank" rel="noopener noreferrer">
                                         View Class Schedule
                                     </a>
@@ -223,7 +223,7 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {/* Action Buttons */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <Link to="/" className="w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-label-md font-bold hover:bg-surface-container-low transition-all text-center">
+                            <Link to="/" className="w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all text-center">
                                 Back to Home
                             </Link>
                         </div>

@@ -98,7 +98,7 @@ export default function JoinDRRTForm() {
                 {/* Main Form Container */}
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Navigation Back Link */}
-                    <Link to="/join" className="inline-flex items-center gap-2 text-blue font-label-md font-semibold hover:underline">
+                    <Link to="/join" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
                         <span className="material-symbols-outlined text-[18px]">
                             arrow_back
                         </span>
@@ -111,18 +111,18 @@ export default function JoinDRRTForm() {
                     <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-blue/5 rounded-bl-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="font-label-sm text-label-sm font-bold text-blue uppercase tracking-wider">
+                            <span className="font-geist text-xs font-bold text-blue uppercase tracking-wider">
                                 Step 1 of 4
                             </span>
                             <span className="text-blue-border">•</span>
-                            <span className="font-label-sm text-label-sm font-semibold text-subtext">
+                            <span className="font-geist text-xs font-semibold text-subtext">
                                 Online Application
                             </span>
                         </div>
-                        <h1 className="font-display-lg text-2xl md:text-3xl font-bold text-text">
+                        <h1 className="font-geist text-2xl md:text-3xl font-bold text-text">
                             DRRT Member Registration
                         </h1>
-                        <p className="font-body-md text-body-md text-subtext mt-2 leading-relaxed">
+                        <p className="text-base text-subtext mt-2 leading-relaxed">
                             Please complete all required fields below. Your application will be
                             submitted for review by the DRRT Officers and the Adviser.
                         </p>
@@ -137,14 +137,14 @@ export default function JoinDRRTForm() {
                                         person
                                     </span>
                                 </div>
-                                <legend className="font-headline-md text-lg font-bold text-text">
+                                <legend className="font-geist text-lg font-bold text-text">
                                     Personal Information
                                 </legend>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Student ID */}
                                 <div>
-                                    <label htmlFor="student-id" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="student-id" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Student ID Number <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -157,12 +157,12 @@ export default function JoinDRRTForm() {
                                         pattern="^\d{2}-?\d{5}[a-zA-Z]{3}$"
                                         title="Same format in your school ID, for example: 24-00123ABC or 2400123ABC"
                                         placeholder="e.g. 24-00123ABC"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Full Name */}
                                 <div>
-                                    <label htmlFor="full-name" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="full-name" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Full Name <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -175,12 +175,12 @@ export default function JoinDRRTForm() {
                                         pattern="[a-zA-Z\s]+,\s*[a-zA-Z\s]+(\s+[a-zA-Z]\.?)?"
                                         title="Full name, for example: Ackerman, Levi A. (include the comma)"
                                         placeholder="Surname, Firstname M."
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Academic Program */}
                                 <div>
-                                    <label htmlFor="program" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="program" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Academic Program / Course <span className="text-red">*</span>
                                     </label>
                                     <select
@@ -189,7 +189,7 @@ export default function JoinDRRTForm() {
                                         id="program"
                                         name="course"
                                         required
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Course
@@ -203,7 +203,7 @@ export default function JoinDRRTForm() {
                                 </div>
                                 {/* Year Level */}
                                 <div>
-                                    <label htmlFor="year-level" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="year-level" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Year Level <span className="text-red">*</span>
                                     </label>
                                     <select
@@ -212,7 +212,7 @@ export default function JoinDRRTForm() {
                                         id="year-level"
                                         name="year_level"
                                         required
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Year Level
@@ -233,14 +233,14 @@ export default function JoinDRRTForm() {
                                         call
                                     </span>
                                 </div>
-                                <legend className="font-headline-md text-lg font-bold text-text">
+                                <legend className="font-geist text-lg font-bold text-text">
                                     Contact &amp; Emergency Profile
                                 </legend>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Institutional Email */}
                                 <div>
-                                    <label htmlFor="email" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="email" className="block font-geist text-sm font-semibold text-text mb-1">
                                         LV Email <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -254,12 +254,12 @@ export default function JoinDRRTForm() {
                                         title="Your La Verdad email for example: levi.ackerman@student.laverdad.edu.ph"
                                         placeholder="example@student.laverdad.edu.ph"
 
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Mobile Number */}
                                 <div>
-                                    <label htmlFor="mobile" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="mobile" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Mobile Number <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -272,12 +272,12 @@ export default function JoinDRRTForm() {
                                         pattern="[0-9]{11}"
                                         title="Your personal number for example: 09123456789 (11 digits)"
                                         placeholder="09123456789"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Emergency Contact Name */}
                                 <div>
-                                    <label htmlFor="emergency-name" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="emergency-name" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Emergency Contact Person <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -288,12 +288,12 @@ export default function JoinDRRTForm() {
                                         name="emergency_person_name"
                                         required
                                         placeholder="Parent or Guardian Name"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Emergency Contact Phone */}
                                 <div>
-                                    <label htmlFor="emergency-phone" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="emergency-phone" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Emergency Contact Phone <span className="text-red">*</span>
                                     </label>
                                     <input
@@ -306,12 +306,12 @@ export default function JoinDRRTForm() {
                                         pattern="[0-9]{11}"
                                         title="Emergency contact person's number for example: 09123456789 (11 digits)"
                                         placeholder="09123456789"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Blood Type */}
                                 <div className="md:col-span-2">
-                                    <label htmlFor="blood-type" className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label htmlFor="blood-type" className="block font-geist text-sm font-semibold text-text mb-1">
                                         Blood Type <span className="text-red">*</span>
                                     </label>
                                     <select
@@ -320,7 +320,7 @@ export default function JoinDRRTForm() {
                                         id="blood-type"
                                         name="blood_type"
                                         required
-                                        className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all font-body-sm"
+                                        className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Blood Type
@@ -347,7 +347,7 @@ export default function JoinDRRTForm() {
                                         folder
                                     </span>
                                 </div>
-                                <h2 className="font-headline-md text-lg font-bold text-text">
+                                <h2 className="font-geist text-lg font-bold text-text">
                                     Required Resources
                                 </h2>
                             </div>
@@ -358,10 +358,10 @@ export default function JoinDRRTForm() {
                                             picture_as_pdf
                                         </span>
                                         <div>
-                                            <h3 className="font-label-md text-label-md font-bold text-text group-hover:text-blue transition-colors">
+                                            <h3 className="font-geist text-sm font-bold text-text group-hover:text-blue transition-colors">
                                                 Parent Consent Form
                                             </h3>
-                                            <p className="font-body-sm text-[12px] text-subtext">
+                                            <p className="text-[12px] text-subtext">
                                                 PDF Document • 450 KB
                                             </p>
                                         </div>
@@ -380,18 +380,18 @@ export default function JoinDRRTForm() {
                                         upload_file
                                     </span>
                                 </div>
-                                <legend className="font-headline-md text-lg font-bold text-text">
+                                <legend className="font-geist text-lg font-bold text-text">
                                     Required Attachments
                                 </legend>
                             </div>
                             <div className="space-y-4">
                                 {/* Parent Consent Form Upload */}
                                 <div>
-                                    <label className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label className="block font-geist text-sm font-semibold text-text mb-1">
                                         Signed Parent/Guardian Consent Form{" "}
                                         <span className="text-red">*</span>
                                     </label>
-                                    <p className="font-body-sm text-body-sm text-subtext mb-2">
+                                    <p className="text-sm text-subtext mb-2">
                                         Download Parent Consent Form above and ask your parents to sign it. Then upload the signed document. <br />
                                         Accepted formats: PDF, PNG, JPG, JPEG (Max 5MB)
                                     </p>
@@ -401,15 +401,15 @@ export default function JoinDRRTForm() {
                                         name="consent_form"
                                         // required
                                         accept=".pdf,.png,.jpg,.jpeg"
-                                        className="block w-full text-body-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                                        className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                                     />
                                 </div>
                                 {/* Class Schedule Upload */}
                                 <div>
-                                    <label className="block font-label-md text-label-md font-semibold text-text mb-1">
+                                    <label className="block font-geist text-sm font-semibold text-text mb-1">
                                         Current Class Schedule <span className="text-red">*</span>
                                     </label>
-                                    <p className="font-body-sm text-body-sm text-subtext mb-2">
+                                    <p className="text-sm text-subtext mb-2">
                                         Upload official schedule copy to verify duty availability
                                     </p>
                                     <input
@@ -418,7 +418,7 @@ export default function JoinDRRTForm() {
                                         name="class_schedule"
                                         // required
                                         accept=".pdf,.png,.jpg,.jpeg"
-                                        className="block w-full text-body-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-label-md file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                                        className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                                     />
                                 </div>
                             </div>
@@ -431,7 +431,7 @@ export default function JoinDRRTForm() {
                                         gavel
                                     </span>
                                 </div>
-                                <legend className="font-headline-md text-lg font-bold text-text">
+                                <legend className="font-geist text-lg font-bold text-text">
                                     Commitment &amp; Bylaw Agreement
                                 </legend>
                             </div>
@@ -445,7 +445,7 @@ export default function JoinDRRTForm() {
                                         required
                                         className="mt-1 w-5 h-5 rounded border-blue-border text-blue focus:ring-blue rounded-md"
                                     />
-                                    <span className="font-body-sm text-body-sm text-text leading-relaxed">
+                                    <span className="text-sm text-text leading-relaxed">
                                         I agree to abide by <strong>Article IV Membership Rules</strong>
                                         , maintaining active availability for drills, mandatory
                                         emergency response calls, and required monthly volunteer hours.
@@ -460,7 +460,7 @@ export default function JoinDRRTForm() {
                                         required
                                         className="mt-1 w-5 h-5 rounded border-blue-border text-blue focus:ring-blue rounded-md"
                                     />
-                                    <span className="font-body-sm text-body-sm text-text leading-relaxed">
+                                    <span className="text-sm text-text leading-relaxed">
                                         I acknowledge and commit to compliance with{" "}
                                         <strong>Article X Uniform Guidelines</strong> (proper grooming,
                                         designated duty wear, and official badge protocols).
@@ -470,12 +470,12 @@ export default function JoinDRRTForm() {
                         </fieldset>
                         {/* Submission Actions */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-                            <Link to="/join" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-label-md font-bold hover:bg-surface-container-low transition-all">
+                            <Link to="/join" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all">
                                 <button type="button" className="w-full text-center">
                                     Cancel
                                 </button>
                             </Link>
-                            <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-label-md text-label-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50">
+                            <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>

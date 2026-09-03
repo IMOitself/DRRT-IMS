@@ -8,19 +8,19 @@ export default function Header() {
 
     return (
         <header className="w-full border-b border-blue-border dark:border-subtext bg-surface dark:bg-surface-dim sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-16 flex justify-between items-center">
-                <div className="flex items-center gap-sm">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
+                <div className="flex items-center gap-2">
                     <button className="hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
                         <span className="material-symbols-outlined text-blue dark:text-blue">
                             shield
                         </span>
                     </button>
-                    <span className="font-headline-md text-headline-md-mobile font-bold text-blue dark:text-blue-bg">
+                    <span className="font-geist text-2xl-mobile font-bold text-blue dark:text-blue-bg">
                         DRRT Officer Portal
                     </span>
                 </div>
                 {/* Desktop Navigation Links */}
-                <nav className="hidden md:flex items-center gap-8 font-label-md text-subtext">
+                <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                     <a href="#" className="hover:text-blue transition-colors py-1">
                         Dashboard
                     </a>
@@ -43,7 +43,7 @@ export default function Header() {
                             notifications
                         </span>
                     </button>
-                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className="cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border flex-shrink-0">
+                    <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className="cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0">
                         <img
                             className="w-full h-full object-cover"
                             alt="Security Officer Avatar"

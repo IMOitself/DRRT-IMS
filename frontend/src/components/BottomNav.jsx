@@ -13,7 +13,7 @@ export default function BottomNav() {
                 {({ isActive }) => (
                     <>
                         <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>home</span>
-                        <span className="font-label-sm text-label-sm mt-0.5">Home</span>
+                        <span className="font-geist text-xs mt-0.5">Home</span>
                     </>
                 )}
             </NavLink>
@@ -25,7 +25,7 @@ export default function BottomNav() {
                 {({ isActive }) => (
                     <>
                         <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>event</span>
-                        <span className="font-label-sm text-label-sm mt-0.5">Events</span>
+                        <span className="font-geist text-xs mt-0.5">Events</span>
                     </>
                 )}
             </NavLink>
@@ -38,7 +38,7 @@ export default function BottomNav() {
                 {({ isActive }) => (
                     <>
                         <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>person_add</span>
-                        <span className="font-label-sm text-label-sm mt-0.5">Join</span>
+                        <span className="font-geist text-xs mt-0.5">Join</span>
                     </>
                 )}
             </NavLink>
