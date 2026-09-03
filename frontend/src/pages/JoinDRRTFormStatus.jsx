@@ -84,9 +84,16 @@ export default function JoinDRRTFormStatus() {
                                     <span className={`${statusDotCssColor[application.data?.status.toUpperCase()]} animate-pulse w-2 h-2 rounded-full`} />
                                     {application.data?.status.toUpperCase()}
                                 </span>
+
                             </div>
                         </div>
-                        {/* Review Timeline Instructions */}
+                        {application.data?.status.toUpperCase() === "APPROVED" ? (
+                            <div className="w-full flex items-center justify-center gap-3">
+                                <Link to="/member/dashboard" className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
+                                    Go to Dashboard
+                                </Link>
+                            </div>
+                        ) : (
                         <div className="text-left space-y-4 pt-2">
                             <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
                                 <span className="material-symbols-outlined text-blue text-[20px]">
@@ -132,6 +139,7 @@ export default function JoinDRRTFormStatus() {
                                 </li>
                             </ol>
                         </div>
+                        )}
                         <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
                             <span className="material-symbols-outlined text-blue text-[20px]">
                                 info
@@ -157,7 +165,7 @@ export default function JoinDRRTFormStatus() {
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
                                 <span className="text-subtext">
-                                                                    </span>
+                                </span>
                                 <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.course}
                                 </span>
@@ -240,7 +248,7 @@ export default function JoinDRRTFormStatus() {
                     </div>
                 </main>
             </div>
-            
+
             <BottomNav />
         </>
     )
