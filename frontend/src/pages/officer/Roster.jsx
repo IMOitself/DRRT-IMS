@@ -106,7 +106,7 @@ export default function Roster() {
                     {/* Live Roster Summary */}
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
                         <div className="font-geist text-text">
-                            Total Personnel:{" "}
+                            Total Members:{" "}
                             <span className="text-blue font-bold">{membersApplication.length} Registered</span>
                         </div>
                         <div className="flex gap-4">
@@ -175,7 +175,7 @@ export default function Roster() {
                     <section className="space-y-2">
                         {membersApplication.map((application) =>
                             <div
-                                className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-subtext transition-colors cursor-pointer group"
+                                className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
                                 onClick={() => openDrawer(application)}>
                                 <div className="flex items-center gap-3 overflow-hidden">
                                     <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
