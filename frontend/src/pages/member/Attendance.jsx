@@ -122,7 +122,7 @@ export default function Attendance() {
                                         </span>
                                     </div>
                                     <div>
-                                        <h4 className="font-geist text-2xl text-text font-semibold text-lg">
+                                        <h4 className="font-geist text-lg text-text font-semibold">
                                             Emergency Drill
                                         </h4>
                                         <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">

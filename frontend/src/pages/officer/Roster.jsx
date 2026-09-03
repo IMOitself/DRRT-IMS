@@ -81,7 +81,7 @@ export default function Roster() {
             <Header />
 
             {/* Main Content Canvas */}
-            <main className="flex-grow pb-32">
+            <main className="grow pb-32">
                 <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 space-y-4">
                     {/* Active Roster Context Header */}
                     <section className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2">
@@ -129,35 +129,35 @@ export default function Roster() {
                                 search
                             </span>
                             <input
-                                className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue text-base transition-colors"
+                                className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white focus:outline-none focus:blue-border focus:ring-1 focus:ring-blue text-base transition-colors"
                                 placeholder="Search by name, ID, course, or squad..."
                                 type="text"
                             />
                         </div>
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-text text-text font-geist text-xs flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-text text-text font-geist text-xs shrink-0">
                                 All Members ({membersApplication.length})
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 Active Only (0)
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 1st Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 2nd Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 3rd Year
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors flex-shrink-0">
+                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 4th Year
                             </button>
                         </div>
                         {/* Duty Squad Dropdown Filter */}
                         <div className="relative w-fit">
-                            <select className="w-full appearance-none bg-white border border-blue-border text-text text-sm rounded-lg block p-2.5 focus:ring-blue focus:border-blue pr-8 shadow-sm">
+                            <select className="w-full appearance-none bg-white border border-blue-border text-text text-sm rounded-lg block p-2.5 focus:ring-blue focus:blue-border pr-8 shadow-sm">
                                 <option selected="">All Squads / Duty Teams</option>
                                 <option value="medical">Medical Squad</option>
                                 <option value="sar">Search &amp; Rescue</option>
@@ -180,7 +180,7 @@ export default function Roster() {
                                     onClick={() => openDrawer(application)}
                                 >
                                     <div className="flex items-center gap-3 overflow-hidden">
-                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue flex-shrink-0">
+                                        <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
                                             {application.full_name.split(' ').map((n) => n[0]).join('')}
                                         </div>
                                         <div className="min-w-0">
@@ -192,7 +192,7 @@ export default function Roster() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                    <div className="flex items-center gap-2 shrink-0">
                                         {application.status === 'pending' ? (
                                             <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-yellow-bg text-yellow border border-yellow-border">
                                                 {application.status}
@@ -221,7 +221,7 @@ export default function Roster() {
                 </div>
             </main>
             {/* Member Profile Drawer */}
-            <aside className={`fixed inset-y-0 right-0 z-[70] w-full md:w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between p-4 border-b border-blue-border bg-surface-container-low">
                     <h3 className="font-geist text-lg font-bold text-text m-0">
@@ -236,7 +236,7 @@ export default function Roster() {
                     </button>
                 </div>
                 {/* Drawer Content */}
-                <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                <div className="grow overflow-y-auto p-6 space-y-6">
                     {selectedMember && (
                         <>
                             <div className="flex flex-col items-center text-center">
@@ -385,7 +385,7 @@ export default function Roster() {
             {/* Drawer Overlay */}
             {drawerOpen && (
                 <div
-                    className="fixed inset-0 bg-text/20 z-[65] transition-opacity"
+                    className="fixed inset-0 bg-text/20 z-65 transition-opacity"
                     onClick={closeDrawer}
                 />
             )}

@@ -195,24 +195,7 @@ export default function Dashboard() {
                                 </span>
                             </a>
                         </div>
-                        <div className="bg-white border border-blue-border rounded-xl shadow-sm divide-y divide-blue-border overflow-hidden">
-                            {/* Activity Item 1 */}
-                            <div className="p-4 flex items-start gap-4 hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-blue/10 text-blue p-2 rounded-full border border-blue/20 shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
-                                        fact_check
-                                    </span>
-                                </div>
-                                <div className="grow">
-                                    <p className="text-base text-text font-semibold">
-                                        Completed Module 5: Emergency Protocols
-                                    </p>
-                                    <p className="text-sm text-subtext mt-0.5">
-                                        2 days ago • Score: 98%
-                                    </p>
-                                </div>
-                            </div>
-                            {/* Activity Item 2 */}
+                        <div className="bg-white rounded-xl shadow-sm divide-y divide-blue-divide overflow-hidden">
                             <div className="p-4 flex items-start gap-4 hover:bg-surface-container-low/50 transition-colors">
                                 <div className="bg-green-bg text-green p-2 rounded-full border border-green-border shrink-0">
                                     <span className="material-symbols-outlined text-[20px]">
@@ -221,26 +204,10 @@ export default function Dashboard() {
                                 </div>
                                 <div className="grow">
                                     <p className="text-base text-text font-semibold">
-                                        Checked in to Weekly General Assembly
+                                        Present in event name here idk
                                     </p>
                                     <p className="text-sm text-subtext mt-0.5">
-                                        Oct 12, 2026 • Verified via QR Scan
-                                    </p>
-                                </div>
-                            </div>
-                            {/* Activity Item 3 */}
-                            <div className="p-4 flex items-start gap-4 hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-surface-container-high text-subtext p-2 rounded-full border border-blue-border shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
-                                        badge
-                                    </span>
-                                </div>
-                                <div className="grow">
-                                    <p className="text-base text-text font-semibold">
-                                        Digital ID Renewed for 2026-2027 Academic Year
-                                    </p>
-                                    <p className="text-sm text-subtext mt-0.5">
-                                        Sep 1, 2026 • Command Staff Authorization
+                                        Oct 12, 2026 • 8:00 AM
                                     </p>
                                 </div>
                             </div>
