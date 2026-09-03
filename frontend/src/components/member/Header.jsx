@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import AccountDropdown from "../AccountDropdown";
 
 export default function Header() {
@@ -17,23 +17,42 @@ export default function Header() {
                         Member Portal
                     </span>
                 </div>
-                {/* Desktop Navigation Links directly mapped from Mobile Bottom Navigation */}
                 <nav className="hidden md:flex items-center gap-8 font-label-md text-on-surface-variant">
-                    <a href="#" className="text-primary font-bold border-b-2 border-primary py-1">
+                    <NavLink to="/member/dashboard" className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary py-1"
+                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                    }>
                         Dashboard
-                    </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    </NavLink>
+                    <NavLink to="/member/attendance" className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary py-1"
+                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                    }>
                         Attendance
-                    </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    </NavLink>
+                    <NavLink to="/" className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary py-1"
+                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                    }>
                         Training
-                    </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    </NavLink>
+                    <NavLink to="/" className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary py-1"
+                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                    }>
                         Alerts
-                    </a>
-                    <a href="#" className="hover:text-primary transition-colors py-1">
+                    </NavLink>
+                    <NavLink to="/" className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary py-1"
+                            : "hover:text-primary hover:font-bold hover:border-b-2 border-primary py-1"
+                    }>
                         ID Card
-                    </a>
+                    </NavLink>
                 </nav>
                 <div className="flex items-center gap-2">
                     <button className="hover:bg-surface-container-high transition-colors p-2 rounded-full relative">
