@@ -9,6 +9,16 @@ export default function JoinDRRTFormStatus() {
     const navigate = useNavigate();
 
     const [application, setApplication] = useState([]);
+    const statusCssColor = {
+        "PENDING": "bg-yellow-bg text-yellow",
+        "APPROVED": "bg-green-bg text-green",
+        "REJECTED": "bg-red-bg text-red"
+    }
+    const statusDotCssColor = {
+        "PENDING": "bg-yellow",
+        "APPROVED": "bg-green",
+        "REJECTED": "bg-red"
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -35,7 +45,7 @@ export default function JoinDRRTFormStatus() {
                 <main className="max-w-2xl mx-auto w-full px-4 md:px-8 py-10 pb-28 md:pb-12 space-y-6">
                     <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden text-center space-y-6">
                         {/* Decorative Background Glow */}
-                        <div className="absolute top-0 right-1/2 translate-x-1/2 -mt-12 w-64 h-64 bg-green-bg rounded-full blur-2xl pointer-events-none" />
+                        <div className="absolute top-0 right-1/2 translate-x-1/2 -mt-12 w-64 h-64 bg-green-bg/20 rounded-full blur-3xl" />
                         {/* Success Icon Badge */}
                         <div className="relative mx-auto w-20 h-20 rounded-full bg-green-bg text-green flex items-center justify-center ring-8 ring-green/5">
                             <span className="material-symbols-outlined text-[48px] filled-icon">
@@ -69,8 +79,9 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext">
                                     Current Status:
                                 </span>
-                                <span className="inline-flex items-center gap-1.5 font-geist font-semibold text-yellow bg-yellow-bg px-2.5 py-0.5 rounded-full w-fit">
-                                    <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
+
+                                <span className={`${statusCssColor[application.data?.status.toUpperCase()]} inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit`}>
+                                    <span className={`${statusDotCssColor[application.data?.status.toUpperCase()]} animate-pulse w-2 h-2 rounded-full`} />
                                     {application.data?.status.toUpperCase()}
                                 </span>
                             </div>
