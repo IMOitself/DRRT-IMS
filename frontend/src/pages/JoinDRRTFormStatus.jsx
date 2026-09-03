@@ -95,7 +95,7 @@ export default function JoinDRRTFormStatus() {
                         {application.data?.status.toUpperCase() === "APPROVED" ? (
                             <div className="w-full flex items-center justify-center gap-3">
                                 <Link to="/member/dashboard" className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
-                                    Go to Dashboard
+                                    Proceed to Dashboard
                                 </Link>
                             </div>
                         ) : (
