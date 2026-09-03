@@ -305,7 +305,7 @@ export default function Roster() {
                                             <p className="text-xs text-subtext font-medium">
                                                 Consent Form
                                             </p>
-                                            <p className="text-text font-semibold">
+                                            <p className="text-text font-semibold truncate">
                                                 {selectedMember.consent_form}
                                             </p>
                                         </div>
@@ -313,7 +313,7 @@ export default function Roster() {
                                             <p className="text-xs text-subtext font-medium">
                                                 Class Schedule
                                             </p>
-                                            <p className="text-text font-semibold">
+                                            <p className="text-text font-semibold truncate">
                                                 {selectedMember.class_schedule}
                                             </p>
                                         </div>
