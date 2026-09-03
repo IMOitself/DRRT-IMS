@@ -1,12 +1,13 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
 export default function JoinDRRTFormStatus() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [application, setApplication] = useState([]);
     const statusCssColor = {
@@ -68,12 +69,16 @@ export default function JoinDRRTFormStatus() {
                         {/* Reference Details Card */}
                         <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 text-left space-y-3">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="text-subtext">
-                                    Application Reference:
+                                <span className="text-subtext shrink-0 pr-2">
+                                    Copy this link to check anytime:
                                 </span>
-                                <span className="font-bold text-blue font-mono text-base">
-                                    {id}
+                                <span className="font-bold text-subtext font-mono text-base truncate">
+                                    {window.location.origin + location.pathname}
                                 </span>
+                                <button className="material-symbols-outlined text-blue text-[20px] cursor-pointer hover:bg-blue-bg rounded-lg p-1 active:scale-80"
+                                        onClick={() => copyToClipboard(window.location.origin + location.pathname)}>
+                                    content_copy
+                                </button>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                                 <span className="text-subtext">
@@ -94,51 +99,51 @@ export default function JoinDRRTFormStatus() {
                                 </Link>
                             </div>
                         ) : (
-                        <div className="text-left space-y-4 pt-2">
-                            <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
-                                <span className="material-symbols-outlined text-blue text-[20px]">
-                                    info
-                                </span>
-                                What Happens Next?
-                            </h2>
-                            <ol className="space-y-3 text-subtext">
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
-                                        1
-                                    </div>
-                                    <div>
-                                        <strong className="text-text">
-                                            Document Verification:
-                                        </strong>{" "}
-                                        The DRRT Officers and Adviser will review your details, signed
-                                        consent form, and class schedule.
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
-                                        2
-                                    </div>
-                                    <div>
-                                        <strong className="text-text">Email Notification:</strong>{" "}
-                                        You will receive an official status update via your registered
-                                        institutional email within <strong>2 to 3 business days</strong>
-                                        .
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
-                                        3
-                                    </div>
-                                    <div>
-                                        <strong className="text-text">
-                                            Orientation &amp; Badge Issuance:
-                                        </strong>{" "}
-                                        Approved applicants will receive an invitation for the physical
-                                        orientation and duty schedule assignment.
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
+                            <div className="text-left space-y-4 pt-2">
+                                <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
+                                    <span className="material-symbols-outlined text-blue text-[20px]">
+                                        info
+                                    </span>
+                                    What Happens Next?
+                                </h2>
+                                <ol className="space-y-3 text-subtext">
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
+                                            1
+                                        </div>
+                                        <div>
+                                            <strong className="text-text">
+                                                Document Verification:
+                                            </strong>{" "}
+                                            The DRRT Officers and Adviser will review your details, signed
+                                            consent form, and class schedule.
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
+                                            2
+                                        </div>
+                                        <div>
+                                            <strong className="text-text">Email Notification:</strong>{" "}
+                                            You will receive an official status update via your registered
+                                            institutional email within <strong>2 to 3 business days</strong>
+                                            .
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-blue/10 text-blue font-bold font-geist flex items-center justify-center shrink-0 mt-0.5">
+                                            3
+                                        </div>
+                                        <div>
+                                            <strong className="text-text">
+                                                Orientation &amp; Badge Issuance:
+                                            </strong>{" "}
+                                            Approved applicants will receive an invitation for the physical
+                                            orientation and duty schedule assignment.
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
                         )}
                         <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
                             <span className="material-symbols-outlined text-blue text-[20px]">
