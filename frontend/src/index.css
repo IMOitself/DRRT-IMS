@@ -87,3 +87,15 @@ select:where(:not([multiple]):not([size])) {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.glass-header {
+  background-color: #faf8ff;
+}
+
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .glass-header {
+    background-color: rgba(250, 248, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
