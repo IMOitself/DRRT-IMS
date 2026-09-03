@@ -94,7 +94,7 @@ export default function JoinDRRTForm() {
             <title>DRRT Membership Application - Student Portal</title>
             <Header />
 
-            <div className="flex-grow w-full">
+            <div className="grow w-full">
                 {/* Main Form Container */}
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Navigation Back Link */}
@@ -157,7 +157,7 @@ export default function JoinDRRTForm() {
                                         pattern="^\d{2}-?\d{5}[a-zA-Z]{3}$"
                                         title="Same format in your school ID, for example: 24-00123ABC or 2400123ABC"
                                         placeholder="e.g. 24-00123ABC"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Full Name */}
@@ -175,7 +175,7 @@ export default function JoinDRRTForm() {
                                         pattern="[a-zA-Z\s]+,\s*[a-zA-Z\s]+(\s+[a-zA-Z]\.?)?"
                                         title="Full name, for example: Ackerman, Levi A. (include the comma)"
                                         placeholder="Surname, Firstname M."
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Academic Program */}
@@ -189,7 +189,7 @@ export default function JoinDRRTForm() {
                                         id="program"
                                         name="course"
                                         required
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Course
@@ -212,7 +212,7 @@ export default function JoinDRRTForm() {
                                         id="year-level"
                                         name="year_level"
                                         required
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Year Level
@@ -254,7 +254,7 @@ export default function JoinDRRTForm() {
                                         title="Your La Verdad email for example: levi.ackerman@student.laverdad.edu.ph"
                                         placeholder="example@student.laverdad.edu.ph"
 
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Mobile Number */}
@@ -272,7 +272,7 @@ export default function JoinDRRTForm() {
                                         pattern="[0-9]{11}"
                                         title="Your personal number for example: 09123456789 (11 digits)"
                                         placeholder="09123456789"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Emergency Contact Name */}
@@ -288,7 +288,7 @@ export default function JoinDRRTForm() {
                                         name="emergency_person_name"
                                         required
                                         placeholder="Parent or Guardian Name"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Emergency Contact Phone */}
@@ -306,7 +306,7 @@ export default function JoinDRRTForm() {
                                         pattern="[0-9]{11}"
                                         title="Emergency contact person's number for example: 09123456789 (11 digits)"
                                         placeholder="09123456789"
-                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
                                 {/* Blood Type */}
@@ -320,7 +320,7 @@ export default function JoinDRRTForm() {
                                         id="blood-type"
                                         name="blood_type"
                                         required
-                                        className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:border-blue focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     >
                                         <option value="" disabled="">
                                             Select Blood Type
@@ -443,7 +443,7 @@ export default function JoinDRRTForm() {
                                         type="checkbox"
                                         name="agreed_article4"
                                         required
-                                        className="mt-1 w-5 h-5 rounded border-blue-border text-blue focus:ring-blue rounded-md"
+                                        className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"
                                     />
                                     <span className="text-sm text-text leading-relaxed">
                                         I agree to abide by <strong>Article IV Membership Rules</strong>
@@ -458,7 +458,7 @@ export default function JoinDRRTForm() {
                                         type="checkbox"
                                         name="agreed_article10"
                                         required
-                                        className="mt-1 w-5 h-5 rounded border-blue-border text-blue focus:ring-blue rounded-md"
+                                        className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"
                                     />
                                     <span className="text-sm text-text leading-relaxed">
                                         I acknowledge and commit to compliance with{" "}
