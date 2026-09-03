@@ -219,7 +219,7 @@ export default function Roster() {
                     </h3>
                     <button
                         aria-label="Close"
-                        className="hover:bg-surface-container-high rounded-full p-2 transition-colors text-subtext"
+                        className="cursor-pointer hover:bg-surface-container-high p-2 transition-colors text-subtext"
                         onClick={closeDrawer}
                     >
                         <span className="material-symbols-outlined">close</span>
@@ -230,8 +230,8 @@ export default function Roster() {
                     {selectedMember && (
                         <>
                             <div className="flex flex-col items-center text-center">
-                                <div className="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-2xl font-bold text-blue border-2 border-blue-border mb-3">
-                                    {selectedMember.full_name.split(' ').map(n => n[0]).join('')}
+                                <div className="w-20 h-20 text-3xl rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
+                                    {selectedMember.full_name.split(' ').map((n) => n[0]).join('')}
                                 </div>
                                 <h3 className="font-geist text-xl font-bold text-text m-0">
                                     {selectedMember.full_name}
@@ -352,21 +352,21 @@ export default function Roster() {
                 {/* Drawer Actions */}
                 {selectedMember && selectedMember.status === "pending" ? (
                     <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-                        <button onClick={handleReject} className="flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
+                        <button onClick={handleReject} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">close</span>
                             Reject
                         </button>
-                        <button onClick={handleApprove} className="flex-1 bg-green text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
+                        <button onClick={handleApprove} className="cursor-pointer flex-1 bg-green text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">check</span>
                             Approve
                         </button>
                     </div>
                 ) : (
                     <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-                        <button className="flex-1 bg-white border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-sm hover:bg-surface-container-low transition-colors">
+                        <button className="cursor-pointer flex-1 bg-white border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-sm hover:bg-surface-container-low transition-colors">
                             Edit
                         </button>
-                        <button className="flex-1 bg-blue text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-blue transition-colors shadow-sm">
+                        <button className="cursor-pointer flex-1 bg-blue text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-blue transition-colors shadow-sm">
                             Message
                         </button>
                     </div>
