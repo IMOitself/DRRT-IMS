@@ -194,16 +194,9 @@ export default function Roster() {
                                     </div>
                                     <div className="flex items-center gap-2 shrink-0">
                                         {application.status === 'pending' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-yellow-bg text-yellow border border-yellow-border">
-                                                {application.status}
-                                            </span>
-                                        ) : application.status === 'rejected' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
-                                                {application.status}
-                                            </span>
-                                        ) : application.status === 'active' ? (
-                                            <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-green-bg text-green border border-green-border">
-                                                Active
+                                            <span className={"bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit"}>
+                                                <span className={"bg-yellow animate-pulse w-2 h-2 rounded-full"} />
+                                                {application.status.toUpperCase()}
                                             </span>
                                         ) : application.status === 'inactive' ? (
                                             <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
