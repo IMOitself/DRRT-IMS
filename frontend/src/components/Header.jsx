@@ -29,7 +29,7 @@ export default function Header() {
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
 
     return (
-        <header className="glass-header sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
+        <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">

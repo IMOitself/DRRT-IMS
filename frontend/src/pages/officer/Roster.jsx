@@ -211,9 +211,9 @@ export default function Roster() {
                 </div>
             </main>
             {/* Member Profile Drawer */}
-            <aside className={`fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <aside className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
-                <div className="flex items-center justify-between p-4 border-b border-blue-border bg-surface-container-low">
+                <div className="flex items-center justify-between p-4 border-b border-blue-border">
                     <h3 className="font-geist text-lg font-bold text-text m-0">
                         Member Profile
                     </h3>
