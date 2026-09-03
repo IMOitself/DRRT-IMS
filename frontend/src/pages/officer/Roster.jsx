@@ -125,11 +125,11 @@ export default function Roster() {
                     <div className="space-y-3">
                         {/* Search Bar */}
                         <div className="relative w-full">
-                            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-subtext">
+                            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-subtext pointer-events-none">
                                 search
                             </span>
                             <input
-                                className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white focus:outline-none focus:blue-border focus:ring-1 focus:ring-blue text-base transition-colors"
+                                className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white hover:border-blue focus:outline-none focus:ring-1 focus:ring-blue text-base transition-colors"
                                 placeholder="Search by name, ID, course, or squad..."
                                 type="text"
                             />
@@ -157,7 +157,7 @@ export default function Roster() {
                         </div>
                         {/* Duty Squad Dropdown Filter */}
                         <div className="relative w-fit">
-                            <select className="w-full appearance-none bg-white border border-blue-border text-text text-sm rounded-lg block p-2.5 focus:ring-blue focus:blue-border pr-8 shadow-sm">
+                            <select className="w-full appearance-none bg-white border border-blue-border hover:border-blue text-text text-sm rounded-lg block p-2.5 pr-8 focus:outline-none focus:ring-1 focus:ring-blue shadow-sm transition-colors cursor-pointer">
                                 <option selected="">All Squads / Duty Teams</option>
                                 <option value="medical">Medical Squad</option>
                                 <option value="sar">Search &amp; Rescue</option>

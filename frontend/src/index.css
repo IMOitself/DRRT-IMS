@@ -45,27 +45,6 @@ body {
   min-height: max(884px, 100dvh);
 }
 
-/* Form base styles */
-input:where(:not([type='button']):not([type='reset']):not([type='submit']):not([type='checkbox']):not([type='radio']):not([type='file'])),
-select,
-textarea {
-  appearance: none;
-  background-color: #fff;
-  border-color: #6b7280;
-  border-width: 1px;
-  border-radius: 0;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-select:where(:not([multiple]):not([size])) {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-}
 
 .geist-font {
   font-family: 'Geist', sans-serif;
