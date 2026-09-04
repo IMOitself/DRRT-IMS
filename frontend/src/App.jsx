@@ -15,6 +15,7 @@ import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
 import Incidents from './pages/officer/Incidents';
 import IncidentDetails from './pages/officer/IncidentDetails';
+import OfficerTraining from './pages/officer/Training';
 
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
@@ -47,6 +48,7 @@ function App() {
         <Route path="/officer/roster" element={<Roster />} />
         <Route path="/officer/incidents" element={<Incidents />} />
         <Route path="/officer/incidents/:id" element={<IncidentDetails />} />
+        <Route path="/officer/training" element={<OfficerTraining />} />
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
