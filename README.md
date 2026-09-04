@@ -74,6 +74,19 @@ links that has dash (~~example~~) have already been translated and put into the 
 - [executive_reports_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html)
 - [incident_audit_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html)
 
+### converting into react components
+- First, go to [html to jsx](https://transform.tools/html-to-jsx) paste the html file there and convert it to jsx.
+- then prompt this stuff to ur ai:
+```
+> Convert `@[frontend/src/pages/member/Training.jsx]` into a standard React component:
+> 1. Wrap in `export default function Training()`.
+> 2. Remove all `<meta>` tags and inline `<style>` tags.
+> 3. Replace the header with `Header` and bottom nav with `BottomNav`.
+> 4. Add `!` to all icon text sizing classes (e.g., `text-[24px]!`).
+> 5. Keep it completely static for now.
+> 6. Register `<Route path="/member/training" element={<Training />} />` in `@[frontend/src/App.jsx]`.
+> 7. Add link to it on `@[frontend/src/components/Header.jsx]`.
+```
 
 </details>
 
