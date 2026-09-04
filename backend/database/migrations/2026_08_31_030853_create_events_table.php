@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->enum('type', ['drill', 'meeting', 'deployment'])->nullable();
-            $table->dateTime('date_time')->nullable();
+            $table->string('date_time')->nullable();
             $table->timestamps();
         });
     }

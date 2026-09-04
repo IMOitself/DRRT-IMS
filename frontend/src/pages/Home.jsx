@@ -210,15 +210,15 @@ export default function Home() {
                                         <p className="text-xs text-subtext text-center">No upcoming events.</p>
                                     ) : (
                                         events.map((event) => {
-                                            const date = new Date(event.date_time);
+                                            const [month, day] = (event.date_time || "").split(" ");
                                             return (
                                                 <div key={event.id} className="flex items-center gap-3 p-2 bg-surface rounded-xl border border-blue-border/40">
                                                     <div className="bg-surface-container-high text-subtext rounded-lg px-2.5 py-1 text-center shrink-0">
                                                         <span className="font-geist text-[10px] font-bold uppercase block">
-                                                            {!isNaN(date) ? date.toLocaleString("en-US", { month: "short" }) : "Event"}
+                                                            {month?.slice(0, 3) || "Event"}
                                                         </span>
                                                         <span className="font-geist text-sm font-bold block leading-none">
-                                                            {!isNaN(date) ? String(date.getDate()).padStart(2, "0") : "--"}
+                                                            {String(parseInt(day) || "--").padStart(2, "0")}
                                                         </span>
                                                     </div>
                                                     <div>
