@@ -27,8 +27,7 @@ export default function Login() {
             })
             .then((res) => {
                 login(res.data.token, res.data.user);
-                setDisplayResponse(res.data.message || 'Logged in as Officer');
-                navigate('/officer/roster');
+                navigate(location.state?.from || '/'); // go back to previous page
             })
             .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
@@ -89,6 +88,9 @@ export default function Login() {
                 </button>
                 <button onClick={(e) => { testLogout(); spamProof(e) }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
                     test logout
+                </button>
+                <button onClick={(e) => { navigate('/') }} className='hover:bg-surface-container-highest cursor-pointer text-subtext'>
+                    home
                 </button>
                 <textarea value={displayResponse} className="w-full" readOnly />
             </div>
