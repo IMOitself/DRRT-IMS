@@ -15,6 +15,7 @@ import Roster from './pages/officer/Roster';
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
 import Training from './pages/member/Training';
+import Announcements from './pages/member/Announcements';
 
 function App() {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/member/dashboard" element={<Dashboard />} />
         <Route path="/member/attendance" element={<Attendance />} />
         <Route path="/member/training" element={<Training />} />
+        <Route path="/member/announcements" element={<Announcements />} />
       </Route>
     </Routes>
   );
