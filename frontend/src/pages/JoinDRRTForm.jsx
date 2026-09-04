@@ -6,7 +6,7 @@ import BottomNav from "../components/BottomNav";
 
 import api from "../api/axios";
 
-const SAVED_FORM_DATA_KEY = "auto_saved_join_form";
+const AUTO_SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
     const navigate = useNavigate();
@@ -26,13 +26,13 @@ export default function JoinDRRTForm() {
     };
 
     const [formData, setFormData] = useState(() => {
-        const savedData = localStorage.getItem(SAVED_FORM_DATA_KEY);
-        if (savedData) return JSON.parse(savedData);
+        const autoSavedFormData = localStorage.getItem(AUTO_SAVED_FORM_DATA_KEY);
+        if (autoSavedFormData) return JSON.parse(autoSavedFormData);
         return initialFormData;
     });
 
     useEffect(() => {
-        if (formData) localStorage.setItem(SAVED_FORM_DATA_KEY, JSON.stringify(formData));
+        if (formData) localStorage.setItem(AUTO_SAVED_FORM_DATA_KEY, JSON.stringify(formData));
     }, [formData]);
 
     const handleChange = (e) => {
@@ -54,7 +54,7 @@ export default function JoinDRRTForm() {
                 api
                     .post("/membership-applications", formWithUserID)
                     .then((res) => {
-                        localStorage.removeItem(SAVED_FORM_DATA_KEY);
+                        localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
                         navigate(`/join-form/${res.data.application_id}`);
                     })
                     .catch((err) => console.error(err));
