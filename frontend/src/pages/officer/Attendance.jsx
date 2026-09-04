@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import BottomNav from "../../components/officer/BottomNav";
+import BottomNav from "../../components/BottomNav";
 import WIP from "../../components/WIP";
 
 export default function Attendance() {

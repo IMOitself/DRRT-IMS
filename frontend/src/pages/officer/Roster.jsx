@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
-import BottomNav from "../../components/officer/BottomNav";
+import BottomNav from "../../components/BottomNav";
 
 export default function Roster() {
     const [membersApplication, setMembersApplication] = useState([]);

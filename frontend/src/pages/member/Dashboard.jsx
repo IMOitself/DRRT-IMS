@@ -1,5 +1,5 @@
 import Header from "../../components/Header.jsx";
-import BottomNav from "../../components/member/BottomNav.jsx";
+import BottomNav from "../../components/BottomNav";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
