@@ -3,12 +3,14 @@ import BottomNav from '../components/BottomNav';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import api from "../api/axios";
 
 export default function Home() {
     const navigate = useNavigate();
 
     const { user, isLoggedIn } = useAuth();
     const [copied, setCopied] = useState(false);
+    const [events, setEvents] = useState([]);
     const contact1 = "09123456789";
     const contact2 = "09123456789";
     const contact3 = "09123456789";
@@ -27,6 +29,16 @@ export default function Home() {
             if (user.role === 'officer') navigate("/officer/roster");
             if (user.role === 'member') navigate("/member/dashboard");
         }
+
+        api
+        .get("/events")
+        .then((res) => {
+            setEvents(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    
     }, [isLoggedIn, user]);
 
     return (
@@ -93,9 +105,7 @@ export default function Home() {
                             </span>
                         </div>
                     </section>
-                    {/* Quick Access Grid */}
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Card 1: Emergency Contacts */}
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm flex flex-col justify-between space-y-4">
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
@@ -155,7 +165,6 @@ export default function Home() {
                                 </div>
                             </div>
                         </article>
-                        {/* Card 2: Preparedness Bulletin */}
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 relative overflow-hidden group">
                             <div>
                                 <div className="flex items-center gap-3 mb-3">
@@ -184,11 +193,10 @@ export default function Home() {
                                 </span>
                             </Link>
                         </article>
-                        {/* Card 3: Upcoming Drills */}
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm flex flex-col justify-between space-y-4">
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-map-assembly/15 flex items-center justify-center text-map-assembly shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-blue-bg text-blue flex items-center justify-center shrink-0">
                                         <span className="material-symbols-outlined text-[20px]! filled-icon">
                                             campaign
                                         </span>
@@ -198,42 +206,33 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-3 p-2 bg-surface rounded-xl border border-blue-border/40">
-                                        <div className="bg-blue-bg text-white rounded-lg px-2.5 py-1 text-center shrink-0">
-                                            <span className="font-geist text-[10px] font-bold uppercase block">
-                                                Nov
-                                            </span>
-                                            <span className="font-geist text-sm font-bold block leading-none">
-                                                15
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-geist text-xs font-bold text-text">
-                                                Earthquake Drill
-                                            </h4>
-                                            <p className="text-[12px] text-subtext">
-                                                10:00 AM • Main Quad
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3 p-2 bg-surface rounded-xl border border-blue-border/40">
-                                        <div className="bg-surface-container-high text-subtext rounded-lg px-2.5 py-1 text-center shrink-0">
-                                            <span className="font-geist text-[10px] font-bold uppercase block">
-                                                Dec
-                                            </span>
-                                            <span className="font-geist text-sm font-bold block leading-none">
-                                                02
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-geist text-xs font-bold text-text">
-                                                Fire Simulation
-                                            </h4>
-                                            <p className="text-[12px] text-subtext">
-                                                02:00 PM • South Wing
-                                            </p>
-                                        </div>
-                                    </div>
+                                    {events.length === 0 ? (
+                                        <p className="text-xs text-subtext text-center">No upcoming events.</p>
+                                    ) : (
+                                        events.map((event) => {
+                                            const date = new Date(event.date_time);
+                                            return (
+                                                <div key={event.id} className="flex items-center gap-3 p-2 bg-surface rounded-xl border border-blue-border/40">
+                                                    <div className="bg-surface-container-high text-subtext rounded-lg px-2.5 py-1 text-center shrink-0">
+                                                        <span className="font-geist text-[10px] font-bold uppercase block">
+                                                            {!isNaN(date) ? date.toLocaleString("en-US", { month: "short" }) : "Event"}
+                                                        </span>
+                                                        <span className="font-geist text-sm font-bold block leading-none">
+                                                            {!isNaN(date) ? String(date.getDate()).padStart(2, "0") : "--"}
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-geist text-xs font-bold text-text">
+                                                            {event.title}
+                                                        </h4>
+                                                        <p className="text-[12px] text-subtext line-clamp-2">
+                                                            {event.description}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })
+                                    )}
                                 </div>
                             </div>
                         </article>
