@@ -8,6 +8,7 @@ use App\Http\Controllers\EventsController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/events', [EventsController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -25,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/members', [MembersController::class, 'index']);
     // Route::delete('/members/{member}', [MembersController::class, 'destroy']);
     
-    Route::get('/events', [EventsController::class, 'index']);
     Route::post('/events', [EventsController::class, 'store']);
     // Route::put('/events/{event}', [EventsController::class, 'update']);
     // Route::delete('/events/{event}', [EventsController::class, 'destroy']);
