@@ -1,13 +1,26 @@
 import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 export default function Home() {
     const navigate = useNavigate();
 
     const { user, isLoggedIn } = useAuth();
+    const [copied, setCopied] = useState(false);
+    const contact1 = "09123456789";
+    const contact2 = "09123456789";
+    const contact3 = "09123456789";
+    const copyToClipboard = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy:", err);
+        }
+    };
 
     useEffect(() => {
         if (isLoggedIn && user) {
@@ -40,19 +53,19 @@ export default function Home() {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center md:justify-start">
                                 <Link to="/join" className="bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
-                                    <span className="material-symbols-outlined text-[18px]">
+                                    <span className="material-symbols-outlined text-[18px]!">
                                         person_add
                                     </span>
                                     <span>Join DRRT Team</span>
                                 </Link>
-                                <button className="bg-surface border border-blue-border hover:bg-surface-container-low text-blue font-geist text-sm font-bold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
-                                    <span className="material-symbols-outlined text-[18px]">map</span>
-                                    <span>Explore Campus Safety</span>
-                                </button>
+                                <Link to="/events" className="bg-surface border border-blue-border hover:bg-surface-container-low text-blue font-geist text-sm font-bold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+                                    <span className="material-symbols-outlined text-[18px]!">map</span>
+                                    <span>View Events</span>
+                                </Link>
                             </div>
                         </div>
                         <div className="hidden md:flex shrink-0 w-52 h-52 rounded-full bg-blue/10 border-2 border-blue/20 items-center justify-center text-blue shadow-inner">
-                            <span className="material-symbols-outlined text-[110px]! filled-icon">
+                            <span className="material-symbols-outlined text-[110px]!">
                                 health_and_safety
                             </span>
                         </div>
@@ -62,17 +75,16 @@ export default function Home() {
                         <div className="bg-green-bg border border-green-border rounded-2xl p-4 md:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
                             <div className="flex items-center gap-3.5">
                                 <div className="w-10 h-10 rounded-xl bg-green-bg flex items-center justify-center text-green shrink-0">
-                                    <span className="material-symbols-outlined text-[24px] filled-icon">
+                                    <span className="material-symbols-outlined text-[24px]! filled-icon">
                                         check_circle
                                     </span>
                                 </div>
                                 <div>
                                     <h2 className="font-geist text-lg font-bold text-green">
-                                        Code Green: Normal Campus Operations
+                                        Code Green: Yada Yada idk
                                     </h2>
                                     <p className="text-sm text-subtext mt-0.5">
-                                        No active safety threats detected. Standard campus protocols in
-                                        effect.
+                                        if theres no floods and stuff idk etc etc
                                     </p>
                                 </div>
                             </div>
@@ -88,7 +100,7 @@ export default function Home() {
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                        <span className="material-symbols-outlined text-[20px] filled-icon">
+                                        <span className="material-symbols-outlined text-[20px]! filled-icon">
                                             call
                                         </span>
                                     </div>
@@ -97,38 +109,48 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="space-y-3 text-sm">
+
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
-                                        <span className="font-semibold text-text">
-                                            Campus Clinic
+                                        <span className="font-semibold text-text shrink-0">
+                                            Change Me
                                         </span>
-                                        <a
-                                            href="tel:123"
-                                            className="font-geist text-xs font-bold text-blue hover:underline bg-blue-bg px-3 py-1 rounded-lg"
-                                        >
-                                            Call Clinic
-                                        </a>
+                                        <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
+                                            onClick={() => copyToClipboard(contact1)}>
+                                            <span className="font-mono truncate">
+                                                {contact1}
+                                            </span>
+                                            <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
+                                                {copied ? "" : "content_copy"}
+                                            </span>
+                                        </button>
                                     </div>
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
-                                        <span className="font-semibold text-text">
-                                            Campus Security
+                                        <span className="font-semibold text-text shrink-0">
+                                            Change Me
                                         </span>
-                                        <a
-                                            href="tel:123"
-                                            className="font-geist text-xs font-bold text-blue hover:underline bg-blue-bg px-3 py-1 rounded-lg"
-                                        >
-                                            Call Security
-                                        </a>
+                                        <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
+                                            onClick={() => copyToClipboard(contact2)}>
+                                            <span className="font-mono truncate">
+                                                {contact2}
+                                            </span>
+                                            <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
+                                                {copied ? "" : "content_copy"}
+                                            </span>
+                                        </button>
                                     </div>
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
-                                        <span className="font-semibold text-text">
-                                            DRRT Command
+                                        <span className="font-semibold text-text shrink-0">
+                                            Change Me
                                         </span>
-                                        <a
-                                            href="tel:123"
-                                            className="font-geist text-xs font-bold text-blue hover:underline bg-blue-bg px-3 py-1 rounded-lg"
-                                        >
-                                            Call Command
-                                        </a>
+                                        <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
+                                            onClick={() => copyToClipboard(contact3)}>
+                                            <span className="font-mono truncate">
+                                                {contact3}
+                                            </span>
+                                            <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
+                                                {copied ? "" : "content_copy"}
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -137,41 +159,42 @@ export default function Home() {
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 relative overflow-hidden group">
                             <div>
                                 <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-10 h-10 rounded-xl bg-yellow-bg flex items-center justify-center text-yellow shrink-0">
-                                        <span className="material-symbols-outlined text-[20px] filled-icon">
-                                            description
+                                    <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
+                                        <span className="material-symbols-outlined text-[20px]! filled-icon">
+                                            person_add
                                         </span>
                                     </div>
                                     <h3 className="font-geist text-lg font-bold text-text">
-                                        Latest Bulletin
+                                        Be a DRRT Member
                                     </h3>
                                 </div>
                                 <p className="text-sm text-subtext leading-relaxed">
-                                    Review the updated Campus Evacuation Routes &amp; Assembly Area
-                                    Map for the Main Building and Annexes.
+                                    Do you have a passion in helping others and want to volunteer on something meaningful? <br/>
+                                    Become a DRRT member now! <br/>
+                                    Click the button below to learn more.
                                 </p>
                             </div>
-                            <a
-                                href="#"
+                            <Link
+                                to="/join"
                                 className="font-geist text-sm font-bold text-blue hover:text-blue/80 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                             >
                                 <span>Read Full Guide</span>
-                                <span className="material-symbols-outlined text-[18px]">
+                                <span className="material-symbols-outlined text-[18px]!">
                                     arrow_forward
                                 </span>
-                            </a>
+                            </Link>
                         </article>
                         {/* Card 3: Upcoming Drills */}
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm flex flex-col justify-between space-y-4">
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-10 h-10 rounded-xl bg-map-assembly/15 flex items-center justify-center text-map-assembly shrink-0">
-                                        <span className="material-symbols-outlined text-[20px] filled-icon">
+                                        <span className="material-symbols-outlined text-[20px]! filled-icon">
                                             campaign
                                         </span>
                                     </div>
                                     <h3 className="font-geist text-lg font-bold text-text">
-                                        Upcoming Drills
+                                        Upcoming Events
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
