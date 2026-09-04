@@ -2,23 +2,15 @@ import Header from "../../components/Header.jsx";
 import BottomNav from "../../components/member/BottomNav.jsx";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Dashboard() {
 
-    const [memberData, setMemberData] = useState([]);
     const [events, setEvents] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState([]);
+    const { user } = useAuth();
 
     useEffect(() => {
-        api
-        .get("/user")
-        .then((res) => {
-            setMemberData(res.data);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-
         api
         .get("/events")
         .then((res) => {
@@ -43,13 +35,13 @@ export default function Dashboard() {
                         <div>
                             <div className="flex items-center gap-2 flex-wrap">
                                 <h1 className="font-geist text-3xl md:text-5xl text-text font-bold">
-                                    Welcome, {memberData.membership_application?.full_name || memberData.name}
+                                    Welcome, {user?.membership_application?.full_name || user?.name}
                                 </h1>
                             </div>
                             <p className="text-base text-subtext mt-1">
-                                Student ID: {memberData.membership_application?.student_id || "loading.."} • {" "}
-                                            {memberData.membership_application?.course || "..."}
-                                            {memberData.membership_application?.year_level || "..."}
+                                Student ID: {user?.membership_application?.student_id || "loading.."} • {" "}
+                                            {user?.membership_application?.course || "..."}
+                                            {user.membership_application?.year_level || "..."}
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
