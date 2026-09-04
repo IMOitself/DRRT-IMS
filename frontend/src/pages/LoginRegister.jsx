@@ -1,10 +1,12 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../api/axios';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { login, logout } = useAuth();
 
     const NAME_OFFICER = 'Captain Erwin'
     const EMAIL_OFFICER = 'captain.erwin@gmail.com'
@@ -24,9 +26,9 @@ export default function Login() {
                 password: PASSWORD_OFFICER,
             })
             .then((res) => {
-                localStorage.setItem('token', res.data.token);
-                setDisplayResponse(res.data.message);
-                navigate('/officer/roster')
+                login(res.data.token, res.data.user);
+                setDisplayResponse(res.data.message || 'Logged in as Officer');
+                navigate('/officer/roster');
             })
             .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
@@ -38,9 +40,9 @@ export default function Login() {
                 password: PASSWORD_MEMBER,
             })
             .then((res) => {
-                localStorage.setItem('token', res.data.token);
-                console.log(res.data)
-                navigate(location.state?.from || '/');// go back to previous page
+                login(res.data.token, res.data.user);
+                console.log(res.data);
+                navigate(location.state?.from || '/'); // go back to previous page
             })
             .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
@@ -53,22 +55,16 @@ export default function Login() {
                 password: PASSWORD_MEMBER,
             })
             .then((res) => {
-                localStorage.setItem('token', res.data.token);
-                console.log(res.data)
-                navigate(location.state?.from || '/');// go back to previous page
+                login(res.data.token, res.data.user);
+                console.log(res.data);
+                navigate(location.state?.from || '/'); // go back to previous page
             })
             .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
     }
 
     const testLogout = () => {
-        api
-            .post("/logout")
-            .then((res) => {
-                localStorage.removeItem('token');
-                console.log(res.data)
-                // navigate('/')
-            })
-            .catch((err) => setDisplayResponse(err.toString() + '\n' + err.response.data.message));
+        logout();
+        setDisplayResponse("Logged out successfully");
     }
 
     const spamProof = (e) => {

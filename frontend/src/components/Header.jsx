@@ -1,30 +1,14 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AccountDropdown from "./AccountDropdown";
 import { useEffect, useState, useRef } from "react";
-import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userData, setUserData] = useState([]);
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-        api
-            .get("/user") // TODO: other backend url only for checking if user is logged in
-            .then((res) => {
-                setIsLoggedIn(true);
-                setUserData(res.data);
-            })
-            .catch((err) => {
-                if (err.response.status !== 401) return; // unauthorized
-                localStorage.removeItem("token");
-                setIsLoggedIn(false);
-            });
-    }, []);
+    const { user, isLoggedIn } = useAuth();
+    const role = user?.role;
 
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -58,7 +42,7 @@ export default function Header() {
                 </div>
 
                 {/* officer role */}
-                {userData.role === "officer" ? (
+                {role === "officer" ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <a href="#" className="hover:text-blue transition-colors py-1">
                             Dashboard
@@ -76,7 +60,7 @@ export default function Header() {
                             Training
                         </a>
                     </nav>
-                ) : userData.role === "member" ? (
+                ) : role === "member" ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/member/dashboard" className={({ isActive }) =>
                             isActive

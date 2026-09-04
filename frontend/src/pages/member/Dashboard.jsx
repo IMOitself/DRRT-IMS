@@ -52,7 +52,6 @@ export default function Dashboard() {
                                             {memberData.membership_application?.year_level || "..."}
                             </p>
                         </div>
-                        {/* Quick Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
                             <button className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold">
                                 <span className="material-symbols-outlined text-[18px]">
@@ -68,9 +67,7 @@ export default function Dashboard() {
                             </button>
                         </div>
                     </section>
-                    {/* Widgets Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {/* Widget 1: Attendance Compliance */}
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between">
                             <div>
                                 <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
@@ -117,7 +114,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        {/* Widget 2: Training Progress */}
+
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between">
                             <div>
                                 <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
@@ -150,7 +147,6 @@ export default function Dashboard() {
                                 </a>
                             </div>
                         </div>
-                        {/* Widget 3: Next Mandatory Event */}
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-yellow transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
                             <div>
                                 <div className="flex justify-between items-start mb-1">

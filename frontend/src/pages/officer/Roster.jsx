@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
 import BottomNav from "../../components/officer/BottomNav";
 
@@ -9,8 +8,7 @@ export default function Roster() {
     const [membersApplication, setMembersApplication] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
-    const [officer, setOfficer] = useState(null);
-    const navigate = useNavigate();
+    const { user } = useAuth();
 
     function openDrawer(application) {
         setSelectedMember(application);
@@ -25,17 +23,6 @@ export default function Roster() {
         window.scrollTo(0, 0);
 
         api
-            .get(`/user`)
-            .then((res) => {
-                if (res.data.role === 'officer') {
-                    setOfficer(res.data);
-                } else {
-                    alert("You are not authorized to access this page");
-                    navigate("/");
-                }
-            })
-            .catch((err) => console.error(err));
-        api
             .get("/membership-applications")
             .then((res) => {
                 console.log(res.data.data);
@@ -46,7 +33,7 @@ export default function Roster() {
 
     const handleReject = () => {
         api
-            .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: officer.id })
+            .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: user.id })
             .then(() => {
                 // Update selected member status
                 setSelectedMember({ ...selectedMember, status: "rejected" });
@@ -62,7 +49,7 @@ export default function Roster() {
 
     const handleApprove = () => {
         api
-            .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: officer.id })
+            .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: user.id })
             .then(() => {
                 setSelectedMember({ ...selectedMember, status: "approved" });
 

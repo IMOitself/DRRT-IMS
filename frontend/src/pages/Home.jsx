@@ -2,30 +2,21 @@ import Header from "../components/Header"
 import BottomNav from '../components/BottomNav';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 export default function Home() {
     const navigate = useNavigate();
 
+    const { user, isLoggedIn } = useAuth();
+
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        const token = localStorage.getItem("token");
-        if (!token) return;
-
-        api
-        .get("/user")
-        .then((res) => {
-            if (res.data.role === 'officer') {
-                navigate("/officer/roster"); // TODO: change to officer dashboard
-            }
-            if (res.data.role === 'member') {
-                navigate("/member/dashboard");
-            }
-        }).catch((err) => {
-            console.error(err);
-        });
-    }, []);
+        if (isLoggedIn && user) {
+            if (user.role === 'officer') navigate("/officer/roster");
+            if (user.role === 'member') navigate("/member/dashboard");
+        }
+    }, [isLoggedIn, user]);
 
     return (
         <>
@@ -347,7 +338,7 @@ export default function Home() {
                     <p>© 2026 DRRT LVCC Apalit Chapter</p>
                 </div>
             </footer>
-            
+
             <BottomNav />
         </>
 
