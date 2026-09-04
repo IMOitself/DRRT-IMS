@@ -107,7 +107,7 @@ export default function Attendance() {
                             </h3>
                             <button className="font-geist text-sm text-blue font-bold hover:underline flex items-center gap-1">
                                 View All{" "}
-                                <span className="material-symbols-outlined text-[18px]">
+                                <span className="material-symbols-outlined text-[18px]!">
                                     arrow_forward
                                 </span>
                             </button>
@@ -116,9 +116,9 @@ export default function Attendance() {
                             {/* History Card 2: Absent */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
-                                        <span className="material-symbols-outlined text-[24px]">
-                                            health_and_safety
+                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                        <span className="material-symbols-outlined text-[24px]!">
+                                            check
                                         </span>
                                     </div>
                                     <div>
@@ -126,7 +126,7 @@ export default function Attendance() {
                                             Emergency Drill
                                         </h4>
                                         <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]">
+                                            <span className="material-symbols-outlined text-[16px]!">
                                                 calendar_today
                                             </span>{" "}
                                             Sep 28, 2026 • 02:00 PM
