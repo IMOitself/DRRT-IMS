@@ -1,5 +1,7 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from './components/ProtectedRoute';
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 import JoinDRRT from './pages/JoinDRRT';
 import JoinDRRTForm from './pages/JoinDRRTForm';
@@ -13,9 +15,13 @@ import Roster from './pages/officer/Roster';
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
 
-import ProtectedRoute from './components/ProtectedRoute';
-
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />

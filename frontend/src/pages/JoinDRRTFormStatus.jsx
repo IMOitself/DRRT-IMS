@@ -21,8 +21,6 @@ export default function JoinDRRTFormStatus() {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-
         api
             .get(`/membership-applications/${id}`)
             .then((res) => setApplication(res.data))

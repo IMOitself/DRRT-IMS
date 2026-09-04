@@ -1,9 +1,7 @@
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import { useEffect } from "react";
 
 export default function Events() {
-    useEffect(() => { window.scrollTo(0, 0); }, []);
 
     return (
         <>

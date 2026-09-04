@@ -10,8 +10,6 @@ export default function Home() {
     const { user, isLoggedIn } = useAuth();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-
         if (isLoggedIn && user) {
             if (user.role === 'officer') navigate("/officer/roster");
             if (user.role === 'member') navigate("/member/dashboard");

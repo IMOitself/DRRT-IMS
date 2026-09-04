@@ -9,7 +9,6 @@ import api from "../api/axios";
 const SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
-    useEffect(() => { window.scrollTo(0, 0) }, []);
 
     const initialFormData = {
         student_id: '',
