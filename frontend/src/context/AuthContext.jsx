@@ -30,15 +30,29 @@ export function AuthProvider({ children }) {
             });
     }, []);
 
-    const login = (token, userData) => {
+    const login = async (token, userData) => {
         localStorage.setItem("token", token);
         setUser(userData);
+
+        if (!userData || userData.membership_application === undefined) {
+            try {
+                const res = await api.get("/user");
+                setUser(res.data);
+            } catch (err) {
+                console.error("Failed to fetch full user profile:", err);
+            }
+        }
     };
-    const logout = () => {
-        api.post("/logout").finally(() => {
+
+    const logout = async () => {
+        try {
+            await api.post("/logout");
+        } catch (err) {
+            console.error("Logout error:", err);
+        } finally {
             localStorage.removeItem("token");
             setUser(null);
-        });
+        }
     };
 
     return (

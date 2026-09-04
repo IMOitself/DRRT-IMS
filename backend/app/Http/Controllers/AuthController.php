@@ -11,6 +11,14 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    private function loadUserData($user)
+    {
+        $user->membership_application = MembershipApplication::where('user_id', $user->id)->first();
+        $user->member = Member::where('user_id', $user->id)->first();
+
+        return $user;
+    }
+
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -27,7 +35,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $this->loadUserData($user),
             'token' => $token,
         ], 201);
     }
@@ -49,7 +57,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $this->loadUserData($user),
             'token' => $token,
         ]);
     }
@@ -62,9 +70,7 @@ class AuthController extends Controller
 
     public function user(Request $request){
         $user = $request->user();
-        $user->membership_application = MembershipApplication::where('user_id', $user->id)->first();
-        $user->member = Member::where('user_id', $user->id)->first();
 
-        return response()->json($user);
+        return response()->json($this->loadUserData($user));
     }
 }

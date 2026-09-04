@@ -41,7 +41,7 @@ export default function Dashboard() {
                             <p className="text-base text-subtext mt-1">
                                 Student ID: {user?.membership_application?.student_id || "loading.."} • {" "}
                                             {user?.membership_application?.course || "..."}
-                                            {user.membership_application?.year_level || "..."}
+                                            {user?.membership_application?.year_level || "..."}
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
