@@ -25,7 +25,7 @@ export default function Header() {
 
                 {pathname.startsWith("/officer") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
-                        <NavLink to="/" className={({ isActive }) =>
+                        <NavLink to="/officer/dashboard" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
                                 : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
