@@ -5,11 +5,14 @@ import Header from "../components/Header"
 import BottomNav from "../components/BottomNav";
 
 import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 const AUTO_SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
     const navigate = useNavigate();
+
+    const { user } = useAuth();
 
     const initialFormData = {
         student_id: '',
@@ -42,22 +45,18 @@ export default function JoinDRRTForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
+        const formWithUserID = {
+            ...formData, user_id: user.id,
+        }
+
+        setFormData(formWithUserID);
+
         api
-            .get("/user")
+            .post("/membership-applications", formWithUserID)
             .then((res) => {
-                const formWithUserID = {
-                    ...formData, user_id: res.data.id,
-                }
-
-                setFormData(formWithUserID);
-
-                api
-                    .post("/membership-applications", formWithUserID)
-                    .then((res) => {
-                        localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
-                        navigate(`/join-form/${res.data.application_id}`);
-                    })
-                    .catch((err) => console.error(err));
+                localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
+                navigate(`/join-form/${res.data.application_id}`);
             })
             .catch((err) => console.error(err));
     }
