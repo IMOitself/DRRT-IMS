@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
@@ -9,18 +9,7 @@ import api from "../api/axios";
 const SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-
-        const token = localStorage.getItem("token");
-        if (!token) {
-            navigate("/login-register", { state: { from: location.pathname } });
-            return;
-        }
-    }, [navigate]);
+    useEffect(() => { window.scrollTo(0, 0) }, []);
 
     const initialFormData = {
         student_id: '',

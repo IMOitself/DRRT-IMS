@@ -22,8 +22,11 @@ function App() {
       <Route path="/login-register" element={<LoginRegister />} />
       <Route path="/events" element={<Events />} />
       <Route path="/join" element={<JoinDRRT />} />
-      <Route path="/join-form" element={<JoinDRRTForm />} />
-      <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/join-form" element={<JoinDRRTForm />} />
+        <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
+      </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/roster" element={<Roster />} />
