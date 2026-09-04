@@ -40,7 +40,7 @@ export default function JoinDRRTFormStatus() {
                         <div className="absolute top-0 right-1/2 translate-x-1/2 -mt-12 w-64 h-64 bg-green-bg/20 rounded-full blur-3xl" />
                         {/* Success Icon Badge */}
                         <div className="relative mx-auto w-20 h-20 rounded-full bg-green-bg text-green flex items-center justify-center ring-8 ring-green/5">
-                            <span className="material-symbols-outlined text-[48px] filled-icon">
+                            <span className="material-symbols-outlined text-[64px]!">
                                 check_circle
                             </span>
                         </div>
@@ -63,12 +63,14 @@ export default function JoinDRRTFormStatus() {
                                 <span className="text-subtext shrink-0 pr-2">
                                     Copy this link to check anytime:
                                 </span>
-                                <span className="font-bold text-subtext font-mono text-base truncate">
-                                    {window.location.origin + location.pathname}
-                                </span>
-                                <button className="material-symbols-outlined text-blue text-[20px] cursor-pointer hover:bg-blue-bg rounded-lg p-1 active:scale-80"
-                                        onClick={() => copyToClipboard(window.location.origin + location.pathname)}>
-                                    content_copy
+                                <button className="flex min-w-0 text-sm items-center font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-3 py-1 rounded-lg active:scale-95"
+                                    onClick={() => copyToClipboard(window.location.origin + location.pathname)}>
+                                    <span className="font-mono truncate">
+                                        {window.location.origin + location.pathname}
+                                    </span>
+                                    <span className="material-symbols-outlined text-blue text-[20px] hover:bg-blue-bg rounded-lg">
+                                        content_copy
+                                    </span>
                                 </button>
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
