@@ -1,4 +1,4 @@
-import Header from "../../components/Header.jsx";
+import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
@@ -12,20 +12,20 @@ export default function Dashboard() {
 
     useEffect(() => {
         api
-        .get("/events")
-        .then((res) => {
-            setEvents(res.data);
-            setUpcomingEvent(res.data[0]); // TODO: actually fetch the upcoming event based on date
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .get("/events")
+            .then((res) => {
+                setEvents(res.data);
+                setUpcomingEvent(res.data[0]); // TODO: actually fetch the upcoming event based on date
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }, [])
 
     return (
         <>
             <title>Member Dashboard - DRRT Member Portal</title>
-            
+
             <Header />
 
             <main className="grow pb-24 md:pb-12">
@@ -40,8 +40,8 @@ export default function Dashboard() {
                             </div>
                             <p className="text-base text-subtext mt-1">
                                 Student ID: {user?.membership_application?.student_id || "loading.."} • {" "}
-                                            {user?.membership_application?.course || "..."}
-                                            {user?.membership_application?.year_level || "..."}
+                                {user?.membership_application?.course || "..."}
+                                {user?.membership_application?.year_level || "..."}
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
