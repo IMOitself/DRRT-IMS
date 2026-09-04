@@ -12,6 +12,7 @@ import LoginRegister from './pages/LoginRegister';
 
 import Roster from './pages/officer/Roster';
 import OfficerDashboard from './pages/officer/Dashboard';
+import OfficerAttendance from './pages/officer/Attendance';
 
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
@@ -40,6 +41,7 @@ function App() {
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
+        <Route path="/officer/attendance" element={<OfficerAttendance />} />
         <Route path="/officer/roster" element={<Roster />} />
       </Route>
 

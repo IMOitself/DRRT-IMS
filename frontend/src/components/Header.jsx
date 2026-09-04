@@ -32,7 +32,7 @@ export default function Header() {
                         }>
                             Dashboard
                         </NavLink>
-                        <NavLink to="/" className={({ isActive }) =>
+                        <NavLink to="/officer/attendance" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
                                 : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
