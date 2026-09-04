@@ -14,6 +14,7 @@ import Roster from './pages/officer/Roster';
 
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
+import Training from './pages/member/Training';
 
 function App() {
   const { pathname } = useLocation();
@@ -41,6 +42,7 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
         <Route path="/member/dashboard" element={<Dashboard />} />
         <Route path="/member/attendance" element={<Attendance />} />
+        <Route path="/member/training" element={<Training />} />
       </Route>
     </Routes>
   );
