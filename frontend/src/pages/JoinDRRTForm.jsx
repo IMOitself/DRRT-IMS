@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
@@ -9,6 +9,7 @@ import api from "../api/axios";
 const SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 
 export default function JoinDRRTForm() {
+    const navigate = useNavigate();
 
     const initialFormData = {
         student_id: '',
@@ -463,7 +464,7 @@ export default function JoinDRRTForm() {
                                     Cancel
                                 </button>
                             </Link>
-                            <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50">
+                            <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
                                 <span>Submit Application</span>
                                 <span className="material-symbols-outlined text-[18px]">send</span>
                             </button>
