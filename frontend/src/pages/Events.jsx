@@ -5,7 +5,7 @@ export default function Events() {
 
     return (
         <>
-            <title>DRRT Student Public Portal - Events</title>
+            <title>Events - DRRT Portal</title>
             <Header />
 
             <div className="grow w-full">

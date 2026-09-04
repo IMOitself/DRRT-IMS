@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Dashboard() {
   return (
     <>
-      <title>Officer Dashboard - DRRT Officer Portal</title>
+      <title>Dashboard - DRRT Officer Portal</title>
 
       <Header />
       <WIP />

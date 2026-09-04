@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Training() {
   return (
     <>
-      <title>Training Hub - Member Portal</title>
+      <title>Training - DRRT Member Portal</title>
 
       <Header />
       <WIP />

@@ -6,7 +6,7 @@ import BottomNav from '../components/BottomNav';
 export default function JoinDRRT() {
     return (
         <>
-            <title>Join DRRT - Student Portal</title>
+            <title>Join - DRRT Portal</title>
             <Header />
 
             <div className="grow w-full">

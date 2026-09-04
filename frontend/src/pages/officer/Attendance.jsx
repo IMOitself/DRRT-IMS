@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Attendance() {
   return (
     <>
-      <title>Attendance Logger - DRRT Officer Portal</title>
+      <title>Attendance - DRRT Officer Portal</title>
 
       <Header />
       <WIP />

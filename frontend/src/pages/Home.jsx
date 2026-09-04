@@ -43,7 +43,7 @@ export default function Home() {
 
     return (
         <>
-            <title>DRRT Student Public Portal - Home</title>
+            <title>Home - DRRT Portal</title>
             <Header />
 
             <div className="grow w-full">

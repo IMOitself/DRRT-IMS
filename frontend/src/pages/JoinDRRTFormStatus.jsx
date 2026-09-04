@@ -40,7 +40,7 @@ export default function JoinDRRTFormStatus() {
 
     return (
         <>
-            <title>Application Submitted - DRRT Student Portal</title>
+            <title>Join Status - DRRT Portal</title>
             <Header />
 
             <div className="grow w-full flex items-center justify-center">

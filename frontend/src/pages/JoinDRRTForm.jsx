@@ -1,4 +1,4 @@
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "../components/Header"
@@ -79,7 +79,7 @@ export default function JoinDRRTForm() {
 
     return (
         <>
-            <title>DRRT Membership Application - Student Portal</title>
+            <title>Join Form - DRRT Portal</title>
             <Header />
 
             <div className="grow w-full">

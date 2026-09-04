@@ -4,7 +4,7 @@ import BottomNav from "../../components/BottomNav";
 export default function Attendance() {
     return (
         <>
-            <title>My Attendance Records - Member Portal</title>
+            <title>Attendance - DRRT Member Portal</title>
             
             <Header/>
 

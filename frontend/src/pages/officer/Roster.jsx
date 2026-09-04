@@ -61,7 +61,7 @@ export default function Roster() {
 
     return (
         <>
-            <title>DRRT Member Roster - Officer Portal</title>
+            <title>Roster - DRRT Officer Portal</title>
 
             <Header />
 

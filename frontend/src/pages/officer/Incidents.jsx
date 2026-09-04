@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Incidents() {
   return (
     <>
-      <title>Incident Vault - DRRT Officer Portal</title>
+      <title>Incidents - DRRT Officer Portal</title>
 
       <Header />
       <WIP />

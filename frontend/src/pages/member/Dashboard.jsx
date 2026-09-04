@@ -24,7 +24,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <title>Member Dashboard - DRRT Member Portal</title>
+            <title>Dashboard - DRRT Member Portal</title>
 
             <Header />
 

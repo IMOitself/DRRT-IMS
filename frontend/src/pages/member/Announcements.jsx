@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Announcements() {
   return (
     <>
-      <title>Announcements - Member Portal</title>
+      <title>Announcements - DRRT Member Portal</title>
 
       <Header />
       <WIP />

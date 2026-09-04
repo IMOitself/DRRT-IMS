@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function ID() {
   return (
     <>
-      <title>My Digital Member ID - Member Portal</title>
+      <title>ID - DRRT Member Portal</title>
 
       <Header />
       <WIP />
