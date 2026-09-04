@@ -86,6 +86,7 @@ links that has dash (~~example~~) have already been translated and put into the 
 > 5. Keep it completely static for now.
 > 6. Register `<Route path="/member/training" element={<Training />} />` in `@[frontend/src/App.jsx]`.
 > 7. Add link to it on `@[frontend/src/components/Header.jsx]`.
+> 8. css must be consistent with Attendance.jsx meaning most tailwind codes are redundant
 ```
 
 </details>
