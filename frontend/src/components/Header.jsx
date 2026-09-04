@@ -25,21 +25,41 @@ export default function Header() {
 
                 {pathname.startsWith("/officer") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
-                        <a href="#" className="hover:text-blue transition-colors py-1">
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
                             Dashboard
-                        </a>
-                        <a href="#" className="hover:text-blue transition-colors py-1">
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
                             Attendance
-                        </a>
-                        <a href="#" className="text-blue font-bold border-b-2 border-blue py-1">
+                        </NavLink>
+                        <NavLink to="/officer/roster" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
                             Roster
-                        </a>
-                        <a href="#" className="hover:text-blue transition-colors py-1">
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
                             Vault
-                        </a>
-                        <a href="#" className="hover:text-blue transition-colors py-1">
+                        </NavLink>
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
                             Training
-                        </a>
+                        </NavLink>
                     </nav>
                 ) : pathname.startsWith("/member") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
