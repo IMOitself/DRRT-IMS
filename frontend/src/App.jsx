@@ -13,6 +13,7 @@ import LoginRegister from './pages/LoginRegister';
 import Roster from './pages/officer/Roster';
 import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
+import Incidents from './pages/officer/Incidents';
 
 import Dashboard from './pages/member/Dashboard';
 import Attendance from './pages/member/Attendance';
@@ -43,6 +44,7 @@ function App() {
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/attendance" element={<OfficerAttendance />} />
         <Route path="/officer/roster" element={<Roster />} />
+        <Route path="/officer/incidents" element={<Incidents />} />
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
