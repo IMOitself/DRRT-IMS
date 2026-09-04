@@ -8,7 +8,7 @@ export default function Events() {
             <title>DRRT Student Public Portal - Events</title>
             <Header />
 
-            <div className="flex-grow w-full">
+            <div className="grow w-full">
                 {/* Main Container */}
                 <main className="max-w-5xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6 md:space-y-8">
                     {/* Page Header & Search Card */}

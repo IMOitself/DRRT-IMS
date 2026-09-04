@@ -9,7 +9,7 @@ export default function JoinDRRT() {
             <title>Join DRRT - Student Portal</title>
             <Header />
 
-            <div className="flex-grow w-full">
+            <div className="grow w-full">
                 {/* Main Container */}
                 <main className="max-w-5xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6 md:space-y-8">
                     {/* Hero Header Banner Card */}
@@ -121,7 +121,7 @@ export default function JoinDRRT() {
                                 <div className="relative pl-8 border-l-2 border-blue-border/60 ml-3 space-y-8">
                                     {/* Step 1 (Current / Active) */}
                                     <div className="relative">
-                                        <div className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs ring-4 ring-background shadow-md">
+                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs ring-4 ring-background shadow-md">
                                             1
                                         </div>
                                         <span className="font-geist text-xs font-bold text-blue uppercase tracking-wider">
@@ -137,7 +137,7 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 2 */}
                                     <div className="relative">
-                                        <div className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
+                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             2
                                         </div>
                                         <span className="font-geist text-xs font-semibold text-subtext uppercase tracking-wider">
@@ -153,7 +153,7 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 3 */}
                                     <div className="relative">
-                                        <div className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
+                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             3
                                         </div>
                                         <span className="font-geist text-xs font-semibold text-subtext uppercase tracking-wider">
@@ -169,7 +169,7 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 4 */}
                                     <div className="relative">
-                                        <div className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
+                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             4
                                         </div>
                                         <span className="font-geist text-xs font-semibold text-subtext uppercase tracking-wider">
