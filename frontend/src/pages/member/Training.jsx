@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/member/BottomNav";
+import WIP from "../../components/WIP";
 
 export default function Training() {
   return (
@@ -7,6 +8,7 @@ export default function Training() {
       <title>Training Hub - Member Portal</title>
 
       <Header />
+      <WIP />
 
       {/* Main Content Canvas */}
       <main className="grow max-w-7xl w-full mx-auto px-4 md:px-8 py-6 pb-24 md:pb-12 space-y-6">

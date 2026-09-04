@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/officer/BottomNav";
+import WIP from "../../components/WIP";
 
 export default function Incidents() {
   return (
@@ -7,6 +8,7 @@ export default function Incidents() {
       <title>Incident Vault - DRRT Officer Portal</title>
 
       <Header />
+      <WIP />
 
       {/* Main Content */}
       <main className="grow px-4 md:px-8 py-6 max-w-7xl mx-auto w-full flex flex-col gap-6 pb-24 md:pb-12">

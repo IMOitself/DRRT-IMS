@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/officer/BottomNav";
+import WIP from "../../components/WIP";
 
 export default function Dashboard() {
   return (
@@ -7,6 +8,7 @@ export default function Dashboard() {
       <title>Officer Dashboard - DRRT Officer Portal</title>
 
       <Header />
+      <WIP />
 
       {/* Main Content Canvas */}
       <main className="grow pb-24 md:pb-12">

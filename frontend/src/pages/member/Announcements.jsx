@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/member/BottomNav";
+import WIP from "../../components/WIP";
 
 export default function Announcements() {
   return (
@@ -7,6 +8,7 @@ export default function Announcements() {
       <title>Announcements - Member Portal</title>
 
       <Header />
+      <WIP />
 
       {/* Main Content Canvas */}
       <main className="grow pb-24 md:pb-12">
