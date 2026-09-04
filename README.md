@@ -76,9 +76,10 @@ links that has dash (~~example~~) have already been translated and put into the 
 
 ### converting into react components
 - First, go to [html to jsx](https://transform.tools/html-to-jsx) paste the html file there and convert it to jsx.
-- then prompt this stuff to ur ai:
+- create a file
+- then prompt this stuff to ur ai. (obviously replace the `<ur file duh>`):
 ```
-> Convert `@[frontend/src/pages/member/Training.jsx]` into a standard React component:
+> Convert `@[<ur file duh>]` into a standard React component:
 > 1. Wrap in `export default function Training()`.
 > 2. Remove all `<meta>` tags and inline `<style>` tags.
 > 3. Replace the header with `Header` and bottom nav with `BottomNav`.
