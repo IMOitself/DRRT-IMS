@@ -22,9 +22,9 @@ export default function ID() {
         </div>
 
         {/* Digital ID Premium Card */}
-        <section className="rounded-2xl bg-gradient-to-br from-[#0052cc] via-blue to-[#002d70] text-white p-4 md:p-6 relative overflow-hidden shadow-xl ring-1 ring-white/20">
+        <section className="rounded-2xl bg-linear-to-br from-[#0052cc] via-blue to-[#002d70] text-white p-4 md:p-6 relative overflow-hidden shadow-xl ring-1 ring-white/20">
           {/* Glassmorphic Glow Layer */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 pointer-events-none mix-blend-overlay" />
+          <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/5 to-white/10 pointer-events-none mix-blend-overlay" />
           <div className="absolute -top-24 -right-24 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Card Header Bar */}
