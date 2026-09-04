@@ -20,6 +20,17 @@ export default function JoinDRRTFormStatus() {
         "REJECTED": "bg-red"
     }
 
+    const [copied, setCopied] = useState(false);
+    const copyToClipboard = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy:", err);
+        }
+    };
+
     useEffect(() => {
         api
             .get(`/membership-applications/${id}`)
@@ -68,8 +79,8 @@ export default function JoinDRRTFormStatus() {
                                     <span className="font-mono truncate">
                                         {window.location.origin + location.pathname}
                                     </span>
-                                    <span className="material-symbols-outlined text-blue text-[20px] hover:bg-blue-bg rounded-lg">
-                                        content_copy
+                                    <span className="material-symbols-outlined text-blue text-[20px]! hover:bg-blue-bg rounded-lg">
+                                        {copied ? "check" : "content_copy"}
                                     </span>
                                 </button>
                             </div>
@@ -94,7 +105,7 @@ export default function JoinDRRTFormStatus() {
                         ) : (
                             <div className="text-left space-y-4 pt-2">
                                 <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
-                                    <span className="material-symbols-outlined text-blue text-[20px]">
+                                    <span className="material-symbols-outlined text-blue text-[20px]!">
                                         info
                                     </span>
                                     What Happens Next?
@@ -139,7 +150,7 @@ export default function JoinDRRTFormStatus() {
                             </div>
                         )}
                         <h2 className="font-geist text-md font-bold text-text flex items-center gap-2">
-                            <span className="material-symbols-outlined text-blue text-[20px]">
+                            <span className="material-symbols-outlined text-blue text-[20px]!">
                                 info
                             </span>
                             Submitted Application Details:
