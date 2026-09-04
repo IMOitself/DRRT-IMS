@@ -4,8 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
     const { pathname } = useLocation();
-    const { user, isLoggedIn } = useAuth();
-    const role = user?.role;
+    const { isLoggedIn } = useAuth();
 
     return (
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
@@ -24,8 +23,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* officer role */}
-                {role === "officer" ? (
+                {pathname.startsWith("/officer") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <a href="#" className="hover:text-blue transition-colors py-1">
                             Dashboard
@@ -43,7 +41,7 @@ export default function Header() {
                             Training
                         </a>
                     </nav>
-                ) : role === "member" ? (
+                ) : pathname.startsWith("/member") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/member/dashboard" className={({ isActive }) =>
                             isActive
