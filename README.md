@@ -1,10 +1,12 @@
 # DRRT-IMS
+# live website [drrt-ims.web.app](https://drrt-ims.web.app/)
 
 > [!NOTE]
 > current progress:<br>
 > (screenshot is outdated, check the trello link directly)
-> <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/13d7caf8-dc22-48d5-a66c-1f599dcd098d" />
+> <img width="1778" height="685" alt="Screenshot 2026-09-10 174531" src="https://github.com/user-attachments/assets/ef1ce5b7-54d6-4d17-9ea1-c89a456550f5" />
 > https://trello.com/b/rcb0FEpP
+
 
 ## installation
 ```
@@ -15,7 +17,7 @@ npm install
 cd backend
 composer setup
 ```
-to run, open 2 terminals:<br>
+to run, open 2 terminals:<br> *(normally these will be open automatically opened on start of ur IDE)*
 
 terminal 1
 ```
