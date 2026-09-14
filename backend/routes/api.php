@@ -9,14 +9,12 @@ use App\Http\Controllers\EventsController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/events', [EventsController::class, 'index']);
+Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);
+Route::get('/membership-applications/{application}', [MembershipApplicationsController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-
-    Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);
-    // TODO: only the officers and the user who made the application can access this
-    Route::get('/membership-applications/{application}', [MembershipApplicationsController::class, 'show']);
 
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);

@@ -47,12 +47,12 @@ export default function Roster() {
 
     const handleApprove = () => {
         api
-            .put("/membership-applications/" + selectedMember.id, { status: "approved", reviewer_id: user.id })
+            .put("/membership-applications/" + selectedMember.id, { status: "approved_need_register", reviewer_id: user.id })
             .then(() => {
-                setSelectedMember({ ...selectedMember, status: "approved" });
+                setSelectedMember({ ...selectedMember, status: "approved_need_register" });
 
                 const updatedList = membersApplication.map((app) =>
-                    app.id === selectedMember.id ? { ...app, status: "approved" } : app
+                    app.id === selectedMember.id ? { ...app, status: "approved_need_register" } : app
                 );
                 setMembersApplication(updatedList);
             })
