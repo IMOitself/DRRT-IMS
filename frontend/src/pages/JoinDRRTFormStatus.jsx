@@ -11,12 +11,14 @@ export default function JoinDRRTFormStatus() {
     const [application, setApplication] = useState([]);
     const statusCssColor = {
         "PENDING": "bg-yellow-bg text-yellow",
-        "APPROVED": "bg-green-bg text-green",
+        "APPROVED_NEED_REGISTER": "bg-green-bg text-green",
+        "APPROVED_MEMBER_NOW": "bg-green-bg text-green",
         "REJECTED": "bg-red-bg text-red"
     }
     const statusDotCssColor = {
         "PENDING": "bg-yellow",
-        "APPROVED": "bg-green",
+        "APPROVED_NEED_REGISTER": "bg-green",
+        "APPROVED_MEMBER_NOW": "bg-green",
         "REJECTED": "bg-red"
     }
 
@@ -96,7 +98,13 @@ export default function JoinDRRTFormStatus() {
 
                             </div>
                         </div>
-                        {application.data?.status.toUpperCase() === "APPROVED" ? (
+                        {application.data?.status.toUpperCase() === "APPROVED_NEED_REGISTER" ? (
+                            <div className="w-full flex items-center justify-center gap-3">
+                                <Link to={`/register?application_id=${id}`} className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
+                                    Register Your Account
+                                </Link>
+                            </div>
+                        ) : application.data?.status.toUpperCase() === "APPROVED_MEMBER_NOW" ? (
                             <div className="w-full flex items-center justify-center gap-3">
                                 <Link to="/member/dashboard" className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
                                     Proceed to Dashboard

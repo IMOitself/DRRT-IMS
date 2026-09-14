@@ -59,18 +59,6 @@ class MembershipApplicationsController extends Controller
             'reviewer_id' => $request->input('reviewer_id')
         ]);
 
-        if($application->status == 'approved') {
-            $member = Member::create([
-                'user_id' => $application->user_id,
-                'membership_application_id' => $application->id
-            ]);
-
-            $user = User::find($application->user_id);
-            $user->update([
-                'role' => 'member'
-            ]);
-        }
-
         return response()->json(['application_id' => $application->id], 200);
     }
 

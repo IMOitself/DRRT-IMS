@@ -1,7 +1,88 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { login } = useAuth();
+
+  const applicationId = searchParams.get("application_id");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/register", {
+        name: name,
+        email: email,
+        password: password,
+        membership_application_id: applicationId,
+      })
+      .then((res) => {
+        login(res.data.token, res.data.user);
+        navigate("/member/dashboard");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
+      });
+  };
+
+  if (!applicationId) {
+    return (
+      <>
+        <title>Register - DRRT Membership</title>
+        <Header />
+        <div className="grow w-full flex items-center justify-center p-4 md:p-8 pb-24 md:pb-8">
+          <main className="max-w-xl w-full mx-auto space-y-6">
+            <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-yellow-bg text-yellow flex items-center justify-center mx-auto">
+                <span className="material-symbols-outlined text-[40px]!">warning</span>
+              </div>
+              <h2 className="font-geist text-xl font-bold text-text">
+                Application Required
+              </h2>
+              <p className="text-subtext">
+                You need an approved membership application before you can register an account.
+                Please submit a membership application first, then use the registration link provided after approval.
+              </p>
+              <a
+                href="/join"
+                className="inline-block bg-blue text-white px-6 py-3 rounded-xl font-geist font-bold hover:bg-blue/80 transition-all"
+              >
+                Apply for Membership
+              </a>
+            </div>
+          </main>
+        </div>
+        <BottomNav />
+      </>
+    );
+  }
+
   return (
     <>
       <title>Register - DRRT Membership Application</title>
@@ -22,16 +103,23 @@ export default function Register() {
               </div>
               <div>
                 <h2 className="font-geist text-lg sm:text-xl font-bold text-text">
-                  DRRT Membership Application
+                  Create Your Account
                 </h2>
                 <p className="text-xs text-subtext">
-                  Complete the form to apply as a student responder.
+                  Your application has been approved. Set up your login credentials below.
                 </p>
               </div>
             </div>
 
+            {/* Error Message */}
+            {errorMessage && (
+              <div className="bg-red-bg text-red border border-red-border rounded-xl p-3 mb-4 text-sm font-medium">
+                {errorMessage}
+              </div>
+            )}
+
             {/* Registration Form */}
-            <form action="#" method="POST" className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Full Name Input */}
               <div>
                 <label
@@ -50,6 +138,8 @@ export default function Register() {
                     name="fullname"
                     placeholder="Juan Dela Cruz"
                     required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
@@ -73,6 +163,8 @@ export default function Register() {
                     name="email"
                     placeholder="jdelacruz@lvcc.edu.ph"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
@@ -98,6 +190,8 @@ export default function Register() {
                       placeholder="Min. 8 characters"
                       required
                       minLength={8}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                     />
                   </div>
@@ -120,6 +214,8 @@ export default function Register() {
                       placeholder="Re-enter password"
                       required
                       minLength={8}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                     />
                   </div>
@@ -157,10 +253,13 @@ export default function Register() {
 
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-4"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-4 disabled:opacity-50"
               >
-                <span>Submit Application</span>
-                <span className="material-symbols-outlined text-[18px]!">send</span>
+                <span>{isLoading ? "Creating Account..." : "Create Account"}</span>
+                <span className="material-symbols-outlined text-[18px]!">
+                  {isLoading ? "hourglass_empty" : "how_to_reg"}
+                </span>
               </button>
             </form>
 
@@ -169,7 +268,7 @@ export default function Register() {
               <p className="text-xs text-subtext">
                 Already registered?{" "}
                 <a
-                  href="#"
+                  href="/login"
                   className="text-blue font-bold hover:underline inline-block py-1 px-1"
                 >
                   Sign In

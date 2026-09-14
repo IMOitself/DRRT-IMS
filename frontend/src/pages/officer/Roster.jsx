@@ -179,11 +179,22 @@ export default function Roster() {
                                     {application.status === 'pending' ? (
                                         <span className={"bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit"}>
                                             <span className={"bg-yellow animate-pulse w-2 h-2 rounded-full"} />
-                                            {application.status.toUpperCase()}
+                                            PENDING
                                         </span>
-                                    ) : application.status === 'inactive' ? (
-                                        <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-surface-container-highest text-subtext border border-blue-border">
-                                            Inactive
+                                    ) : application.status === 'approved_need_register' ? (
+                                        <span className="bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                            <span className="bg-yellow w-2 h-2 rounded-full" />
+                                            AWAITING REGISTRATION
+                                        </span>
+                                    ) : application.status === 'approved_member_now' ? (
+                                        <span className="bg-green-bg text-green inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                            <span className="bg-green w-2 h-2 rounded-full" />
+                                            ACTIVE
+                                        </span>
+                                    ) : application.status === 'rejected' ? (
+                                        <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                            <span className="bg-red w-2 h-2 rounded-full" />
+                                            REJECTED
                                         </span>
                                     ) : ('')}
                                     <span className="material-symbols-outlined text-subtext text-[18px]">
@@ -225,11 +236,15 @@ export default function Roster() {
                                     ID: {selectedMember.student_id}
                                 </p>
 
-                                {selectedMember.status === 'active'
-                                    ? <span className={'bg-green-bg text-green border border-green-border'}>{selectedMember.status}</span>
+                                {selectedMember.status === 'approved_member_now'
+                                    ? <span className={'bg-green-bg text-green border border-green-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>ACTIVE</span>
                                     : selectedMember.status === 'pending'
-                                        ? <span className={'bg-yellow-bg text-yellow border border-yellow-border'}>{selectedMember.status}</span>
-                                        : ""
+                                        ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>PENDING</span>
+                                        : selectedMember.status === 'approved_need_register'
+                                            ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
+                                            : selectedMember.status === 'rejected'
+                                                ? <span className={'bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>REJECTED</span>
+                                                : ""
                                 }
                             </div>
                             <div className="space-y-4">
@@ -304,7 +319,16 @@ export default function Roster() {
                                         </div>
                                     </div>
                                 </div>
-                                {selectedMember.status === "pending" ? ("") : (
+                                {selectedMember.status === "approved_need_register" && (
+                                    <div className="border-t border-blue-border pt-4">
+                                        <div className="bg-yellow-bg border border-yellow-border rounded-xl p-4 text-center space-y-1">
+                                            <span className="material-symbols-outlined text-yellow text-[32px]!">hourglass_top</span>
+                                            <p className="font-geist text-sm font-bold text-yellow">Awaiting Account Registration</p>
+                                            <p className="text-xs text-subtext">This applicant has been approved but hasn't created their account yet.</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {selectedMember.status === "approved_member_now" && (
                                     <div className="border-t border-blue-border pt-4">
                                         <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mb-3">
                                             Duty Performance
@@ -345,6 +369,13 @@ export default function Roster() {
                             <span className="material-symbols-outlined text-[18px]">check</span>
                             Approve
                         </button>
+                    </div>
+                ) : selectedMember && selectedMember.status === "approved_need_register" ? (
+                    <div className="p-4 border-t border-blue-border bg-surface">
+                        <div className="text-center text-sm text-subtext">
+                            <span className="material-symbols-outlined text-yellow text-[18px] align-middle mr-1">schedule</span>
+                            Waiting for applicant to register their account
+                        </div>
                     </div>
                 ) : (
                     <div className="p-4 border-t border-blue-border bg-surface flex gap-3">

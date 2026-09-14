@@ -24,12 +24,30 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'membership_application_id' => 'required|exists:membership_applications,id',
         ]);
+
+        $application = MembershipApplication::find($request->membership_application_id);
+
+        if ($application->status !== 'approved_need_register') {
+            return response()->json(['message' => 'This application is not approved for registration.'], 403);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'member',
+        ]);
+
+        $application->update([
+            'status' => 'approved_member_now',
+            'user_id' => $user->id,
+        ]);
+
+        Member::create([
+            'user_id' => $user->id,
+            'membership_application_id' => $application->id,
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
