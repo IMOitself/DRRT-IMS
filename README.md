@@ -1,6 +1,17 @@
 # DRRT-IMS
 # live website [drrt-ims.web.app](https://drrt-ims.web.app/)
 
+<details><summary>quick links and stuff</summary>
+  
+`developer only access :>`
+- https://console.firebase.google.com/u/1/project/drrt-ims
+- https://dashboard.render.com/web/srv-dah5q2ijnfac738e7p6g/
+- https://supabase.com/dashboard/project/pnvqgbxrfxbrvbonwrrb
+
+</details>
+
+<br><br>
+
 > [!NOTE]
 > current progress:<br>
 > (screenshot is outdated, check the trello link directly)
