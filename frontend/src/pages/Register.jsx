@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
@@ -18,6 +18,23 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (applicationId) {
+      api
+        .get(`/membership-applications/${applicationId}`)
+        .then((res) => {
+          const app = res.data.data;
+          if (app) {
+            setName(app.full_name || "");
+            setEmail(app.email || "");
+          }
+        })
+        .catch((err) => {
+          console.error("Failed to load application details:", err);
+        });
+    }
+  }, [applicationId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
