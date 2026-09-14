@@ -64,13 +64,18 @@ links that has dash (~~example~~) have already been translated and put into the 
 - [~~application form page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html)
 - [~~application form status page~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html)
 
+### login and register
+- [login](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html)
+- [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html)
+- [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html)
+- [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html)
+- [register](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html)
 
 ### member role
 - [announcements](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html)
 - [~~member_dashboard_updated~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html)
 - [my_attendance_records](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html)
 - [my_digital_id_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html)
-- [training_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/training_hub.html)
 
 ### officer role
 - [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html)
@@ -78,7 +83,6 @@ links that has dash (~~example~~) have already been translated and put into the 
 - [~~member roster~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html)
 - [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html)
 - [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html)
-- [training_management](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/training_management.html)
 
 ### adviser role
 - [approvals_activity_requests](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html)
