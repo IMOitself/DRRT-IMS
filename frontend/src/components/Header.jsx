@@ -116,7 +116,7 @@ export default function Header() {
 
 
                 <div className="flex items-center gap-3">
-                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
+                    <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </Link>
                     {isLoggedIn && <AccountDropdown />}

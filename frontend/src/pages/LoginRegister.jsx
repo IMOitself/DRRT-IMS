@@ -21,7 +21,6 @@ export default function Login() {
     const testLoginAsOfficer = () => {
         api
             .post("/login", {
-                name: NAME_OFFICER,
                 email: EMAIL_OFFICER,
                 password: PASSWORD_OFFICER,
             })
@@ -34,7 +33,6 @@ export default function Login() {
     const testLoginAsMember = () => {
         api
             .post("/login", {
-                name: NAME_MEMBER,
                 email: EMAIL_MEMBER,
                 password: PASSWORD_MEMBER,
             })
