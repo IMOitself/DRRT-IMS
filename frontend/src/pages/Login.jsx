@@ -1,7 +1,67 @@
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        login(res.data.token, res.data.user);
+        navigate(location.state?.from || "/");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
+      });
+  };
+
+  const testLoginAsOfficer = () => {
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/login", {
+        email: "captain.erwin@gmail.com",
+        password: "shinzousasageyo",
+      })
+      .then((res) => {
+        login(res.data.token, res.data.user);
+        navigate(location.state?.from || "/");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
+      });
+  };
+
   return (
     <>
       <title>Login - DRRT Member Portal</title>
@@ -29,8 +89,14 @@ export default function Login() {
                 </p>
               </div>
             </div>
+            {/* Error Message */}
+            {errorMessage && (
+              <div className="bg-red-bg text-red border border-red-border rounded-xl p-3 mb-4 text-sm font-medium">
+                {errorMessage}
+              </div>
+            )}
             {/* Login Form */}
-            <form action="#" method="POST" className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="email"
@@ -48,6 +114,8 @@ export default function Login() {
                     name="email"
                     placeholder="student@lvcc.edu.ph"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
@@ -77,24 +145,35 @@ export default function Login() {
                     name="password"
                     placeholder="********"
                     required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 disabled:opacity-50"
               >
-                <span>Sign In</span>
+                <span>{isLoading ? "Signing In..." : "Sign In"}</span>
                 <span className="material-symbols-outlined text-[18px]!">login</span>
               </button>
             </form>
+            {/* Test Login Button */}
+            <button
+              onClick={testLoginAsOfficer}
+              disabled={isLoading}
+              className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50"
+            >
+              test: login as officer hehe
+            </button>
             {/* Footer Prompt */}
             <div className="mt-6 pt-4 border-t border-blue-border/40 text-center">
               <p className="text-xs text-subtext">
                 Not a member yet?{" "}
                 <a
-                  href="#"
+                  href="/join"
                   className="text-blue font-bold hover:underline inline-block py-1"
                 >
                   Apply for Membership
