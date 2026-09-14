@@ -38,11 +38,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/events" element={<Events />} />
       <Route path="/join" element={<JoinDRRT />} />
-
-      <Route element={<ProtectedRoute />}>
-        <Route path="/join-form" element={<JoinDRRTForm />} />
-        <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
-      </Route>
+      <Route path="/join-form" element={<JoinDRRTForm />} />
+      <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
@@ -52,7 +49,7 @@ function App() {
         <Route path="/officer/incidents/:id" element={<IncidentDetails />} />
       </Route>
 
-      <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
+      <Route element={<ProtectedRoute />}>
         <Route path="/member/dashboard" element={<Dashboard />} />
         <Route path="/member/attendance" element={<Attendance />} />
         <Route path="/member/announcements" element={<Announcements />} />
