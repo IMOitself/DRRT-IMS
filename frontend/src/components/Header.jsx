@@ -14,7 +14,7 @@ export default function Header() {
                         <span className="material-symbols-outlined text-[24px]">shield</span>
                     </div>
                     <div>
-                        <h1 className="font-geist text-2xl font-bold text-blue flex items-center gap-2">
+                        <h1 className="font-geist text-lg md:text-xl font-bold text-blue flex items-center gap-2">
                             DRRT Portal
                             <span className="font-geist text-xs text-blue font-semibold bg-blue-bg px-2 py-0.5 rounded-full uppercase tracking-wider">
                                 LVCC
@@ -116,7 +116,7 @@ export default function Header() {
 
 
                 <div className="flex items-center gap-3">
-                    <Link to="/login-register" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
+                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
                         Login
                     </Link>
                     {isLoggedIn && <AccountDropdown />}
