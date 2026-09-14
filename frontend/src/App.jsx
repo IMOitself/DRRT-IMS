@@ -8,7 +8,6 @@ import JoinDRRTForm from './pages/JoinDRRTForm';
 import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
 import Home from './pages/Home';
 import Events from './pages/Events';
-import LoginRegister from './pages/LoginRegister';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -33,7 +32,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login-register" element={<LoginRegister />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/events" element={<Events />} />

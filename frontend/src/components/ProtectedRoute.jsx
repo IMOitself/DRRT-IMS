@@ -13,7 +13,7 @@ export default function ProtectedRoute({ allowedRoles }) {
     }
 
     if (!isLoggedIn) {
-        return <Navigate to="/login-register" replace />;
+        return <Navigate to="/login" replace />;
     }
     if (allowedRoles && !allowedRoles.includes(user.role)) {
         alert("You are not authorized to view this page.");
