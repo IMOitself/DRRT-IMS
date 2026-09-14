@@ -15,7 +15,7 @@
 > [!NOTE]
 > current progress:<br>
 > (screenshot is outdated, check the trello link directly)
-> <img width="1778" height="685" alt="Screenshot 2026-09-10 174531" src="https://github.com/user-attachments/assets/ef1ce5b7-54d6-4d17-9ea1-c89a456550f5" />
+> <img width="1850" height="762" alt="Screenshot 2026-09-14 132137" src="https://github.com/user-attachments/assets/7e578a8e-802d-4a54-803a-bbccca3d730d" />
 > https://trello.com/b/rcb0FEpP
 
 
