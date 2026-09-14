@@ -54,13 +54,6 @@ export default function Header() {
                         }}>
                             Incidents
                         </NavLink>
-                        <NavLink to="/officer/training" className={({ isActive }) =>
-                            isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }>
-                            Training
-                        </NavLink>
                     </nav>
                 ) : pathname.startsWith("/member") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
@@ -77,13 +70,6 @@ export default function Header() {
                                 : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                         }>
                             Attendance
-                        </NavLink>
-                        <NavLink to="/member/training" className={({ isActive }) =>
-                            isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }>
-                            Training
                         </NavLink>
                         <NavLink to="/member/announcements" className={({ isActive }) =>
                             isActive
