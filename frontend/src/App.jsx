@@ -9,6 +9,8 @@ import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
 import Home from './pages/Home';
 import Events from './pages/Events';
 import LoginRegister from './pages/LoginRegister';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 import Roster from './pages/officer/Roster';
 import OfficerDashboard from './pages/officer/Dashboard';
@@ -32,6 +34,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login-register" element={<LoginRegister />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/events" element={<Events />} />
       <Route path="/join" element={<JoinDRRT />} />
 
