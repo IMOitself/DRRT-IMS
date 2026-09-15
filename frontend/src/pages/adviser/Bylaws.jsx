@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Bylaws() {
   return (
     <>
-      <title>Adviser Portal - Bylaw Governance</title>
+      <title>Bylaws - DRRT Adviser Portal</title>
 
       <Header />
       <WIP />

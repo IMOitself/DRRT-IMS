@@ -25,6 +25,7 @@ import ID from './pages/member/ID';
 import AdviserDashboard from './pages/adviser/Dashboard';
 import AdviserVault from './pages/adviser/Vault';
 import AdviserBylaws from './pages/adviser/Bylaws';
+import AdviserReports from './pages/adviser/Reports';
 
 function App() {
   const { pathname } = useLocation();
@@ -46,6 +47,7 @@ function App() {
       <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
       <Route path="/adviser/vault" element={<AdviserVault />} />
       <Route path="/adviser/bylaws" element={<AdviserBylaws />} />
+      <Route path="/adviser/reports" element={<AdviserReports />} />
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
