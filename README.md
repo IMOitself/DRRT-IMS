@@ -88,7 +88,7 @@ status: 🟩 (done) | ⬜ (not yet done)
 | :--- | :---: | :---: | :---: | :--- |
 | [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) |
 | [manual_attendance_logger_pro](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) |
-| [member roster](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) |
+| [member roster](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) |
 | [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) |
 | [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) |
 
