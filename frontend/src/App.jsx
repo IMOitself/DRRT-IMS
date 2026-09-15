@@ -8,19 +8,20 @@ import JoinDRRTForm from './pages/JoinDRRTForm';
 import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
 import Home from './pages/Home';
 import Events from './pages/Events';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-import Roster from './pages/officer/Roster';
+import OfficerRoster from './pages/officer/Roster';
 import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
-import Incidents from './pages/officer/Incidents';
-import IncidentDetails from './pages/officer/IncidentDetails';
+import OfficerIncidents from './pages/officer/Incidents';
+import OfficerIncidentDetails from './pages/officer/IncidentDetails';
 
-import Dashboard from './pages/member/Dashboard';
-import Attendance from './pages/member/Attendance';
-import Announcements from './pages/member/Announcements';
-import ID from './pages/member/ID';
+import MemberDashboard from './pages/member/Dashboard';
+import MemberAttendance from './pages/member/Attendance';
+import MemberAnnouncements from './pages/member/Announcements';
+import MemberID from './pages/member/ID';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
 import AdviserVault from './pages/adviser/Vault';
@@ -54,16 +55,16 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/attendance" element={<OfficerAttendance />} />
-        <Route path="/officer/roster" element={<Roster />} />
-        <Route path="/officer/incidents" element={<Incidents />} />
-        <Route path="/officer/incidents/:id" element={<IncidentDetails />} />
+        <Route path="/officer/roster" element={<OfficerRoster />} />
+        <Route path="/officer/incidents" element={<OfficerIncidents />} />
+        <Route path="/officer/incidents/:id" element={<OfficerIncidentDetails />} />
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/member/dashboard" element={<Dashboard />} />
-        <Route path="/member/attendance" element={<Attendance />} />
-        <Route path="/member/announcements" element={<Announcements />} />
-        <Route path="/member/id" element={<ID />} />
+        <Route path="/member/dashboard" element={<MemberDashboard />} />
+        <Route path="/member/attendance" element={<MemberAttendance />} />
+        <Route path="/member/announcements" element={<MemberAnnouncements />} />
+        <Route path="/member/id" element={<MemberID />} />
       </Route>
     </Routes>
   );
