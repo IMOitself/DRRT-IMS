@@ -161,19 +161,6 @@ export default function Login() {
               </button>
             </form>
             {/* Test Login Button */}
-            <button
-              onClick={testLoginAsOfficer}
-              disabled={isLoading}
-              className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50"
-            >
-              test: login as officer hehe
-            </button>
-            <Link
-              to="/test-pages"
-              className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50"
-            >
-              test: view all pages (no login)
-            </Link>
 
             {/* Footer Prompt */}
             <div className="mt-6 pt-4 border-t border-blue-border/40 text-center">
@@ -188,6 +175,14 @@ export default function Login() {
               </p>
             </div>
           </div>
+
+          <button onClick={testLoginAsOfficer} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as officer hehe
+          </button>
+          <Link to="/test-pages" className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: view all pages (no login)
+          </Link>
+
         </main>
       </div>
 
