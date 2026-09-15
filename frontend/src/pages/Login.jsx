@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
@@ -168,6 +168,13 @@ export default function Login() {
             >
               test: login as officer hehe
             </button>
+            <Link
+              to="/test-pages"
+              className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50"
+            >
+              test: view all pages (no login)
+            </Link>
+
             {/* Footer Prompt */}
             <div className="mt-6 pt-4 border-t border-blue-border/40 text-center">
               <p className="text-xs text-subtext">
