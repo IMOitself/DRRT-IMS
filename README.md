@@ -117,7 +117,8 @@ status: 🟩 (done) | ⬜ (not yet done)
 > 7. Add link to it on `@[frontend/src/components/Header.jsx]`.
 > 8. css must be consistent with `@[frontend/src/pages/officer/Attendance.jsx]` or the other pages. meaning most tailwind codes are redundant
 > 9. minimal edit.
-> 10. save token by only viewing as few files as possible
+> 10. only view as few files as possible
+> 11. mark it as translated on `@README.md`
 ```
 
 </details>
