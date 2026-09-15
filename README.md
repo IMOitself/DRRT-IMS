@@ -96,10 +96,10 @@ status: 🟩 (done) | ⬜ (not yet done)
 | preview | translated | functional | fixes | code |
 | :--- | :---: | :---: | :---: | :--- |
 | [approvals_activity_requests](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) |
-| [bylaw_governance_roster_audit](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) |
+| [bylaw_governance_roster_audit](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) |
 | [executive_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) |
 | [executive_reports_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) |
-| [incident_audit_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) |
+| [incident_audit_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) |
 
 ### converting into react components
 - First, go to [html to jsx](https://transform.tools/html-to-jsx) paste the html file there and convert it to jsx.
