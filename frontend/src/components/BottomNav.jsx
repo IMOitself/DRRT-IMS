@@ -3,6 +3,77 @@ import { NavLink, useLocation } from "react-router-dom";
 export default function BottomNav() {
     const { pathname } = useLocation();
 
+    if (pathname.startsWith("/adviser")) {
+        return (
+            <nav aria-label="Adviser Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">
+                <NavLink to="/adviser/dashboard" className={({ isActive }) =>
+                    isActive
+                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
+                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>dashboard</span>
+                            <span className="font-geist text-xs mt-0.5">Dashboard</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink to="/adviser/vault" className={({ isActive }) =>
+                    isActive
+                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
+                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>shield</span>
+                            <span className="font-geist text-xs mt-0.5">Vault</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink to="/adviser/bylaws" className={({ isActive }) =>
+                    isActive
+                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
+                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>gavel</span>
+                            <span className="font-geist text-xs mt-0.5">Bylaws</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink to="/adviser/reports" className={({ isActive }) =>
+                    isActive
+                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
+                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>description</span>
+                            <span className="font-geist text-xs mt-0.5">Reports</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink to="/adviser/approvals" className={({ isActive }) =>
+                    isActive
+                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
+                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>fact_check</span>
+                            <span className="font-geist text-xs mt-0.5">Approvals</span>
+                        </>
+                    )}
+                </NavLink>
+            </nav>
+        );
+    }
+
     if (pathname.startsWith("/officer")) {
         return (
             <nav aria-label="Officer Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">

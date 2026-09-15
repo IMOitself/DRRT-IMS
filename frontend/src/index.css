@@ -33,6 +33,11 @@
 
   --color-progress-ring-track: #eaedff;
 
+  /* Executive / Adviser */
+  --color-executive-gold: #d4af37;
+  --color-executive-gold-light: #f7f0d7;
+  --color-executive-gold-dark: #b5932a;
+
   /* Font */
   --font-geist: "Geist", sans-serif;
 }

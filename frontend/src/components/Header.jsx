@@ -23,7 +23,45 @@ export default function Header() {
                     </div>
                 </div>
 
-                {pathname.startsWith("/officer") ? (
+                {pathname.startsWith("/adviser") ? (
+                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                        <NavLink to="/adviser/dashboard" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Dashboard
+                        </NavLink>
+                        <NavLink to="/adviser/vault" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Vault
+                        </NavLink>
+                        <NavLink to="/adviser/bylaws" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Bylaws
+                        </NavLink>
+                        <NavLink to="/adviser/reports" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Reports
+                        </NavLink>
+                        <NavLink to="/adviser/approvals" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Approvals
+                        </NavLink>
+                    </nav>
+                ) : pathname.startsWith("/officer") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/officer/dashboard" className={({ isActive }) =>
                             isActive
