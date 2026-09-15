@@ -151,11 +151,7 @@ export default function Login() {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 disabled:opacity-50"
-              >
+              <button type="submit" disabled={isLoading} className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 disabled:opacity-50 cursor-pointer">
                 <span>{isLoading ? "Signing In..." : "Sign In"}</span>
                 <span className="material-symbols-outlined text-[18px]!">login</span>
               </button>
@@ -166,10 +162,7 @@ export default function Login() {
             <div className="mt-6 pt-4 border-t border-blue-border/40 text-center">
               <p className="text-xs text-subtext">
                 Not a member yet?{" "}
-                <a
-                  href="/join"
-                  className="text-blue font-bold hover:underline inline-block py-1"
-                >
+                <a href="/join" className="text-blue font-bold hover:underline inline-block py-1">
                   Apply for Membership
                 </a>
               </p>
