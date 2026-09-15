@@ -5,7 +5,7 @@ import WIP from "../../components/WIP";
 export default function Dashboard() {
   return (
     <>
-      <title>Adviser Portal - Executive Dashboard</title>
+      <title>Dashboard - DRRT Adviser Portal</title>
 
       <Header />
       <WIP />
