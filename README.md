@@ -69,11 +69,11 @@ links that has dash (~~example~~) have already been translated and put into the 
 ### login and register
 | preview | code |
 | :--- | :--- |
-| [login](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) |
+| [~~login~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) |
 | [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) |
 | [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) |
 | [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) |
-| [register](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) |
+| [~~register~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) |
 
 ### member role
 | preview | code |
@@ -86,11 +86,11 @@ links that has dash (~~example~~) have already been translated and put into the 
 ### officer role
 | preview | code |
 | :--- | :--- |
-| [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) |
-| [manual_attendance_logger_pro](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) |
+| [~~incident_vault~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) |
+| [~~manual_attendance_logger_pro~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) |
 | [~~member roster~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) |
-| [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) |
-| [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) |
+| [~~new_incident_report_workspace~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) |
+| [~~officer_dashboard~~](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) |
 
 ### adviser role
 | preview | code |
