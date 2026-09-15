@@ -106,15 +106,18 @@ status: 🟩 (done) | ⬜ (not yet done)
 - create a file
 - then prompt this stuff to ur ai. (obviously replace the `<ur file duh>`):
 ```
-> Convert `@[<ur file duh>]` into a standard React component:
+> Convert `<ur file duh>`  into a standard React component:
+> for example if its Training.jsx and its related to member role:
 > 1. Wrap in `export default function Training()`.
 > 2. Remove all `<meta>` tags and inline `<style>` tags.
-> 3. Replace the header with `Header` and bottom nav with `BottomNav`.
+> 3. Replace the header with `Header` and bottom nav with `BottomNav`. add <WIP/> below header.
 > 4. Add `!` to all icon text sizing classes (e.g., `text-[24px]!`).
 > 5. Keep it completely static for now.
 > 6. Register `<Route path="/member/training" element={<Training />} />` in `@[frontend/src/App.jsx]`.
 > 7. Add link to it on `@[frontend/src/components/Header.jsx]`.
-> 8. css must be consistent with Attendance.jsx meaning most tailwind codes are redundant
+> 8. css must be consistent with `@[frontend/src/pages/officer/Attendance.jsx]` or the other pages. meaning most tailwind codes are redundant
+> 9. minimal edit.
+> 10. save token by only viewing as few files as possible
 ```
 
 </details>
