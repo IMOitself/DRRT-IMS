@@ -94,3 +94,7 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -5px rgba(0, 61, 155, 0.08), 0 8px 10px -6px rgba(0, 61, 155, 0.04);
 }
+
+.test-link {
+  @apply hover:underline cursor-pointer text-blue;
+}

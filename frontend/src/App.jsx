@@ -3,6 +3,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
+import TestPages from './pages/TEST-PAGES';
+
 import JoinDRRT from './pages/JoinDRRT';
 import JoinDRRTForm from './pages/JoinDRRTForm';
 import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
@@ -38,6 +40,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/test-pages" element={<TestPages />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

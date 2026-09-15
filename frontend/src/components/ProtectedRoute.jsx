@@ -1,8 +1,13 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ allowedRoles }) {
+    const location = useLocation();
     const { user, loading, isLoggedIn } = useAuth();
+
+    // TODO: remove this test code :D.
+    // bypass authentication if from test page
+    if (sessionStorage.getItem("testMode") === "true") return <Outlet />;
 
     if (loading) {
         return (
