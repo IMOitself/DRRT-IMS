@@ -19,7 +19,7 @@ export default function Dashboard() {
               Executive Summary &amp; Governance Hub
             </h2>
             <p className="text-sm md:text-base text-subtext mt-1 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]! text-executive-gold">
+              <span className="material-symbols-outlined text-[18px]! text-blue">
                 verified_user
               </span>
               <span>Chapter Adviser Oversight | LVCC Apalit Chapter</span>
@@ -27,7 +27,7 @@ export default function Dashboard() {
           </div>
           {/* Controls / Action Button */}
           <div className="flex items-center gap-2">
-            <button className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-geist text-sm font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
+            <button className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue text-white hover:bg-blue/90 font-geist text-sm font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
                 download
               </span>
@@ -67,16 +67,16 @@ export default function Dashboard() {
               <span className="font-geist text-xs text-subtext uppercase tracking-wider font-semibold">
                 Bylaws Compliance
               </span>
-              <span className="material-symbols-outlined text-executive-gold text-[22px]!">
+              <span className="material-symbols-outlined text-blue text-[22px]!">
                 policy
               </span>
             </div>
             <div>
-              <div className="font-geist text-3xl text-executive-gold font-bold">
+              <div className="font-geist text-3xl text-blue font-bold">
                 88.4%
               </div>
               <p className="text-xs text-subtext mt-1 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[16px]! text-executive-gold">
+                <span className="material-symbols-outlined text-[16px]! text-blue">
                   trending_up
                 </span>
                 <span>Above baseline</span>
@@ -85,12 +85,12 @@ export default function Dashboard() {
           </div>
 
           {/* Card 3: Critical Incidents */}
-          <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 flex flex-col justify-between border-t-4 border-t-executive-gold card-hover shadow-sm relative overflow-hidden">
+          <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 flex flex-col justify-between border-t-4 border-t-blue card-hover shadow-sm relative overflow-hidden">
             <div className="flex items-start justify-between mb-2">
               <span className="font-geist text-xs text-subtext uppercase tracking-wider font-semibold flex items-center gap-1">
                 Critical Incidents
                 <span
-                  className="material-symbols-outlined text-[14px]! text-executive-gold"
+                  className="material-symbols-outlined text-[14px]! text-blue"
                   title="Security Clearance Required"
                 >
                   lock
@@ -108,7 +108,7 @@ export default function Dashboard() {
                 </span>
               </div>
               <p className="text-xs text-subtext mt-1 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[16px]! text-executive-gold">
+                <span className="material-symbols-outlined text-[16px]! text-blue">
                   check_circle
                 </span>
                 <span>All Resolved</span>
@@ -117,23 +117,23 @@ export default function Dashboard() {
           </div>
 
           {/* Card 4: Pending Approvals */}
-          <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 flex flex-col justify-between border-t-4 border-t-executive-gold card-hover shadow-sm relative overflow-hidden">
+          <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 flex flex-col justify-between border-t-4 border-t-blue card-hover shadow-sm relative overflow-hidden">
             <div className="flex items-start justify-between mb-2">
               <span className="font-geist text-xs text-subtext uppercase tracking-wider font-semibold flex items-center gap-1">
                 Pending Approvals
                 <span
-                  className="material-symbols-outlined text-[14px]! text-executive-gold"
+                  className="material-symbols-outlined text-[14px]! text-blue"
                   title="Security Clearance Required"
                 >
                   lock
                 </span>
               </span>
-              <span className="material-symbols-outlined text-executive-gold text-[22px]!">
+              <span className="material-symbols-outlined text-blue text-[22px]!">
                 pending_actions
               </span>
             </div>
             <div>
-              <div className="font-geist text-3xl text-executive-gold font-bold">
+              <div className="font-geist text-3xl text-blue font-bold">
                 3
               </div>
               <p className="text-xs text-subtext mt-1">
@@ -159,25 +159,25 @@ export default function Dashboard() {
               </div>
               {/* Bars */}
               <div className="flex flex-col items-center w-full group relative z-20">
-                <div className="w-8 md:w-12 h-[75%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors" />
+                <div className="w-8 md:w-12 h-[75%] bg-blue/80 rounded-t-lg group-hover:bg-blue transition-colors" />
                 <span className="font-geist text-xs text-subtext mt-2">
                   Q1
                 </span>
               </div>
               <div className="flex flex-col items-center w-full group relative z-20">
-                <div className="w-8 md:w-12 h-[82%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors" />
+                <div className="w-8 md:w-12 h-[82%] bg-blue/80 rounded-t-lg group-hover:bg-blue transition-colors" />
                 <span className="font-geist text-xs text-subtext mt-2">
                   Q2
                 </span>
               </div>
               <div className="flex flex-col items-center w-full group relative z-20">
-                <div className="w-8 md:w-12 h-[90%] bg-executive-gold rounded-t-lg group-hover:bg-executive-gold-dark transition-colors" />
+                <div className="w-8 md:w-12 h-[90%] bg-blue rounded-t-lg group-hover:bg-blue/90 transition-colors" />
                 <span className="font-geist text-xs text-subtext mt-2">
                   Q3
                 </span>
               </div>
               <div className="flex flex-col items-center w-full group relative z-20">
-                <div className="w-8 md:w-12 h-[85%] bg-executive-gold/80 rounded-t-lg group-hover:bg-executive-gold transition-colors" />
+                <div className="w-8 md:w-12 h-[85%] bg-blue/80 rounded-t-lg group-hover:bg-blue transition-colors" />
                 <span className="font-geist text-xs text-subtext mt-2">
                   Q4
                 </span>
@@ -207,7 +207,7 @@ export default function Dashboard() {
                   Moderate
                 </span>
                 <div className="flex-1 h-5 bg-surface-container-high rounded-full overflow-hidden flex">
-                  <div className="h-full bg-executive-gold w-[20%] rounded-full" />
+                  <div className="h-full bg-blue w-[20%] rounded-full" />
                 </div>
                 <span className="font-geist text-xs font-bold w-8 text-text">
                   4
@@ -230,7 +230,7 @@ export default function Dashboard() {
                 <span className="w-3 h-3 bg-subtext rounded-full" /> Minor Policy
               </div>
               <div className="flex items-center gap-1.5 font-geist text-xs text-subtext">
-                <span className="w-3 h-3 bg-executive-gold rounded-full" />{" "}
+                <span className="w-3 h-3 bg-blue rounded-full" />{" "}
                 Escalated
               </div>
               <div className="flex items-center gap-1.5 font-geist text-xs text-subtext">
@@ -246,7 +246,7 @@ export default function Dashboard() {
           <div className="bg-white border border-blue-border rounded-xl overflow-hidden card-hover shadow-sm flex flex-col">
             <div className="p-4 md:p-6 border-b border-blue-border/60 flex justify-between items-center bg-surface-container-low/50">
               <h3 className="font-geist text-lg md:text-xl font-bold text-text flex items-center gap-2">
-                <span className="material-symbols-outlined text-executive-gold">
+                <span className="material-symbols-outlined text-blue">
                   gavel
                 </span>
                 <span>Flagged Member Sanctions</span>
@@ -275,7 +275,7 @@ export default function Dashboard() {
                       Attendance Deficit
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <button className="font-geist text-sm text-text hover:text-executive-gold font-semibold inline-flex items-center gap-1 transition-colors cursor-pointer">
+                      <button className="font-geist text-sm text-text hover:text-blue font-semibold inline-flex items-center gap-1 transition-colors cursor-pointer">
                         <span>Review</span>
                         <span className="material-symbols-outlined text-[16px]!">
                           arrow_forward
@@ -291,7 +291,7 @@ export default function Dashboard() {
                       Code of Conduct
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <button className="font-geist text-sm px-3 py-1.5 rounded-xl border border-executive-gold text-text hover:bg-executive-gold/10 font-semibold transition-all inline-flex items-center gap-1 cursor-pointer">
+                      <button className="font-geist text-sm px-3 py-1.5 rounded-xl border border-blue text-text hover:bg-blue/10 font-semibold transition-all inline-flex items-center gap-1 cursor-pointer">
                         <span className="material-symbols-outlined text-[14px]!">
                           lock
                         </span>
@@ -308,12 +308,12 @@ export default function Dashboard() {
           <div className="bg-white border border-blue-border rounded-xl overflow-hidden card-hover shadow-sm flex flex-col">
             <div className="p-4 md:p-6 border-b border-blue-border/60 flex justify-between items-center bg-surface-container-low/50">
               <h3 className="font-geist text-lg md:text-xl font-bold text-text flex items-center gap-2">
-                <span className="material-symbols-outlined text-executive-gold">
+                <span className="material-symbols-outlined text-blue">
                   history_edu
                 </span>
                 <span>Unsigned Incident Logs</span>
               </h3>
-              <span className="bg-executive-gold-light text-text font-geist text-xs px-2.5 py-1 rounded-full font-bold">
+              <span className="bg-blue-bg text-text font-geist text-xs px-2.5 py-1 rounded-full font-bold">
                 2 Action Required
               </span>
             </div>
@@ -335,7 +335,7 @@ export default function Dashboard() {
                     </td>
                     <td className="px-4 py-3 text-text">Oct 12, 2023</td>
                     <td className="px-4 py-3 text-right">
-                      <button className="font-geist text-sm px-4 py-1.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm cursor-pointer">
+                      <button className="font-geist text-sm px-4 py-1.5 rounded-xl bg-blue text-white hover:bg-blue/90 font-semibold transition-all shadow-sm cursor-pointer">
                         Sign Off
                       </button>
                     </td>
@@ -346,7 +346,7 @@ export default function Dashboard() {
                     </td>
                     <td className="px-4 py-3 text-text">Oct 14, 2023</td>
                     <td className="px-4 py-3 text-right">
-                      <button className="font-geist text-sm px-4 py-1.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm cursor-pointer">
+                      <button className="font-geist text-sm px-4 py-1.5 rounded-xl bg-blue text-white hover:bg-blue/90 font-semibold transition-all shadow-sm cursor-pointer">
                         Sign Off
                       </button>
                     </td>

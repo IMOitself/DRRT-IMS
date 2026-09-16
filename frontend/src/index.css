@@ -2,7 +2,7 @@
 
 @theme {
   /* Simplified Core Colors */
-  --color-text: #131b2e;
+  --color-text: #191b23;
   --color-subtext: #434654;
 
   --color-blue: #003d9b;
@@ -33,10 +33,17 @@
 
   --color-progress-ring-track: #eaedff;
 
-  /* Executive / Adviser */
-  --color-executive-gold: #d4af37;
-  --color-executive-gold-light: #f7f0d7;
-  --color-executive-gold-dark: #b5932a;
+  /* M3 Primary */
+  --color-primary-fixed: #dae2ff;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #001849;
+
+  /* M3 Tertiary */
+  --color-tertiary-fixed: #ffd8ee;
+  --color-on-tertiary-fixed-variant: #5d1148;
+
+  /* M3 Outline */
+  --color-outline-variant: #c4c5d0;
 
   /* Font */
   --font-geist: "Geist", sans-serif;
@@ -45,7 +52,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #faf8ff;
-  color: #131b2e;
+  color: #191b23;
   min-height: max(884px, 100dvh);
 }
 

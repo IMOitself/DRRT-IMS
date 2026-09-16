@@ -25,13 +25,13 @@ export default function Bylaws() {
           </div>
           {/* Controls Bar */}
           <div className="flex items-center gap-2">
-            <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low border border-executive-gold/30 text-subtext hover:bg-executive-gold/10 font-geist text-sm transition-colors cursor-pointer">
+            <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low border border-blue-border text-subtext hover:bg-blue/10 font-geist text-sm transition-colors cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
                 filter_list
               </span>
               <span>Filter</span>
             </button>
-            <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low border border-executive-gold/30 text-subtext hover:bg-executive-gold/10 font-geist text-sm transition-colors cursor-pointer">
+            <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low border border-blue-border text-subtext hover:bg-blue/10 font-geist text-sm transition-colors cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">sort</span>
               <span>Sort</span>
             </button>
@@ -49,7 +49,7 @@ export default function Bylaws() {
               <span className="font-geist text-sm text-subtext">
                 Active Members
               </span>
-              <span className="material-symbols-outlined text-executive-gold text-[20px]!">
+              <span className="material-symbols-outlined text-blue text-[20px]!">
                 groups
               </span>
             </div>
@@ -59,12 +59,12 @@ export default function Bylaws() {
           </div>
 
           {/* At-Risk */}
-          <div className="bg-white border border-blue-border/80 rounded-2xl p-4 flex flex-col justify-between border-t-4 border-t-executive-gold shadow-sm">
+          <div className="bg-white border border-blue-border/80 rounded-2xl p-4 flex flex-col justify-between border-t-4 border-t-blue shadow-sm">
             <div className="flex items-start justify-between mb-2">
               <span className="font-geist text-sm text-subtext">
                 At-Risk
               </span>
-              <span className="material-symbols-outlined text-executive-gold text-[20px]!">
+              <span className="material-symbols-outlined text-blue text-[20px]!">
                 warning
               </span>
             </div>
@@ -114,14 +114,14 @@ export default function Bylaws() {
             <button
               role="tab"
               aria-selected="false"
-              className="font-geist text-sm text-subtext hover:text-executive-gold pb-2 px-1 transition-colors cursor-pointer"
+              className="font-geist text-sm text-subtext hover:text-blue pb-2 px-1 transition-colors cursor-pointer"
             >
               All
             </button>
             <button
               role="tab"
               aria-selected="true"
-              className="font-geist text-sm text-text font-bold border-b-2 border-executive-gold pb-2 px-1 transition-colors relative flex items-center gap-2 cursor-pointer"
+              className="font-geist text-sm text-text font-bold border-b-2 border-blue pb-2 px-1 transition-colors relative flex items-center gap-2 cursor-pointer"
             >
               <span>Flagged for Review</span>
               <span className="bg-red text-white font-geist text-[11px]! px-1.5 py-0.5 rounded-full font-bold">
@@ -131,14 +131,14 @@ export default function Bylaws() {
             <button
               role="tab"
               aria-selected="false"
-              className="font-geist text-sm text-subtext hover:text-executive-gold pb-2 px-1 transition-colors cursor-pointer"
+              className="font-geist text-sm text-subtext hover:text-blue pb-2 px-1 transition-colors cursor-pointer"
             >
               Inactive Candidates
             </button>
             <button
               role="tab"
               aria-selected="false"
-              className="font-geist text-sm text-subtext hover:text-executive-gold pb-2 px-1 transition-colors cursor-pointer"
+              className="font-geist text-sm text-subtext hover:text-blue pb-2 px-1 transition-colors cursor-pointer"
             >
               Graduation List
             </button>
@@ -205,10 +205,10 @@ export default function Bylaws() {
                 <button className="font-geist text-sm px-3 py-2 rounded-xl border border-red text-red hover:bg-red hover:text-white font-semibold transition-all active:scale-95 cursor-pointer">
                   Approve Inactive Status
                 </button>
-                <button className="font-geist text-sm px-3 py-2 rounded-xl border border-executive-gold text-text hover:bg-executive-gold/10 font-semibold transition-all active:scale-95 cursor-pointer">
+                <button className="font-geist text-sm px-3 py-2 rounded-xl border border-blue text-text hover:bg-blue/10 font-semibold transition-all active:scale-95 cursor-pointer">
                   Issue Waiver
                 </button>
-                <button className="font-geist text-sm px-4 py-2 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
+                <button className="font-geist text-sm px-4 py-2 rounded-xl bg-blue text-white hover:bg-blue/90 font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
                   Override / Retain
                 </button>
               </div>
@@ -218,7 +218,7 @@ export default function Bylaws() {
           {/* Card 2: Probationary Case */}
           <article className="bg-white border border-blue-border/80 rounded-2xl p-4 md:p-6 shadow-sm space-y-4 relative overflow-hidden">
             {/* Highlight Accent Bar */}
-            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-executive-gold" />
+            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-blue" />
             {/* Content Header & Data */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pl-2">
               {/* Identity */}
@@ -243,7 +243,7 @@ export default function Bylaws() {
                   </span>
                   <span className="text-base text-text font-bold flex items-center gap-1">
                     78%
-                    <span className="material-symbols-outlined text-[16px]! text-executive-gold">
+                    <span className="material-symbols-outlined text-[16px]! text-blue">
                       warning
                     </span>
                   </span>
@@ -252,7 +252,7 @@ export default function Bylaws() {
                   <span className="block font-geist text-xs text-subtext">
                     Bylaw Recommendation
                   </span>
-                  <span className="inline-flex items-center gap-1 border border-executive-gold text-executive-gold font-geist text-xs font-bold px-2.5 py-1 rounded-full mt-0.5 bg-executive-gold-light/40">
+                  <span className="inline-flex items-center gap-1 border border-blue text-blue font-geist text-xs font-bold px-2.5 py-1 rounded-full mt-0.5 bg-blue-bg/40">
                     <span className="material-symbols-outlined text-[14px]!">
                       flag
                     </span>
@@ -273,10 +273,10 @@ export default function Bylaws() {
                 <button className="font-geist text-sm px-3 py-2 rounded-xl border border-red text-red hover:bg-red hover:text-white font-semibold transition-all active:scale-95 cursor-pointer">
                   Approve Inactive Status
                 </button>
-                <button className="font-geist text-sm px-3 py-2 rounded-xl border border-executive-gold text-text hover:bg-executive-gold/10 font-semibold transition-all active:scale-95 cursor-pointer">
+                <button className="font-geist text-sm px-3 py-2 rounded-xl border border-blue text-text hover:bg-blue/10 font-semibold transition-all active:scale-95 cursor-pointer">
                   Issue Waiver
                 </button>
-                <button className="font-geist text-sm px-4 py-2 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
+                <button className="font-geist text-sm px-4 py-2 rounded-xl bg-blue text-white hover:bg-blue/90 font-semibold transition-all shadow-sm active:scale-95 cursor-pointer">
                   Override / Retain
                 </button>
               </div>

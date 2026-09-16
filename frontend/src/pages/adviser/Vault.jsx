@@ -51,7 +51,7 @@ export default function Vault() {
                   </span>
                   <input
                     id="vault-search"
-                    className="w-full bg-surface border border-blue-border rounded-xl pl-10 pr-4 py-2.5 text-base text-text focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors"
+                    className="w-full bg-surface border border-blue-border rounded-xl pl-10 pr-4 py-2.5 text-base text-text focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/30 transition-colors"
                     placeholder="e.g. INC-2024-092"
                     type="text"
                   />
@@ -72,7 +72,7 @@ export default function Vault() {
                   </span>
                   <select
                     id="date-range"
-                    className="w-full bg-surface border border-blue-border rounded-xl pl-10 pr-10 py-2.5 text-base text-text focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors appearance-none cursor-pointer"
+                    className="w-full bg-surface border border-blue-border rounded-xl pl-10 pr-10 py-2.5 text-base text-text focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/30 transition-colors appearance-none cursor-pointer"
                   >
                     <option>Last 30 Days</option>
                     <option>Last Quarter</option>
@@ -96,7 +96,7 @@ export default function Vault() {
                 <div className="relative">
                   <select
                     id="severity"
-                    className="w-full bg-surface border border-blue-border rounded-xl px-4 py-2.5 text-base text-text focus:outline-none focus:border-executive-gold focus:ring-2 focus:ring-executive-gold/30 transition-colors appearance-none cursor-pointer pr-10"
+                    className="w-full bg-surface border border-blue-border rounded-xl px-4 py-2.5 text-base text-text focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/30 transition-colors appearance-none cursor-pointer pr-10"
                   >
                     <option>All Severities</option>
                     <option>Critical</option>
@@ -111,7 +111,7 @@ export default function Vault() {
 
               {/* Filter Action */}
               <div className="md:col-span-2">
-                <button className="w-full py-2.5 px-4 rounded-xl border-2 border-executive-gold text-text hover:bg-executive-gold/10 font-geist text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <button className="w-full py-2.5 px-4 rounded-xl border-2 border-blue text-text hover:bg-blue/10 font-geist text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
                   <span className="material-symbols-outlined text-[20px]!">
                     filter_list
                   </span>
@@ -164,7 +164,7 @@ export default function Vault() {
                     </span>{" "}
                     Pending Review
                   </span>
-                  <button className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-executive-gold text-slate-950 hover:bg-executive-gold-dark font-geist text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95 cursor-pointer">
+                  <button className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-blue text-white hover:bg-blue/90 font-geist text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95 cursor-pointer">
                     <span className="material-symbols-outlined text-[18px]!">
                       lock
                     </span>
@@ -209,13 +209,13 @@ export default function Vault() {
                   </div>
                 </div>
                 <div className="flex flex-col items-start md:items-end gap-2.5 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-blue-border/40">
-                  <span className="font-geist text-xs text-executive-gold font-bold flex items-center gap-1">
+                  <span className="font-geist text-xs text-blue font-bold flex items-center gap-1">
                     <span className="material-symbols-outlined text-[16px]!">
                       gavel
                     </span>{" "}
                     Audited
                   </span>
-                  <button className="w-full md:w-auto px-5 py-2.5 rounded-xl border-2 border-executive-gold text-text hover:bg-executive-gold/10 font-geist text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
+                  <button className="w-full md:w-auto px-5 py-2.5 rounded-xl border-2 border-blue text-text hover:bg-blue/10 font-geist text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
                     <span className="material-symbols-outlined text-[18px]!">
                       lock_open
                     </span>
