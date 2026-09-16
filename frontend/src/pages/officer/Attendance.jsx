@@ -14,23 +14,26 @@ export default function Attendance() {
       <main className="grow pb-52 md:pb-36">
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 space-y-6">
           {/* Active Session Context Header */}
-          <section className="bg-white border border-blue-border p-4 md:p-6 rounded-xl shadow-sm space-y-2">
+          <section className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2">
             <div className="flex items-start justify-between">
               <div>
                 <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
-                  Attendance Session Active
+                  Event
                 </p>
-                <h2 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
+                <div className="flex flex-row gap-3">
+                <h2 className="font-geist text-2xl font-semibold text-text mt-1">
                   Earthquake Drill 2026
                 </h2>
-                <p className="text-xs md:text-sm text-subtext mt-1">
+                <span className="inline-flex items-center gap-1.5 bg-blue/10 text-blue px-2.5 my-1.5 rounded font-geist text-xs uppercase font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />{" "}
+                  Live
+                </span>
+                </div>
+                <p className="text-sm md:text-sm text-subtext mt-1">
                   October 24, 2026 • 8:00 AM
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1.5 bg-blue/10 text-blue px-2.5 py-1 rounded font-geist text-xs uppercase font-semibold">
-                <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />{" "}
-                Live
-              </span>
+              
             </div>
             <div className="flex items-center gap-2 text-subtext border-t border-blue-border pt-3 mt-3">
               <span className="material-symbols-outlined text-[18px]!">
@@ -40,25 +43,24 @@ export default function Attendance() {
                 LVCC Main Campus
               </p>
             </div>
+            <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm rounded-xl">
+              <div className="font-geist text-sm text-text font-semibold">
+                Checked In: <span className="text-blue font-bold">112 / 142</span>
+              </div>
+              <div className="flex gap-4 text-xs font-geist">
+                <div className="font-bold flex items-center gap-1.5 text-green">
+                  <span className="w-2 h-2 rounded-full bg-green" /> Present: 102
+                </div>
+                <div className="font-bold flex items-center gap-1.5 text-yellow">
+                  <span className="w-2 h-2 rounded-full bg-yellow" /> Late: 10
+                </div>
+                <div className="font-bold flex items-center gap-1.5 text-red">
+                  <span className="w-2 h-2 rounded-full bg-red" /> Absent: 30
+                </div>
+              </div>
+            </div>
           </section>
 
-          {/* Live Attendance Summary */}
-          <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
-            <div className="font-geist text-sm text-text font-semibold">
-              Checked In: <span className="text-blue font-bold">112 / 142</span>
-            </div>
-            <div className="flex gap-4 text-xs font-geist">
-              <div className="flex items-center gap-1.5 text-green font-medium">
-                <span className="w-2 h-2 rounded-full bg-green" /> Present: 102
-              </div>
-              <div className="flex items-center gap-1.5 text-yellow font-medium">
-                <span className="w-2 h-2 rounded-full bg-yellow" /> Late: 10
-              </div>
-              <div className="flex items-center gap-1.5 text-red font-medium">
-                <span className="w-2 h-2 rounded-full bg-red" /> Absent: 30
-              </div>
-            </div>
-          </div>
 
           {/* Search & Filters */}
           <div className="space-y-3">
@@ -103,25 +105,23 @@ export default function Attendance() {
               <span className="material-symbols-outlined text-[18px]!">
                 done_all
               </span>{" "}
-              Mark Filtered Present
+              Mark All Filtered Present
             </button>
             <button className="flex-1 bg-white border border-red-border text-red hover:bg-red-bg transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">rule</span>{" "}
-              Mark Remaining Absent
+              Mark All Filtered Absent
             </button>
           </div>
 
-          {/* Roster Grid with A-Z Jump Rail */}
           <section className="flex gap-2 pr-4 md:pr-8" id="manual-view">
             <div className="flex-1 space-y-2">
-              {/* Member Item 1 (Present) */}
               <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
                     SM
                   </div>
                   <div className="min-w-0">
-                    <p className="font-geist text-sm font-bold text-text truncate">
+                    <p className="font-geist text-md text-text truncate">
                       Santos, Maria Clara
                     </p>
                     <p className="text-xs text-subtext truncate">
@@ -145,14 +145,13 @@ export default function Attendance() {
                 </div>
               </div>
 
-              {/* Member Item 2 (Late) */}
               <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
                     DL
                   </div>
                   <div className="min-w-0">
-                    <p className="font-geist text-sm font-bold text-text truncate">
+                    <p className="font-geist text-md text-text truncate">
                       De Leon, Juan
                     </p>
                     <p className="text-xs text-subtext truncate">
@@ -183,7 +182,7 @@ export default function Attendance() {
                     MJ
                   </div>
                   <div className="min-w-0">
-                    <p className="font-geist text-sm font-bold text-text truncate">
+                    <p className="font-geist text-md text-text truncate">
                       Mendoza, Jose
                     </p>
                     <p className="text-xs text-subtext truncate">
@@ -214,7 +213,7 @@ export default function Attendance() {
                     AA
                   </div>
                   <div className="min-w-0">
-                    <p className="font-geist text-sm font-bold text-text truncate">
+                    <p className="font-geist text-md text-text truncate">
                       Aquino, Andrea
                     </p>
                     <p className="text-xs text-subtext truncate">
@@ -234,43 +233,6 @@ export default function Attendance() {
                   </button>
                 </div>
               </div>
-            </div>
-
-            {/* A-Z Jump Rail */}
-            <div className="fixed right-1 md:right-4 top-[32%] flex flex-col gap-0.5 text-[10px] md:text-xs font-bold text-subtext py-2 px-1 bg-surface-container-highest rounded-full h-fit z-30 shadow-sm border border-blue-border">
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                A
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                B
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                C
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                D
-              </span>
-              <span className="text-center text-subtext scale-75 opacity-50 w-4 h-4">
-                •
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                M
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full bg-blue text-white shadow-sm">
-                S
-              </span>
-              <span className="text-center text-subtext scale-75 opacity-50 w-4 h-4">
-                •
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                X
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                Y
-              </span>
-              <span className="cursor-pointer hover:text-blue hover:scale-125 transition-transform text-center w-4 h-4 flex items-center justify-center rounded-full hover:bg-white">
-                Z
-              </span>
             </div>
           </section>
         </div>
