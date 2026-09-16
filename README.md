@@ -58,48 +58,48 @@ below are the links to the ui designs that u can actually view live. designed by
 status: 🟩 (done) | ⬜ (not yet done)
 
 ### public
-| preview | translated | functional | fixes | code |
-| :--- | :---: | :---: | :---: | :--- |
-| [events page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html) |
-| [home page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html) |
-| [join drrt page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html) |
-| [application form page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html) |
-| [application form status page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html) |
+| preview | translated | functional | code |
+| :--- | :---: | :---: | :---: |
+| [events page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_events_preparedness_bulletins.html) |
+| [home page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/public_home_preparedness_landing_page.html) |
+| [join drrt page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/join_drrt_membership_information.html) |
+| [application form page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form.html) |
+| [application form status page](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/1student%20(landing%20page)/application_form_submitted.html) |
 
 ### login and register
-| preview | translated | functional | fixes | code |
-| :--- | :---: | :---: | :---: | :--- |
-| [login](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) |
-| [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) |
-| [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) |
-| [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) | ⬜ | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) |
-| [register](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) |
+| preview | translated | functional | code |
+| :--- | :---: | :---: | :---: |
+| [login](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) |
+| [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) |
+| [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) |
+| [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) |
+| [register](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) |
 
 ### member role
-| preview | translated | functional | fixes | code |
-| :--- | :---: | :---: | :---: | :--- |
-| [announcements](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html) |
-| [member_dashboard_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html) |
-| [my_attendance_records](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html) |
-| [my_digital_id_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html) |
+| preview | translated | functional | code |
+| :--- | :---: | :---: | :---: |
+| [announcements](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/announcements.html) |
+| [member_dashboard_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/member_dashboard_updated.html) |
+| [my_attendance_records](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_attendance_records.html) |
+| [my_digital_id_updated](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/2member/my_digital_id_updated.html) |
 
 ### officer role
-| preview | translated | functional | fixes | code |
-| :--- | :---: | :---: | :---: | :--- |
-| [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) |
-| [manual_attendance_logger_pro](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) |
-| [member roster](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) | 🟩 | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) |
-| [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) |
-| [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) |
+| preview | translated | functional | code |
+| :--- | :---: | :---: | :---: |
+| [incident_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/incident_vault.html) |
+| [manual_attendance_logger_pro](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/manual_attendance_logger_pro.html) |
+| [member roster](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/member_roster.html) |
+| [new_incident_report_workspace](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/new_incident_report_workspace.html) |
+| [officer_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/3officer/officer_dashboard.html) |
 
 ### adviser role
 | preview | translated | functional | fixes | code |
 | :--- | :---: | :---: | :---: | :--- |
-| [approvals_activity_requests](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) |
-| [bylaw_governance_roster_audit](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) |
-| [executive_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) |
-| [executive_reports_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) |
-| [incident_audit_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) | 🟩 | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) |
+| [approvals_activity_requests](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) | 🟩 | ⬜ | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/approvals_activity_requests.html) |
+| [bylaw_governance_roster_audit](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) | 🟩 | ⬜ | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/bylaw_governance_roster_audit.html) |
+| [executive_dashboard](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) | 🟩 | ⬜ | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_dashboard.html) |
+| [executive_reports_hub](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) | 🟩 | ⬜ | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/executive_reports_hub.html) |
+| [incident_audit_vault](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) | 🟩 | ⬜ | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/4adviser/incident_audit_vault.html) |
 
 ### converting into react components
 - First, go to [html to jsx](https://transform.tools/html-to-jsx) paste the html file there and convert it to jsx.
