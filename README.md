@@ -1,7 +1,7 @@
 # DRRT-IMS
 # live website [drrt-ims.web.app](https://drrt-ims.web.app/)
 
-<details><summary>quick links and stuff</summary>
+<details><summary>deployment links and stuff</summary>
   
 `developer only access :>`
 - https://console.firebase.google.com/u/1/project/drrt-ims
