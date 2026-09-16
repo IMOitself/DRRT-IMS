@@ -32,22 +32,40 @@ export default function CreateEvent() {
                     <input type="text" placeholder="event name" />
                     <input type="text" placeholder="event date" />
                     <input type="text" placeholder="event time" />
-                    <input type="text" placeholder="event location" />
-                    <label className="flex items-start gap-3 cursor-pointer">
-                        <input type="checkbox" name="is_public" className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"/>
-                            is online
-                    </label>
+                    <input type="text" placeholder="event participants like teachers, BSIS 1 students, etc idk" />
+
+                    <div className="flex flex-row flex-nowrap md:w-50 gap-5">
+                        <div className="border-black border">
+                            onsite:
+                            <input type="text" placeholder="event location" />
+                        </div>
+
+                        <div className="border-black border min-w-100">
+                            online:
+                            <div>
+                                <label>
+                                    <input type="radio" name="optionGroup" value="option1" /> Google Meet
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionGroup" value="option2" /> Zoom
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                     <input type="text" placeholder="event description" />
                     <label className="flex items-start gap-3 cursor-pointer">
-                        <input type="checkbox" name="is_public" className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"/>
-                            is public
+                        <input type="checkbox" name="is_public" className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
+                        is public
                     </label>
-                    <button type="submit" className="p-5 cursor-pointer bg-blue text-white active:bg-blue-bg">add event</button>
+                    <button type="submit" className="p-3 cursor-pointer bg-blue text-white active:bg-blue-bg">add event</button>
                     event list:
 
                 </form>
+
+
                 <details className="flex flex-col gap-2 gap-5 w-fit">
-                    <summary>ui designs</summary>
+                    <summary>ui designs that will display events</summary>
                     <p>events page</p>
                     <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row">
                         {/* Event Image */}
