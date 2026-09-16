@@ -6,25 +6,41 @@ import api from "../api/axios";
 export default function CreateEvent() {
     
     const [events, setEvents] = useState([]);
-    const [formData, setFormData] = useState({
-        event_name: "",
+    const initialFormData = {
+        title: "",
+        description: "",
         event_date: "",
         event_time: "",
-        event_location: "",
-        event_description: "",
-    });
+        type: "",
+        participants: "",
+        "venue-onsite": "",
+        "venue-online": "",
+        is_public: false,
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const handleChange = (e) => {
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // api
-        //     .post("/membership-applications", formData)
-        //     .then((res) => {
-        //         localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
-        //         navigate(`/join-form/${res.data.application_id}`);
-        //     })
-        //     .catch((err) => console.error(err));
-    }
+        const dataToSend = {
+            ...formData,
+            date_time: `${formData.event_date} ${formData.event_time}`.trim(),
+        };
+
+        api
+            .post("/events", dataToSend)
+            .then((res) => {
+                setFormData(initialFormData);
+                api.get("/events").then((res) => setEvents(res.data));
+            })
+            .catch((err) => console.error(err));
+    };
 
     useEffect(() => {
         api
@@ -43,54 +59,138 @@ export default function CreateEvent() {
             <Header />
             <div className="p-5 flex flex-row justify-center items-top gap-5">
                 <form className="p-10 px-24 flex flex-col flex-1 gap-3 w-fit" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="event title" />
-                    <input type="text" placeholder="event description" />
-                    <input type="text" placeholder="event date" />
-                    <input type="text" placeholder="event time" />
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="event title"
+                    />
+                    <input
+                        type="text"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        placeholder="event description"
+                    />
+                    <input
+                        type="text"
+                        name="event_date"
+                        value={formData.event_date}
+                        onChange={handleChange}
+                        placeholder="event date"
+                    />
+                    <input
+                        type="text"
+                        name="event_time"
+                        value={formData.event_time}
+                        onChange={handleChange}
+                        placeholder="event time"
+                    />
                     event type:
                     <div>
                         <label>
-                            <input type="radio" name="optionsB" value="option1" /> drill
+                            <input
+                                type="radio"
+                                name="type"
+                                value="drill"
+                                checked={formData.type === "drill"}
+                                onChange={handleChange}
+                            /> drill
                         </label>
                         <label>
-                            <input type="radio" name="optionsB" value="option2" /> meeting
+                            <input
+                                type="radio"
+                                name="type"
+                                value="meeting"
+                                checked={formData.type === "meeting"}
+                                onChange={handleChange}
+                            /> meeting
                         </label>
                         <label>
-                            <input type="radio" name="optionsB" value="option3" /> deployment
+                            <input
+                                type="radio"
+                                name="type"
+                                value="deployment"
+                                checked={formData.type === "deployment"}
+                                onChange={handleChange}
+                            /> deployment
                         </label>
                         <label>
-                            <input type="radio" name="optionsB" value="option3" /> others 
-                            <input type="text" placeholder="specify.." />
+                            <input
+                                type="radio"
+                                name="type"
+                                value="others"
+                                checked={formData.type === "others" || Boolean(formData.type && !["drill", "meeting", "deployment"].includes(formData.type))}
+                                onChange={handleChange}
+                            /> others 
+                            <input
+                                type="text"
+                                placeholder="specify.."
+                                name="type"
+                                value={!["drill", "meeting", "deployment"].includes(formData.type) ? formData.type : ""}
+                                onChange={handleChange}
+                            />
                         </label>
                     </div>
-                    <input type="text" placeholder="event participants like teachers, BSIS 1 students, etc idk" />
+                    <input
+                        type="text"
+                        name="participants"
+                        value={formData.participants}
+                        onChange={handleChange}
+                        placeholder="event participants like teachers, BSIS 1 students, etc idk"
+                    />
 
                     <div className="flex flex-row flex-nowrap md:w-50 gap-5">
                         <div className="border-black border">
                             onsite:
-                            <input type="text" placeholder="event location" />
+                            <input
+                                type="text"
+                                name="venue-onsite"
+                                value={formData["venue-onsite"]}
+                                onChange={handleChange}
+                                placeholder="event location"
+                            />
                         </div>
 
                         <div className="border-black border min-w-100">
                             online:
                             <div>
                                 <label>
-                                    <input type="radio" name="optionsA" value="option1" /> Google Meet
+                                    <input
+                                        type="radio"
+                                        name="venue-online"
+                                        value="gmeet"
+                                        checked={formData["venue-online"] === "gmeet"}
+                                        onChange={handleChange}
+                                    /> Google Meet
                                 </label>
                                 <label>
-                                    <input type="radio" name="optionsA" value="option2" /> Zoom
+                                    <input
+                                        type="radio"
+                                        name="venue-online"
+                                        value="zoom"
+                                        checked={formData["venue-online"] === "zoom"}
+                                        onChange={handleChange}
+                                    /> Zoom
                                 </label>
                             </div>
                         </div>
                     </div>
 
                     <label className="flex items-start gap-3 cursor-pointer">
-                        <input type="checkbox" name="is_public" className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
+                        <input
+                            type="checkbox"
+                            name="is_public"
+                            checked={formData.is_public}
+                            onChange={handleChange}
+                            className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"
+                        />
                         is public
                     </label>
                     <button type="submit" className="p-3 cursor-pointer bg-blue text-white active:bg-blue-bg">add event</button>
                     event list:
-                    {events.map((event) => (
+                    {[...events].reverse().map((event) => (
                         <div key={event.id} className="flex flex-col gap-3 border p-4">
                             <input type="text" value={event.title || ""} readOnly placeholder="event title" />
                             <input type="text" value={event.description || ""} readOnly placeholder="event description" />
