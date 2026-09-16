@@ -140,21 +140,6 @@ export default function Roster() {
                                 4th Year
                             </button>
                         </div>
-                        {/* Duty Squad Dropdown Filter */}
-                        <div className="relative w-fit">
-                            <select className="w-full appearance-none bg-white border border-blue-border hover:border-blue text-text text-sm rounded-lg block p-2.5 pr-8 focus:outline-none focus:ring-1 focus:ring-blue shadow-sm transition-colors cursor-pointer">
-                                <option selected="">All Squads / Duty Teams</option>
-                                <option value="medical">Medical Squad</option>
-                                <option value="sar">Search &amp; Rescue</option>
-                                <option value="logistics">Logistics</option>
-                                <option value="comm">Comm Duty</option>
-                            </select>
-                            <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-subtext">
-                                <span className="material-symbols-outlined text-[20px]">
-                                    arrow_drop_down
-                                </span>
-                            </div>
-                        </div>
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
