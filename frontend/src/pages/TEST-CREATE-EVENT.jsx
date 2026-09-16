@@ -45,6 +45,8 @@ export default function CreateEvent() {
                 <form className="p-10 px-24 flex flex-col flex-1 gap-3 w-fit" onSubmit={handleSubmit}>
                     <input type="text" placeholder="event title" />
                     <input type="text" placeholder="event description" />
+                    <input type="text" placeholder="event date" />
+                    <input type="text" placeholder="event time" />
                     event type:
                     <div>
                         <label>
@@ -61,8 +63,6 @@ export default function CreateEvent() {
                             <input type="text" placeholder="specify.." />
                         </label>
                     </div>
-                    <input type="text" placeholder="event date" />
-                    <input type="text" placeholder="event time" />
                     <input type="text" placeholder="event participants like teachers, BSIS 1 students, etc idk" />
 
                     <div className="flex flex-row flex-nowrap md:w-50 gap-5">
@@ -94,6 +94,7 @@ export default function CreateEvent() {
                         <div key={event.id} className="flex flex-col gap-3 border p-4">
                             <input type="text" value={event.title || ""} readOnly placeholder="event title" />
                             <input type="text" value={event.description || ""} readOnly placeholder="event description" />
+                            <input type="text" value={event.date_time || ""} readOnly placeholder="event date / time" />
                             event type:
                             <div>
                                 <label>
@@ -110,7 +111,6 @@ export default function CreateEvent() {
                                     <input type="text" value={!["drill", "meeting", "deployment"].includes(event.type) ? (event.type || "") : ""} readOnly placeholder="specify.." />
                                 </label>
                             </div>
-                            <input type="text" value={event.date_time || ""} readOnly placeholder="event date / time" />
                             <input type="text" value={event.participants || ""} readOnly placeholder="event participants like teachers, BSIS 1 students, etc idk" />
 
                             <div className="flex flex-row flex-nowrap md:w-50 gap-5">
