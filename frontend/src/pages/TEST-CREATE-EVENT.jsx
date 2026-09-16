@@ -29,7 +29,24 @@ export default function CreateEvent() {
             <Header />
             <div className="p-5 flex flex-row justify-center items-top gap-5">
                 <form className="p-10 px-24 flex flex-col flex-1 gap-3 w-fit" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="event name" />
+                    <input type="text" placeholder="event title" />
+                    <input type="text" placeholder="event description" />
+                    event type:
+                    <div>
+                        <label>
+                            <input type="radio" name="optionsB" value="option1" /> drill
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsB" value="option2" /> meeting
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsB" value="option3" /> deployment
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsB" value="option3" /> others 
+                            <input type="text" placeholder="specify.." />
+                        </label>
+                    </div>
                     <input type="text" placeholder="event date" />
                     <input type="text" placeholder="event time" />
                     <input type="text" placeholder="event participants like teachers, BSIS 1 students, etc idk" />
@@ -44,16 +61,15 @@ export default function CreateEvent() {
                             online:
                             <div>
                                 <label>
-                                    <input type="radio" name="optionGroup" value="option1" /> Google Meet
+                                    <input type="radio" name="optionsA" value="option1" /> Google Meet
                                 </label>
                                 <label>
-                                    <input type="radio" name="optionGroup" value="option2" /> Zoom
+                                    <input type="radio" name="optionsA" value="option2" /> Zoom
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <input type="text" placeholder="event description" />
                     <label className="flex items-start gap-3 cursor-pointer">
                         <input type="checkbox" name="is_public" className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
                         is public
