@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->enum('type', ['drill', 'meeting', 'deployment'])->nullable();
             $table->string('date_time')->nullable();
+            $table->string('participants')->nullable();
+            $table->enum('venue-online', ['zoom', 'gmeet'])->nullable();
+            $table->string('venue-onsite')->nullable();
+            $table->boolean('is_public')->default(false);
             $table->timestamps();
         });
     }

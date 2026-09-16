@@ -21,7 +21,18 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = Event::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'date_time' => $request->input('date_time'),
+            'participants' => $request->input('participants'),
+            'venue-online' => $request->input('venue-online'),
+            'venue-onsite' => $request->input('venue-onsite'),
+            'is_public' => $request->input('is_public', false),
+        ]);
+
+        return response()->json(['event_id' => $event->id], 201);
     }
 
     /**
