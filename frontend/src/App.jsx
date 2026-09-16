@@ -19,6 +19,7 @@ import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
 import OfficerIncidents from './pages/officer/Incidents';
 import OfficerIncidentDetails from './pages/officer/IncidentDetails';
+import OfficerCreateEvent from './pages/TEST-CREATE-EVENT';
 
 import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
@@ -61,6 +62,7 @@ function App() {
         <Route path="/officer/roster" element={<OfficerRoster />} />
         <Route path="/officer/incidents" element={<OfficerIncidents />} />
         <Route path="/officer/incidents/:id" element={<OfficerIncidentDetails />} />
+        <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
       </Route>
 
       <Route element={<ProtectedRoute />}>
