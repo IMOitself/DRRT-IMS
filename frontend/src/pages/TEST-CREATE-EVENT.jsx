@@ -1,9 +1,11 @@
 import Header from "../components/Header"
 import BottomNav from "../components/BottomNav"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from "../api/axios";
 
 export default function CreateEvent() {
-
+    
+    const [events, setEvents] = useState([]);
     const [formData, setFormData] = useState({
         event_name: "",
         event_date: "",
@@ -23,6 +25,18 @@ export default function CreateEvent() {
         //     })
         //     .catch((err) => console.error(err));
     }
+
+    useEffect(() => {
+        api
+        .get("/events")
+        .then((res) => {
+            setEvents(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    
+    }, []);
 
     return (
         <>
@@ -76,6 +90,54 @@ export default function CreateEvent() {
                     </label>
                     <button type="submit" className="p-3 cursor-pointer bg-blue text-white active:bg-blue-bg">add event</button>
                     event list:
+                    {events.map((event) => (
+                        <div key={event.id} className="flex flex-col gap-3 border p-4">
+                            <input type="text" value={event.title || ""} readOnly placeholder="event title" />
+                            <input type="text" value={event.description || ""} readOnly placeholder="event description" />
+                            event type:
+                            <div>
+                                <label>
+                                    <input type="radio" checked={event.type === "drill"} disabled /> drill
+                                </label>
+                                <label>
+                                    <input type="radio" checked={event.type === "meeting"} disabled /> meeting
+                                </label>
+                                <label>
+                                    <input type="radio" checked={event.type === "deployment"} disabled /> deployment
+                                </label>
+                                <label>
+                                    <input type="radio" checked={Boolean(event.type && !["drill", "meeting", "deployment"].includes(event.type))} disabled /> others 
+                                    <input type="text" value={!["drill", "meeting", "deployment"].includes(event.type) ? (event.type || "") : ""} readOnly placeholder="specify.." />
+                                </label>
+                            </div>
+                            <input type="text" value={event.date_time || ""} readOnly placeholder="event date / time" />
+                            <input type="text" value={event.participants || ""} readOnly placeholder="event participants like teachers, BSIS 1 students, etc idk" />
+
+                            <div className="flex flex-row flex-nowrap md:w-50 gap-5">
+                                <div className="border-black border">
+                                    onsite:
+                                    <input type="text" value={event["venue-onsite"] || ""} readOnly placeholder="event location" />
+                                </div>
+
+                                <div className="border-black border min-w-100">
+                                    online:
+                                    <div>
+                                        <label>
+                                            <input type="radio" checked={event["venue-online"] === "gmeet"} disabled /> Google Meet
+                                        </label>
+                                        <label>
+                                            <input type="radio" checked={event["venue-online"] === "zoom"} disabled /> Zoom
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label className="flex items-start gap-3">
+                                <input type="checkbox" checked={Boolean(event.is_public)} disabled className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
+                                is public
+                            </label>
+                        </div>
+                    ))}
 
                 </form>
 
