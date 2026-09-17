@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
@@ -68,7 +68,7 @@ export default function Register() {
       });
   };
 
-  if (!applicationId) {
+  if (applicationId) {
     return (
       <>
         <title>Register - DRRT Membership</title>
@@ -111,6 +111,10 @@ export default function Register() {
         {/* Main Registration Container */}
         <main className="max-w-xl w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
+            {/* Step Indicator Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-blue-bg text-blue px-3 py-1 rounded-full font-geist text-[11px] font-bold uppercase tracking-wider mb-4">
+              <span>Step 1 of 3</span>
+            </div>
             {/* Card Header */}
             <div className="flex items-center gap-3.5 mb-6">
               <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
@@ -273,9 +277,9 @@ export default function Register() {
                 disabled={isLoading}
                 className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-4 disabled:opacity-50"
               >
-                <span>{isLoading ? "Creating Account..." : "Create Account"}</span>
+                <span>{isLoading ? "Creating Account..." : "Next"}</span>
                 <span className="material-symbols-outlined text-[18px]!">
-                  {isLoading ? "hourglass_empty" : "how_to_reg"}
+                  {isLoading ? "hourglass_empty" : "arrow_forward"}
                 </span>
               </button>
             </form>
@@ -291,6 +295,94 @@ export default function Register() {
                   Sign In
                 </a>
               </p>
+            </div>
+          </div>
+        </main>
+
+        <main className="max-w-md w-full mx-auto space-y-6">
+          <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
+            {/* Step Indicator Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-blue-bg text-blue px-3 py-1 rounded-full font-geist text-[11px] font-bold uppercase tracking-wider mb-4">
+              <span>Step 2 of 3</span>
+            </div>
+
+            {/* Card Header */}
+            <div className="flex items-center gap-3.5 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-yellow-bg flex items-center justify-center text-yellow shrink-0">
+                <span className="material-symbols-outlined text-[22px]! filled-icon">
+                  pin
+                </span>
+              </div>
+              <div>
+                <h2 className="font-geist text-lg sm:text-xl font-bold text-text">
+                  Enter Verification Code
+                </h2>
+                <p className="text-xs text-subtext">
+                  Check your email for the 6-digit numeric verification code (valid for 10 minutes).
+                </p>
+              </div>
+            </div>
+
+            {/* Verification Code Form */}
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+              <div>
+                <label
+                  htmlFor="verification_code"
+                  className="block font-geist text-xs font-bold text-text mb-2 text-center"
+                >
+                  6-Digit Verification Code
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="verification_code"
+                    name="verification_code"
+                    maxLength={6}
+                    pattern="[0-9]{6}"
+                    inputMode="numeric"
+                    placeholder="123456"
+                    required
+                    className="w-full tracking-[0.25em] sm:tracking-[0.5em] text-center font-mono text-xl sm:text-2xl font-bold py-3 px-3 sm:px-4 min-h-11 bg-surface border border-blue-border rounded-xl text-text placeholder:text-subtext/30 placeholder:tracking-[0.25em] sm:placeholder:tracking-[0.5em] focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
+                  />
+                </div>
+                <p className="text-[11px] text-subtext/70 text-center mt-2">
+                  Code expires in{" "}
+                  <span className="font-bold text-yellow">09:59</span>
+                </p>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
+              >
+                <span>Verify Code</span>
+                <span className="material-symbols-outlined text-[18px]!">
+                  verified
+                </span>
+              </button>
+            </form>
+
+            {/* Resend & Navigation Options */}
+            <div className="mt-6 pt-4 border-t border-blue-border/40 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <button
+                type="button"
+                onClick={() => alert("A new verification code has been sent to your email.")}
+                className="text-blue font-bold hover:underline flex items-center gap-1 py-2 px-1 rounded-lg cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[16px]!">
+                  refresh
+                </span>
+                <span>Resend Code</span>
+              </button>
+              <Link
+                to="/forgot-password"
+                className="text-subtext font-bold hover:text-blue transition-colors flex items-center gap-1 py-2 px-1 rounded-lg"
+              >
+                <span className="material-symbols-outlined text-[16px]!">
+                  arrow_back
+                </span>
+                <span>Change Email</span>
+              </Link>
             </div>
           </div>
         </main>
