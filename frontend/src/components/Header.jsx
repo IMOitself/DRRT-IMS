@@ -4,7 +4,13 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
     const { pathname } = useLocation();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, user } = useAuth();
+
+    const is_public_pages = pathname === "/" || pathname === "/join" || pathname.startsWith("/join-form");
+
+    let dashboardLink = "/member/dashboard";
+    if (user?.role === "officer") dashboardLink = "/officer/dashboard";
+    if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
 
     return (
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
@@ -147,10 +153,19 @@ export default function Header() {
 
 
                 <div className="flex items-center gap-3">
-                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white hover:bg-blue transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95`}>
+                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer`}>
                         Login
                     </Link>
-                    {isLoggedIn && <AccountDropdown />}
+                    {isLoggedIn && (
+                        <div className="flex items-center justify-center gap-3">
+                            {is_public_pages && (
+                                <Link to={dashboardLink} className="font-geist text-sm bg-blue text-white transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer">
+                                    Dashboard
+                                </Link>
+                            )}
+                            <AccountDropdown />
+                        </div>
+                    )}
                 </div>
             </div>
         </header>

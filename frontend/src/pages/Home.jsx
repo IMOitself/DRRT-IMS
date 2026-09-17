@@ -25,11 +25,6 @@ export default function Home() {
     };
 
     useEffect(() => {
-        if (isLoggedIn && user) {
-            if (user.role === 'officer') navigate("/officer/roster");
-            if (user.role === 'member') navigate("/member/dashboard");
-        }
-
         api
         .get("/events")
         .then((res) => {
