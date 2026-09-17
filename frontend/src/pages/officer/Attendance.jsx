@@ -1,8 +1,40 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import WIP from "../../components/WIP";
+import { useState, useEffect } from "react";
+import api from "../../api/axios";
 
 export default function Attendance() {
+
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  useEffect(() => {
+
+    api
+      .get("/events")
+      .then((res) => {
+        const events = res.data;
+
+        // date format: "Jan 1, 2027"
+        const current_date = new Date().toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+
+        if (events[0]) {
+          if (events[0].date_time?.includes(current_date) || events[0].event_date == current_date) {
+            events[0].is_happening_now = true;
+          }
+          setSelectedEvent(events[0]);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+  }, []);
+
   return (
     <>
       <title>Attendance - DRRT Officer Portal</title>
@@ -21,19 +53,19 @@ export default function Attendance() {
                   Event
                 </p>
                 <div className="flex flex-row gap-3">
-                <h2 className="font-geist text-2xl font-semibold text-text mt-1">
-                  Earthquake Drill 2026
-                </h2>
-                <span className="inline-flex items-center gap-1.5 bg-blue/10 text-blue px-2.5 my-1.5 rounded font-geist text-xs uppercase font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />{" "}
-                  Live
-                </span>
+                  <h2 className="font-geist text-2xl font-semibold text-text mt-1">
+                    {selectedEvent?.title || "No Event Selected..."}
+                  </h2>
+                  <span className={! selectedEvent || ! selectedEvent.is_happening_now ? "hidden" : "inline-flex items-center gap-1.5 bg-blue/10 text-blue px-2.5 my-1.5 rounded font-geist text-xs uppercase font-semibold"}>
+                    <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />{" "}
+                    Happening Now
+                  </span>
                 </div>
                 <p className="text-sm md:text-sm text-subtext mt-1">
-                  October 24, 2026 • 8:00 AM
+                  {selectedEvent?.date_time}
                 </p>
               </div>
-              
+
             </div>
             <div className="flex items-center gap-2 text-subtext border-t border-blue-border pt-3 mt-3">
               <span className="material-symbols-outlined text-[18px]!">
