@@ -13,7 +13,6 @@ export default function TestPages() {
             <Link to="/" className="test-link">/</Link>
             <Link to="/login" className="test-link">/login</Link>
             <Link to="/register" className="test-link">/register</Link>
-            <Link to="/events" className="test-link">/events</Link>
             <Link to="/join" className="test-link">/join</Link>
             <Link to="/join-form" className="test-link">/join-form</Link>
             <Link to="/join-form/:id" className="test-link">/join-form/:id</Link>

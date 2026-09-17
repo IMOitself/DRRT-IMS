@@ -208,18 +208,6 @@ export default function BottomNav() {
                     </>
                 )}
             </NavLink>
-            <NavLink to="/events" className={({ isActive }) =>
-                isActive 
-                    ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-4 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                    : "flex flex-col items-center justify-center text-subtext hover:text-blue px-3 py-1 rounded-xl transition-colors"
-            }>
-                {({ isActive }) => (
-                    <>
-                        <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>event</span>
-                        <span className="font-geist text-xs mt-0.5">Events</span>
-                    </>
-                )}
-            </NavLink>
             <NavLink to="/join" className={() => {
                 const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
                 return isActive 

@@ -134,13 +134,6 @@ export default function Header() {
                         }>
                             Home
                         </NavLink>
-                        <NavLink to="/events" className={({ isActive }) =>
-                            isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }>
-                            Events
-                        </NavLink>
                         <NavLink to="/join" className={() => {
                             const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
                             return isActive

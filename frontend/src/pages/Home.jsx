@@ -70,10 +70,6 @@ export default function Home() {
                                     </span>
                                     <span>Join DRRT Team</span>
                                 </Link>
-                                <Link to="/events" className="bg-surface border border-blue-border hover:bg-surface-container-low text-blue font-geist text-sm font-bold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
-                                    <span className="material-symbols-outlined text-[18px]!">map</span>
-                                    <span>View Events</span>
-                                </Link>
                             </div>
                         </div>
                         <div className="hidden md:flex shrink-0 w-52 h-52 rounded-full bg-blue/10 border-2 border-blue/20 items-center justify-center text-blue shadow-inner">
