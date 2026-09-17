@@ -11,12 +11,12 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">
-                        <span className="material-symbols-outlined text-[24px]">shield</span>
+                        <span className="material-symbols-outlined text-[24px]!">shield</span>
                     </div>
                     <div>
                         <h1 className="font-geist text-lg md:text-xl font-bold text-blue flex items-center gap-2">
                             DRRT Portal
-                            <span className="font-geist text-xs text-blue font-semibold bg-blue-bg px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            <span className="font-geist text-sm text-blue font-semibold bg-blue-bg px-2 py-0.5 rounded-full uppercase tracking-wider">
                                 LVCC
                             </span>
                         </h1>
