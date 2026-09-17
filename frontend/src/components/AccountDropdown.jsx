@@ -26,10 +26,10 @@ export default function AccountDropdown() {
     };
 
     return (
-        <div ref={dropdownRef} className="relative flex items-center">
+        <div ref={dropdownRef} className="relative">
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="cursor-pointer w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0"
+                className="cursor-pointer w-8 h-full flex rounded-full bg-surface-container-high overflow-hidden border border-blue-border shrink-0"
             >
                 <img
                     className="w-full h-full object-cover"
