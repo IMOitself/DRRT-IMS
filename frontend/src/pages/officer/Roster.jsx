@@ -3,6 +3,7 @@ import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
+import { getInitials } from "../../utils/format";
 
 export default function Roster() {
     const [membersApplication, setMembersApplication] = useState([]);
@@ -149,7 +150,7 @@ export default function Roster() {
                                 onClick={() => openDrawer(application)}>
                                 <div className="flex items-center gap-3 overflow-hidden">
                                     <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
-                                        {application.full_name.split(' ').map((n) => n[0]).join('')}
+                                        {getInitials(application.full_name)}
                                     </div>
                                     <div className="min-w-0">
                                         <p className="font-geist text-text truncate group-hover:text-blue transition-colors">
@@ -212,7 +213,7 @@ export default function Roster() {
                         <>
                             <div className="flex flex-col items-center text-center">
                                 <div className="w-20 h-20 text-3xl rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
-                                    {selectedMember.full_name.split(' ').map((n) => n[0]).join('')}
+                                    {getInitials(selectedMember.full_name)}
                                 </div>
                                 <h3 className="font-geist text-xl font-bold text-text m-0">
                                     {selectedMember.full_name}
