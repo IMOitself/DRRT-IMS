@@ -53,10 +53,10 @@ export default function Home() {
                     <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue/5 rounded-bl-full pointer-events-none" />
                         <div className="max-w-2xl space-y-3">
-                            <span className="font-geist text-xs font-bold text-blue tracking-wider uppercase bg-blue-bg/60 px-3 py-1 rounded-full">
+                            <span className="font-geist text-md font-bold text-blue tracking-wider uppercase bg-blue-bg/60 px-3 py-1 rounded-full">
                                 DRRT – LVCC Apalit Chapter
                             </span>
-                            <h1 className="font-geist text-3xl md:text-5xl font-bold text-text tracking-tight mt-1">
+                            <h1 className="font-geist text-3xl md:text-5xl font-bold text-text tracking-tight mt-3">
                                 Preparedness Starts Here
                             </h1>
                             <p className="text-base text-subtext leading-relaxed pt-1">
@@ -64,7 +64,7 @@ export default function Home() {
                                 proactive safety across our entire campus community.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center md:justify-start">
-                                <Link to="/join" className="bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                                <Link to="/join" className="bg-blue text-white hover:bg-blue/70 transition-all font-geist text-md font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                     <span className="material-symbols-outlined text-[18px]!">
                                         person_add
                                     </span>
@@ -72,15 +72,15 @@ export default function Home() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="hidden md:flex shrink-0 w-52 h-52 rounded-full bg-blue/10 border-2 border-blue/20 items-center justify-center text-blue shadow-inner">
-                            <span className="material-symbols-outlined text-[110px]!">
+                        <div className="hidden lg:flex shrink-0 w-44 h-44 rounded-full bg-blue/10 border-2 border-blue/20 items-center justify-center text-blue shadow-inner">
+                            <span className="material-symbols-outlined text-[80px]! filled-icon">
                                 health_and_safety
                             </span>
                         </div>
                     </section>
                     
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 group">
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
@@ -98,7 +98,7 @@ export default function Home() {
                                         <span className="font-semibold text-text shrink-0">
                                             Change Me
                                         </span>
-                                        <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
+                                        <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline group-hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
                                             onClick={() => copyToClipboard(contact1)}>
                                             <span className="font-mono truncate">
                                                 {contact1}
@@ -142,7 +142,7 @@ export default function Home() {
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 relative overflow-hidden group">
                             <div>
                                 <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-green/10 flex items-center justify-center text-green shrink-0">
                                         <span className="material-symbols-outlined text-[20px]! filled-icon">
                                             person_add
                                         </span>
@@ -151,26 +151,23 @@ export default function Home() {
                                         Be a DRRT Member
                                     </h3>
                                 </div>
-                                <p className="text-sm text-subtext leading-relaxed">
+                                <p className="text-md text-subtext leading-relaxed">
                                     Do you have a passion in helping others and want to volunteer on something meaningful? <br/>
                                     Become a DRRT member now! <br/>
                                     Click the button below to learn more.
                                 </p>
                             </div>
-                            <Link
-                                to="/join"
-                                className="font-geist text-sm font-bold text-blue hover:text-blue/80 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
-                            >
+                            <Link to="/join" className="font-geist text-sm font-bold text-blue hover:text-blue/80 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                 <span>Read Full Guide</span>
                                 <span className="material-symbols-outlined text-[18px]!">
                                     arrow_forward
                                 </span>
                             </Link>
                         </article>
-                        <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4">
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-blue-bg text-blue flex items-center justify-center shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-yellow/10 flex items-center justify-center text-yellow shrink-0">
                                         <span className="material-symbols-outlined text-[20px]! filled-icon">
                                             campaign
                                         </span>
@@ -213,7 +210,7 @@ export default function Home() {
                     </section>
 
                     {/* Bottom Join DRRT Banner */}
-                    <section className="bg-surface-container border border-blue-border/80 rounded-2xl p-6 md:p-8 text-center space-y-3 shadow-sm">
+                    <section className="bg-surface-container border border-blue-border/80 rounded-2xl p-6 md:p-8 text-center space-y-3 shadow-sm card-hover transition-all group">
                         <h2 className="font-geist text-xl md:text-2xl font-bold text-blue">
                             Become Part of DRRT
                         </h2>
@@ -222,7 +219,7 @@ export default function Home() {
                             resilient and secure campus environment for everyone.
                         </p>
                         <div className="pt-2">
-                            <Link to="/join" className="bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3 rounded-xl shadow-md active:scale-[0.98]">
+                            <Link to="/join" className="bg-blue text-white hover:bg-blue/70 group-hover:bg-blue/70 transition-transform font-geist text-sm font-bold px-8 py-3 rounded-xl shadow-md active:scale-[0.98]">
                                 View Membership Guide
                             </Link>
                         </div>
