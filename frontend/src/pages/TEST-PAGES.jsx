@@ -12,6 +12,7 @@ export default function TestPages() {
         <div className="text-center items-center flex flex-row flex-wrap gap-5">
             <Link to="/" className="test-link">/</Link>
             <Link to="/login" className="test-link">/login</Link>
+            <Link to="/forgot-password" className="test-link">/forgot-password</Link>
             <Link to="/register" className="test-link">/register</Link>
             <Link to="/join" className="test-link">/join</Link>
             <Link to="/join-form" className="test-link">/join-form</Link>

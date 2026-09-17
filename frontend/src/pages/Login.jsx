@@ -82,7 +82,7 @@ export default function Login() {
               </div>
               <div>
                 <h2 className="font-geist text-lg sm:text-xl font-bold text-text">
-                  Member Access
+                  Login
                 </h2>
                 <p className="text-xs text-subtext">
                   Sign in to access your DRRT portal account.
@@ -128,12 +128,12 @@ export default function Login() {
                   >
                     Password
                   </label>
-                  <a
-                    href="#"
+                  <Link
+                    to="/forgot-password"
                     className="text-xs font-bold text-blue hover:underline shrink-0"
                   >
                     Forgot Password?
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">

@@ -12,6 +12,7 @@ import Home from './pages/Home';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PasswordForgot from './pages/PasswordForgot';
 
 import OfficerRoster from './pages/officer/Roster';
 import OfficerDashboard from './pages/officer/Dashboard';
@@ -44,6 +45,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<PasswordForgot />} />
       <Route path="/join" element={<JoinDRRT />} />
       <Route path="/join-form" element={<JoinDRRTForm />} />
       <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />

@@ -70,9 +70,9 @@ status: 🟩 (done) | ⬜ (not yet done)
 | preview | translated | functional | code |
 | :--- | :---: | :---: | :---: |
 | [login](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/login.html) |
-| [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) |
-| [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) |
-| [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) | ⬜ | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) |
+| [password reset step 1](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%201.html) |
+| [password reset step 2](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%202.html) |
+| [password reset step 3](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) | 🟩 | ⬜ | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/password%20reset%20step%203.html) |
 | [register](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) | 🟩 | 🟩 | [html](https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/0login%20register/register.html) |
 
 ### member role
