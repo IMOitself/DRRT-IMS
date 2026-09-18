@@ -100,21 +100,21 @@ export default function Attendance() {
                     Red was seen with Blue doing their task on Electrical earlier. Blue is sus.
                   </p>
                 </div>
-                <div className="flex gap-4 mt-4 text-subtext text-sm">
+                <div className="flex justify-between flex-wrap px-0 md:px-2 gap-4 mt-4 text-subtext text-sm md:text-md font-semibold">
                   <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]">
-                      calendar_today
-                    </span>
-                    <span>Nov 02, 2024 • 6:00 PM</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]">
+                    <span className="material-symbols-outlined text-blue text-[18px]!">
                       event
                     </span>
-                    <span>meeting</span>
+                    <span>Meeting</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]">
+                    <span className="material-symbols-outlined text-blue text-[18px]!">
+                      calendar_today
+                    </span>
+                    <span>Nov 02, 2024</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]!">
                       people
                     </span>
                     <span>BSIS 1 students</span>
@@ -179,42 +179,42 @@ function AttendanceList() {
         </div>
 
         {/* Rapid Level Filters */}
-        <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 cursor-pointer">
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 hover:bg-blue/80 cursor-pointer">
             All Members (142)
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             1st Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             2nd Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             3rd Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             4th Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             Unchecked Only (58)
           </button>
         </div>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2">
-        <button className="flex-1 bg-green-bg text-green border border-green-border hover:bg-green/20 transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
+        <button className="flex-1 bg-white border border-green-border text-green hover:bg-green-bg transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
           <span className="material-symbols-outlined text-[18px]!">
             done_all
           </span>{" "}
-          Mark All Filtered Present
+          Mark All Present
         </button>
         <button className="flex-1 bg-white border border-red-border text-red hover:bg-red-bg transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
           <span className="material-symbols-outlined text-[18px]!">rule</span>{" "}
-          Mark All Filtered Absent
+          Mark All Absent
         </button>
       </div>
 
-      <section className="flex gap-2 pr-4 md:pr-8">
+      <section className="flex gap-2">
         <div className="flex-1 space-y-2">
           <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
             <div className="flex items-center gap-3 overflow-hidden">
