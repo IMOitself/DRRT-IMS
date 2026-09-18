@@ -72,36 +72,35 @@ export default function Members() {
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
                                 <h2 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
-                                    Active Responder Members
+                                    Members List
                                 </h2>
                                 <p className="text-sm text-subtext mt-1">
                                     Manage personnel records, squad assignments, and status.
                                 </p>
                             </div>
-                            <button className="bg-blue text-white hover:bg-blue transition-colors py-2 px-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 shadow-sm self-start sm:self-auto">
+                            <button className="bg-blue text-white hover:bg-blue transition-colors py-2 px-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]">add</span>{" "}
-                                Add Member
+                                Add Member Guide
                             </button>
                         </div>
+                        <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm rounded-xl">
+                            <div className="font-geist text-sm text-text font-semibold">
+                                Total Members: <span className="text-blue font-bold">{membersApplication.length} Registered</span>
+                            </div>
+                            <div className="flex gap-4 text-xs font-geist">
+                                <div className="flex items-center gap-1.5 text-green font-medium">
+                                    <span className="w-2 h-2 rounded-full bg-green" /> Active: 0
+                                </div>
+                                <div className="flex items-center gap-1.5 text-yellow font-medium">
+                                    <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
+                                </div>
+                                <div className="flex items-center gap-1.5 text-red font-medium">
+                                    <span className="w-2 h-2 rounded-full bg-red" /> Inactive: 0
+                                </div>
+                            </div>
+                        </div>
                     </section>
-                    {/* Live Members Summary */}
-                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 flex flex-wrap gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm">
-                        <div className="font-geist text-text">
-                            Total Members:{" "}
-                            <span className="text-blue font-bold">{membersApplication.length} Registered</span>
-                        </div>
-                        <div className="flex gap-4">
-                            <div className="flex items-center gap-1.5 text-green font-medium">
-                                <span className="w-2 h-2 rounded-full bg-green" /> Active: 0
-                            </div>
-                            <div className="flex items-center gap-1.5 text-yellow font-medium">
-                                <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
-                            </div>
-                            <div className="flex items-center gap-1.5 text-red font-medium">
-                                <span className="w-2 h-2 rounded-full bg-red" /> Inactive: 0
-                            </div>
-                        </div>
-                    </div>
+                    
                     {/* Search & Filters */}
                     <div className="space-y-3">
                         {/* Search Bar */}
