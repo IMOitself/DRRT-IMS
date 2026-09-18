@@ -1,7 +1,18 @@
+import { useState } from "react";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 
 export default function Attendance() {
+    const [attendances, setAttendances] = useState({
+        1: "unset",
+    });
+
+    const setStatus = (id, status) => {
+        setAttendances((prev) => ({
+            ...prev,
+            [id]: status,
+        }));
+    };
     return (
         <>
             <title>Attendance - DRRT Member Portal</title>
@@ -9,7 +20,7 @@ export default function Attendance() {
             <Header />
 
             <main className="grow max-w-7xl w-full mx-auto px-4 md:px-8 py-6 pb-24 md:pb-12">
-                {/* Page Title Header */}
+                {/* title */}
                 <div className="mb-6">
                     <h2 className="font-geist text-3xl md:text-5xl text-text font-bold">
                         Attendance Records
@@ -19,10 +30,10 @@ export default function Attendance() {
                         updates.
                     </p>
                 </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    {/* Left Column / Top Stack: Compliance Gauge & Stats */}
+                    {/* left cards and stuff */}
                     <div className="lg:col-span-5 flex flex-col gap-4">
-                        {/* Compliance Gauge Card */}
                         <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 shadow-sm flex flex-col justify-between">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
@@ -65,9 +76,9 @@ export default function Attendance() {
                                 </div>
                             </div>
                         </div>
-                        {/* Stats Bento Grid */}
+
                         <div className="grid grid-cols-2 gap-4">
-                            {/* Total Events */}
+                            {/* total events */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col items-center text-center shadow-sm hover:border-blue transition-all">
                                 <span className="material-symbols-outlined text-blue mb-1 text-[30px]!">
                                     groups
@@ -79,7 +90,8 @@ export default function Attendance() {
                                     Total Events
                                 </span>
                             </div>
-                            {/* Attended */}
+
+                            {/* attended */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col items-center text-center shadow-sm hover:border-green transition-all">
                                 <span className="material-symbols-outlined text-green mb-1 text-[30px]!">
                                     check_circle
@@ -93,7 +105,8 @@ export default function Attendance() {
                             </div>
                         </div>
                     </div>
-                    {/* Right Column / Bottom Stack: Attendance History List */}
+
+                    {/* attendance list*/}
                     <div className="lg:col-span-7 flex flex-col gap-4">
                         <div className="flex justify-between items-center">
                             <h3 className="font-geist text-2xl font-bold text-text">
@@ -101,14 +114,34 @@ export default function Attendance() {
                             </h3>
                         </div>
 
+                        {/* recorded */}
                         <div className="space-y-4">
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border items-center justify-center text-green shrink-0 hidden md:flex">
-                                        <span className="material-symbols-outlined text-[24px]!">
-                                            check
-                                        </span>
+                                    {/* desktop only icons */}
+                                    <div className="hidden md:flex">
+                                        {/* present icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                check
+                                            </span>
+                                        </div>
+
+                                        {/* late icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                schedule
+                                            </span>
+                                        </div>
+
+                                        {/* absent icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                close
+                                            </span>
+                                        </div>
                                     </div>
+
                                     <div>
                                         <h4 className="font-geist text-lg text-text font-semibold">
                                             Emergency Drill
@@ -121,15 +154,42 @@ export default function Attendance() {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                                        <div className="md:hidden">
-                                            <span className="material-symbols-outlined text-[14px]!">
-                                                check
-                                            </span>{" "}
-                                        </div>
-                                        <span>Present</span>
-                                    </button>
+                                 <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
+
+                                    {/* attendance marks */}
+                                    <div className="flex">
+                                        {/* active present */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    check
+                                                </span>{" "}
+                                            </div>
+                                            <span>Present</span>
+                                        </button>
+
+                                        {/* active late */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    schedule
+                                                </span>{" "}
+                                            </div>
+                                            <span>Late</span>
+                                        </button>
+
+                                        {/* active absent */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    close
+                                                </span>{" "}
+                                            </div>
+                                            <span>Absent</span>
+                                        </button>
+
+
+                                    </div>
                                     <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
                                         Request Correction
                                     </button>
@@ -137,121 +197,133 @@ export default function Attendance() {
                             </div>
                         </div>
 
+                        {/* editable */}
                         <div className="space-y-4">
-                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0 hidden md:flex">
-                                        <span className="material-symbols-outlined text-[24px]!">
-                                            check
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-geist text-lg text-text font-semibold">
-                                            Emergency Drill
-                                        </h4>
-                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]!">
-                                                calendar_today
-                                            </span>{" "}
-                                            Sep 28, 2026 • 02:00 PM
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-1 shrink-0">
-                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                                        <div className="md:hidden">
-                                            <span className="material-symbols-outlined text-[14px]!">
-                                                check
-                                            </span>{" "}
-                                        </div>
-                                        <span>Present</span>
-                                    </button>
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        L
-                                    </button>
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        A
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                            {(() => {
+                                const eventId = 1;
+                                const currentStatus = attendances[eventId] || "unset";
 
-                        <div className="space-y-4">
-                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0 hidden md:flex">
-                                        <span className="material-symbols-outlined text-[24px]!">
-                                            schedule
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-geist text-lg text-text font-semibold">
-                                            Emergency Drill
-                                        </h4>
-                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]!">
-                                                calendar_today
-                                            </span>{" "}
-                                            Sep 28, 2026 • 02:00 PM
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-1 shrink-0">
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        P
-                                    </button>
-                                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                                        <div className="md:hidden">
-                                            <span className="material-symbols-outlined text-[14px]!">
-                                                schedule
-                                            </span>{" "}
-                                        </div>
-                                        <span>Late</span>
-                                    </button>
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        A
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                                return (
+                                    <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                        <div className="flex items-center gap-4">
 
-                        <div className="space-y-4">
-                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0 hidden md:flex">
-                                        <span className="material-symbols-outlined text-[24px]!">
-                                            close
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-geist text-lg text-text font-semibold">
-                                            Emergency Drill
-                                        </h4>
-                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]!">
-                                                calendar_today
-                                            </span>{" "}
-                                            Sep 28, 2026 • 02:00 PM
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-1 shrink-0">
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        P
-                                    </button>
-                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                                        L
-                                    </button>
-                                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                                        <div className="md:hidden">
-                                            <span className="material-symbols-outlined text-[14px]!">
-                                                close
-                                            </span>{" "}
+                                            {/* desktop only icons */}
+                                            <div className="hidden md:flex">
+                                                {/* unset icon */}
+                                                {currentStatus === "unset" && (
+                                                    <div className="w-12 h-12 rounded-lg bg-blue-bg border border-blue-border flex items-center justify-center text-blue shrink-0">
+                                                        <span className="material-symbols-outlined text-[24px]!">
+                                                            edit
+                                                        </span>
+                                                    </div>
+                                                )}
+
+                                                {/* present icon */}
+                                                {currentStatus === "present" && (
+                                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                                        <span className="material-symbols-outlined text-[24px]!">
+                                                            check
+                                                        </span>
+                                                    </div>
+                                                )}
+
+                                                {/* late icon */}
+                                                {currentStatus === "late" && (
+                                                    <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
+                                                        <span className="material-symbols-outlined text-[24px]!">
+                                                            schedule
+                                                        </span>
+                                                    </div>
+                                                )}
+
+                                                {/* absent icon */}
+                                                {currentStatus === "absent" && (
+                                                    <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
+                                                        <span className="material-symbols-outlined text-[24px]!">
+                                                            close
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div>
+                                                <h4 className="font-geist text-lg text-text font-semibold">
+                                                    Emergency Drill
+                                                </h4>
+                                                <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                                    <span className="material-symbols-outlined text-[16px]!">
+                                                        calendar_today
+                                                    </span>{" "}
+                                                    Sep 28, 2026 • 02:00 PM
+                                                </p>
+                                            </div>
                                         </div>
-                                        <span>Absent</span>
-                                    </button>
-                                </div>
-                            </div>
+
+                                        <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
+
+                                            {/* attendance marks */}
+                                            <div className="flex gap-1">
+                                                {/* Present */}
+                                                {currentStatus === "present" ? (
+                                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                check
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Present</span>
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => setStatus(eventId, "present")}
+                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                    >
+                                                        P
+                                                    </button>
+                                                )}
+
+                                                {/* Late */}
+                                                {currentStatus === "late" ? (
+                                                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                schedule
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Late</span>
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => setStatus(eventId, "late")}
+                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                    >
+                                                        L
+                                                    </button>
+                                                )}
+
+                                                {/* Absent */}
+                                                {currentStatus === "absent" ? (
+                                                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                close
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Absent</span>
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => setStatus(eventId, "absent")}
+                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                    >
+                                                        A
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                         </div>
                     </div>
                 </div>
