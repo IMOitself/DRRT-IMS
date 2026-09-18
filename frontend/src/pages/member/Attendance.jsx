@@ -369,7 +369,7 @@ export default function Attendance() {
                                         <div>
 
                                             {/* attendance buttons */}
-                                            <div className="flex gap-1">
+                                            <div className="flex gap-1 justify-start md:justify-end">
                                                 {currentStatus === "present" ? (
                                                     <button className="min-w-16 px-2 h-12 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
                                                         Present
@@ -454,17 +454,24 @@ export default function Attendance() {
                                                 schedule
                                             </span>
                                         </div>
+
+                                        {/* excused icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-purple-bg border border-purple-border flex items-center justify-center text-purple shrink-0">
+                                            <span className="text-[24px]!">
+                                                E
+                                            </span>
+                                        </div>
                                     </div>
 
                                     <div>
                                         <h4 className="font-geist text-lg text-text font-semibold">
-                                            Emergency Drill
+                                            Event Title Idk
                                         </h4>
                                         <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
                                             <span className="material-symbols-outlined text-[16px]!">
                                                 calendar_today
                                             </span>{" "}
-                                            Sep 28, 2026
+                                            Sep 11, 2011
                                         </p>
                                     </div>
                                 </div>
@@ -472,36 +479,26 @@ export default function Attendance() {
 
                                     {/* attendance marks */}
                                     <div className="flex">
-                                        {/* active present */}
+                                        {/* present */}
                                         <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    check
-                                                </span>{" "}
-                                            </div>
                                             <span>Present</span>
                                         </button>
 
-                                        {/* active late */}
-                                        <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    schedule
-                                                </span>{" "}
-                                            </div>
-                                            <span>Late</span>
-                                        </button>
 
-                                        {/* active absent */}
+                                        {/* absent */}
                                         <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    close
-                                                </span>{" "}
-                                            </div>
                                             <span>Absent</span>
                                         </button>
 
+                                        {/* late */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                            <span>Late</span>
+                                        </button>
+                                        
+                                        {/* excused */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
+                                            <span>Excused</span>
+                                        </button>
 
                                     </div>
                                     <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
