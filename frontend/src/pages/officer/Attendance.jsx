@@ -136,21 +136,24 @@ export default function Attendance() {
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-text">
             <span className="material-symbols-outlined text-blue text-[20px]!">
-              sync_saved_locally
+              border_color
             </span>
             <span className="font-geist text-sm font-medium">
-              Unsaved Changes: 4 Members Updated
+              Unsaved Changes: 4 Attendances Updated
             </span>
           </div>
           <div className="flex w-full sm:w-auto gap-3">
-            <button className="flex-1 sm:flex-none px-5 py-2 rounded-lg bg-surface border border-blue-border text-text font-geist text-sm hover:bg-surface-container-low transition-colors cursor-pointer">
-              Reset Filters
+            <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+              <span className="material-symbols-outlined text-[18px]!">
+                history
+              </span>{" "}
+              Reset
             </button>
             <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-blue text-white font-geist text-sm font-semibold hover:bg-blue/90 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
-                cloud_sync
+                save
               </span>{" "}
-              Save &amp; Sync
+              Save
             </button>
           </div>
         </div>
@@ -179,23 +182,23 @@ function AttendanceList() {
         </div>
 
         {/* Rapid Level Filters */}
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 hover:bg-blue/80 cursor-pointer">
+        <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-semibold">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer">
             All Members (142)
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             1st Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             2nd Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             3rd Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             4th Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             Unchecked Only (58)
           </button>
         </div>
