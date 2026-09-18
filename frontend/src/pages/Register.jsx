@@ -68,7 +68,7 @@ export default function Register() {
       });
   };
 
-  if (applicationId) {
+  if (!applicationId) {
     return (
       <>
         <title>Register - DRRT Membership</title>
