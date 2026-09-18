@@ -32,7 +32,6 @@ class MembershipApplicationsController extends Controller
             'phone_number' => $request->input('phone_number'),
             'emergency_person_name' => $request->input('emergency_person_name'),
             'emergency_phone' => $request->input('emergency_phone'),
-            'blood_type' => $request->input('blood_type'),
             'consent_form' => $request->input('consent_form'),
             'class_schedule' => $request->input('class_schedule')
         ]);

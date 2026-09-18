@@ -274,14 +274,6 @@ export default function Members() {
                                                 {selectedMember.emergency_phone}
                                             </p>
                                         </div>
-                                        <div className="col-span-2">
-                                            <p className="text-xs text-subtext font-medium">
-                                                Blood Type
-                                            </p>
-                                            <p className="text-text font-semibold">
-                                                {selectedMember.blood_type}
-                                            </p>
-                                        </div>
                                         <div>
                                             <p className="text-xs text-subtext font-medium">
                                                 Consent Form

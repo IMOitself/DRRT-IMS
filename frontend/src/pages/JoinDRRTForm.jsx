@@ -23,7 +23,6 @@ export default function JoinDRRTForm() {
         phone_number: '',
         emergency_person_name: '',
         emergency_phone: '',
-        blood_type: '',
         consent_form: null, // TODO: for now its a file path, but we need this to be an actual file
         class_schedule: null, // TODO: for now its a file path, but we need this to be an actual file
     };
@@ -65,7 +64,6 @@ export default function JoinDRRTForm() {
             phone_number: "09123456789",
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
-            blood_type: "Unknown",
             consent_form: "C:\\fakepath\\consent_form.pdf",
             class_schedule: "C:\\fakepath\\class_schedule.png",
         });
@@ -289,33 +287,6 @@ export default function JoinDRRTForm() {
                                         placeholder="09123456789"
                                         className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
-                                </div>
-                                {/* Blood Type */}
-                                <div className="md:col-span-2">
-                                    <label htmlFor="blood-type" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Blood Type <span className="text-red">*</span>
-                                    </label>
-                                    <select
-                                        value={formData.blood_type}
-                                        onChange={handleChange}
-                                        id="blood-type"
-                                        name="blood_type"
-                                        required
-                                        className="w-full md:w-1/2 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
-                                    >
-                                        <option value="" disabled="">
-                                            Select Blood Type
-                                        </option>
-                                        <option value="A+">A+</option>
-                                        <option value="A-">A-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="O+">O+</option>
-                                        <option value="O-">O-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="Unknown">Unknown / Need Testing</option>
-                                    </select>
                                 </div>
                             </div>
                         </fieldset>

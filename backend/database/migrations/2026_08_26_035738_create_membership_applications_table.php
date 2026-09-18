@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('phone_number', 20);
             $table->string('emergency_person_name');
             $table->string('emergency_phone', 20);
-            $table->string('blood_type');
             $table->string('consent_form'); // TODO: for now its a file path, but we need this to be an actual file
             $table->string('class_schedule'); // TODO: for now its a file path, but we need this to be an actual file
             $table->timestamps();

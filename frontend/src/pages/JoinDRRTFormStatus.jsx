@@ -229,14 +229,6 @@ export default function JoinDRRTFormStatus() {
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
                                 <span className="text-subtext">
-                                    Blood Type:
-                                </span>
-                                <span className="font-bold text-blue font-mono text-base">
-                                    {application.data?.blood_type}
-                                </span>
-                            </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="text-subtext">
                                     Consent Form:
                                 </span>
                                 <span className="font-bold text-blue font-mono text-base">
