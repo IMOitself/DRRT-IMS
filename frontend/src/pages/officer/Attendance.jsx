@@ -85,14 +85,6 @@ export default function Attendance() {
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8">
             <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row">
-              {/* Event Image */}
-              <div className="flex-4 h-48 md:h-auto relative shrink-0">
-                <img
-                  className="w-full h-full object-cover"
-                  alt="Campus Earthquake Drill"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjebMw4hZSsLgSu_mvDQiLCZ3iroKxWAW_iL1foPbOWulxOv2nXYMm49Q5ISFxL-bbtBNtRUjeP0HR100IKfgO_INmjx36DeP7-BJhhg9mtv7dLi6KThOv8_5AD9KoJaehg9xPm_Ff6Mn-sB44caydRr0W6wtoZ3S641hns01Mrew6xQVjSwhRU8W_3sAnse96xLxeNDj_b1ns3vCHITx8cCFEl74tpoqa9LXt_NYhwO5axx-NmHpW7Q"
-                />
-              </div>
               {/* Event Details */}
               <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -142,76 +134,6 @@ export default function Attendance() {
                     emergency preparedness and weather safety, followed by a 15-minute
                     live Q&amp;A on personal kit assembly.
                   </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <button className="sm:w-auto px-8 bg-blue text-white font-geist text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm active:scale-[0.98]">
-                    <span className="material-symbols-outlined text-[18px]">
-                      how_to_reg
-                    </span>
-                    <span>Register Now</span>
-                  </button>
-                </div>
-              </div>
-            </article>
-
-            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row">
-              {/* Event Details */}
-              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-blue">
-                    <span className="material-symbols-outlined text-[18px] filled-icon">
-                      videocam
-                    </span>
-                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                      Open Webinar
-                    </span>
-                  </div>
-                  <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
-                    Virtual Event
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
-                    Severe Weather Readiness Briefing
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-subtext text-sm">
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        calendar_today
-                      </span>
-                      <span>Nov 02, 2024 • 6:00 PM</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        laptop_mac
-                      </span>
-                      <span>Online (Zoom Webinar)</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        public
-                      </span>
-                      <span>Open to General Public</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-surface-container-low p-4 rounded-xl border border-blue-border/50">
-                  <h4 className="font-geist text-xs font-bold text-text uppercase tracking-wider mb-1">
-                    Briefing Overview
-                  </h4>
-                  <p className="text-sm text-subtext leading-relaxed">
-                    A 45-minute presentation by the regional meteorological team on
-                    emergency preparedness and weather safety, followed by a 15-minute
-                    live Q&amp;A on personal kit assembly.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <button className="sm:w-auto px-8 bg-blue text-white font-geist text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm active:scale-[0.98]">
-                    <span className="material-symbols-outlined text-[18px]">
-                      how_to_reg
-                    </span>
-                    <span>Register Now</span>
-                  </button>
                 </div>
               </div>
             </article>
