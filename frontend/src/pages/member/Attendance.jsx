@@ -451,7 +451,7 @@ export default function Attendance() {
                                                     <span className="material-symbols-outlined text-[16px]!">
                                                         calendar_today
                                                     </span>{" "}
-                                                    {formatDate(event.date)} {event.time}
+                                                    {formatDate(event.date)} {event.venue_online && "(Online)" || event.venue_facetoface && "(Face to Face)"}
                                                 </p>
                                             </div>
                                         </div>
