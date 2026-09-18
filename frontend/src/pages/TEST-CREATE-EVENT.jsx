@@ -9,8 +9,8 @@ export default function CreateEvent() {
     const initialFormData = {
         title: "",
         description: "",
-        event_date: "",
-        event_time: "",
+        date: "",
+        time: "",
         type: "",
         participants: "",
         "venue-onsite": "",
@@ -28,14 +28,8 @@ export default function CreateEvent() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const dataToSend = {
-            ...formData,
-            date: formData.event_date,
-            time: formData.event_time,
-        };
-
         api
-            .post("/events", dataToSend)
+            .post("/events", formData)
             .then((res) => {
                 setFormData(initialFormData);
                 api.get("/events").then((res) => setEvents(res.data));
@@ -76,15 +70,15 @@ export default function CreateEvent() {
                     />
                     <input
                         type="text"
-                        name="event_date"
-                        value={formData.event_date}
+                        name="date"
+                        value={formData.date}
                         onChange={handleChange}
                         placeholder="event date"
                     />
                     <input
                         type="text"
-                        name="event_time"
-                        value={formData.event_time}
+                        name="time"
+                        value={formData.time}
                         onChange={handleChange}
                         placeholder="event time"
                     />
