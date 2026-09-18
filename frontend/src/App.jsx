@@ -1,4 +1,3 @@
-import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
