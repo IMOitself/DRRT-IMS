@@ -73,11 +73,9 @@ export default function Attendance() {
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8">
             {/* Event Card 1*/}
-            <article
-              className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col cursor-pointer"
-              onClick={() => setOpenAttendanceId(openAttendanceId === 1 ? null : 1)}
-            >
-              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2">
+            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col cursor-pointer">
+              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2"
+                   onClick={() => setOpenAttendanceId(openAttendanceId === 1 ? null : 1)}>
                 <div className="flex flex-row items-center justify-between gap-2">
                   <div className="flex justify-center items-center gap-2 text-blue">
                     <span className="material-symbols-outlined text-[18px] filled-icon">
