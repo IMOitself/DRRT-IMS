@@ -15,7 +15,7 @@ export default function CreateEvent() {
         participants: "",
         "venue-onsite": "",
         "venue-online": "",
-        is_public: false,
+        require_proof_of_attendance: false,
     };
 
     const [formData, setFormData] = useState(initialFormData);
@@ -181,12 +181,12 @@ export default function CreateEvent() {
                     <label className="flex items-start gap-3 cursor-pointer">
                         <input
                             type="checkbox"
-                            name="is_public"
-                            checked={formData.is_public}
+                            name="require_proof_of_attendance"
+                            checked={formData.require_proof_of_attendance}
                             onChange={handleChange}
                             className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"
                         />
-                        is public
+                        require proof of attendance
                     </label>
                     <button type="submit" className="p-3 cursor-pointer bg-blue text-white active:bg-blue-bg">add event</button>
                     event list:
@@ -233,8 +233,8 @@ export default function CreateEvent() {
                             </div>
 
                             <label className="flex items-start gap-3">
-                                <input type="checkbox" checked={Boolean(event.is_public)} disabled className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
-                                is public
+                                <input type="checkbox" checked={Boolean(event.require_proof_of_attendance)} disabled className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
+                                require proof of attendance
                             </label>
                         </div>
                     ))}

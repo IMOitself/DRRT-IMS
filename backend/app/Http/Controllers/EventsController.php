@@ -29,7 +29,7 @@ class EventsController extends Controller
             'participants' => $request->input('participants'),
             'venue-online' => $request->input('venue-online'),
             'venue-onsite' => $request->input('venue-onsite'),
-            'is_public' => $request->input('is_public', false),
+            'require_proof_of_attendance' => $request->input('require_proof_of_attendance', false),
         ]);
 
         return response()->json(['event_id' => $event->id], 201);

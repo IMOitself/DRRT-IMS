@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('participants')->nullable();
             $table->enum('venue-online', ['zoom', 'gmeet'])->nullable();
             $table->string('venue-onsite')->nullable();
-            $table->boolean('is_public')->default(false);
+            $table->boolean('require_proof_of_attendance')->default(false);
             $table->timestamps();
         });
     }
