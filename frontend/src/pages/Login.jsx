@@ -15,6 +15,10 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  let dashboardLink = "/member/dashboard";
+    if (user?.role === "officer") dashboardLink = "/officer/dashboard";
+    if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -27,7 +31,7 @@ export default function Login() {
       })
       .then((res) => {
         login(res.data.token, res.data.user);
-        navigate(location.state?.from || "/");
+        navigate(dashboardLink);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -50,7 +54,7 @@ export default function Login() {
       })
       .then((res) => {
         login(res.data.token, res.data.user);
-        navigate(location.state?.from || "/");
+        navigate(dashboardLink);
       })
       .catch((err) => {
         setIsLoading(false);
