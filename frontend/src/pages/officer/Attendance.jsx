@@ -6,6 +6,7 @@ import api from "../../api/axios";
 
 export default function Attendance() {
 
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -71,8 +72,58 @@ export default function Attendance() {
           </section>
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8">
+            {/* Event Card 1*/}
             <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row cursor-pointer">
-              {/* Event Details */}
+              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2">
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <div className="flex justify-center items-center gap-2 text-blue">
+                    <span className="material-symbols-outlined text-[18px] filled-icon">
+                      videocam
+                    </span>
+                    <span className="font-geist text-sm font-bold uppercase tracking-wider">
+                      Zoom
+                    </span>
+                  </div>
+                  <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
+                    Online
+                  </span>
+                </div>
+                <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
+                  Emergency Meeting
+                </h3>
+                <div className="bg-surface-container-low p-4 rounded-xl border border-blue-border/50">
+                  <h4 className="font-geist text-xs font-bold text-text uppercase tracking-wider mb-1">
+                    Description
+                  </h4>
+                  <p className="text-sm text-subtext leading-relaxed">
+                    Red was seen with Blue doing their task on Electrical earlier. Blue is sus.
+                  </p>
+                </div>
+                <div className="flex gap-4 mt-4 text-subtext text-sm">
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      calendar_today
+                    </span>
+                    <span>Nov 02, 2024 • 6:00 PM</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      event
+                    </span>
+                    <span>meeting</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      people
+                    </span>
+                    <span>BSIS 1 students</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            {/* Event Card 2*/}
+            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row cursor-pointer">
               <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2">
                 <div className="flex flex-row items-center justify-between gap-2">
                   <div className="flex justify-center items-center gap-2 text-blue">
