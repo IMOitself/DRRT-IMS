@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
+import api from "../../api/axios";
 
 export default function Attendance() {
-    const [attendances, setAttendances] = useState({
-        1: "unset",
-    });
+    const [attendances, setAttendances] = useState({});
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        api
+        .get("/events")
+        .then((res) => {
+            setEvents(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, []);
 
     const setStatus = (id, status) => {
         setAttendances((prev) => ({
@@ -199,12 +210,12 @@ export default function Attendance() {
 
                         {/* editable */}
                         <div className="space-y-4">
-                            {(() => {
-                                const eventId = 1;
+                            {events.map((event) => {
+                                const eventId = event.id;
                                 const currentStatus = attendances[eventId] || "unset";
 
                                 return (
-                                    <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                    <div key={eventId} className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                         <div className="flex items-center gap-4">
 
                                             {/* desktop only icons */}
@@ -244,13 +255,13 @@ export default function Attendance() {
 
                                             <div>
                                                 <h4 className="font-geist text-lg text-text font-semibold">
-                                                    Emergency Drill
+                                                    {event.title}
                                                 </h4>
                                                 <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
                                                     <span className="material-symbols-outlined text-[16px]!">
                                                         calendar_today
                                                     </span>{" "}
-                                                    Sep 28, 2026 • 02:00 PM
+                                                    {event.date_time}
                                                 </p>
                                             </div>
                                         </div>
@@ -335,7 +346,7 @@ export default function Attendance() {
                                         </div>
                                     </div>
                                 );
-                            })()}
+                            })}
                         </div>
                     </div>
                 </div>
