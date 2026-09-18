@@ -354,7 +354,7 @@ export default function Attendance() {
                                             <span className="material-symbols-outlined text-[16px]!">
                                                 calendar_today
                                             </span>{" "}
-                                            Sep 28, 2026 • 02:00 PM
+                                            Sep 28, 2026
                                         </p>
                                     </div>
                                 </div>
@@ -411,40 +411,37 @@ export default function Attendance() {
                                     <div key={eventId} className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                         <div className="flex items-center gap-4">
 
-                                            {/* desktop only icons */}
-                                            <div className="hidden md:flex">
-                                                {currentStatus === "unset" && (
-                                                    <div className="w-12 h-12 rounded-lg bg-blue-bg border border-blue-border flex items-center justify-center text-blue shrink-0">
-                                                        <span className="material-symbols-outlined text-[24px]!">
-                                                            edit
-                                                        </span>
-                                                    </div>
-                                                )}
+                                            {currentStatus === "unset" && (
+                                                <div className="w-12 h-12 rounded-lg bg-blue-bg border border-blue-border flex items-center justify-center text-blue shrink-0">
+                                                    <span className="material-symbols-outlined text-[24px]!">
+                                                        edit
+                                                    </span>
+                                                </div>
+                                            )}
 
-                                                {currentStatus === "present" && (
-                                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
-                                                        <span className="material-symbols-outlined text-[24px]!">
-                                                            check
-                                                        </span>
-                                                    </div>
-                                                )}
+                                            {currentStatus === "present" && (
+                                                <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                                    <span className="material-symbols-outlined text-[24px]!">
+                                                        check
+                                                    </span>
+                                                </div>
+                                            )}
 
-                                                {currentStatus === "late" && (
-                                                    <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
-                                                        <span className="material-symbols-outlined text-[24px]!">
-                                                            schedule
-                                                        </span>
-                                                    </div>
-                                                )}
+                                            {currentStatus === "late" && (
+                                                <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
+                                                    <span className="material-symbols-outlined text-[24px]!">
+                                                        schedule
+                                                    </span>
+                                                </div>
+                                            )}
 
-                                                {currentStatus === "absent" && (
-                                                    <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
-                                                        <span className="material-symbols-outlined text-[24px]!">
-                                                            close
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </div>
+                                            {currentStatus === "absent" && (
+                                                <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
+                                                    <span className="material-symbols-outlined text-[24px]!">
+                                                        close
+                                                    </span>
+                                                </div>
+                                            )}
 
                                             <div>
                                                 <h4 className="font-geist text-lg text-text font-semibold">
@@ -459,66 +456,51 @@ export default function Attendance() {
                                             </div>
                                         </div>
 
-                                        <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
+                                        <div>
 
                                             {/* attendance marks */}
                                             <div className="flex gap-1">
                                                 {currentStatus === "present" ? (
-                                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                                                        <div className="md:hidden">
-                                                            <span className="material-symbols-outlined text-[14px]!">
-                                                                check
-                                                            </span>{" "}
-                                                        </div>
-                                                        <span>Present</span>
+                                                    <button className="min-w-16 px-2 h-12 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                                        Present
                                                     </button>
                                                 ) : (
                                                     <button
                                                         onClick={() => setStatus(eventId, "present")}
-                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         P
                                                     </button>
                                                 )}
 
                                                 {currentStatus === "late" ? (
-                                                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                                                        <div className="md:hidden">
-                                                            <span className="material-symbols-outlined text-[14px]!">
-                                                                schedule
-                                                            </span>{" "}
-                                                        </div>
-                                                        <span>Late</span>
+                                                    <button className="min-w-16 px-2 h-12 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                                        Late
                                                     </button>
                                                 ) : (
                                                     <button
                                                         onClick={() => setStatus(eventId, "late")}
-                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         L
                                                     </button>
                                                 )}
 
                                                 {currentStatus === "absent" ? (
-                                                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                                                        <div className="md:hidden">
-                                                            <span className="material-symbols-outlined text-[14px]!">
-                                                                close
-                                                            </span>{" "}
-                                                        </div>
-                                                        <span>Absent</span>
+                                                    <button className="min-w-16 px-2 h-12 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                                        Absent
                                                     </button>
                                                 ) : (
                                                     <button
                                                         onClick={() => setStatus(eventId, "absent")}
-                                                        className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         A
                                                     </button>
                                                 )}
 
                                             </div>
-                                            <div className="flex gap-1 mt-1">
+                                            <div className={currentStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                 <button
                                                     onClick={() => {
                                                         setSelectedEvent(event);
@@ -528,7 +510,7 @@ export default function Attendance() {
                                                             setIsDialogOpen(true);
                                                         }
                                                     }}
-                                                    className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
+                                                    className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                 >
                                                     <span className="material-symbols-outlined text-[14px]">check</span>
                                                     <span>Save</span>
@@ -536,7 +518,7 @@ export default function Attendance() {
 
                                                 <button
                                                     onClick={() => setStatus(eventId, "unset")}
-                                                    className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
+                                                    className="flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                 >
                                                     <span className="material-symbols-outlined text-[14px]">history</span>
                                                     <span>Reset</span>
