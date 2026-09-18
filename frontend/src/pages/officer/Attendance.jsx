@@ -72,79 +72,92 @@ export default function Attendance() {
           </section>
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8">
-            {/* Event Card 1*/}
-            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col cursor-pointer">
-              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2"
-                   onClick={() => setOpenAttendanceId(openAttendanceId === 1 ? null : 1)}>
-                
-                {/* venue online */}
-                <div className="flex flex-row items-center justify-between gap-2">
-                  <div className="flex justify-center items-center gap-2 text-blue">
-                    <span className="material-symbols-outlined text-[18px] filled-icon">
-                      videocam
-                    </span>
-                    <span className="font-geist text-sm font-bold uppercase tracking-wider">
-                      Zoom
-                    </span>
-                  </div>
-                  <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
-                    Online
-                  </span>
-                </div>
+            {events.map((event) => (
+              <article
+                key={event.id}
+                className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                <div
+                  className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2"
+                  onClick={() =>
+                    setOpenAttendanceId(
+                      openAttendanceId === event.id ? null : event.id
+                    )
+                  }
+                >
+                  {/* venue online */}
+                  {event["venue-online"] && (
+                    <div className="flex flex-row items-center justify-between gap-2">
+                      <div className="flex justify-center items-center gap-2 text-blue">
+                        <span className="material-symbols-outlined text-[18px] filled-icon">
+                          videocam
+                        </span>
+                        <span className="font-geist text-sm font-bold uppercase tracking-wider">
+                          {event["venue-online"]}
+                        </span>
+                      </div>
+                      <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
+                        Online
+                      </span>
+                    </div>
+                  )}
 
-                {/* venue face to face */}
-                <div className="flex flex-row items-center justify-between gap-2">
-                  <div className="flex justify-center items-center gap-2 text-blue">
-                    <span className="material-symbols-outlined text-[18px] filled-icon">
-                      location_on
-                    </span>
-                    <span className="font-geist text-sm font-bold uppercase tracking-wider">
-                      Auditorium Lobby
-                    </span>
-                  </div>
-                  <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
-                    Face to Face
-                  </span>
-                </div>
+                  {/* venue face to face */}
+                  {event["venue-facetoface"] && (
+                    <div className="flex flex-row items-center justify-between gap-2">
+                      <div className="flex justify-center items-center gap-2 text-blue">
+                        <span className="material-symbols-outlined text-[18px] filled-icon">
+                          location_on
+                        </span>
+                        <span className="font-geist text-sm font-bold uppercase tracking-wider">
+                          {event["venue-facetoface"]}
+                        </span>
+                      </div>
+                      <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
+                        Face to Face
+                      </span>
+                    </div>
+                  )}
 
-                <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
-                  Emergency Meeting
-                </h3>
-                <div className="bg-surface-container-low p-4 rounded-xl border border-blue-border/50">
-                  <h4 className="font-geist text-xs font-bold text-text uppercase tracking-wider mb-1">
-                    Description
-                  </h4>
-                  <p className="text-sm text-subtext leading-relaxed">
-                    Red was seen with Blue doing their task on Electrical earlier. Blue is sus.
-                  </p>
-                </div>
-                <div className="flex justify-between flex-wrap px-0 md:px-2 gap-4 mt-4 text-subtext text-sm md:text-md font-semibold">
-                  <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]!">
-                      event
-                    </span>
-                    <span>Meeting</span>
+                  <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
+                    {event.title}
+                  </h3>
+                  <div className="bg-surface-container-low p-4 rounded-xl border border-blue-border/50">
+                    <h4 className="font-geist text-xs font-bold text-text uppercase tracking-wider mb-1">
+                      Description
+                    </h4>
+                    <p className="text-sm text-subtext leading-relaxed">
+                      {event.description}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]!">
-                      calendar_today
-                    </span>
-                    <span>Nov 02, 2024</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="material-symbols-outlined text-blue text-[18px]!">
-                      people
-                    </span>
-                    <span>BSIS 1 students</span>
+                  <div className="flex justify-between flex-wrap px-0 md:px-2 gap-4 mt-4 text-subtext text-sm md:text-md font-semibold">
+                    <div className="flex items-center gap-2.5">
+                      <span className="material-symbols-outlined text-blue text-[18px]!">
+                        event
+                      </span>
+                      <span className="capitalize">{event.type}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="material-symbols-outlined text-blue text-[18px]!">
+                        calendar_today
+                      </span>
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="material-symbols-outlined text-blue text-[18px]!">
+                        people
+                      </span>
+                      <span>{event.participants}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {openAttendanceId === 1 && (
-                <div className="px-6 pb-6 md:px-8 md:pb-8 border-t border-blue-border/40 pt-6">
-                  <AttendanceList />
-                </div>
-              )}
-            </article>
+                {openAttendanceId === event.id && (
+                  <div className="px-6 pb-6 md:px-8 md:pb-8 border-t border-blue-border/40 pt-6">
+                    <AttendanceList />
+                  </div>
+                )}
+              </article>
+            ))}
           </section>
         </main>
       </div>
