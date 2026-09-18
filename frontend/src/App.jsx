@@ -59,7 +59,6 @@ function App() {
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/attendance" element={<OfficerAttendance />} />
         <Route path="/officer/members" element={<OfficerMembers />} />
-        <Route path="/officer/roster" element={<OfficerMembers />} />
         <Route path="/officer/incidents" element={<OfficerIncidents />} />
         <Route path="/officer/incidents/:id" element={<OfficerIncidentDetails />} />
         <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
