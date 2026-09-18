@@ -376,7 +376,7 @@ export default function Attendance() {
 
                                         <div>
 
-                                            {/* attendance marks */}
+                                            {/* attendance buttons */}
                                             <div className="flex gap-1">
                                                 {currentStatus === "present" ? (
                                                     <button className="min-w-16 px-2 h-12 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
@@ -385,22 +385,9 @@ export default function Attendance() {
                                                 ) : (
                                                     <button
                                                         onClick={() => setStatus(eventId, "present")}
-                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                        className="min-w-16 px-2 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                     >
-                                                        P
-                                                    </button>
-                                                )}
-
-                                                {currentStatus === "late" ? (
-                                                    <button className="min-w-16 px-2 h-12 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                                                        Late
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => setStatus(eventId, "late")}
-                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
-                                                    >
-                                                        L
+                                                        Present
                                                     </button>
                                                 )}
 
@@ -411,9 +398,9 @@ export default function Attendance() {
                                                 ) : (
                                                     <button
                                                         onClick={() => setStatus(eventId, "absent")}
-                                                        className="w-12 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                        className="min-w-16 px-2 h-12 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                     >
-                                                        A
+                                                        Absent
                                                     </button>
                                                 )}
 
@@ -442,9 +429,6 @@ export default function Attendance() {
                                                     <span>Reset</span>
                                                 </button>
                                             </div>
-                                            <button className="flex justify-start md:justify-end w-full font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
-                                                Request Correction
-                                            </button>
                                         </div>
                                     </div>
                                 );
