@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembershipApplicationsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\AttendanceController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/events', [EventsController::class, 'index']);
+Route::get('/attendances', [AttendanceController::class, 'index']);
 Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);
 Route::get('/membership-applications/{application}', [MembershipApplicationsController::class, 'show']);
 
@@ -27,4 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events', [EventsController::class, 'store']);
     // Route::put('/events/{event}', [EventsController::class, 'update']);
     // Route::delete('/events/{event}', [EventsController::class, 'destroy']);
+    
+    Route::post('/attendances', [AttendanceController::class, 'store']);
+    // Route::put('/attendances/{attendance}', [AttendanceController::class, 'update']);
+    // Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy']);
 });

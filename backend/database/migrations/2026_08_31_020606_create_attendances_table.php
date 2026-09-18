@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('member_id')->constrained('members')->cascadeOnDelete();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->enum('status', ['present', 'absent', 'late'])->nullable();
+            $table->dateTime('attended_at')->nullable();
+            $table->string('proof_of_attendance')->nullable();
             $table->timestamps();
         });
     }
