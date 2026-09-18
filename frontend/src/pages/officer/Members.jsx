@@ -6,13 +6,13 @@ import BottomNav from "../../components/BottomNav";
 import { getInitials } from "../../utils/format";
 
 export default function Members() {
-    const [membersApplication, setMembersApplication] = useState([]);
+    const [memberApplications, setMemberApplications] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [selectedMember, setSelectedMember] = useState(null);
+    const [selectedMemberApplication, setSelectedMemberApplication] = useState(null);
     const { user } = useAuth();
 
     function openDrawer(application) {
-        setSelectedMember(application);
+        setSelectedMemberApplication(application);
         setDrawerOpen(true);
     }
 
@@ -25,35 +25,29 @@ export default function Members() {
             .get("/membership-applications")
             .then((res) => {
                 console.log(res.data.data);
-                setMembersApplication(res.data.data);
+                setMemberApplications(res.data.data);
             })
             .catch((err) => console.error(err));
     }, []);
 
     const handleReject = () => {
-        api
-            .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: user.id })
-            .then(() => {
-                setSelectedMember({ ...selectedMember, status: "rejected" });
-
-                const updatedList = membersApplication.map((app) =>
-                    app.id === selectedMember.id ? { ...app, status: "rejected" } : app
-                );
-                setMembersApplication(updatedList);
-            })
-            .catch((err) => console.error(err));
+        updateMemberApplication("rejected");
     };
 
     const handleApprove = () => {
-        api
-            .put("/membership-applications/" + selectedMember.id, { status: "approved_need_register", reviewer_id: user.id })
-            .then(() => {
-                setSelectedMember({ ...selectedMember, status: "approved_need_register" });
+        updateMemberApplication("approved_need_register");
+    };
 
-                const updatedList = membersApplication.map((app) =>
-                    app.id === selectedMember.id ? { ...app, status: "approved_need_register" } : app
+    const updateMemberApplication = (status) => {
+        api
+            .put("/membership-applications/" + selectedMemberApplication.id, { status: status, reviewer_id: user.id })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, status: status });
+
+                const updatedList = memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, status: status } : app
                 );
-                setMembersApplication(updatedList);
+                setMemberApplications(updatedList);
             })
             .catch((err) => console.error(err));
     };
@@ -85,14 +79,14 @@ export default function Members() {
                         </div>
                         <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm rounded-xl">
                             <div className="font-geist text-sm text-text font-semibold">
-                                Total Members: <span className="text-blue font-bold">{membersApplication.length} Registered</span>
+                                Total Members: <span className="text-blue font-bold">{memberApplications.length} Registered</span>
                             </div>
                             <div className="flex gap-4 text-xs font-geist">
                                 <div className="flex items-center gap-1.5 text-green font-medium">
                                     <span className="w-2 h-2 rounded-full bg-green" /> Active: 0
                                 </div>
                                 <div className="flex items-center gap-1.5 text-yellow font-medium">
-                                    <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {membersApplication.filter((ma) => ma.status === 'pending').length}
+                                    <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {memberApplications.filter((ma) => ma.status === 'pending').length}
                                 </div>
                                 <div className="flex items-center gap-1.5 text-red font-medium">
                                     <span className="w-2 h-2 rounded-full bg-red" /> Inactive: 0
@@ -117,7 +111,7 @@ export default function Members() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0">
-                                All Members ({membersApplication.length})
+                                All Members ({memberApplications.length})
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 Active Only (0)
@@ -138,7 +132,7 @@ export default function Members() {
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
-                        {membersApplication.map((application) =>
+                        {memberApplications.map((application) =>
                             <div
                                 key={application.id}
                                 className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
@@ -204,26 +198,26 @@ export default function Members() {
                 </div>
                 {/* Drawer Content */}
                 <div className="grow overflow-y-auto p-6 space-y-6">
-                    {selectedMember && (
+                    {selectedMemberApplication && (
                         <>
                             <div className="flex flex-col items-center text-center">
                                 <div className="w-20 h-20 text-3xl rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
-                                    {getInitials(selectedMember.full_name)}
+                                    {getInitials(selectedMemberApplication.full_name)}
                                 </div>
                                 <h3 className="font-geist text-xl font-bold text-text m-0">
-                                    {selectedMember.full_name}
+                                    {selectedMemberApplication.full_name}
                                 </h3>
                                 <p className="text-sm text-subtext mt-0.5">
-                                    ID: {selectedMember.student_id}
+                                    ID: {selectedMemberApplication.student_id}
                                 </p>
 
-                                {selectedMember.status === 'approved_member_now'
+                                {selectedMemberApplication.status === 'approved_member_now'
                                     ? <span className={'bg-green-bg text-green border border-green-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>ACTIVE</span>
-                                    : selectedMember.status === 'pending'
+                                    : selectedMemberApplication.status === 'pending'
                                         ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>PENDING</span>
-                                        : selectedMember.status === 'approved_need_register'
+                                        : selectedMemberApplication.status === 'approved_need_register'
                                             ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
-                                            : selectedMember.status === 'rejected'
+                                            : selectedMemberApplication.status === 'rejected'
                                                 ? <span className={'bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>REJECTED</span>
                                                 : ""
                                 }
@@ -239,7 +233,7 @@ export default function Members() {
                                                 Program / Year
                                             </p>
                                             <p className="text-text font-semibold">
-                                                {selectedMember.course + " " + selectedMember.year_level}
+                                                {selectedMemberApplication.course + " " + selectedMemberApplication.year_level}
                                             </p>
                                         </div>
                                         <div>
@@ -247,7 +241,7 @@ export default function Members() {
                                                 Phone
                                             </p>
                                             <p className="text-text font-semibold">
-                                                {selectedMember.phone_number}
+                                                {selectedMemberApplication.phone_number}
                                             </p>
                                         </div>
                                         <div className="col-span-2">
@@ -255,7 +249,7 @@ export default function Members() {
                                                 Email Address
                                             </p>
                                             <p className="text-blue font-semibold">
-                                                {selectedMember.email}
+                                                {selectedMemberApplication.email}
                                             </p>
                                         </div>
                                         <div>
@@ -263,7 +257,7 @@ export default function Members() {
                                                 Emergency Contact
                                             </p>
                                             <p className="text-text font-semibold">
-                                                {selectedMember.emergency_person_name}
+                                                {selectedMemberApplication.emergency_person_name}
                                             </p>
                                         </div>
                                         <div>
@@ -271,7 +265,7 @@ export default function Members() {
                                                 Emergency Contact Phone
                                             </p>
                                             <p className="text-text font-semibold">
-                                                {selectedMember.emergency_phone}
+                                                {selectedMemberApplication.emergency_phone}
                                             </p>
                                         </div>
                                         <div>
@@ -279,7 +273,7 @@ export default function Members() {
                                                 Consent Form
                                             </p>
                                             <p className="text-text font-semibold truncate">
-                                                {selectedMember.consent_form}
+                                                {selectedMemberApplication.consent_form}
                                             </p>
                                         </div>
                                         <div>
@@ -287,7 +281,7 @@ export default function Members() {
                                                 Class Schedule
                                             </p>
                                             <p className="text-text font-semibold truncate">
-                                                {selectedMember.class_schedule}
+                                                {selectedMemberApplication.class_schedule}
                                             </p>
                                         </div>
                                     </div>
@@ -321,7 +315,7 @@ export default function Members() {
                     )}
                 </div>
                 {/* Drawer Actions */}
-                {selectedMember && selectedMember.status === "pending" ? (
+                {selectedMemberApplication && selectedMemberApplication.status === "pending" ? (
                     <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
                         <button onClick={handleReject} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-[18px]">close</span>
@@ -332,7 +326,7 @@ export default function Members() {
                             Approve
                         </button>
                     </div>
-                ) : selectedMember && selectedMember.status === "approved_need_register" ? (
+                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" ? (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="text-center text-sm text-subtext">
                             <span className="material-symbols-outlined text-yellow text-[18px] align-middle mr-1">schedule</span>
