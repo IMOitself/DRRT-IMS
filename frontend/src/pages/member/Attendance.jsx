@@ -5,14 +5,14 @@ export default function Attendance() {
     return (
         <>
             <title>Attendance - DRRT Member Portal</title>
-            
-            <Header/>
+
+            <Header />
 
             <main className="grow max-w-7xl w-full mx-auto px-4 md:px-8 py-6 pb-24 md:pb-12">
                 {/* Page Title Header */}
                 <div className="mb-6">
                     <h2 className="font-geist text-3xl md:text-5xl text-text font-bold">
-                        My Attendance Records
+                        Attendance Records
                     </h2>
                     <p className="text-base md:text-lg text-subtext mt-1">
                         Track your compliance status, meeting history, and request record
@@ -50,21 +50,15 @@ export default function Attendance() {
                                     </span>
                                 </div>
                                 <div className="h-3.5 w-full bg-progress-ring-track rounded-full overflow-hidden relative">
-                                    {/* 80% Threshold Marker */}
-                                    <div
-                                        className="absolute h-full w-0.5 bg-red z-10 left-[80%]"
-                                        title="80% Minimum Threshold"
-                                    />
-                                    {/* Progress Bar */}
-                                    <div
-                                        className="h-full bg-blue rounded-full transition-all duration-500"
-                                        style={{ width: "85%" }}
-                                    />
+                                    {/* 80% threshold marker */}
+                                    <div className="absolute h-full w-0.5 bg-red z-10 left-[80%]" />
+                                    {/* progress bar */}
+                                    <div className="h-full bg-blue rounded-full transition-all duration-500" style={{ width: "85%" }} />
                                 </div>
                                 <div className="flex justify-between text-xs font-geist text-subtext pt-1">
                                     <span>0%</span>
-                                    <span className="font-semibold text-red flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-red" />{" "}
+                                    <span className="font-semibold text-green flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green" />{" "}
                                         80% Requirement
                                     </span>
                                     <span>100%</span>
@@ -75,7 +69,7 @@ export default function Attendance() {
                         <div className="grid grid-cols-2 gap-4">
                             {/* Total Events */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col items-center text-center shadow-sm hover:border-blue transition-all">
-                                <span className="material-symbols-outlined text-blue mb-1 text-3xl">
+                                <span className="material-symbols-outlined text-blue mb-1 text-[30px]!">
                                     groups
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
@@ -87,7 +81,7 @@ export default function Attendance() {
                             </div>
                             {/* Attended */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col items-center text-center shadow-sm hover:border-green transition-all">
-                                <span className="material-symbols-outlined text-green mb-1 text-3xl">
+                                <span className="material-symbols-outlined text-green mb-1 text-[30px]!">
                                     check_circle
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
@@ -105,18 +99,12 @@ export default function Attendance() {
                             <h3 className="font-geist text-2xl font-bold text-text">
                                 Recent Events
                             </h3>
-                            <button className="font-geist text-sm text-blue font-bold hover:underline flex items-center gap-1">
-                                View All{" "}
-                                <span className="material-symbols-outlined text-[18px]!">
-                                    arrow_forward
-                                </span>
-                            </button>
                         </div>
+
                         <div className="space-y-4">
-                            {/* History Card 2: Absent */}
                             <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border items-center justify-center text-green shrink-0 hidden md:flex">
                                         <span className="material-symbols-outlined text-[24px]!">
                                             check
                                         </span>
@@ -134,11 +122,133 @@ export default function Attendance() {
                                     </div>
                                 </div>
                                 <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                                    <span className="bg-green-bg text-green border border-green-border px-3 py-1 rounded-full font-geist text-xs font-bold uppercase tracking-wider">
-                                        Present
-                                    </span>
+                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                        <div className="md:hidden">
+                                            <span className="material-symbols-outlined text-[14px]!">
+                                                check
+                                            </span>{" "}
+                                        </div>
+                                        <span>Present</span>
+                                    </button>
                                     <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
                                         Request Correction
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0 hidden md:flex">
+                                        <span className="material-symbols-outlined text-[24px]!">
+                                            check
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-geist text-lg text-text font-semibold">
+                                            Emergency Drill
+                                        </h4>
+                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]!">
+                                                calendar_today
+                                            </span>{" "}
+                                            Sep 28, 2026 • 02:00 PM
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-1 shrink-0">
+                                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                        <div className="md:hidden">
+                                            <span className="material-symbols-outlined text-[14px]!">
+                                                check
+                                            </span>{" "}
+                                        </div>
+                                        <span>Present</span>
+                                    </button>
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        L
+                                    </button>
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        A
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0 hidden md:flex">
+                                        <span className="material-symbols-outlined text-[24px]!">
+                                            schedule
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-geist text-lg text-text font-semibold">
+                                            Emergency Drill
+                                        </h4>
+                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]!">
+                                                calendar_today
+                                            </span>{" "}
+                                            Sep 28, 2026 • 02:00 PM
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-1 shrink-0">
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        P
+                                    </button>
+                                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                        <div className="md:hidden">
+                                            <span className="material-symbols-outlined text-[14px]!">
+                                                schedule
+                                            </span>{" "}
+                                        </div>
+                                        <span>Late</span>
+                                    </button>
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        A
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0 hidden md:flex">
+                                        <span className="material-symbols-outlined text-[24px]!">
+                                            close
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-geist text-lg text-text font-semibold">
+                                            Emergency Drill
+                                        </h4>
+                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]!">
+                                                calendar_today
+                                            </span>{" "}
+                                            Sep 28, 2026 • 02:00 PM
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-1 shrink-0">
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        P
+                                    </button>
+                                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                                        L
+                                    </button>
+                                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                        <div className="md:hidden">
+                                            <span className="material-symbols-outlined text-[14px]!">
+                                                close
+                                            </span>{" "}
+                                        </div>
+                                        <span>Absent</span>
                                     </button>
                                 </div>
                             </div>
@@ -146,8 +256,8 @@ export default function Attendance() {
                     </div>
                 </div>
             </main>
-            
-            <BottomNav/>
+
+            <BottomNav />
         </>
 
     );
