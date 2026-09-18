@@ -103,7 +103,7 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/officer/roster" className={({ isActive }) =>
+                <NavLink to="/officer/members" className={({ isActive }) =>
                     isActive
                         ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
                         : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
@@ -111,7 +111,7 @@ export default function BottomNav() {
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>group</span>
-                            <span className="font-geist text-xs mt-0.5">Roster</span>
+                            <span className="font-geist text-xs mt-0.5">Members</span>
                         </>
                     )}
                 </NavLink>

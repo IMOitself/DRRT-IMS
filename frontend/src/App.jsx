@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PasswordForgot from './pages/PasswordForgot';
 
-import OfficerRoster from './pages/officer/Roster';
+import OfficerMembers from './pages/officer/Members';
 import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
 import OfficerIncidents from './pages/officer/Incidents';
@@ -59,7 +59,8 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/attendance" element={<OfficerAttendance />} />
-        <Route path="/officer/roster" element={<OfficerRoster />} />
+        <Route path="/officer/members" element={<OfficerMembers />} />
+        <Route path="/officer/roster" element={<OfficerMembers />} />
         <Route path="/officer/incidents" element={<OfficerIncidents />} />
         <Route path="/officer/incidents/:id" element={<OfficerIncidentDetails />} />
         <Route path="/officer/create-event" element={<OfficerCreateEvent />} />

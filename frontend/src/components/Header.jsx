@@ -84,12 +84,12 @@ export default function Header() {
                         }>
                             Attendance
                         </NavLink>
-                        <NavLink to="/officer/roster" className={({ isActive }) =>
+                        <NavLink to="/officer/members" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
                                 : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                         }>
-                            Roster
+                            Members
                         </NavLink>
                         <NavLink to="/officer/incidents" className={() => {
                             const isActive = pathname.startsWith("/officer/incidents"); // include incidents id too e.g /officer/incidents/67
