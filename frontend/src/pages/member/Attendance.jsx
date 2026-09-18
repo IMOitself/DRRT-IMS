@@ -345,14 +345,6 @@ export default function Attendance() {
                                                 </div>
                                             )}
 
-                                            {currentStatus === "late" && (
-                                                <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
-                                                    <span className="material-symbols-outlined text-[24px]!">
-                                                        schedule
-                                                    </span>
-                                                </div>
-                                            )}
-
                                             {currentStatus === "absent" && (
                                                 <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
                                                     <span className="material-symbols-outlined text-[24px]!">
@@ -448,17 +440,18 @@ export default function Attendance() {
                                             </span>
                                         </div>
 
-                                        {/* late icon */}
-                                        <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
-                                            <span className="material-symbols-outlined text-[24px]!">
-                                                schedule
-                                            </span>
-                                        </div>
 
                                         {/* absent icon */}
                                         <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
                                             <span className="material-symbols-outlined text-[24px]!">
                                                 close
+                                            </span>
+                                        </div>
+
+                                        {/* late icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                schedule
                                             </span>
                                         </div>
                                     </div>
