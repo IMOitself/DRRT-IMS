@@ -13,8 +13,8 @@ export default function CreateEvent() {
         time: "",
         type: "",
         participants: "",
-        "venue-facetoface": "",
-        "venue-online": "",
+        venue_facetoface: "",
+        venue_online: "",
         require_proof_of_attendance: false,
     };
 
@@ -146,8 +146,8 @@ export default function CreateEvent() {
                             onsite:
                             <input
                                 type="text"
-                                name="venue-facetoface"
-                                value={formData["venue-facetoface"]}
+                                name="venue_facetoface"
+                                value={formData.venue_facetoface}
                                 onChange={handleChange}
                                 placeholder="event location"
                             />
@@ -159,18 +159,18 @@ export default function CreateEvent() {
                                 <label>
                                     <input
                                         type="radio"
-                                        name="venue-online"
+                                        name="venue_online"
                                         value="gmeet"
-                                        checked={formData["venue-online"] === "gmeet"}
+                                        checked={formData.venue_online === "gmeet"}
                                         onChange={handleChange}
                                     /> Google Meet
                                 </label>
                                 <label>
                                     <input
                                         type="radio"
-                                        name="venue-online"
+                                        name="venue_online"
                                         value="zoom"
-                                        checked={formData["venue-online"] === "zoom"}
+                                        checked={formData.venue_online === "zoom"}
                                         onChange={handleChange}
                                     /> Zoom
                                 </label>
@@ -217,17 +217,17 @@ export default function CreateEvent() {
                             <div className="flex flex-row flex-nowrap md:w-50 gap-5">
                                 <div className="border-black border">
                                     onsite:
-                                    <input type="text" value={event["venue-facetoface"] || ""} readOnly placeholder="event location" />
+                                    <input type="text" value={event.venue_facetoface || ""} readOnly placeholder="event location" />
                                 </div>
 
                                 <div className="border-black border min-w-100">
                                     online:
                                     <div>
                                         <label>
-                                            <input type="radio" checked={event["venue-online"] === "gmeet"} disabled /> Google Meet
+                                            <input type="radio" checked={event.venue_online === "gmeet"} disabled /> Google Meet
                                         </label>
                                         <label>
-                                            <input type="radio" checked={event["venue-online"] === "zoom"} disabled /> Zoom
+                                            <input type="radio" checked={event.venue_online === "zoom"} disabled /> Zoom
                                         </label>
                                     </div>
                                 </div>

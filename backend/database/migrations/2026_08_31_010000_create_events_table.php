@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('time')->nullable();
             $table->string('participants')->nullable();
-            $table->enum('venue-online', ['zoom', 'gmeet'])->nullable();
-            $table->string('venue-facetoface')->nullable();
+            $table->enum('venue_online', ['zoom', 'gmeet'])->nullable();
+            $table->string('venue_facetoface')->nullable();
             $table->boolean('require_proof_of_attendance')->default(false);
             $table->timestamps();
         });

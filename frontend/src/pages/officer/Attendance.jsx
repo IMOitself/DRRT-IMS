@@ -85,14 +85,14 @@ export default function Attendance() {
                   }
                 >
                   {/* venue online */}
-                  {event["venue-online"] && (
+                  {event.venue_online && (
                     <div className="flex flex-row items-center justify-between gap-2">
                       <div className="flex justify-center items-center gap-2 text-blue">
                         <span className="material-symbols-outlined text-[18px] filled-icon">
                           videocam
                         </span>
                         <span className="font-geist text-sm font-bold uppercase tracking-wider">
-                          {event["venue-online"]}
+                          {event.venue_online}
                         </span>
                       </div>
                       <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
@@ -102,14 +102,14 @@ export default function Attendance() {
                   )}
 
                   {/* venue face to face */}
-                  {event["venue-facetoface"] && (
+                  {event.venue_facetoface && (
                     <div className="flex flex-row items-center justify-between gap-2">
                       <div className="flex justify-center items-center gap-2 text-blue">
                         <span className="material-symbols-outlined text-[18px] filled-icon">
                           location_on
                         </span>
                         <span className="font-geist text-sm font-bold uppercase tracking-wider">
-                          {event["venue-facetoface"]}
+                          {event.venue_facetoface}
                         </span>
                       </div>
                       <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">

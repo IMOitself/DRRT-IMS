@@ -45,14 +45,22 @@ class DatabaseSeeder extends Seeder
         Event::create([
             'title' => 'Foundation Week 2027',
             'description' => 'just the foundation week idk',
-            'date' => 'Jan 1, 2027',
-            'time' => '08:00 AM',
+            'date' => '2027-01-01',
+            'time' => '08:00',
+            'type' => 'meeting',
+            'participants' => 'All students',
+            'venue_facetoface' => 'School Grounds',
+            'require_proof_of_attendance' => true,
         ]);
         Event::create([
             'title' => 'Seminar',
             'description' => 'just a seminar idk',
-            'date' => 'Nov 1, 2026',
-            'time' => '08:00 AM',
+            'date' => '2026-11-01',
+            'time' => '08:00',
+            'type' => 'drill',
+            'participants' => 'All students',
+            'venue_online' => 'gmeet',
+            'require_proof_of_attendance' => false,
         ]);
     }
 }
