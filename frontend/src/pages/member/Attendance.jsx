@@ -521,7 +521,11 @@ export default function Attendance() {
                                                 <button
                                                     onClick={() => {
                                                         setSelectedEvent(event);
-                                                        setIsDialogOpen(true);
+                                                        if (currentStatus === "absent") {
+                                                            setIsConfirmOpen(true);
+                                                        } else {
+                                                            setIsDialogOpen(true);
+                                                        }
                                                     }}
                                                     className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
                                                 >
