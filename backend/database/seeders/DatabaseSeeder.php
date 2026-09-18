@@ -45,7 +45,14 @@ class DatabaseSeeder extends Seeder
         Event::create([
             'title' => 'Foundation Week 2027',
             'description' => 'just the foundation week idk',
-            'date_time' => 'Jan 1, 2027 08:00 AM'
+            'date' => 'Jan 1, 2027',
+            'time' => '08:00 AM',
+        ]);
+        Event::create([
+            'title' => 'Seminar',
+            'description' => 'just a seminar idk',
+            'date' => 'Nov 1, 2026',
+            'time' => '08:00 AM',
         ]);
     }
 }
