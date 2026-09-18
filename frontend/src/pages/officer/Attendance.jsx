@@ -76,6 +76,8 @@ export default function Attendance() {
             <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col cursor-pointer">
               <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2"
                    onClick={() => setOpenAttendanceId(openAttendanceId === 1 ? null : 1)}>
+                
+                {/* venue online */}
                 <div className="flex flex-row items-center justify-between gap-2">
                   <div className="flex justify-center items-center gap-2 text-blue">
                     <span className="material-symbols-outlined text-[18px] filled-icon">
@@ -89,6 +91,22 @@ export default function Attendance() {
                     Online
                   </span>
                 </div>
+
+                {/* venue face to face */}
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <div className="flex justify-center items-center gap-2 text-blue">
+                    <span className="material-symbols-outlined text-[18px] filled-icon">
+                      location_on
+                    </span>
+                    <span className="font-geist text-sm font-bold uppercase tracking-wider">
+                      Auditorium Lobby
+                    </span>
+                  </div>
+                  <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
+                    Face to Face
+                  </span>
+                </div>
+
                 <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
                   Emergency Meeting
                 </h3>
