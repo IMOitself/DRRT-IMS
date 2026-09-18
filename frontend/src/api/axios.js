@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const isLocal = window.location.hostname === 'localhost';
+
 const api = axios.create({
-  baseURL: 'https://drrt-ims-backend.onrender.com/api',
+  baseURL: isLocal
+    ? 'http://localhost:8000/api'
+    : 'https://drrt-ims-backend.onrender.com/api',
   headers: {
     Accept: 'application/json',
   },
