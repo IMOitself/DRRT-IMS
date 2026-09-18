@@ -14,8 +14,7 @@ export default function Attendance() {
     api
       .get("/events")
       .then((res) => {
-        const events = res.data;
-        setEvents(events);
+        setEvents(res.data.reverse());
       })
       .catch((err) => {
         console.error(err);

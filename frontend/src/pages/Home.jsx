@@ -28,7 +28,7 @@ export default function Home() {
         api
         .get("/events")
         .then((res) => {
-            setEvents(res.data);
+            setEvents(res.data.reverse());
         })
         .catch((err) => {
             console.error(err);

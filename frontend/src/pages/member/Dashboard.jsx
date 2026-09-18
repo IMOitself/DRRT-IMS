@@ -14,8 +14,8 @@ export default function Dashboard() {
         api
             .get("/events")
             .then((res) => {
-                setEvents(res.data);
-                setUpcomingEvent(res.data[0]); // TODO: actually fetch the upcoming event based on date
+                setEvents(res.data.reverse());
+                setUpcomingEvent(res.data.reverse()[0]); // TODO: actually fetch the upcoming event based on date
             })
             .catch((err) => {
                 console.error(err);

@@ -32,7 +32,12 @@ export default function CreateEvent() {
             .post("/events", formData)
             .then((res) => {
                 setFormData(initialFormData);
-                api.get("/events").then((res) => setEvents(res.data));
+                api
+                    .get("/events")
+                    .then((res) => {
+                        setEvents(res.data.reverse());
+                    })
+                    .catch((err) => console.error(err));
             })
             .catch((err) => console.error(err));
     };
@@ -41,7 +46,7 @@ export default function CreateEvent() {
         api
             .get("/events")
             .then((res) => {
-                setEvents(res.data);
+                setEvents(res.data.reverse());
             })
             .catch((err) => {
                 console.error(err);
