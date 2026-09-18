@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* Simplified Core Colors */
   --color-text: #191b23;
   --color-subtext: #434654;
 
@@ -22,7 +21,6 @@
   --color-yellow-bg: #faf4e6;
   --color-yellow-border: #ecd4a2;
 
-  /* Base & Surfaces */
   --color-background: #faf8ff;
   --color-surface: #faf8ff;
   --color-surface-dim: #d2d9f4;
@@ -104,4 +102,20 @@ body {
 
 .test-link {
   @apply hover:underline cursor-pointer text-blue;
+}
+
+.bottom-nav-label {
+  @apply font-geist text-xs mt-0.5 truncate w-full text-center
+}
+
+.bottom-nav-active {
+  @apply flex-1 flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative overflow-hidden;
+}
+
+.bottom-nav-inactive {
+  @apply flex-1 flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors overflow-hidden;
+}
+
+.bottom-nav-container {
+  @apply md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg;
 }

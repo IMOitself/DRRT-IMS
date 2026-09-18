@@ -5,68 +5,68 @@ export default function BottomNav() {
 
     if (pathname.startsWith("/adviser")) {
         return (
-            <nav aria-label="Adviser Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">
+            <nav aria-label="Adviser Mobile Navigation" className="bottom-nav-container">
                 <NavLink to="/adviser/dashboard" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>dashboard</span>
-                            <span className="font-geist text-xs mt-0.5">Dashboard</span>
+                            <span className="bottom-nav-label">Dashboard</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/adviser/vault" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>shield</span>
-                            <span className="font-geist text-xs mt-0.5">Vault</span>
+                            <span className="bottom-nav-label">Vault</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/adviser/bylaws" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>gavel</span>
-                            <span className="font-geist text-xs mt-0.5">Bylaws</span>
+                            <span className="bottom-nav-label">Bylaws</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/adviser/reports" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>description</span>
-                            <span className="font-geist text-xs mt-0.5">Reports</span>
+                            <span className="bottom-nav-label">Reports</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/adviser/approvals" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>fact_check</span>
-                            <span className="font-geist text-xs mt-0.5">Approvals</span>
+                            <span className="bottom-nav-label">Approvals</span>
                         </>
                     )}
                 </NavLink>
@@ -76,42 +76,42 @@ export default function BottomNav() {
 
     if (pathname.startsWith("/officer")) {
         return (
-            <nav aria-label="Officer Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">
+            <nav aria-label="Officer Mobile Navigation" className="bottom-nav-container">
                 <NavLink to="/officer/dashboard" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>dashboard</span>
-                            <span className="font-geist text-xs mt-0.5">Dashboard</span>
+                            <span className="bottom-nav-label">Dashboard</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/officer/attendance" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>how_to_reg</span>
-                            <span className="font-geist text-xs mt-0.5">Attendance</span>
+                            <span className="bottom-nav-label">Attendance</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/officer/members" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>group</span>
-                            <span className="font-geist text-xs mt-0.5">Members</span>
+                            <span className="bottom-nav-label">Members</span>
                         </>
                     )}
                 </NavLink>
@@ -119,15 +119,15 @@ export default function BottomNav() {
                 <NavLink to="/officer/incidents" className={() => {
                     const isActive = pathname.startsWith("/officer/incidents");
                     return isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors";
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive";
                 }}>
                     {() => {
                         const isActive = pathname.startsWith("/officer/incidents");
                         return (
                             <>
                                 <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
-                                <span className="font-geist text-xs mt-0.5">Vault</span>
+                                <span className="bottom-nav-label">Vault</span>
                             </>
                         );
                     }}
@@ -138,55 +138,55 @@ export default function BottomNav() {
 
     if (pathname.startsWith("/member")) {
         return (
-            <nav aria-label="Member Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">
+            <nav aria-label="Member Mobile Navigation" className="bottom-nav-container">
                 <NavLink to="/member/dashboard" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>dashboard</span>
-                            <span className="font-geist text-xs mt-0.5">Dashboard</span>
+                            <span className="bottom-nav-label">Dashboard</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/member/attendance" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>calendar_today</span>
-                            <span className="font-geist text-xs mt-0.5">Attendance</span>
+                            <span className="bottom-nav-label">Attendance</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/member/announcements" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>notifications</span>
-                            <span className="font-geist text-xs mt-0.5">Alerts</span>
+                            <span className="bottom-nav-label">Alerts</span>
                         </>
                     )}
                 </NavLink>
 
                 <NavLink to="/member/id" className={({ isActive }) =>
                     isActive
-                        ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-3 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                        : "flex flex-col items-center justify-center text-subtext hover:text-blue px-2 py-1 rounded-xl transition-colors"
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
                 }>
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>badge</span>
-                            <span className="font-geist text-xs mt-0.5">ID Card</span>
+                            <span className="bottom-nav-label">ID Card</span>
                         </>
                     )}
                 </NavLink>
@@ -195,29 +195,29 @@ export default function BottomNav() {
     }
 
     return (
-        <nav aria-label="Mobile Navigation" className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg">
+        <nav aria-label="Mobile Navigation" className="bottom-nav-container">
             <NavLink to="/" className={({ isActive }) =>
                 isActive 
-                    ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-4 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                    : "flex flex-col items-center justify-center text-subtext hover:text-blue px-3 py-1 rounded-xl transition-colors"
+                    ? "bottom-nav-active"
+                    : "bottom-nav-inactive px-3"
             }>
                 {({ isActive }) => (
                     <>
                         <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>home</span>
-                        <span className="font-geist text-xs mt-0.5">Home</span>
+                        <span className="bottom-nav-label">Home</span>
                     </>
                 )}
             </NavLink>
             <NavLink to="/join" className={() => {
                 const isActive = pathname === "/join" || pathname.startsWith("/join-form"); // include join-form id too e.g join-form/67
                 return isActive 
-                    ? "flex flex-col items-center justify-center bg-blue text-white rounded-xl px-4 py-1.5 font-bold shadow-md scale-95 transition-all relative"
-                    : "flex flex-col items-center justify-center text-subtext hover:text-blue px-3 py-1 rounded-xl transition-colors"
+                    ? "bottom-nav-active"
+                    : "bottom-nav-inactive px-3"
             }}>
                 {({ isActive }) => (
                     <>
                         <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>person_add</span>
-                        <span className="font-geist text-xs mt-0.5">Join</span>
+                        <span className="bottom-nav-label">Join</span>
                     </>
                 )}
             </NavLink>
