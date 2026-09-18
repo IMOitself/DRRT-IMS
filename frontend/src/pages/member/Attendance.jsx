@@ -3,13 +3,32 @@ import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import api from "../../api/axios";
 import { formatDate } from "../../utils/format";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Attendance() {
+    const { user } = useAuth();
     const [attendances, setAttendances] = useState({});
     const [events, setEvents] = useState([]);
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+    const [isAttendanceDialogOpen, setIsAttendanceDialogOpen] = useState(false);
+    const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
+
+    const initialFormData = {
+        user_id: null,
+        event_id: null,
+        status: "",
+        attended_at: null,
+        proof_of_attendance: null,
+        timein_hour: "08",
+        timein_minute: "00",
+        ampm: "AM",
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const selectedStatus = selectedEvent ? (attendances[selectedEvent.id] || "unset") : "unset";
 
@@ -30,6 +49,66 @@ export default function Attendance() {
             [id]: status,
         }));
     };
+
+    const handleOpenAttendance = (event, currentStatus) => {
+        setSelectedEvent(event);
+        const userId = user.id;
+
+        if (currentStatus === "absent") {
+            setFormData({
+                user_id: userId,
+                event_id: event.id,
+                status: "absent",
+                attended_at: null,
+                proof_of_attendance: null,
+            });
+            setIsConfirmSaveDialogOpen(true);
+        } else {
+            setFormData({
+                user_id: userId,
+                event_id: event.id,
+                status: currentStatus,
+                attended_at: null,
+                proof_of_attendance: null,
+                timein_hour: "08",
+                timein_minute: "00",
+                ampm: "AM",
+            });
+            setIsAttendanceDialogOpen(true);
+        }
+    };
+
+    const handleAttendanceDialogSubmit = (e) => {
+        e.preventDefault();
+
+        let hour = parseInt(formData.timein_hour || "8", 10);
+        if (formData.ampm === "PM" && hour < 12) hour += 12;
+        if (formData.ampm === "AM" && hour === 12) hour = 0;
+        const formattedHour = String(hour).padStart(2, "0");
+        const formattedMinute = String(formData.timein_minute || "0").padStart(2, "0");
+        const eventDate = selectedEvent?.date || new Date().toISOString().split("T")[0];
+        const attendedAt = `${eventDate} ${formattedHour}:${formattedMinute}:00`;
+
+        setFormData((prev) => ({
+            ...prev,
+            attended_at: attendedAt,
+        }));
+
+        setIsConfirmSaveDialogOpen(true);
+    };
+
+    const handleSubmitAttendance = () => {
+        api
+            .post("/attendances", formData)
+            .then((res) => {
+                setIsConfirmSaveDialogOpen(false);
+                setIsAttendanceDialogOpen(false);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
+
     return (
         <>
             <title>Attendance - DRRT Member Portal</title>
@@ -132,16 +211,16 @@ export default function Attendance() {
                         </div>
 
                         {/* attendance dialog */}
-                        {isDialogOpen && (
+                        {isAttendanceDialogOpen && (
                             <div
                                 className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-                                onClick={() => setIsDialogOpen(false)}
+                                onClick={() => setIsAttendanceDialogOpen(false)}
                             >
                                 <div
                                     className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <form onSubmit={(e) => { e.preventDefault(); setIsConfirmOpen(true); }} className="space-y-6">
+                                    <form onSubmit={handleAttendanceDialogSubmit} className="space-y-6">
                                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
                                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                                 <legend className="font-geist text-lg font-bold text-text">
@@ -184,7 +263,7 @@ export default function Attendance() {
                                             </div>
 
                                             {/* proof of attendance */}
-                                            {event.require_proof_of_attendance && (
+                                            {selectedEvent?.require_proof_of_attendance && (
                                                 <div>
                                                     <label className="block font-geist text-sm font-semibold text-text mb-1">
                                                         Proof of Attendance{" "}
@@ -196,6 +275,7 @@ export default function Attendance() {
                                                     <input
                                                         type="file"
                                                         name="proof_of_attendance"
+                                                        onChange={handleChange}
                                                         // required
                                                         accept=".pdf,.png,.jpg,.jpeg"
                                                         className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
@@ -204,7 +284,7 @@ export default function Attendance() {
                                             )}
 
                                             <div className="flex flex-col gap-1">
-                                                <label htmlFor="timein" className="w-fit font-geist text-md font-semibold text-text mb-1">
+                                                <label htmlFor="timein_hour" className="w-fit font-geist text-md font-semibold text-text mb-1">
                                                     Time in<span className="text-red">*</span>
                                                 </label>
                                                 <div className="w-full flex items-center">
@@ -212,19 +292,23 @@ export default function Attendance() {
                                                     <div className="flex items-center gap-1">
                                                         <input
                                                             type="number"
-                                                            id="timein"
-                                                            name="timein"
+                                                            id="timein_hour"
+                                                            name="timein_hour"
+                                                            value={formData.timein_hour || ""}
+                                                            onChange={handleChange}
                                                             placeholder="08"
-                                                            min="0"
-                                                            max="23"
+                                                            min="1"
+                                                            max="12"
                                                             required
                                                             className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                                         />
                                                         <span>:</span>
                                                         <input
                                                             type="number"
-                                                            id="timein"
-                                                            name="timein"
+                                                            id="timein_minute"
+                                                            name="timein_minute"
+                                                            value={formData.timein_minute || ""}
+                                                            onChange={handleChange}
                                                             placeholder="00"
                                                             min="0"
                                                             max="59"
@@ -232,7 +316,13 @@ export default function Attendance() {
                                                             className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                                         />
                                                         <div className="flex flex-col">
-                                                            <select name="ampm" id="ampm" className="w-fit px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all">
+                                                            <select
+                                                                name="ampm"
+                                                                id="ampm"
+                                                                value={formData.ampm || "AM"}
+                                                                onChange={handleChange}
+                                                                className="w-fit px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                                            >
                                                                 <option value="AM">AM</option>
                                                                 <option value="PM">PM</option>
                                                             </select>
@@ -241,14 +331,13 @@ export default function Attendance() {
                                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
                                                         <button
                                                             type="button"
-                                                            onClick={() => setIsDialogOpen(false)}
+                                                            onClick={() => setIsAttendanceDialogOpen(false)}
                                                             className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
                                                         >
                                                             Cancel
                                                         </button>
                                                         <button
-                                                            type="button"
-                                                            onClick={() => setIsConfirmOpen(true)}
+                                                            type="submit"
                                                             className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
                                                         >
                                                             <span className="material-symbols-outlined text-[24px]!">save</span>
@@ -265,56 +354,49 @@ export default function Attendance() {
                         )}
 
                         {/* confirm save dialog  */}
-                        {isConfirmOpen && (
+                        {isConfirmSaveDialogOpen && (
                             <div
                                 className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4"
-                                onClick={() => setIsConfirmOpen(false)}
+                                onClick={() => setIsConfirmSaveDialogOpen(false)}
                             >
-                                <div
-                                    className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <form onSubmit={(e) => { e.preventDefault(); setIsConfirmOpen(false); setIsDialogOpen(false); }} className="space-y-6">
-                                        <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-
-                                            <div className="flex flex-col gap-1">
-                                                <div className="flex flex-row gap-2 items-center">
-                                                    <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
-                                                        warning
-                                                    </span>
-                                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                                                        Save Changes?
-                                                    </p>
-                                                </div>
-                                                <p className="font-geist text-text">
-                                                    Once saved, it will be reviewed by the officers. You can still request correction afterwards.
+                                <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                                    <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                                        <div className="flex flex-col gap-1">
+                                            <div className="flex flex-row gap-2 items-center">
+                                                <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                                                    warning
+                                                </span>
+                                                <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                                    Save Changes?
                                                 </p>
-                                                <div className="w-full flex items-center">
-                                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => setIsConfirmOpen(false)}
-                                                            className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
-                                                        >
-                                                            Cancel
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => {
-                                                                setIsConfirmOpen(false);
-                                                                setIsDialogOpen(false);
-                                                            }}
-                                                            className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
-                                                        >
-                                                            <span className="material-symbols-outlined text-[18px]!">save</span>
-                                                            <span>Save</span>
-                                                        </button>
-                                                    </div>
+                                            </div>
+                                            <p className="font-geist text-text">
+                                                Once saved, it will be reviewed by the officers. You can still request correction afterwards.
+                                            </p>
+                                            <div className="w-full flex items-center">
+                                                <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setIsConfirmSaveDialogOpen(false)}
+                                                        className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            handleSubmitAttendance();
+                                                        }}
+                                                        className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
+                                                    >
+                                                        <span className="material-symbols-outlined text-[18px]!">save</span>
+                                                        <span>Save</span>
+                                                    </button>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                        </fieldset>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         )}
@@ -399,14 +481,7 @@ export default function Attendance() {
                                             </div>
                                             <div className={currentStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                 <button
-                                                    onClick={() => {
-                                                        setSelectedEvent(event);
-                                                        if (currentStatus === "absent") {
-                                                            setIsConfirmOpen(true);
-                                                        } else {
-                                                            setIsDialogOpen(true);
-                                                        }
-                                                    }}
+                                                    onClick={() => handleOpenAttendance(event, currentStatus)}
                                                     className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                 >
                                                     <span className="material-symbols-outlined text-[14px]">check</span>
@@ -494,7 +569,7 @@ export default function Attendance() {
                                         <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
                                             <span>Late</span>
                                         </button>
-                                        
+
                                         {/* excused */}
                                         <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
                                             <span>Excused</span>
