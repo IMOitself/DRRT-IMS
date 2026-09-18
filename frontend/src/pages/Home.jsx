@@ -176,7 +176,7 @@ export default function Home() {
                                         <p className="text-xs text-subtext text-center">No upcoming events.</p>
                                     ) : (
                                         events.map((event) => {
-                                            const [month, day] = (event.date_time || "").split(" ");
+                                            const [month, day] = (event.date || "").split(" ");
                                             return (
                                                 <div key={event.id} className="flex items-center gap-3 p-2 bg-surface rounded-xl border border-blue-border/40">
                                                     <div className="bg-surface-container-high text-subtext rounded-lg px-2.5 py-1 text-center shrink-0">

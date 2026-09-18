@@ -30,7 +30,8 @@ export default function CreateEvent() {
 
         const dataToSend = {
             ...formData,
-            date_time: `${formData.event_date} ${formData.event_time}`.trim(),
+            date: formData.event_date,
+            time: formData.event_time,
         };
 
         api
@@ -194,7 +195,8 @@ export default function CreateEvent() {
                         <div key={event.id} className="flex flex-col gap-3 border p-4">
                             <input type="text" value={event.title || ""} readOnly placeholder="event title" />
                             <input type="text" value={event.description || ""} readOnly placeholder="event description" />
-                            <input type="text" value={event.date_time || ""} readOnly placeholder="event date / time" />
+                            <input type="text" value={event.date || ""} readOnly placeholder="event date" />
+                            <input type="text" value={event.time || ""} readOnly placeholder="event time" />
                             event type:
                             <div>
                                 <label>

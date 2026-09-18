@@ -23,7 +23,7 @@ export default function Attendance() {
         });
 
         if (events[0]) {
-          if (events[0].date_time?.includes(current_date) || events[0].event_date == current_date) {
+          if (events[0].date?.includes(current_date) || events[0].event_date == current_date) {
             events[0].is_happening_now = true;
           }
           setSelectedEvent(events[0]);

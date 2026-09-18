@@ -453,7 +453,7 @@ export default function Attendance() {
                                                     <span className="material-symbols-outlined text-[16px]!">
                                                         calendar_today
                                                     </span>{" "}
-                                                    {event.date_time}
+                                                    {event.date} {event.time}
                                                 </p>
                                             </div>
                                         </div>
