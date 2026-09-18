@@ -182,7 +182,7 @@ function AttendanceList() {
 
         {/* Rapid Level Filters */}
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-text text-white font-geist text-xs shrink-0 cursor-pointer">
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 cursor-pointer">
             All Members (142)
           </button>
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue-bg transition-colors shrink-0 cursor-pointer">
@@ -216,7 +216,7 @@ function AttendanceList() {
         </button>
       </div>
 
-      <section className="flex gap-2 pr-4 md:pr-8" id="manual-view">
+      <section className="flex gap-2 pr-4 md:pr-8">
         <div className="flex-1 space-y-2">
           <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
             <div className="flex items-center gap-3 overflow-hidden">
