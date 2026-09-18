@@ -22,7 +22,7 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $attendance = Attendance::create([
-            'member_id' => $request->input('member_id'),
+            'user_id' => $request->input('user_id'),
             'event_id' => $request->input('event_id'),
             'status' => $request->input('status'),
             'attended_at' => $request->input('attended_at'),

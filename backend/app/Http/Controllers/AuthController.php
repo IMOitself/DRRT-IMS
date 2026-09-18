@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\MembershipApplication;
-use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -14,7 +13,6 @@ class AuthController extends Controller
     private function loadUserData($user)
     {
         $user->membership_application = MembershipApplication::where('user_id', $user->id)->first();
-        $user->member = Member::where('user_id', $user->id)->first();
 
         return $user;
     }
@@ -43,11 +41,6 @@ class AuthController extends Controller
         $application->update([
             'status' => 'approved_member_now',
             'user_id' => $user->id,
-        ]);
-
-        Member::create([
-            'user_id' => $user->id,
-            'membership_application_id' => $application->id,
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
