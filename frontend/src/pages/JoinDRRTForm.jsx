@@ -91,7 +91,6 @@ export default function JoinDRRTForm() {
 
                     {/* Form Banner Header */}
                     <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-blue/5 rounded-bl-full pointer-events-none" />
                         <div className="flex items-center gap-2 mb-2">
                             <span className="font-geist text-xs font-bold text-blue uppercase tracking-wider">
                                 Step 1 of 4

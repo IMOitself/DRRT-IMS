@@ -14,21 +14,11 @@ export default function JoinDRRT() {
                 <main className="max-w-5xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6 md:space-y-8">
                     {/* Hero Header Banner Card */}
                     <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-blue/5 rounded-bl-full pointer-events-none" />
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                             <div>
-                                <span className="font-geist text-xs font-bold text-blue tracking-wider uppercase">
-                                    Student Volunteer Recruitment
-                                </span>
                                 <h1 className="font-geist text-3xl md:text-4xl font-bold text-text mt-1">
-                                    Join the DRRT Team
+                                    Join the DRRT Team!
                                 </h1>
-                            </div>
-                            <div className="bg-green-bg border border-green-border text-green font-geist text-sm px-4 py-2 rounded-full flex items-center gap-2 w-fit shrink-0">
-                                <span className="material-symbols-outlined text-[18px] filled-icon">
-                                    check_circle
-                                </span>
-                                <span className="font-bold">Recruitment Status: OPEN</span>
                             </div>
                         </div>
                         <p className="text-base text-subtext max-w-2xl leading-relaxed">
