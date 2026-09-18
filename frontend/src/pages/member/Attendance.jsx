@@ -140,7 +140,6 @@ export default function Attendance() {
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <form onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); }} className="space-y-6">
-                                        {/* Section 1: Student Information */}
                                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
                                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                                 <legend className="font-geist text-lg font-bold text-text">
@@ -200,12 +199,12 @@ export default function Attendance() {
                                                 />
                                             </div>
 
-                                            {/* time in */}
                                             <div className="flex flex-col gap-1">
                                                 <label htmlFor="timein" className="w-fit font-geist text-md font-semibold text-text mb-1">
                                                     Time in<span className="text-red">*</span>
                                                 </label>
                                                 <div className="w-full flex items-center">
+                                                    {/* time in */}
                                                     <div className="flex items-center gap-1">
                                                         <input
                                                             type="number"
@@ -260,6 +259,51 @@ export default function Attendance() {
                                 </div>
                             </div>
                         )}
+
+                        {/* confirm save dialog  */}
+                        <div
+                            className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <form onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); }} className="space-y-6">
+                                <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+
+                                    <div className="flex flex-col gap-1">
+                                        <div className="flex flex-row gap-2 items-center">
+                                        <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                                            warning
+                                        </span>
+                                        <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                            Save Changes?
+                                        </p>
+                                        </div>
+                                        <p className="font-geist text-text">
+                                            Once saved, it will be reviewed by the officers. You can still request correction afterwards.
+                                        </p>
+                                        <div className="w-full flex items-center">
+                                            <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsDialogOpen(false)}
+                                                    className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
+                                                >
+                                                    Cancel
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsDialogOpen(false)}
+                                                    className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
+                                                >
+                                                    <span className="material-symbols-outlined text-[18px]!">save</span>
+                                                    <span>Save</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
 
 
                         {/* recorded */}
@@ -463,7 +507,6 @@ export default function Attendance() {
 
                                             </div>
                                             <div className="flex gap-1 mt-1">
-                                                {/* TODO: these should not make the status unset but rather hide the this save and reset button */}
                                                 <button
                                                     onClick={() => {
                                                         setSelectedEvent(event);
