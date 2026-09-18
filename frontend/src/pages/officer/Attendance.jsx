@@ -3,6 +3,7 @@ import BottomNav from "../../components/BottomNav";
 import WIP from "../../components/WIP";
 import { useState, useEffect } from "react";
 import api from "../../api/axios";
+import { formatDate } from "../../utils/format";
 
 export default function Attendance() {
 
@@ -140,7 +141,7 @@ export default function Attendance() {
                       <span className="material-symbols-outlined text-blue text-[18px]!">
                         calendar_today
                       </span>
-                      <span>{event.date}</span>
+                      <span>{formatDate(event.date)}</span>
                     </div>
                     <div className="flex items-center gap-2.5">
                       <span className="material-symbols-outlined text-blue text-[18px]!">

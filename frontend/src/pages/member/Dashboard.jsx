@@ -3,6 +3,7 @@ import BottomNav from "../../components/BottomNav";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
+import { formatDate } from "../../utils/format";
 
 export default function Dashboard() {
 
@@ -120,7 +121,7 @@ export default function Dashboard() {
                                     <span className="material-symbols-outlined text-[18px]">
                                         schedule
                                     </span>{" "}
-                                    {upcomingEvent ? `${upcomingEvent.date} ${upcomingEvent.time}` : "..."}
+                                    {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time || ""}` : "..."}
                                 </p>
                             </div>
                             <button className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
