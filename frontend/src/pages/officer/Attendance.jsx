@@ -6,7 +6,7 @@ import api from "../../api/axios";
 
 export default function Attendance() {
 
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
 
@@ -14,20 +14,7 @@ export default function Attendance() {
       .get("/events")
       .then((res) => {
         const events = res.data;
-
-        // date format: "Jan 1, 2027"
-        const current_date = new Date().toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        });
-
-        if (events[0]) {
-          if (events[0].date?.includes(current_date) || events[0].event_date == current_date) {
-            events[0].is_happening_now = true;
-          }
-          setSelectedEvent(events[0]);
-        }
+        setEvents(events);
       })
       .catch((err) => {
         console.error(err);
