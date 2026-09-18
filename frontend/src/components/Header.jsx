@@ -154,7 +154,7 @@ export default function Header() {
 
 
                 <div className="flex items-center gap-3">
-                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white transition-all md:px-5 md:py-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer`}>
+                    <Link to="/login" className={`${isLoggedIn ? "hidden" : ""} font-geist text-sm bg-blue text-white transition-all md:px-5 md:py-2 p-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer`}>
                         Login
                     </Link>
                     {isLoggedIn && (
