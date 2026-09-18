@@ -94,7 +94,7 @@ export default function Members() {
                             </div>
                         </div>
                     </section>
-                    
+
                     {/* Search & Filters */}
                     <div className="space-y-3">
                         {/* Search Bar */}
@@ -286,30 +286,41 @@ export default function Members() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="border-t border-blue-border pt-4">
-                                    <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mb-3">
-                                        Duty Performance
-                                    </p>
-
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                                            <p className="font-geist text-3xl text-blue font-bold m-0">
-                                                N/A
-                                            </p>
-                                            <p className="font-geist text-xs text-subtext mt-1">
-                                                Attendance Rate
-                                            </p>
-                                        </div>
-                                        <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                                            <p className="font-geist text-3xl text-blue font-bold m-0">
-                                                N/A
-                                            </p>
-                                            <p className="font-geist text-xs text-subtext mt-1">
-                                                Incidents Handled
-                                            </p>
+                                {selectedMemberApplication.status === "approved_need_register" && (
+                                    <div className="border-t border-blue-border pt-4">
+                                        <div className="bg-yellow-bg border border-yellow-border rounded-xl p-4 text-center space-y-1">
+                                            <span className="material-symbols-outlined text-yellow text-[32px]!">hourglass_top</span>
+                                            <p className="font-geist text-sm font-bold text-yellow">Awaiting Account Registration</p>
+                                            <p className="text-xs text-subtext">This applicant has been approved but hasn't created their account yet.</p>
                                         </div>
                                     </div>
-                                </div>
+                                )}
+                                {selectedMemberApplication.status === "approved_member_now" && (
+                                    <div className="border-t border-blue-border pt-4">
+                                        <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mb-3">
+                                            Duty Performance
+                                        </p>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                                                <p className="font-geist text-3xl text-blue font-bold m-0">
+                                                    N/A
+                                                </p>
+                                                <p className="font-geist text-xs text-subtext mt-1">
+                                                    Attendance Rate
+                                                </p>
+                                            </div>
+                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                                                <p className="font-geist text-3xl text-blue font-bold m-0">
+                                                    N/A
+                                                </p>
+                                                <p className="font-geist text-xs text-subtext mt-1">
+                                                    Incidents Handled
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </>
                     )}
