@@ -79,7 +79,7 @@ export default function JoinDRRTForm() {
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Navigation Back Link */}
                     <Link to="/join" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
-                        <span className="material-symbols-outlined text-[18px]">
+                        <span className="material-symbols-outlined text-[18px]!">
                             arrow_back
                         </span>
                         <span>Back to Recruitment Overview</span>
@@ -112,7 +112,7 @@ export default function JoinDRRTForm() {
                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
+                                    <span className="material-symbols-outlined text-[20px]!">
                                         person
                                     </span>
                                 </div>
@@ -208,7 +208,7 @@ export default function JoinDRRTForm() {
                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
+                                    <span className="material-symbols-outlined text-[20px]!">
                                         call
                                     </span>
                                 </div>
@@ -294,7 +294,7 @@ export default function JoinDRRTForm() {
                         <article className="bg-surface-container border border-blue-border/80 rounded-2xl p-6 shadow-sm">
                             <div className="flex items-center gap-3 mb-5">
                                 <div className="w-9 h-9 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px] filled-icon">
+                                    <span className="material-symbols-outlined text-[20px]! filled-icon">
                                         folder
                                     </span>
                                 </div>
@@ -305,7 +305,7 @@ export default function JoinDRRTForm() {
                             <div className="space-y-3">
                                 <a href="#" className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
                                     <div className="flex items-center gap-3">
-                                        <span className="material-symbols-outlined text-red text-[24px] filled-icon">
+                                        <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
                                             picture_as_pdf
                                         </span>
                                         <div>
@@ -317,7 +317,7 @@ export default function JoinDRRTForm() {
                                             </p>
                                         </div>
                                     </div>
-                                    <span className="material-symbols-outlined text-subtext group-hover:text-blue transition-colors">
+                                    <span className="material-symbols-outlined text-[24px]! text-subtext group-hover:text-blue transition-colors">
                                         download
                                     </span>
                                 </a>
@@ -327,7 +327,7 @@ export default function JoinDRRTForm() {
                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
+                                    <span className="material-symbols-outlined text-[20px]!">
                                         upload_file
                                     </span>
                                 </div>
@@ -378,7 +378,7 @@ export default function JoinDRRTForm() {
                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
+                                    <span className="material-symbols-outlined text-[20px]!">
                                         gavel
                                     </span>
                                 </div>
@@ -428,7 +428,7 @@ export default function JoinDRRTForm() {
                             </Link>
                             <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
                                 <span>Submit Application</span>
-                                <span className="material-symbols-outlined text-[18px]">send</span>
+                                <span className="material-symbols-outlined text-[18px]!">send</span>
                             </button>
                         </div>
                     </form>
