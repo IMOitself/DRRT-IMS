@@ -7,6 +7,7 @@ export default function Attendance() {
     const [attendances, setAttendances] = useState({});
     const [events, setEvents] = useState([]);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     const selectedStatus = selectedEvent ? (attendances[selectedEvent.id] || "unset") : "unset";
@@ -139,7 +140,7 @@ export default function Attendance() {
                                     className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <form onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); }} className="space-y-6">
+                                    <form onSubmit={(e) => { e.preventDefault(); setIsConfirmOpen(true); }} className="space-y-6">
                                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
                                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                                 <legend className="font-geist text-lg font-bold text-text">
@@ -244,7 +245,7 @@ export default function Attendance() {
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            onClick={() => setIsDialogOpen(false)}
+                                                            onClick={() => setIsConfirmOpen(true)}
                                                             className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
                                                         >
                                                             <span className="material-symbols-outlined text-[18px]!">save</span>
@@ -261,49 +262,59 @@ export default function Attendance() {
                         )}
 
                         {/* confirm save dialog  */}
-                        <div
-                            className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <form onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); }} className="space-y-6">
-                                <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                        {isConfirmOpen && (
+                            <div
+                                className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4"
+                                onClick={() => setIsConfirmOpen(false)}
+                            >
+                                <div
+                                    className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <form onSubmit={(e) => { e.preventDefault(); setIsConfirmOpen(false); setIsDialogOpen(false); }} className="space-y-6">
+                                        <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
 
-                                    <div className="flex flex-col gap-1">
-                                        <div className="flex flex-row gap-2 items-center">
-                                        <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
-                                            warning
-                                        </span>
-                                        <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                                            Save Changes?
-                                        </p>
-                                        </div>
-                                        <p className="font-geist text-text">
-                                            Once saved, it will be reviewed by the officers. You can still request correction afterwards.
-                                        </p>
-                                        <div className="w-full flex items-center">
-                                            <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setIsDialogOpen(false)}
-                                                    className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
-                                                >
-                                                    Cancel
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setIsDialogOpen(false)}
-                                                    className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
-                                                >
-                                                    <span className="material-symbols-outlined text-[18px]!">save</span>
-                                                    <span>Save</span>
-                                                </button>
+                                            <div className="flex flex-col gap-1">
+                                                <div className="flex flex-row gap-2 items-center">
+                                                    <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                                                        warning
+                                                    </span>
+                                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                                        Save Changes?
+                                                    </p>
+                                                </div>
+                                                <p className="font-geist text-text">
+                                                    Once saved, it will be reviewed by the officers. You can still request correction afterwards.
+                                                </p>
+                                                <div className="w-full flex items-center">
+                                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setIsConfirmOpen(false)}
+                                                            className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => {
+                                                                setIsConfirmOpen(false);
+                                                                setIsDialogOpen(false);
+                                                            }}
+                                                            className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
+                                                        >
+                                                            <span className="material-symbols-outlined text-[18px]!">save</span>
+                                                            <span>Save</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                </fieldset>
-                            </form>
-                        </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
 
 
                         {/* recorded */}
