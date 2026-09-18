@@ -34,10 +34,8 @@ export default function Roster() {
         api
             .put("/membership-applications/" + selectedMember.id, { status: "rejected", reviewer_id: user.id })
             .then(() => {
-                // Update selected member status
                 setSelectedMember({ ...selectedMember, status: "rejected" });
 
-                // Update the application item in the list
                 const updatedList = membersApplication.map((app) =>
                     app.id === selectedMember.id ? { ...app, status: "rejected" } : app
                 );
@@ -68,15 +66,12 @@ export default function Roster() {
 
             {/* Main Content Canvas */}
             <main className="grow pb-32">
-                <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 space-y-4">
+                <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 space-y-4">
                     {/* Active Roster Context Header */}
-                    <section className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2">
+                    <section className="bg-white border border-blue-border p-6 rounded-xl shadow-sm space-y-2">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
-                                <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
-                                    Disaster Response Team Directory
-                                </p>
-                                <h2 className="font-geist text-2xl text-text mt-1">
+                                <h2 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
                                     Active Responder Roster
                                 </h2>
                                 <p className="text-sm text-subtext mt-1">
