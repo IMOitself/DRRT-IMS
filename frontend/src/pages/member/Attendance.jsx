@@ -184,22 +184,24 @@ export default function Attendance() {
                                             </div>
 
                                             {/* proof of attendance */}
-                                            <div>
-                                                <label className="block font-geist text-sm font-semibold text-text mb-1">
-                                                    Proof of Attendance{" "}
-                                                    <span className="text-red">*</span>
-                                                </label>
-                                                <p className="text-sm text-subtext mb-2">
-                                                    This event is set to need a proof of attendance. Kindly upload a screenshot or a photo captured during event.
-                                                </p>
-                                                <input
-                                                    type="file"
-                                                    name="proof_of_attendance"
-                                                    // required
-                                                    accept=".pdf,.png,.jpg,.jpeg"
-                                                    className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
-                                                />
-                                            </div>
+                                            {event.require_proof_of_attendance && (
+                                                <div>
+                                                    <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                                        Proof of Attendance{" "}
+                                                        <span className="text-red">*</span>
+                                                    </label>
+                                                    <p className="text-sm text-subtext mb-2">
+                                                        This event is set to need a proof of attendance. Kindly upload a screenshot or a photo captured during event.
+                                                    </p>
+                                                    <input
+                                                        type="file"
+                                                        name="proof_of_attendance"
+                                                        // required
+                                                        accept=".pdf,.png,.jpg,.jpeg"
+                                                        className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                                                    />
+                                                </div>
+                                            )}
 
                                             <div className="flex flex-col gap-1">
                                                 <label htmlFor="timein" className="w-fit font-geist text-md font-semibold text-text mb-1">
@@ -247,9 +249,9 @@ export default function Attendance() {
                                                         <button
                                                             type="button"
                                                             onClick={() => setIsConfirmOpen(true)}
-                                                            className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
+                                                            className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-md font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
                                                         >
-                                                            <span className="material-symbols-outlined text-[18px]!">save</span>
+                                                            <span className="material-symbols-outlined text-[24px]!">save</span>
                                                             <span>Save</span>
                                                         </button>
                                                     </div>
