@@ -84,56 +84,52 @@ export default function Attendance() {
           </section>
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8">
-            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row">
+            <article className="bg-white border border-blue-border/80 rounded-2xl shadow-sm overflow-hidden card-hover transition-all duration-300 flex flex-col md:flex-row cursor-pointer">
               {/* Event Details */}
-              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-blue">
+              <div className="flex-5 p-6 md:p-8 flex flex-col justify-between space-y-2">
+                <div className="flex flex-row items-center justify-between gap-2">
+                  <div className="flex justify-center items-center gap-2 text-blue">
                     <span className="material-symbols-outlined text-[18px] filled-icon">
                       videocam
                     </span>
-                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                      Open Webinar
+                    <span className="font-geist text-sm font-bold uppercase tracking-wider">
+                      Zoom
                     </span>
                   </div>
-                  <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
-                    Virtual Event
+                  <span className="font-geist text-md font-semibold text-subtext bg-surface-container-high px-2.5 py-1 rounded-full w-fit">
+                    Online
                   </span>
                 </div>
-                <div>
-                  <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
-                    Severe Weather Readiness Briefing
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-subtext text-sm">
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        calendar_today
-                      </span>
-                      <span>Nov 02, 2024 • 6:00 PM</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        laptop_mac
-                      </span>
-                      <span>Online (Zoom Webinar)</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-blue text-[18px]">
-                        public
-                      </span>
-                      <span>Open to General Public</span>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
+                  Emergency Meeting
+                </h3>
                 <div className="bg-surface-container-low p-4 rounded-xl border border-blue-border/50">
                   <h4 className="font-geist text-xs font-bold text-text uppercase tracking-wider mb-1">
-                    Briefing Overview
+                    Description
                   </h4>
                   <p className="text-sm text-subtext leading-relaxed">
-                    A 45-minute presentation by the regional meteorological team on
-                    emergency preparedness and weather safety, followed by a 15-minute
-                    live Q&amp;A on personal kit assembly.
+                    Red was seen with Blue doing their task on Electrical earlier. Blue is sus.
                   </p>
+                </div>
+                <div className="flex gap-4 mt-4 text-subtext text-sm">
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      calendar_today
+                    </span>
+                    <span>Nov 02, 2024 • 6:00 PM</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      event
+                    </span>
+                    <span>meeting</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-blue text-[18px]">
+                      people
+                    </span>
+                    <span>BSIS 1 students</span>
+                  </div>
                 </div>
               </div>
             </article>
