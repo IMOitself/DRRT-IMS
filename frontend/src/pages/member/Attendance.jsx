@@ -6,16 +6,20 @@ import api from "../../api/axios";
 export default function Attendance() {
     const [attendances, setAttendances] = useState({});
     const [events, setEvents] = useState([]);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+
+    const selectedStatus = selectedEvent ? (attendances[selectedEvent.id] || "unset") : "unset";
 
     useEffect(() => {
         api
-        .get("/events")
-        .then((res) => {
-            setEvents(res.data);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .get("/events")
+            .then((res) => {
+                setEvents(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }, []);
 
     const setStatus = (id, status) => {
@@ -124,6 +128,139 @@ export default function Attendance() {
                                 Recent Events
                             </h3>
                         </div>
+
+                        {/* attendance dialog */}
+                        {isDialogOpen && (
+                            <div
+                                className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+                                onClick={() => setIsDialogOpen(false)}
+                            >
+                                <div
+                                    className="w-full max-w-xl max-h-[90vh] overflow-y-auto"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <form onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); }} className="space-y-6">
+                                        {/* Section 1: Student Information */}
+                                        <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                                            <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
+                                                <legend className="font-geist text-lg font-bold text-text">
+                                                    {selectedEvent?.title || "event name here idk"}
+                                                </legend>
+
+                                                {selectedStatus === "present" && (
+                                                    <button type="button" className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                check
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Present</span>
+                                                    </button>
+                                                )}
+
+                                                {selectedStatus === "late" && (
+                                                    <button type="button" className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                schedule
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Late</span>
+                                                    </button>
+                                                )}
+
+                                                {selectedStatus === "absent" && (
+                                                    <button type="button" className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                                        <div className="md:hidden">
+                                                            <span className="material-symbols-outlined text-[14px]!">
+                                                                close
+                                                            </span>{" "}
+                                                        </div>
+                                                        <span>Absent</span>
+                                                    </button>
+                                                )}
+
+                                            </div>
+
+                                            {/* proof of attendance */}
+                                            <div>
+                                                <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                                    Proof of Attendance{" "}
+                                                    <span className="text-red">*</span>
+                                                </label>
+                                                <p className="text-sm text-subtext mb-2">
+                                                    This event is set to need a proof of attendance. Kindly upload a screenshot or a photo captured during event.
+                                                </p>
+                                                <input
+                                                    type="file"
+                                                    name="proof_of_attendance"
+                                                    // required
+                                                    accept=".pdf,.png,.jpg,.jpeg"
+                                                    className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                                                />
+                                            </div>
+
+                                            {/* time in */}
+                                            <div className="flex flex-col gap-1">
+                                                <label htmlFor="timein" className="w-fit font-geist text-md font-semibold text-text mb-1">
+                                                    Time in<span className="text-red">*</span>
+                                                </label>
+                                                <div className="w-full flex items-center">
+                                                    <div className="flex items-center gap-1">
+                                                        <input
+                                                            type="number"
+                                                            id="timein"
+                                                            name="timein"
+                                                            placeholder="08"
+                                                            min="0"
+                                                            max="23"
+                                                            required
+                                                            className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                                        />
+                                                        <span>:</span>
+                                                        <input
+                                                            type="number"
+                                                            id="timein"
+                                                            name="timein"
+                                                            placeholder="00"
+                                                            min="0"
+                                                            max="59"
+                                                            required
+                                                            className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                                        />
+                                                        <div className="flex flex-col">
+                                                            <select name="ampm" id="ampm" className="w-fit px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all">
+                                                                <option value="AM">AM</option>
+                                                                <option value="PM">PM</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setIsDialogOpen(false)}
+                                                            className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer"
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setIsDialogOpen(false)}
+                                                            className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer"
+                                                        >
+                                                            <span className="material-symbols-outlined text-[18px]!">save</span>
+                                                            <span>Save</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
+
 
                         {/* recorded */}
                         <div className="space-y-4">
@@ -326,22 +463,25 @@ export default function Attendance() {
 
                                             </div>
                                             <div className="flex gap-1 mt-1">
-                                            {/* TODO: these should not make the status unset but rather hide the this save and reset button */}
-                                            <button
-                                                onClick={() => setStatus(eventId, "unset")}
-                                                className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
-                                            >
-                                                <span className="material-symbols-outlined text-[14px]">check</span>
-                                                <span>Save</span>
-                                            </button>
+                                                {/* TODO: these should not make the status unset but rather hide the this save and reset button */}
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedEvent(event);
+                                                        setIsDialogOpen(true);
+                                                    }}
+                                                    className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
+                                                >
+                                                    <span className="material-symbols-outlined text-[14px]">check</span>
+                                                    <span>Save</span>
+                                                </button>
 
-                                            <button
-                                                onClick={() => setStatus(eventId, "unset")}
-                                                className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
-                                            >
-                                                <span className="material-symbols-outlined text-[14px]">history</span>
-                                                <span>Reset</span>
-                                            </button>
+                                                <button
+                                                    onClick={() => setStatus(eventId, "unset")}
+                                                    className={currentStatus === "unset" ? "hidden" : "flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"}
+                                                >
+                                                    <span className="material-symbols-outlined text-[14px]">history</span>
+                                                    <span>Reset</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
