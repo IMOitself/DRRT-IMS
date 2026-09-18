@@ -60,7 +60,7 @@ export default function JoinDRRTForm() {
             full_name: "Braus, Sasha B.",
             course: "BSIS",
             year_level: "1",
-            email: "sasha.braus@student.laverdad.edu.ph",
+            email: "sasha.braus@gmail.com",
             phone_number: "09123456789",
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
@@ -217,10 +217,10 @@ export default function JoinDRRTForm() {
                                 </legend>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Institutional Email */}
+                                {/* Email */}
                                 <div>
                                     <label htmlFor="email" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        LV Email <span className="text-red">*</span>
+                                        Email <span className="text-red">*</span>
                                     </label>
                                     <input
                                         value={formData.email}
@@ -229,9 +229,8 @@ export default function JoinDRRTForm() {
                                         id="email"
                                         name="email"
                                         required
-                                        pattern=".+laverdad\.edu\.ph"
-                                        title="Your La Verdad email for example: levi.ackerman@student.laverdad.edu.ph"
-                                        placeholder="example@student.laverdad.edu.ph"
+                                        title="Your email for example: levi.ackerman@gmail.com"
+                                        placeholder="example@gmail.com"
 
                                         className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
