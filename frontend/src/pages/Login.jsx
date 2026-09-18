@@ -1,4 +1,4 @@
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
@@ -7,17 +7,12 @@ import BottomNav from "../components/BottomNav";
 
 export default function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { login } = useAuth();
+  const { login, user } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  let dashboardLink = "/member/dashboard";
-    if (user?.role === "officer") dashboardLink = "/officer/dashboard";
-    if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +26,9 @@ export default function Login() {
       })
       .then((res) => {
         login(res.data.token, res.data.user);
+        let dashboardLink = "/member/dashboard";
+        if (user?.role === "officer") dashboardLink = "/officer/dashboard";
+        if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
         navigate(dashboardLink);
       })
       .catch((err) => {
@@ -54,7 +52,7 @@ export default function Login() {
       })
       .then((res) => {
         login(res.data.token, res.data.user);
-        navigate(dashboardLink);
+        navigate("/officer/dashboard");
       })
       .catch((err) => {
         setIsLoading(false);
