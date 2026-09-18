@@ -45,22 +45,16 @@ export default function Dashboard() {
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                            <button className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold">
+                            <button className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]">
                                     calendar_month
                                 </span>{" "}
                                 Attendance Record
                             </button>
-                            <button className="bg-surface-container-low text-text border border-blue-border h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold">
-                                <span className="material-symbols-outlined text-[18px]">
-                                    visibility
-                                </span>{" "}
-                                View Events
-                            </button>
                         </div>
                     </section>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between">
+                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col">
                             <div>
                                 <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
                                     <span className="material-symbols-outlined text-blue text-[20px]">
@@ -108,36 +102,6 @@ export default function Dashboard() {
                         </div>
 
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between">
-                            <div>
-                                <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
-                                    <span className="material-symbols-outlined text-blue text-[20px]">
-                                        school
-                                    </span>{" "}
-                                    Training Progress
-                                </h2>
-                            </div>
-                            <div className="space-y-3">
-                                <div className="flex justify-between items-end">
-                                    <span className="font-geist text-sm font-bold text-text">
-                                        6/7 Modules Completed
-                                    </span>
-                                    <span className="font-geist text-sm text-blue font-bold">
-                                        67%
-                                    </span>
-                                </div>
-                                <div className="w-full bg-progress-ring-track rounded-full h-2.5 overflow-hidden">
-                                    <div
-                                        className="bg-blue h-2.5 rounded-full"
-                                        style={{ width: "67%" }}
-                                    />
-                                </div>
-                                <a href="#" className="inline-flex items-center justify-center gap-1 font-geist text-sm text-blue font-bold hover:underline pt-1">
-                                    Resume Module 6
-                                    <span className="material-symbols-outlined text-[12px] leading-none">
-                                        arrow_forward
-                                    </span>
-                                </a>
-                            </div>
                         </div>
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-yellow transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
                             <div>
@@ -148,9 +112,6 @@ export default function Dashboard() {
                                         </span>{" "}
                                         Upcoming Event
                                     </h2>
-                                    <span className="bg-yellow-bg text-yellow border border-yellow-border text-xs font-geist px-2 py-0.5 rounded uppercase font-bold">
-                                        Required
-                                    </span>
                                 </div>
                                 <h3 className="font-geist text-2xl-mobile font-bold text-text mt-2">
                                     {upcomingEvent?.title || "Loading..."}
@@ -176,12 +137,6 @@ export default function Dashboard() {
                             <h2 className="font-geist text-2xl-mobile font-bold text-text">
                                 Recent Activity
                             </h2>
-                            <a href="#" className="font-geist text-sm text-blue font-bold hover:underline flex items-center gap-1">
-                                View All{" "}
-                                <span className="material-symbols-outlined text-[16px]">
-                                    arrow_forward
-                                </span>
-                            </a>
                         </div>
                         <div className="bg-white rounded-xl shadow-sm divide-y divide-blue-divide overflow-hidden">
                             <div className="p-4 flex items-start gap-4 hover:bg-surface-container-low/50 transition-colors">
