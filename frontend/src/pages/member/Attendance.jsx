@@ -319,90 +319,6 @@ export default function Attendance() {
                             </div>
                         )}
 
-
-                        {/* recorded */}
-                        <div className="space-y-4">
-                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
-                                <div className="flex items-center gap-4">
-                                    {/* desktop only icons */}
-                                    <div className="hidden md:flex">
-                                        {/* present icon */}
-                                        <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
-                                            <span className="material-symbols-outlined text-[24px]!">
-                                                check
-                                            </span>
-                                        </div>
-
-                                        {/* late icon */}
-                                        <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
-                                            <span className="material-symbols-outlined text-[24px]!">
-                                                schedule
-                                            </span>
-                                        </div>
-
-                                        {/* absent icon */}
-                                        <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
-                                            <span className="material-symbols-outlined text-[24px]!">
-                                                close
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h4 className="font-geist text-lg text-text font-semibold">
-                                            Emergency Drill
-                                        </h4>
-                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]!">
-                                                calendar_today
-                                            </span>{" "}
-                                            Sep 28, 2026
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
-
-                                    {/* attendance marks */}
-                                    <div className="flex">
-                                        {/* active present */}
-                                        <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    check
-                                                </span>{" "}
-                                            </div>
-                                            <span>Present</span>
-                                        </button>
-
-                                        {/* active late */}
-                                        <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    schedule
-                                                </span>{" "}
-                                            </div>
-                                            <span>Late</span>
-                                        </button>
-
-                                        {/* active absent */}
-                                        <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                                            <div className="md:hidden">
-                                                <span className="material-symbols-outlined text-[14px]!">
-                                                    close
-                                                </span>{" "}
-                                            </div>
-                                            <span>Absent</span>
-                                        </button>
-
-
-                                    </div>
-                                    <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
-                                        Request Correction
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
                         {/* editable */}
                         <div className="space-y-4">
                             {events.map((event) => {
@@ -517,6 +433,89 @@ export default function Attendance() {
                                     </div>
                                 );
                             })}
+                        </div>
+
+                        {/* recorded */}
+                        <div className="space-y-4">
+                            <div className="bg-white border border-blue-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm card-hover-level">
+                                <div className="flex items-center gap-4">
+                                    {/* desktop only icons */}
+                                    <div className="hidden md:flex">
+                                        {/* present icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-green-bg border border-green-border flex items-center justify-center text-green shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                check
+                                            </span>
+                                        </div>
+
+                                        {/* late icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-yellow-bg border border-yellow-border flex items-center justify-center text-yellow shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                schedule
+                                            </span>
+                                        </div>
+
+                                        {/* absent icon */}
+                                        <div className="w-12 h-12 rounded-lg bg-red-bg border border-red-border flex items-center justify-center text-red shrink-0">
+                                            <span className="material-symbols-outlined text-[24px]!">
+                                                close
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-geist text-lg text-text font-semibold">
+                                            Emergency Drill
+                                        </h4>
+                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]!">
+                                                calendar_today
+                                            </span>{" "}
+                                            Sep 28, 2026
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 w-full sm:w-auto justify-between sm:justify-start">
+
+                                    {/* attendance marks */}
+                                    <div className="flex">
+                                        {/* active present */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    check
+                                                </span>{" "}
+                                            </div>
+                                            <span>Present</span>
+                                        </button>
+
+                                        {/* active late */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    schedule
+                                                </span>{" "}
+                                            </div>
+                                            <span>Late</span>
+                                        </button>
+
+                                        {/* active absent */}
+                                        <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="md:hidden">
+                                                <span className="material-symbols-outlined text-[14px]!">
+                                                    close
+                                                </span>{" "}
+                                            </div>
+                                            <span>Absent</span>
+                                        </button>
+
+
+                                    </div>
+                                    <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
+                                        Request Correction
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
