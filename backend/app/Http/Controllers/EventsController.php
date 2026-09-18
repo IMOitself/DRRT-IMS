@@ -29,7 +29,7 @@ class EventsController extends Controller
             'time' => $request->input('time'),
             'participants' => $request->input('participants'),
             'venue-online' => $request->input('venue-online'),
-            'venue-onsite' => $request->input('venue-onsite'),
+            'venue-facetoface' => $request->input('venue-facetoface'),
             'require_proof_of_attendance' => $request->input('require_proof_of_attendance', false),
         ]);
 

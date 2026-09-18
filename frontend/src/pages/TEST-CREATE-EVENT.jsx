@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import api from "../api/axios";
 
 export default function CreateEvent() {
-    
+
     const [events, setEvents] = useState([]);
     const initialFormData = {
         title: "",
@@ -13,7 +13,7 @@ export default function CreateEvent() {
         time: "",
         type: "",
         participants: "",
-        "venue-onsite": "",
+        "venue-facetoface": "",
         "venue-online": "",
         require_proof_of_attendance: false,
     };
@@ -39,14 +39,14 @@ export default function CreateEvent() {
 
     useEffect(() => {
         api
-        .get("/events")
-        .then((res) => {
-            setEvents(res.data);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-    
+            .get("/events")
+            .then((res) => {
+                setEvents(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
     }, []);
 
     return (
@@ -118,7 +118,7 @@ export default function CreateEvent() {
                                 value="others"
                                 checked={formData.type === "others" || Boolean(formData.type && !["drill", "meeting", "deployment"].includes(formData.type))}
                                 onChange={handleChange}
-                            /> others 
+                            /> others
                             <input
                                 type="text"
                                 placeholder="specify.."
@@ -141,8 +141,8 @@ export default function CreateEvent() {
                             onsite:
                             <input
                                 type="text"
-                                name="venue-onsite"
-                                value={formData["venue-onsite"]}
+                                name="venue-facetoface"
+                                value={formData["venue-facetoface"]}
                                 onChange={handleChange}
                                 placeholder="event location"
                             />
@@ -203,7 +203,7 @@ export default function CreateEvent() {
                                     <input type="radio" checked={event.type === "deployment"} disabled /> deployment
                                 </label>
                                 <label>
-                                    <input type="radio" checked={Boolean(event.type && !["drill", "meeting", "deployment"].includes(event.type))} disabled /> others 
+                                    <input type="radio" checked={Boolean(event.type && !["drill", "meeting", "deployment"].includes(event.type))} disabled /> others
                                     <input type="text" value={!["drill", "meeting", "deployment"].includes(event.type) ? (event.type || "") : ""} readOnly placeholder="specify.." />
                                 </label>
                             </div>
@@ -212,7 +212,7 @@ export default function CreateEvent() {
                             <div className="flex flex-row flex-nowrap md:w-50 gap-5">
                                 <div className="border-black border">
                                     onsite:
-                                    <input type="text" value={event["venue-onsite"] || ""} readOnly placeholder="event location" />
+                                    <input type="text" value={event["venue-facetoface"] || ""} readOnly placeholder="event location" />
                                 </div>
 
                                 <div className="border-black border min-w-100">
