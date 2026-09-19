@@ -44,8 +44,24 @@ export default function Attendance() {
     }
 
     const handleConfirmSaveDialogSubmit = () => {
+        api
+            .post("/attendances", formData)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.error(err));
+
+        api
+            .get("/attendances")
+            .then((res) => {
+                setAttendances(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
         setIsConfirmSaveDialogOpen(false);
-        
+
     }
 
     useEffect(() => {
