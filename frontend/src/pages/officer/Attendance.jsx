@@ -266,19 +266,6 @@ function AttendanceList() {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-2">
-        <button className="flex-1 bg-white border border-green-border text-green hover:bg-green-bg transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
-          <span className="material-symbols-outlined text-[18px]!">
-            done_all
-          </span>{" "}
-          Mark All Present
-        </button>
-        <button className="flex-1 bg-white border border-red-border text-red hover:bg-red-bg transition-colors py-2 px-4 rounded-lg font-geist text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer">
-          <span className="material-symbols-outlined text-[18px]!">rule</span>{" "}
-          Mark All Absent
-        </button>
-      </div>
-
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
           <div className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
