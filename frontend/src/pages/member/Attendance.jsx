@@ -325,7 +325,7 @@ export default function Attendance() {
                         </div>
 
                         {/* proof of attendance */}
-                        {selectedEvent.require_proof_of_attendance && (
+                        {selectedEvent.require_proof_of_attendance ? (
                             <div>
                                 <label className="block font-geist text-sm font-semibold text-text mb-1">
                                     Proof of Attendance{" "}
@@ -343,7 +343,7 @@ export default function Attendance() {
                                     className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                                 />
                             </div>
-                        )}
+                        ) : ""}
 
                         <div className="flex flex-col gap-1">
                             <label htmlFor="timein_hour" className="w-fit font-geist text-md font-semibold text-text mb-1">
