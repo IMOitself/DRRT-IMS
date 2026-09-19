@@ -25,8 +25,10 @@ class AttendanceController extends Controller
             'user_id' => $request->input('user_id'),
             'event_id' => $request->input('event_id'),
             'status' => $request->input('status'),
-            'attended_at' => $request->input('attended_at'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
+            'timein_hour' => $request->input('timein_hour'),
+            'timein_minute' => $request->input('timein_minute'),
+            'ampm' => $request->input('ampm'),
         ]);
 
         return response()->json(['attendance_id' => $attendance->id], 201);

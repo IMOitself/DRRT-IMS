@@ -9,14 +9,13 @@ use App\Http\Controllers\AttendanceController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/events', [EventsController::class, 'index']);
-Route::get('/attendances', [AttendanceController::class, 'index']);
 Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);
 Route::get('/membership-applications/{application}', [MembershipApplicationsController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-
+    
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);
     Route::put('/membership-applications/{application}', [MembershipApplicationsController::class, 'update']);
@@ -26,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::put('/events/{event}', [EventsController::class, 'update']);
     // Route::delete('/events/{event}', [EventsController::class, 'destroy']);
     
+    Route::get('/attendances', [AttendanceController::class, 'index']);
     Route::post('/attendances', [AttendanceController::class, 'store']);
     // Route::put('/attendances/{attendance}', [AttendanceController::class, 'update']);
     // Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy']);
