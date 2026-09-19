@@ -12,7 +12,6 @@ export default function Attendance() {
         user_id: null,
         event_id: null,
         status: "",
-        attended_at: null,
         proof_of_attendance: null,
         timein_hour: "",
         timein_minute: "",
@@ -30,6 +29,17 @@ export default function Attendance() {
 
     const handleSelectEvent = (event, unsaved_status) => {
         setSelectedEvent({ ...event, unsaved_status: unsaved_status });
+    }
+
+    const handlePresentAttendanceDialogSubmit = (e) => {
+        e.preventDefault();
+        setFormData((prev) => ({
+            ...prev,
+            user_id: user.id,
+            event_id: selectedEvent.id,
+            status: selectedEvent.unsaved_status,
+        }));
+        setIsConfirmSaveDialogOpen(true);
     }
 
     useEffect(() => {
@@ -301,7 +311,7 @@ export default function Attendance() {
             {/* present attendance dialog */}
             {isPresentAttendanceDialogOpen && (
                 <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                    <form onSubmit={() => setIsConfirmSaveDialogOpen(true)}
+                    <form onSubmit={(e) => handlePresentAttendanceDialogSubmit(e)}
                         className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
                         <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                             <button type="button" className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-sm font-bold flex items-center justify-center gap-1">
