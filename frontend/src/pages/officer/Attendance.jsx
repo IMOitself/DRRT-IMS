@@ -8,6 +8,7 @@ import { formatDate } from "../../utils/format";
 export default function Attendance() {
 
   const [events, setEvents] = useState([]);
+  const [members, setMembers] = useState([]);
   const [openAttendanceId, setOpenAttendanceId] = useState(null);
 
   useEffect(() => {
@@ -16,6 +17,16 @@ export default function Attendance() {
       .get("/events")
       .then((res) => {
         setEvents(res.data.reverse());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    api
+      .get("/members")
+      .then((res) => {
+        setMembers(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -264,12 +275,10 @@ function AttendanceList() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-1 shrink-0">
-              <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">
-                  check
-                </span>{" "}
-                <span className="hidden sm:inline">Present</span>
+            <div className="flex items-center gap-1 shrink-0">
+              {/* Compact Unselected / Hover styles */}
+              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                P
               </button>
               <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                 L
@@ -277,26 +286,13 @@ function AttendanceList() {
               <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                 A
               </button>
-            </div>
-          </div>
 
-          <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
-                DL
-              </div>
-              <div className="min-w-0">
-                <p className="font-geist text-md text-text truncate">
-                  De Leon, Juan
-                </p>
-                <p className="text-xs text-subtext truncate">
-                  ID: 2025-0441 • BSCS - 2nd Year
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-1 shrink-0">
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                P
+              {/* Active / Selected expanded styles */}
+              <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                <span className="material-symbols-outlined text-[14px]!">
+                  check
+                </span>{" "}
+                <span className="hidden sm:inline">Present</span>
               </button>
               <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
                 <span className="material-symbols-outlined text-[14px]!">
@@ -304,65 +300,11 @@ function AttendanceList() {
                 </span>{" "}
                 <span className="hidden sm:inline">Late</span>
               </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                A
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
-                MJ
-              </div>
-              <div className="min-w-0">
-                <p className="font-geist text-md text-text truncate">
-                  Mendoza, Jose
-                </p>
-                <p className="text-xs text-subtext truncate">
-                  ID: 2026-0082 • BSEMC - 1st Year
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-1 shrink-0">
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                P
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                L
-              </button>
               <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
                 <span className="material-symbols-outlined text-[14px]!">
                   close
                 </span>{" "}
                 <span className="hidden sm:inline">Absent</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
-                AA
-              </div>
-              <div className="min-w-0">
-                <p className="font-geist text-md text-text truncate">
-                  Aquino, Andrea
-                </p>
-                <p className="text-xs text-subtext truncate">
-                  ID: 2023-0115 • BSIT - 4th Year
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-1 shrink-0">
-              <button className="w-9 h-9 rounded bg-surface-container-highest hover:bg-green-bg hover:text-green text-subtext transition-colors text-xs font-bold cursor-pointer">
-                P
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest hover:bg-yellow-bg hover:text-yellow text-subtext transition-colors text-xs font-bold cursor-pointer">
-                L
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest hover:bg-red-bg hover:text-red text-subtext transition-colors text-xs font-bold cursor-pointer">
-                A
               </button>
             </div>
           </div>
