@@ -18,6 +18,7 @@ export default function TestPages() {
             <Link to="/join-form" className="test-link">/join-form</Link>
             <Link to="/join-form/:id" className="test-link">/join-form/:id</Link>
             <Link to="/officer/create-event" className="test-link">/create-event</Link>
+            <Link to="/test-excuse" className="test-link">/test-excuse</Link>
         </div>
         <div className="text-center items-center flex flex-row flex-wrap gap-5">
             <Link to="/officer/dashboard" onClick={enableTestMode} className="test-link">officer pages</Link>
