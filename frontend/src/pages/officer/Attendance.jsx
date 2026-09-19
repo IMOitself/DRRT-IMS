@@ -261,7 +261,7 @@ function AttendanceList() {
 
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
-          <div className="bg-white border border-blue-border rounded-lg p-2.5 flex items-center justify-between shadow-sm hover:border-blue transition-colors">
+          <div className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
             <div className="flex items-center gap-3 overflow-hidden">
               <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
                 SM
@@ -271,12 +271,11 @@ function AttendanceList() {
                   Santos, Maria Clara
                 </p>
                 <p className="text-xs text-subtext truncate">
-                  ID: 2024-0192 • BSIT - 3rd Year
+                  BSIS - 3rd Year
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-1 shrink-0">
-              {/* Compact Unselected / Hover styles */}
               <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                 P
               </button>
@@ -290,23 +289,16 @@ function AttendanceList() {
                 E
               </button>
 
-              {/* Active / Selected expanded styles */}
               <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">
-                  check
-                </span>{" "}
+                <span className="material-symbols-outlined text-[14px]!">check</span>{" "}
                 <span className="hidden sm:inline">Present</span>
               </button>
               <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">
-                  close
-                </span>{" "}
+                <span className="material-symbols-outlined text-[14px]!">close</span>{" "}
                 <span className="hidden sm:inline">Absent</span>
               </button>
               <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">
-                  schedule
-                </span>{" "}
+                <span className="material-symbols-outlined text-[14px]!">schedule</span>{" "}
                 <span className="hidden sm:inline">Late</span>
               </button>
               <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
