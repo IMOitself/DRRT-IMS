@@ -39,7 +39,13 @@ export default function Attendance() {
             event_id: selectedEvent.id,
             status: selectedEvent.unsaved_status,
         }));
+        setIsPresentAttendanceDialogOpen(false);
         setIsConfirmSaveDialogOpen(true);
+    }
+
+    const handleConfirmSaveDialogSubmit = () => {
+        setIsConfirmSaveDialogOpen(false);
+        
     }
 
     useEffect(() => {
@@ -392,7 +398,7 @@ export default function Attendance() {
                                 </div>
                                 {/* dialog buttons */}
                                 <div className="w-fit flex flex-row items-center justify-end gap-2">
-                                    <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all cursor-pointer">
+                                    <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all active:scale-[0.98] cursor-pointer">
                                         <span className="material-symbols-outlined text-[16px]!">save</span>
                                         <span>Save</span>
                                     </button>
@@ -407,7 +413,7 @@ export default function Attendance() {
             )}
 
             {/* confirm save dialog  */}
-            {false && (
+            {isConfirmSaveDialogOpen && (
                 <div onClick={() => { }} className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
                     <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
                         <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
@@ -425,11 +431,11 @@ export default function Attendance() {
                                 </p>
                                 <div className="w-full flex items-center">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => { }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => { setIsConfirmSaveDialogOpen(false) }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                                             Cancel
                                         </button>
-                                        <button onClick={() => { }} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
-                                            <span className="material-symbols-outlined text-[18px]!">save</span>
+                                        <button onClick={handleConfirmSaveDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">save</span>
                                             <span>Save</span>
                                         </button>
                                     </div>
