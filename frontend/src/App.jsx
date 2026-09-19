@@ -23,7 +23,6 @@ import OfficerCreateEvent from './pages/TEST-CREATE-EVENT';
 
 import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
-import MemberAnnouncements from './pages/member/Announcements';
 import MemberID from './pages/member/ID';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
@@ -69,7 +68,6 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/member/dashboard" element={<MemberDashboard />} />
         <Route path="/member/attendance" element={<MemberAttendance />} />
-        <Route path="/member/announcements" element={<MemberAnnouncements />} />
         <Route path="/member/id" element={<MemberID />} />
       </Route>
     </Routes>

@@ -165,19 +165,6 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/member/announcements" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>notifications</span>
-                            <span className="bottom-nav-label">Alerts</span>
-                        </>
-                    )}
-                </NavLink>
-
                 <NavLink to="/member/id" className={({ isActive }) =>
                     isActive
                         ? "bottom-nav-active"
