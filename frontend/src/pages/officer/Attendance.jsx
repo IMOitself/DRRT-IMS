@@ -82,7 +82,7 @@ export default function Attendance() {
             </div>
           </section>
           {/* Event Cards Container */}
-          <section className="space-y-6 md:space-y-8">
+          <section className="space-y-6 md:space-y-8 mb-4">
             {events.map((event) => (
               <article
                 key={event.id}
@@ -193,7 +193,7 @@ export default function Attendance() {
         </main>
       </div>
 
-      {/* Sticky Sync Action Bar */}
+      {/* sticky action bar */}
       <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white border-t border-blue-border shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-text">
