@@ -268,18 +268,18 @@ export default function Attendance() {
                                                     Request Correction
                                                 </button>
                                             ) : (
-                                                <div className={userAlreadyHaveRecord ? "hidden" : "flex gap-1 mt-2 justify-end"}>
+                                                <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button
-                                                        onClick={() => handleSaveAttendance(event, currentStatus)}
+                                                        onClick={() => {}}
                                                         className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                     >
-                                                        <span className="material-symbols-outlined text-[14px]">check</span>
+                                                        <span className="material-symbols-outlined text-[14px]">save</span>
                                                         <span>Save</span>
                                                     </button>
 
                                                     <button
-                                                        onClick={() => setStatus(eventId, "unset")}
-                                                        className="flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
+                                                        onClick={() => setSelectedEvent({ id: event.id, unsaved_status: "unset" })}
+                                                        className="flex items-center justify-center gap-1 p-1 px-4 rounded border border-blue text-blue hover:bg-blue/10 transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         <span className="material-symbols-outlined text-[14px]">history</span>
                                                         <span>Reset</span>
