@@ -14,8 +14,8 @@ export default function Attendance() {
         status: "",
         attended_at: null,
         proof_of_attendance: null,
-        timein_hour: "08",
-        timein_minute: "00",
+        timein_hour: "",
+        timein_minute: "",
         ampm: "AM",
     };
     const [formData, setFormData] = useState(initialFormData);
@@ -27,6 +27,10 @@ export default function Attendance() {
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState({ id: null, unsaved_status: null });
+
+    const handleSelectEvent = (event, unsaved_status) => {
+        setSelectedEvent({ ...event, unsaved_status: unsaved_status });
+    }
 
     useEffect(() => {
         api
@@ -147,7 +151,6 @@ export default function Attendance() {
                             Recent Events
                         </h3>
 
-                        {/* editable */}
                         <div className="space-y-4">
                             {events.map((event) => {
                                 let currentStatus = "unset";
@@ -170,7 +173,7 @@ export default function Attendance() {
                                             {/* status icon */}
                                             {displayStatus === "unset" && (
                                                 <div className="w-12 h-12 rounded-lg bg-blue-bg border border-blue-border flex items-center justify-center text-blue shrink-0">
-                                                    <span className="material-symbols-outlined text-[24px]!">edit</span>
+                                                    <span className="material-symbols-outlined text-[24px]!">border_color</span>
                                                 </div>
                                             )}
                                             {displayStatus === "present" && (
@@ -241,7 +244,7 @@ export default function Attendance() {
                                                             </button>
                                                         ) : (
                                                             <button
-                                                                onClick={() => setSelectedEvent({ id: event.id, unsaved_status: "present" })}
+                                                                onClick={() => handleSelectEvent(event, "present")}
                                                                 className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                             >
                                                                 <span>Present</span>
@@ -254,7 +257,7 @@ export default function Attendance() {
                                                             </button>
                                                         ) : (
                                                             <button
-                                                                onClick={() => setSelectedEvent({ id: event.id, unsaved_status: "absent" })}
+                                                                onClick={() => handleSelectEvent(event, "absent")}
                                                                 className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
                                                             >
                                                                 <span>Absent</span>
@@ -270,7 +273,7 @@ export default function Attendance() {
                                             ) : (
                                                 <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button
-                                                        onClick={() => {}}
+                                                        onClick={() => setIsPresentAttendanceDialogOpen(true)}
                                                         className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         <span className="material-symbols-outlined text-[14px]">save</span>
@@ -294,6 +297,139 @@ export default function Attendance() {
                     </div>
                 </div>
             </main>
+
+            {/* present attendance dialog */}
+            {isPresentAttendanceDialogOpen && (
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                    <form onSubmit={() => setIsConfirmSaveDialogOpen(true)}
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
+                            <button type="button" className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-sm font-bold flex items-center justify-center gap-1">
+                                <span className="material-symbols-outlined text-[16px]!">check</span>
+                                <span>Present</span>
+                            </button>
+                            <legend className="font-geist text-lg font-bold text-text">
+                                {selectedEvent?.title || "event name here idk"}
+                            </legend>
+
+                        </div>
+
+                        {/* proof of attendance */}
+                        {selectedEvent.require_proof_of_attendance && (
+                            <div>
+                                <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                    Proof of Attendance{" "}
+                                    <span className="text-red">*</span>
+                                </label>
+                                <p className="text-sm text-subtext mb-2">
+                                    This event is set to need a proof of attendance. Kindly upload a screenshot or a photo captured during event.
+                                </p>
+                                <input
+                                    type="file"
+                                    name="proof_of_attendance"
+                                    onChange={handleChange}
+                                    // required
+                                    accept=".pdf,.png,.jpg,.jpeg"
+                                    className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                                />
+                            </div>
+                        )}
+
+                        <div className="flex flex-col gap-1">
+                            <label htmlFor="timein_hour" className="w-fit font-geist text-md font-semibold text-text mb-1">
+                                Time in<span className="text-red">*</span>
+                            </label>
+                            <div className="w-full flex flex-row justify-between gap-2">
+                                {/* time in */}
+                                <div className="w-fit flex items-center gap-1">
+                                    <input
+                                        type="number"
+                                        id="timein_hour"
+                                        name="timein_hour"
+                                        value={formData.timein_hour || ""}
+                                        onChange={handleChange}
+                                        placeholder="08"
+                                        min="1"
+                                        max="12"
+                                        required
+                                        className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                    />
+                                    <span>:</span>
+                                    <input
+                                        type="number"
+                                        id="timein_minute"
+                                        name="timein_minute"
+                                        value={formData.timein_minute || ""}
+                                        onChange={handleChange}
+                                        placeholder="00"
+                                        min="0"
+                                        max="59"
+                                        required
+                                        className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                    />
+                                    <div className="flex flex-col">
+                                        <select
+                                            name="ampm"
+                                            id="ampm"
+                                            value={formData.ampm || "AM"}
+                                            onChange={handleChange}
+                                            className="w-fit px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                        >
+                                            <option value="AM">AM</option>
+                                            <option value="PM">PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {/* dialog buttons */}
+                                <div className="w-fit flex flex-row items-center justify-end gap-2">
+                                    <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all cursor-pointer">
+                                        <span className="material-symbols-outlined text-[16px]!">save</span>
+                                        <span>Save</span>
+                                    </button>
+                                    <button type="button" onClick={() => setIsPresentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <span>Cancel</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            )}
+
+            {/* confirm save dialog  */}
+            {false && (
+                <div onClick={() => { }} className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                                        warning
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Save Changes?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    Once saved, it will be reviewed by the officers. You can still request correction afterwards.
+                                </p>
+                                <div className="w-full flex items-center">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => { }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={() => { }} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
+                                            <span className="material-symbols-outlined text-[18px]!">save</span>
+                                            <span>Save</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <BottomNav />
         </>
