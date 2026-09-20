@@ -120,10 +120,14 @@ export default function Attendance() {
                                     </p>
                                 </div>
                                 <div className="bg-green-bg border border-green-border px-3 py-1 rounded-full flex items-center gap-1.5">
-                                    <span className="w-2 h-2 rounded-full bg-green" />
-                                    <span className="font-geist text-xs font-bold uppercase text-green">
-                                        Compliant
-                                    </span>
+                                    {attendanceRatePercentage >= 80 && (
+                                        <>
+                                            <span className="w-2 h-2 rounded-full bg-green" />
+                                            <span className="font-geist text-xs font-bold uppercase text-green">
+                                                Compliant
+                                            </span>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                             <div className="space-y-3">
