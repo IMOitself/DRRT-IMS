@@ -313,7 +313,7 @@ export default function Attendance() {
                                             ) : (
                                                 <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button
-                                                        onClick={() => setIsPresentAttendanceDialogOpen(true)}
+                                                        onClick={() => {setFormData(initialFormData); setIsPresentAttendanceDialogOpen(true)}}
                                                         className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         <span className="material-symbols-outlined text-[14px]">save</span>
@@ -341,7 +341,7 @@ export default function Attendance() {
             {/* present attendance dialog */}
             {isPresentAttendanceDialogOpen && (
                 <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                    <form onSubmit={(e) => handlePresentAttendanceDialogSubmit(e)}
+                    <form key={selectedEvent.id} onSubmit={(e) => handlePresentAttendanceDialogSubmit(e)}
                         className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
                         <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                             <button type="button" className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-sm font-bold flex items-center justify-center gap-1">
