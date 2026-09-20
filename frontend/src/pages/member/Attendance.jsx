@@ -189,7 +189,7 @@ export default function Attendance() {
                                 let userAlreadyHaveRecord = false;
 
                                 for (const attendance of attendances) {
-                                    if (attendance.event_id === event.id && attendance.user_id === user?.id) {
+                                    if (attendance.event_id === event.id) {
                                         currentStatus = attendance.status;
                                         userAlreadyHaveRecord = true;
                                         break;

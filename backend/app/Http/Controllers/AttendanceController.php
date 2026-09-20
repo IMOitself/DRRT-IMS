@@ -10,9 +10,12 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $attendances = Attendance::all();
+        $user = $request->user();
+
+        $attendances = Attendance::where('user_id', $user->id)->get();
+
         return response()->json($attendances, 200);
     }
 
