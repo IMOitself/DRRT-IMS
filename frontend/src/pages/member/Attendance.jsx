@@ -85,6 +85,8 @@ export default function Attendance() {
             });
     }, [user]);
 
+    const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
+
     return (
         <>
             <title>Attendance - DRRT Member Portal</title>
@@ -129,7 +131,7 @@ export default function Attendance() {
                                         Attendance Rate
                                     </span>
                                     <span className="font-geist text-3xl font-bold text-blue">
-                                        85%
+                                        {((eventsWithPresentAttendance.length / events.length) * 100).toFixed(1)}%
                                     </span>
                                 </div>
                                 <div className="h-3.5 w-full bg-progress-ring-track rounded-full overflow-hidden relative">
@@ -169,7 +171,7 @@ export default function Attendance() {
                                     check_circle
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
-                                    {attendances.filter((attendance) => attendance.status === "present").length}
+                                    {eventsWithPresentAttendance.length}
                                 </span>
                                 <span className="font-geist text-xs text-subtext mt-1.5 font-semibold uppercase tracking-wider">
                                     Attended
