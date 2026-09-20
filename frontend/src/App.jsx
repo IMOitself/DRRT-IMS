@@ -19,7 +19,7 @@ import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerAttendance from './pages/officer/Attendance';
 import OfficerIncidents from './pages/officer/Incidents';
 import OfficerIncidentDetails from './pages/officer/IncidentDetails';
-import OfficerCreateEvent from './pages/TEST-CREATE-EVENT';
+import OfficerCreateEvent from './pages/officer/CreateEvent';
 
 import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';

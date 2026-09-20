@@ -1,0 +1,157 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import api from "../../api/axios";
+import Header from "../../components/Header";
+import BottomNav from "../../components/BottomNav";
+
+export default function CreateEvent() {
+    const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    const [formData, setFormData] = useState({
+        title: "",
+        description: "",
+        date: "",
+        time: "",
+        type: "meeting", // default
+        participants: "",
+        venue_facetoface: "",
+        venue_online: "",
+        require_proof_of_attendance: false,
+    });
+
+    const handleChange = (e) => {
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            await api.post("/events", formData);
+            // Redirect to dashboard on success
+            navigate("/officer/dashboard");
+        } catch (err) {
+            console.error(err);
+            alert("Failed to create event. Please try again.");
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <>
+            <title>Create Event - DRRT Officer Portal</title>
+            <Header />
+
+            <div className="grow w-full">
+                <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
+                    {/* Back Link */}
+                    <Link to="/officer/dashboard" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
+                        <span className="material-symbols-outlined text-[18px]!">arrow_back</span>
+                        <span>Back to Dashboard</span>
+                    </Link>
+
+                    {/* Header Card */}
+                    <section className="bg-white border border-blue-border/80 rounded-2xl p-6 shadow-sm">
+                        <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-4">
+                            <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
+                                <span className="material-symbols-outlined text-[22px]! filled-icon">event_available</span>
+                            </div>
+                            <div>
+                                <h1 className="font-geist text-xl md:text-2xl font-bold text-text">Create New Event</h1>
+                                <p className="text-sm text-subtext">Publish a new drill, meeting, or deployment to the DRRT roster.</p>
+                            </div>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+                            
+                            {/* General Details */}
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block font-geist text-sm font-bold text-text mb-1.5">Event Title <span className="text-red">*</span></label>
+                                    <input type="text" name="title" required value={formData.title} onChange={handleChange} placeholder="e.g. Mandatory Earthquake Drill" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                </div>
+                                <div>
+                                    <label className="block font-geist text-sm font-bold text-text mb-1.5">Description <span className="text-red">*</span></label>
+                                    <textarea name="description" required rows="3" value={formData.description} onChange={handleChange} placeholder="What is this event about?" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                </div>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Date <span className="text-red">*</span></label>
+                                        <input type="date" name="date" required value={formData.date} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                    </div>
+                                    <div>
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Time <span className="text-red">*</span></label>
+                                        <input type="time" name="time" required value={formData.time} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Classification */}
+                            <div className="pt-4 border-t border-blue-border/40">
+                                <label className="block font-geist text-sm font-bold text-text mb-3">Event Classification</label>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    {['drill', 'meeting', 'deployment', 'others'].map((typeOption) => (
+                                        <label key={typeOption} className={`border rounded-xl p-3 flex flex-col items-center gap-1 cursor-pointer transition-all ${formData.type === typeOption ? 'border-blue bg-blue-bg text-blue' : 'border-blue-border bg-white text-subtext hover:bg-surface-container-low'}`}>
+                                            <input type="radio" name="type" value={typeOption} checked={formData.type === typeOption} onChange={handleChange} className="hidden" />
+                                            <span className="font-geist text-xs font-bold uppercase tracking-wider">{typeOption}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Venue & Logistics */}
+                            <div className="pt-4 border-t border-blue-border/40 space-y-4">
+                                <div>
+                                    <label className="block font-geist text-sm font-bold text-text mb-1.5">Target Participants <span className="text-red">*</span></label>
+                                    <input type="text" name="participants" required value={formData.participants} onChange={handleChange} placeholder="e.g. All DRRT Members, BSIS 3rd Year" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">On-Site Venue</label>
+                                        <div className="relative">
+                                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">location_on</span>
+                                            <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleChange} placeholder="e.g. Main Quadrangle" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Online Link (Zoom/Meet)</label>
+                                        <div className="relative">
+                                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">link</span>
+                                            <input type="text" name="venue_online" value={formData.venue_online} onChange={handleChange} placeholder="https://meet.google.com/..." className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Options */}
+                            <div className="pt-4 border-t border-blue-border/40">
+                                <label className="flex items-center gap-3 cursor-pointer p-4 rounded-xl border border-blue-border bg-surface hover:bg-surface-container-low transition-colors">
+                                    <input type="checkbox" name="require_proof_of_attendance" checked={formData.require_proof_of_attendance} onChange={handleChange} className="w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
+                                    <div>
+                                        <p className="font-geist text-sm font-bold text-text">Require Proof of Attendance</p>
+                                        <p className="text-xs text-subtext mt-0.5">Members must upload a selfie/screenshot when logging their attendance.</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            {/* Submit */}
+                            <div className="pt-6">
+                                <button type="submit" disabled={isSubmitting} className="w-full bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50 cursor-pointer">
+                                    {isSubmitting ? "Publishing Event..." : "Publish Event"}
+                                    <span className="material-symbols-outlined text-[20px]!">campaign</span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </section>
+                </main>
+            </div>
+            
+            <BottomNav />
+        </>
+    );
+}
