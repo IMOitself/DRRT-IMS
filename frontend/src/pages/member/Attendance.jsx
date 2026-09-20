@@ -78,6 +78,7 @@ export default function Attendance() {
             .get("/attendances")
             .then((res) => {
                 setAttendances(res.data);
+                console.log(res.data)
             })
             .catch((err) => {
                 console.error(err);
@@ -155,7 +156,7 @@ export default function Attendance() {
                                     groups
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
-                                    12
+                                    {events.length}
                                 </span>
                                 <span className="font-geist text-xs text-subtext mt-1.5 font-semibold uppercase tracking-wider">
                                     Total Events
@@ -168,7 +169,7 @@ export default function Attendance() {
                                     check_circle
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
-                                    10
+                                    {attendances.filter((attendance) => attendance.status === "present").length}
                                 </span>
                                 <span className="font-geist text-xs text-subtext mt-1.5 font-semibold uppercase tracking-wider">
                                     Attended
