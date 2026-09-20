@@ -86,6 +86,7 @@ export default function Attendance() {
     }, [user]);
 
     const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
+    const attendanceRatePercentage = ((eventsWithPresentAttendance.length / events.length) * 100).toFixed(2);
 
     return (
         <>
@@ -131,14 +132,14 @@ export default function Attendance() {
                                         Attendance Rate
                                     </span>
                                     <span className="font-geist text-3xl font-bold text-blue">
-                                        {((eventsWithPresentAttendance.length / events.length) * 100).toFixed(1)}%
+                                        {attendanceRatePercentage}%
                                     </span>
                                 </div>
                                 <div className="h-3.5 w-full bg-progress-ring-track rounded-full overflow-hidden relative">
                                     {/* 80% threshold marker */}
                                     <div className="absolute h-full w-0.5 bg-red z-10 left-[80%]" />
                                     {/* progress bar */}
-                                    <div className="h-full bg-blue rounded-full transition-all duration-500" style={{ width: "85%" }} />
+                                    <div className="h-full bg-blue rounded-full transition-all duration-500" style={{ width: attendanceRatePercentage + "%" }} />
                                 </div>
                                 <div className="flex justify-between text-xs font-geist text-subtext pt-1">
                                     <span>0%</span>
