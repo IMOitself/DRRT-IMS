@@ -2,6 +2,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
+import ReportBuilder from './pages/officer/ReportBuilder';
+
 import TestPages from './pages/TEST-PAGES';
 import TestExcuse from './pages/TEST-EXCUSE';
 
@@ -57,6 +59,7 @@ function App() {
       <Route path="/adviser/approvals" element={<AdviserApprovals />} />
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
+        <Route path="/officer/report-builder" element={<ReportBuilder />} />
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/events" element={<OfficerEvents />} />
         <Route path="/officer/members" element={<OfficerMembers />} />
