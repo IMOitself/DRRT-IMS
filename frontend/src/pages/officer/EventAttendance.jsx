@@ -92,6 +92,32 @@ export default function EventAttendance() {
     closeCorrectionDialog();
   };
 
+  const [isConfirmRejectDialogOpen, setIsConfirmRejectDialogOpen] = useState(false);
+  const [rejectTarget, setRejectTarget] = useState(null);
+
+  const openRejectDialog = (memberId) => {
+    setRejectTarget(memberId);
+    setIsConfirmRejectDialogOpen(true);
+  };
+
+  const closeRejectDialog = () => setIsConfirmRejectDialogOpen(false);
+
+  const rejectAttendance = attendances.find((a) => a.user_id === rejectTarget);
+
+  const rejectPendingAttendance = async () => {
+    const attendance = attendances.find((a) => a.user_id === rejectTarget);
+
+    try {
+      if (attendance) await api.delete(`/attendances/${attendance.id}`);
+      setAttendances(attendances.filter((a) => a.id !== attendance?.id));
+    } catch (err) {
+      console.error(err);
+    }
+
+    closeRejectDialog();
+    closeDrawer();
+  };
+
   const handleConfirmSaveDialogSubmit = async () => {
     try {
       for (const change of Object.values(unsavedChanges)) {
@@ -256,6 +282,7 @@ export default function EventAttendance() {
             getStatus={getStatus}
             wantsCorrection={wantsCorrection}
             pendingApproval={pendingApproval}
+            openRejectDialog={openRejectDialog}
             changeStatus={changeStatus}
             openUnsetDialog={openUnsetDialog}
             openCorrectionDialog={openCorrectionDialog}
@@ -428,7 +455,7 @@ export default function EventAttendance() {
         {/* Drawer Actions */}
         {selectedAttendance?.pending_approval && (
           <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-            <button className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
+            <button onClick={() => openRejectDialog(selectedMember.id)} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
               <span className="material-symbols-outlined text-[18px]">close</span>
               Reject
             </button>
@@ -580,12 +607,87 @@ export default function EventAttendance() {
         </div>
       )}
 
+      {isConfirmRejectDialogOpen && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Reject Attendance?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Rejecting this will delete what {getMemberName(rejectTarget)} submitted. They can set their attendance again.
+                </p>
+
+                <ul className="mt-3 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+                  <li>
+                    Status:{" "}
+                    <span className="font-semibold capitalize text-text">
+                      {rejectAttendance?.status ?? "none"}
+                    </span>
+                  </li>
+                  {rejectAttendance?.timein_hour && (
+                    <li>
+                      Time In:{" "}
+                      <span className="font-semibold text-text">
+                        {rejectAttendance.timein_hour}:{rejectAttendance.timein_minute} {rejectAttendance.timein_ampm}
+                      </span>
+                    </li>
+                  )}
+                  {rejectAttendance?.proof_of_attendance && (
+                    <li>
+                      Proof of Attendance:{" "}
+                      <span className="font-semibold text-text wrap-break-word">
+                        {rejectAttendance.proof_of_attendance}
+                      </span>
+                    </li>
+                  )}
+                  {rejectAttendance?.absent_reason && (
+                    <li>
+                      Reason:{" "}
+                      <span className="font-semibold text-text wrap-break-word">
+                        {rejectAttendance.absent_reason}
+                      </span>
+                    </li>
+                  )}
+                  {rejectAttendance?.absent_supporting_image && (
+                    <li>
+                      Supporting Image:{" "}
+                      <span className="font-semibold text-text wrap-break-word">
+                        {rejectAttendance.absent_supporting_image}
+                      </span>
+                    </li>
+                  )}
+                </ul>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={closeRejectDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={rejectPendingAttendance} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">close</span>
+                      <span>Reject</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <BottomNav />
     </>
   );
 }
 
-function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, openRejectDialog, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(member.id)
@@ -668,7 +770,9 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
                         update attendance
                         <span className="material-symbols-outlined text-[18px]!">more_vert</span>
                       </button>
-                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); openRejectDialog(member.id); }}
+                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
                       <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">check</button>
                     </div>
                   )}
