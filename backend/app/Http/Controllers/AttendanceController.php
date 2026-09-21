@@ -14,7 +14,7 @@ class AttendanceController extends Controller
     {
         // TODO: officer role only
         if ($request->filled('all')) {
-            return response()->json(Attendance::all(), 200);
+            return response()->json(Attendance::with('recorder')->get(), 200);
         }
 
         $attendances = Attendance::where('user_id', $request->user()->id)->get();

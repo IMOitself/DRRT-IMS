@@ -359,7 +359,19 @@ export default function Events() {
                   Attendance Record
                 </p>
 
-                {/* present or late: show time in & proof of attendance */}
+                {selectedAttendance?.recorder && (
+                  <p className="text-xs text-subtext font-medium my-2">
+                    This attendance was recorded by:{" "}
+                    <span className="text-text font-semibold">
+                      {selectedAttendance.recorder.name}
+                    </span>{" "}
+                    <span className="capitalize">
+                      ({selectedAttendance.recorder.role})
+                    </span>
+                  </p>
+                )}
+
+
                 {(selectedAttendance?.status === "present" || selectedAttendance?.status === "late") && (
                   <div className="flex flex-col gap-3">
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
@@ -383,7 +395,6 @@ export default function Events() {
                   </div>
                 )}
 
-                {/* absent: show absent reason & proof of absence */}
                 {selectedAttendance?.status === "absent" && (
                   <div className="flex flex-col gap-3">
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
