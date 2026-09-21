@@ -342,16 +342,6 @@ function AttendanceList({ members, attendances }) {
                       L
                     </button>
                   )}
-
-                  {status === "excused" ? (
-                    <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
-                      <span>Excused</span>
-                    </button>
-                  ) : (
-                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                      E
-                    </button>
-                  )}
                 </div>
               </div>
             );

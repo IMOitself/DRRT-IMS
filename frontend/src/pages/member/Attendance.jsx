@@ -231,11 +231,6 @@ export default function Attendance() {
                                                     <span className="material-symbols-outlined text-[24px]!">schedule</span>
                                                 </div>
                                             )}
-                                            {displayStatus === "excused" && (
-                                                <div className="w-12 h-12 rounded-lg bg-purple-bg border border-purple-border flex items-center justify-center text-purple shrink-0">
-                                                    <span className="text-[24px]!">E</span>
-                                                </div>
-                                            )}
 
                                             <div>
                                                 <div className="font-geist text-lg text-text font-semibold">
@@ -268,11 +263,6 @@ export default function Attendance() {
                                                         {displayStatus === "late" && (
                                                             <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
                                                                 <span>Late</span>
-                                                            </button>
-                                                        )}
-                                                        {displayStatus === "excused" && (
-                                                            <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
-                                                                <span>Excused</span>
                                                             </button>
                                                         )}
                                                     </>
