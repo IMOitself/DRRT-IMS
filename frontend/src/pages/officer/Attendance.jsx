@@ -189,7 +189,7 @@ export default function Attendance() {
 
                 {openAttendanceId === event.id && (
                   <div className="border-t border-blue-border/40 pt-4 mt-2">
-                    <AttendanceList members={members} />
+                    <AttendanceList members={members} eventId={event.id} />
                   </div>
                 )}
               </article>
@@ -236,7 +236,23 @@ function getInitials(name = "") {
   return (parts[0]?.[0] ?? "") + (parts.length > 1 ? parts[parts.length - 1][0] : "");
 }
 
-function AttendanceList({ members }) {
+function AttendanceList({ members, eventId }) {
+
+  const [attendances, setAttendances] = useState([]);
+
+  useEffect(() => {
+
+    api
+      .get("/attendances", { params: { event_id: eventId } })
+      .then((res) => {
+        setAttendances(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+  }, [eventId]);
+
   return (
     <div className="space-y-6">
 
@@ -278,7 +294,9 @@ function AttendanceList({ members }) {
 
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
-          {members.map((member) => (
+          {members.map((member) => {
+          const status = attendances.find((a) => a.user_id === member.id)?.status;
+          return (
           <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
             <div className="flex items-center gap-3 overflow-hidden">
               <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
@@ -294,37 +312,52 @@ function AttendanceList({ members }) {
               </div>
             </div>
             <div className="flex items-center gap-1 shrink-0">
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                P
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                A
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                L
-              </button>
-              <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                E
-              </button>
+              {status === "present" ? (
+                <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-[14px]!">check</span>{" "}
+                  <span>Present</span>
+                </button>
+              ) : (
+                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                  P
+                </button>
+              )}
 
-              <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">check</span>{" "}
-                <span className="hidden sm:inline">Present</span>
-              </button>
-              <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">close</span>{" "}
-                <span className="hidden sm:inline">Absent</span>
-              </button>
-              <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                <span className="material-symbols-outlined text-[14px]!">schedule</span>{" "}
-                <span className="hidden sm:inline">Late</span>
-              </button>
-              <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
-                <span className="hidden sm:inline">Excused</span>
-              </button>
+              {status === "absent" ? (
+                <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-[14px]!">close</span>{" "}
+                  <span>Absent</span>
+                </button>
+              ) : (
+                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                  A
+                </button>
+              )}
+
+              {status === "late" ? (
+                <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-[14px]!">schedule</span>{" "}
+                  <span>Late</span>
+                </button>
+              ) : (
+                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                  L
+                </button>
+              )}
+
+              {status === "excused" ? (
+                <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
+                  <span>Excused</span>
+                </button>
+              ) : (
+                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                  E
+                </button>
+              )}
             </div>
           </div>
-          ))}
+          );
+          })}
         </div>
       </section>
     </div>
