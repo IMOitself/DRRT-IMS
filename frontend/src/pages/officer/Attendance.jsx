@@ -4,7 +4,7 @@ import WIP from "../../components/WIP";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/axios";
-import { formatDate } from "../../utils/format";
+import { formatDate, getInitials } from "../../utils/format";
 
 export default function Attendance() {
 
@@ -174,13 +174,13 @@ export default function Attendance() {
                           <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
                           Present: 102
                         </div>
-                        <div className="font-bold flex items-center gap-1.5 text-yellow">
-                          <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
-                          Late: 10
-                        </div>
                         <div className="font-bold flex items-center gap-1.5 text-red">
                           <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
                           Absent: 30
+                        </div>
+                        <div className="font-bold flex items-center gap-1.5 text-yellow">
+                          <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
+                          Late: 10
                         </div>
                       </div>
                     </div>
@@ -231,11 +231,6 @@ export default function Attendance() {
   );
 }
 
-function getInitials(name = "") {
-  const parts = name.trim().split(/\s+/);
-  return (parts[0]?.[0] ?? "") + (parts.length > 1 ? parts[parts.length - 1][0] : "");
-}
-
 function AttendanceList({ members, eventId }) {
 
   const [attendances, setAttendances] = useState([]);
@@ -275,6 +270,9 @@ function AttendanceList({ members, eventId }) {
             All Members (142)
           </button>
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+            No Record (58)
+          </button>
+          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             1st Year
           </button>
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
@@ -286,77 +284,74 @@ function AttendanceList({ members, eventId }) {
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             4th Year
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            Unchecked Only (58)
-          </button>
         </div>
       </div>
 
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
           {members.map((member) => {
-          const status = attendances.find((a) => a.user_id === member.id)?.status;
-          return (
-          <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
-                {getInitials(member.name)}
+            const status = attendances.find((a) => a.user_id === member.id)?.status;
+            return (
+              <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
+                    {getInitials(member.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-geist text-md text-text truncate">
+                      {member.name}
+                    </p>
+                    <p className="text-xs text-subtext truncate">
+                      {member.membership_application?.course} - {member.membership_application?.year_level} Year
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 shrink-0">
+                  {status === "present" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]!">check</span>{" "}
+                      <span>Present</span>
+                    </button>
+                  ) : (
+                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      P
+                    </button>
+                  )}
+
+                  {status === "absent" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]!">close</span>{" "}
+                      <span>Absent</span>
+                    </button>
+                  ) : (
+                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      A
+                    </button>
+                  )}
+
+                  {status === "late" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]!">schedule</span>{" "}
+                      <span>Late</span>
+                    </button>
+                  ) : (
+                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      L
+                    </button>
+                  )}
+
+                  {status === "excused" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
+                      <span>Excused</span>
+                    </button>
+                  ) : (
+                    <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      E
+                    </button>
+                  )}
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="font-geist text-md text-text truncate">
-                  {member.name}
-                </p>
-                <p className="text-xs text-subtext truncate">
-                  {member.membership_application?.course} - {member.membership_application?.year_level} Year
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1 shrink-0">
-              {status === "present" ? (
-                <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]!">check</span>{" "}
-                  <span>Present</span>
-                </button>
-              ) : (
-                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                  P
-                </button>
-              )}
-
-              {status === "absent" ? (
-                <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]!">close</span>{" "}
-                  <span>Absent</span>
-                </button>
-              ) : (
-                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                  A
-                </button>
-              )}
-
-              {status === "late" ? (
-                <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]!">schedule</span>{" "}
-                  <span>Late</span>
-                </button>
-              ) : (
-                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                  L
-                </button>
-              )}
-
-              {status === "excused" ? (
-                <button className="min-w-10 px-2 h-9 rounded bg-purple-bg border border-purple-border text-purple text-xs font-bold flex items-center justify-center gap-1">
-                  <span>Excused</span>
-                </button>
-              ) : (
-                <button className="w-9 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
-                  E
-                </button>
-              )}
-            </div>
-          </div>
-          );
+            );
           })}
         </div>
       </section>
