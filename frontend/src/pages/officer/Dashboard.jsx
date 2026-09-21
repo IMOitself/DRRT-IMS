@@ -61,7 +61,7 @@ export default function Dashboard() {
           </section>
 
           {/* KPIs Grid */}
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* KPI 1 */}
             <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 shadow-sm relative overflow-hidden card-hover hover:border-blue transition-colors">
               <div className="flex justify-between items-start mb-2">
@@ -125,29 +125,6 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-
-            {/* KPI 4 */}
-            <div className="bg-white border border-blue-border rounded-xl p-4 md:p-6 shadow-sm relative overflow-hidden card-hover hover:border-yellow transition-colors">
-              <div className="flex justify-between items-start mb-2">
-                <span className="font-geist text-xs text-subtext uppercase tracking-wider font-bold">
-                  Pending Training
-                </span>
-                <span className="material-symbols-outlined text-[24px]! text-yellow bg-yellow-bg p-1.5 rounded-lg">
-                  model_training
-                </span>
-              </div>
-              <div className="flex items-end justify-between mt-3">
-                <div className="font-geist text-4xl md:text-5xl text-text leading-none font-bold">
-                  24
-                </div>
-                <div className="flex items-center text-yellow font-geist text-xs bg-yellow-bg border border-yellow-border px-2 py-0.5 rounded font-bold">
-                  <span className="material-symbols-outlined text-[14px]! mr-1">
-                    schedule
-                  </span>{" "}
-                  Action req.
-                </div>
-              </div>
-            </div>
           </section>
 
           {/* Analytics Chart & Activity Grid */}
@@ -169,103 +146,6 @@ export default function Dashboard() {
               </div>
               <div className="flex-1 relative w-full h-70">
                 <canvas id="attendanceChart" />
-              </div>
-            </section>
-
-            {/* Recent Activity Timeline */}
-            <section className="bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="font-geist text-xl font-bold text-text">
-                  Recent Activity
-                </h3>
-                <button className="text-blue font-geist text-sm hover:underline font-bold cursor-pointer">
-                  View All
-                </button>
-              </div>
-              <div className="flex-1 relative pl-6 space-y-6 before:absolute before:inset-y-2 before:left-2.75 before:w-0.5 before:bg-blue-border">
-                {/* Item 1 */}
-                <div className="relative">
-                  <div className="absolute -left-7.5 top-0.5 w-6 h-6 rounded-full bg-red-bg text-red flex items-center justify-center border-2 border-white z-10 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px]!">
-                      warning
-                    </span>
-                  </div>
-                  <p className="text-sm text-text">
-                    <span className="font-bold">Officer Cruz</span> created Incident{" "}
-                    <a
-                      className="text-blue font-semibold hover:underline"
-                      href="#"
-                    >
-                      #INC-089
-                    </a>
-                  </p>
-                  <p className="font-geist text-xs text-subtext mt-0.5 font-medium">
-                    10 mins ago
-                  </p>
-                </div>
-
-                {/* Item 2 */}
-                <div className="relative">
-                  <div className="absolute -left-7.5 top-0.5 w-6 h-6 rounded-full bg-blue-bg text-blue flex items-center justify-center border-2 border-white z-10 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px]!">
-                      fact_check
-                    </span>
-                  </div>
-                  <p className="text-sm text-text">
-                    Attendance logged for{" "}
-                    <span className="font-bold">Alpha Squad</span> (24/25 present)
-                  </p>
-                  <p className="font-geist text-xs text-subtext mt-0.5 font-medium">
-                    1 hour ago
-                  </p>
-                </div>
-
-                {/* Item 3 */}
-                <div className="relative">
-                  <div className="absolute -left-7.5 top-0.5 w-6 h-6 rounded-full bg-surface-container-high text-subtext flex items-center justify-center border-2 border-white z-10 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px]!">
-                      edit_document
-                    </span>
-                  </div>
-                  <p className="text-sm text-text">
-                    System generated Weekly Roster Report
-                  </p>
-                  <p className="font-geist text-xs text-subtext mt-0.5 font-medium">
-                    3 hours ago
-                  </p>
-                </div>
-
-                {/* Item 4 */}
-                <div className="relative">
-                  <div className="absolute -left-7.5 top-0.5 w-6 h-6 rounded-full bg-blue text-white flex items-center justify-center border-2 border-white z-10 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px]!">
-                      model_training
-                    </span>
-                  </div>
-                  <p className="text-sm text-text">
-                    <span className="font-bold">Sgt. Reyes</span> scheduled CPR
-                    Recertification
-                  </p>
-                  <p className="font-geist text-xs text-subtext mt-0.5 font-medium">
-                    Yesterday, 14:30
-                  </p>
-                </div>
-
-                {/* Item 5 */}
-                <div className="relative">
-                  <div className="absolute -left-7.5 top-0.5 w-6 h-6 rounded-full bg-yellow-bg text-yellow flex items-center justify-center border-2 border-white z-10 shadow-sm">
-                    <span className="material-symbols-outlined text-[14px]!">
-                      security
-                    </span>
-                  </div>
-                  <p className="text-sm text-text">
-                    Vault access granted to{" "}
-                    <span className="font-bold">Officer Santos</span>
-                  </p>
-                  <p className="font-geist text-xs text-subtext mt-0.5 font-medium">
-                    Yesterday, 09:15
-                  </p>
-                </div>
               </div>
             </section>
           </div>
