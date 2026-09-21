@@ -12,6 +12,24 @@ export default function Events() {
   const [members, setMembers] = useState([]);
   const [attendances, setAttendances] = useState([]);
   const [openAttendanceId, setOpenAttendanceId] = useState(null);
+  const [unsavedChanges, setUnsavedChanges] = useState([]);
+
+  const getStatus = (eventId, memberId) => {
+    const change = unsavedChanges.find(
+      (c) => c.event_id === eventId && c.user_id === memberId
+    );
+    if (change) return change.status;
+    return attendances.find(
+      (a) => a.event_id === eventId && a.user_id === memberId
+    )?.status;
+  };
+
+  const changeStatus = (eventId, memberId, status) => {
+    const others = unsavedChanges.filter(
+      (c) => !(c.event_id === eventId && c.user_id === memberId)
+    );
+    setUnsavedChanges([...others, { event_id: eventId, user_id: memberId, status }]);
+  };
 
   useEffect(() => {
 
@@ -99,8 +117,8 @@ export default function Events() {
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8 mb-4">
             {events.map((event) => {
-              const eventAttendances = attendances.filter((a) => a.event_id === event.id);
-              const countByStatus = (status) => eventAttendances.filter((a) => a.status === status).length;
+              const countByStatus = (status) =>
+                members.filter((m) => getStatus(event.id, m.id) === status).length;
               return (
               <article
                 key={event.id}
@@ -202,7 +220,12 @@ export default function Events() {
 
                 {openAttendanceId === event.id && (
                   <div className="border-t border-blue-border/40 pt-4 mt-2">
-                    <AttendanceList members={members} attendances={eventAttendances} />
+                    <AttendanceList
+                      members={members}
+                      eventId={event.id}
+                      getStatus={getStatus}
+                      changeStatus={changeStatus}
+                    />
                   </div>
                 )}
               </article>
@@ -213,6 +236,7 @@ export default function Events() {
       </div>
 
       {/* sticky action bar */}
+      {unsavedChanges.length > 0 && (
       <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white border-t border-blue-border shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-text">
@@ -220,11 +244,13 @@ export default function Events() {
               border_color
             </span>
             <span className="font-geist text-sm font-medium">
-              Unsaved Changes: 4 Attendances Updated
+              Unsaved Changes: {unsavedChanges.length} Attendances Updated
             </span>
           </div>
           <div className="flex w-full sm:w-auto gap-3">
-            <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+            <button
+              onClick={() => setUnsavedChanges([])}
+              className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
                 history
               </span>{" "}
@@ -239,16 +265,17 @@ export default function Events() {
           </div>
         </div>
       </div>
+      )}
 
       <BottomNav />
     </>
   );
 }
 
-function AttendanceList({ members, attendances }) {
+function AttendanceList({ members, eventId, getStatus, changeStatus }) {
 
   const noRecordCount = members.filter(
-    (member) => !attendances.some((a) => a.user_id === member.id)
+    (member) => !getStatus(eventId, member.id)
   ).length;
 
   return (
@@ -293,7 +320,7 @@ function AttendanceList({ members, attendances }) {
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
           {members.map((member) => {
-            const status = attendances.find((a) => a.user_id === member.id)?.status;
+            const status = getStatus(eventId, member.id);
             return (
               <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
                 <div className="flex items-center gap-3 overflow-hidden">
@@ -315,7 +342,9 @@ function AttendanceList({ members, attendances }) {
                       <span>Present</span>
                     </button>
                   ) : (
-                    <button className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                    <button
+                      onClick={() => changeStatus(eventId, member.id, "present")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Present
                     </button>
                   )}
@@ -325,7 +354,9 @@ function AttendanceList({ members, attendances }) {
                       <span>Absent</span>
                     </button>
                   ) : (
-                    <button className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                    <button
+                      onClick={() => changeStatus(eventId, member.id, "absent")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Absent
                     </button>
                   )}
@@ -335,7 +366,9 @@ function AttendanceList({ members, attendances }) {
                       <span>Late</span>
                     </button>
                   ) : (
-                    <button className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                    <button
+                      onClick={() => changeStatus(eventId, member.id, "late")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Late
                     </button>
                   )}
