@@ -168,7 +168,7 @@ export default function Events() {
               return (
               <article
                 key={event.id}
-                className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 card-hover transition-all duration-300"
+                className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300"
               >
                 <div className="cursor-pointer"
                   onClick={() =>
