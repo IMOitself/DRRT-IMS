@@ -557,7 +557,7 @@ export default function Events() {
                   </p>
                 </div>
                 <p className="font-geist text-text">
-                  This clears the record so the member can set their own attendance again, and modify it afterwards.
+                  Unsetting this will allow the member to set their own attendance again.
                 </p>
 
                 <div className="w-full flex items-center mt-4">
