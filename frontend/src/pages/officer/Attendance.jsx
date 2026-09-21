@@ -10,6 +10,7 @@ export default function Attendance() {
 
   const [events, setEvents] = useState([]);
   const [members, setMembers] = useState([]);
+  const [attendances, setAttendances] = useState([]);
   const [openAttendanceId, setOpenAttendanceId] = useState(null);
 
   useEffect(() => {
@@ -18,6 +19,15 @@ export default function Attendance() {
       .get("/events")
       .then((res) => {
         setEvents(res.data.reverse());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    api
+      .get("/attendances", { params: { all: 1 } })
+      .then((res) => {
+        setAttendances(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -88,12 +98,15 @@ export default function Attendance() {
           </section>
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8 mb-4">
-            {events.map((event) => (
+            {events.map((event) => {
+              const eventAttendances = attendances.filter((a) => a.event_id === event.id);
+              const countByStatus = (status) => eventAttendances.filter((a) => a.status === status).length;
+              return (
               <article
                 key={event.id}
-                className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 card-hover transition-all duration-300 cursor-pointer"
+                className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 card-hover transition-all duration-300"
               >
-                <div
+                <div className="cursor-pointer"
                   onClick={() =>
                     setOpenAttendanceId(
                       openAttendanceId === event.id ? null : event.id
@@ -172,15 +185,15 @@ export default function Attendance() {
                       <div className="flex gap-4 text-xs font-geist">
                         <div className="font-bold flex items-center gap-1.5 text-green">
                           <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
-                          Present: 102
+                          Present: {countByStatus("present")}
                         </div>
                         <div className="font-bold flex items-center gap-1.5 text-red">
                           <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
-                          Absent: 30
+                          Absent: {countByStatus("absent")}
                         </div>
                         <div className="font-bold flex items-center gap-1.5 text-yellow">
                           <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
-                          Late: 10
+                          Late: {countByStatus("late")}
                         </div>
                       </div>
                     </div>
@@ -189,11 +202,12 @@ export default function Attendance() {
 
                 {openAttendanceId === event.id && (
                   <div className="border-t border-blue-border/40 pt-4 mt-2">
-                    <AttendanceList members={members} eventId={event.id} />
+                    <AttendanceList members={members} attendances={eventAttendances} />
                   </div>
                 )}
               </article>
-            ))}
+              );
+            })}
           </section>
         </main>
       </div>
@@ -231,22 +245,11 @@ export default function Attendance() {
   );
 }
 
-function AttendanceList({ members, eventId }) {
+function AttendanceList({ members, attendances }) {
 
-  const [attendances, setAttendances] = useState([]);
-
-  useEffect(() => {
-
-    api
-      .get("/attendances", { params: { event_id: eventId } })
-      .then((res) => {
-        setAttendances(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-  }, [eventId]);
+  const noRecordCount = members.filter(
+    (member) => !attendances.some((a) => a.user_id === member.id)
+  ).length;
 
   return (
     <div className="space-y-6">
@@ -267,10 +270,10 @@ function AttendanceList({ members, eventId }) {
         {/* Rapid Level Filters */}
         <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-semibold">
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer">
-            All Members (142)
+            All Members ({members.length})
           </button>
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            No Record (58)
+            No Record ({noRecordCount})
           </button>
           <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
             1st Year

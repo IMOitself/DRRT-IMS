@@ -13,15 +13,11 @@ class AttendanceController extends Controller
     public function index(Request $request)
     {
         // TODO: officer role only
-        if ($request->filled('event_id')) {
-            $attendances = Attendance::where('event_id', $request->query('event_id'))->get();
-
-            return response()->json($attendances, 200);
+        if ($request->filled('all')) {
+            return response()->json(Attendance::all(), 200);
         }
 
-        $user = $request->user();
-
-        $attendances = Attendance::where('user_id', $user->id)->get();
+        $attendances = Attendance::where('user_id', $request->user()->id)->get();
 
         return response()->json($attendances, 200);
     }
