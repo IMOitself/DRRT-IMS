@@ -74,6 +74,26 @@ export default function Events() {
 
   const closeCorrectionDialog = () => setIsCorrectionDialogOpen(false);
 
+  // approving a correction just unsets the attendance, so the member can set it again
+  const handleApproveCorrection = async () => {
+    const { eventId, memberId } = correctionTarget;
+    const attendance = attendances.find(
+      (a) => a.event_id === eventId && a.user_id === memberId
+    );
+
+    try {
+      if (attendance) await api.delete(`/attendances/${attendance.id}`);
+      setAttendances(attendances.filter((a) => a.id !== attendance?.id));
+    } catch (err) {
+      console.error(err);
+    }
+
+    // drop the pending change too, there is nothing left to save
+    const { [changeKey(eventId, memberId)]: _, ...rest } = unsavedChanges;
+    setUnsavedChanges(rest);
+    closeCorrectionDialog();
+  };
+
   const handleConfirmUnsetDialogSubmit = async () => {
     const { eventId, memberId } = unsetTarget;
     const attendance = attendances.find(
@@ -619,7 +639,7 @@ export default function Events() {
                       <span className="material-symbols-outlined text-[20px]!">close</span>
                       <span>Reject</span>
                     </button>
-                    <button className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                    <button onClick={handleApproveCorrection} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]!">check</span>
                       <span>Approve</span>
                     </button>
