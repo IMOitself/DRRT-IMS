@@ -12,24 +12,26 @@ export default function Events() {
   const [members, setMembers] = useState([]);
   const [attendances, setAttendances] = useState([]);
   const [openAttendanceId, setOpenAttendanceId] = useState(null);
-  const [unsavedChanges, setUnsavedChanges] = useState([]);
+  const [unsavedChanges, setUnsavedChanges] = useState({});
+
+  const changeKey = (eventId, memberId) => `${eventId}-${memberId}`;
 
   const getStatus = (eventId, memberId) => {
-    const change = unsavedChanges.find(
-      (c) => c.event_id === eventId && c.user_id === memberId
-    );
-    if (change) return change.status;
+    const unsaved = unsavedChanges[changeKey(eventId, memberId)];
+    if (unsaved) return unsaved.status;
     return attendances.find(
       (a) => a.event_id === eventId && a.user_id === memberId
     )?.status;
   };
 
   const changeStatus = (eventId, memberId, status) => {
-    const others = unsavedChanges.filter(
-      (c) => !(c.event_id === eventId && c.user_id === memberId)
-    );
-    setUnsavedChanges([...others, { event_id: eventId, user_id: memberId, status }]);
+    setUnsavedChanges({
+      ...unsavedChanges,
+      [changeKey(eventId, memberId)]: { event_id: eventId, user_id: memberId, status },
+    });
   };
+
+  const unsavedCount = Object.keys(unsavedChanges).length;
 
   useEffect(() => {
 
@@ -236,7 +238,7 @@ export default function Events() {
       </div>
 
       {/* sticky action bar */}
-      {unsavedChanges.length > 0 && (
+      {unsavedCount > 0 && (
       <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white border-t border-blue-border shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-text">
@@ -244,12 +246,12 @@ export default function Events() {
               border_color
             </span>
             <span className="font-geist text-sm font-medium">
-              Unsaved Changes: {unsavedChanges.length} Attendances Updated
+              Unsaved Changes: {unsavedCount} Attendances Updated
             </span>
           </div>
           <div className="flex w-full sm:w-auto gap-3">
             <button
-              onClick={() => setUnsavedChanges([])}
+              onClick={() => setUnsavedChanges({})}
               className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
                 history
