@@ -60,7 +60,7 @@ export default function Events() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
                 <h1 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
-                  Events
+                  Events & Attendances
                 </h1>
                 <p className="text-sm text-subtext mt-1.5">
                   Track and manage attendance for all members across all events.
