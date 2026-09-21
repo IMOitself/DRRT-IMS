@@ -47,6 +47,23 @@ export default function Events() {
   };
 
   const unsavedCount = Object.keys(unsavedChanges).length;
+  const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
+
+  // group the pending changes per event, so the dialog can list them by event title
+  const changesByEvent = events
+    .map((event) => ({
+      event,
+      changes: Object.values(unsavedChanges)
+        .filter((change) => change.event_id === event.id)
+        .map((change) => ({
+          name: members.find((m) => m.id === change.user_id)?.name,
+          oldStatus: attendances.find(
+            (a) => a.event_id === change.event_id && a.user_id === change.user_id
+          )?.status,
+          status: change.status,
+        })),
+    }))
+    .filter((group) => group.changes.length > 0);
 
   useEffect(() => {
 
@@ -274,7 +291,9 @@ export default function Events() {
               </span>{" "}
               Reset
             </button>
-            <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-blue text-white font-geist text-sm font-semibold hover:bg-blue/90 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+            <button
+              onClick={() => setIsConfirmSaveDialogOpen(true)}
+              className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-blue text-white font-geist text-sm font-semibold hover:bg-blue/90 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]!">
                 save
               </span>{" "}
@@ -393,6 +412,73 @@ export default function Events() {
           className="fixed inset-0 bg-text/20 z-65 transition-opacity"
           onClick={closeDrawer}
         />
+      )}
+
+      {/* confirm save dialog */}
+      {isConfirmSaveDialogOpen && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Save Changes?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  You are about to update {unsavedCount} attendance record{unsavedCount === 1 ? "" : "s"}.
+                </p>
+
+                <div className="mt-3 space-y-4 max-h-[45vh] overflow-y-auto">
+                  {changesByEvent.map(({ event, changes }) => (
+                    <div key={event.id}>
+                      <p className="font-geist text-sm font-bold text-text">
+                        {event.title}
+                      </p>
+                      <ul className="mt-1 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+                        {changes.map((change) => (
+                          <li key={change.name}>
+                            {change.name} &mdash;{" "}
+                            <span className="capitalize line-through">
+                              {change.oldStatus ?? "no record"}
+                            </span>{" "}
+                            &rarr;{" "}
+                            <span
+                              className={`font-semibold capitalize ${
+                                change.status === "present"
+                                  ? "text-green"
+                                  : change.status === "absent"
+                                    ? "text-red"
+                                    : "text-yellow"
+                              }`}
+                            >
+                              {change.status}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setIsConfirmSaveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">save</span>
+                      <span>Save</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       <BottomNav />
