@@ -66,6 +66,9 @@ class AttendanceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // TODO: officer role only
+        Attendance::destroy($id);
+
+        return response()->json(null, 204);
     }
 }

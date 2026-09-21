@@ -51,6 +51,33 @@ export default function Events() {
   const unsavedCount = Object.keys(unsavedChanges).length;
   const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
   const [isConfirmUnsetDialogOpen, setIsConfirmUnsetDialogOpen] = useState(false);
+  const [unsetTarget, setUnsetTarget] = useState(null);
+
+  const openUnsetDialog = (eventId, memberId) => {
+    setUnsetTarget({ eventId, memberId });
+    setIsConfirmUnsetDialogOpen(true);
+  };
+
+  const closeUnsetDialog = () => setIsConfirmUnsetDialogOpen(false);
+
+  const handleConfirmUnsetDialogSubmit = async () => {
+    const { eventId, memberId } = unsetTarget;
+    const attendance = attendances.find(
+      (a) => a.event_id === eventId && a.user_id === memberId
+    );
+
+    try {
+      if (attendance) await api.delete(`/attendances/${attendance.id}`);
+      setAttendances(attendances.filter((a) => a.id !== attendance?.id));
+    } catch (err) {
+      console.error(err);
+    }
+
+    // drop the pending change too, there is nothing left to save
+    const { [changeKey(eventId, memberId)]: _, ...rest } = unsavedChanges;
+    setUnsavedChanges(rest);
+    closeUnsetDialog();
+  };
 
   const handleConfirmSaveDialogSubmit = async () => {
     try {
@@ -278,7 +305,7 @@ export default function Events() {
                         eventId={event.id}
                         getStatus={getStatus}
                         changeStatus={changeStatus}
-                        openUnsetDialog={() => setIsConfirmUnsetDialogOpen(true)}
+                        openUnsetDialog={(memberId) => openUnsetDialog(event.id, memberId)}
                         openDrawer={openDrawer}
                       />
                     </div>
@@ -535,10 +562,10 @@ export default function Events() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={() => setIsConfirmUnsetDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                       Cancel
                     </button>
-                    <button onClick={() => setIsConfirmUnsetDialogOpen(false)} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                    <button onClick={handleConfirmUnsetDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]!">refresh</span>
                       <span>Unset</span>
                     </button>
@@ -626,7 +653,7 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDi
                   {status && (
                     <button
                       title="Unset"
-                      onClick={openUnsetDialog}
+                      onClick={() => openUnsetDialog(member.id)}
                       className="w-9 h-9 rounded flex items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
                       <span className="material-symbols-outlined text-[18px]!">refresh</span>
                     </button>
