@@ -82,6 +82,14 @@ export default function Attendance() {
 
     }
 
+    const handleRequestCorrection = (attendanceId) => {
+        api
+            .put(`/attendances/${attendanceId}/correction-request`)
+            .then(() => api.get("/attendances"))
+            .then((res) => setAttendances(res.data))
+            .catch((err) => console.error(err));
+    }
+
     useEffect(() => {
         api
             .get("/events")
@@ -213,11 +221,13 @@ export default function Attendance() {
                             {events.map((event) => {
                                 let currentStatus = "unset";
                                 let userAlreadyHaveRecord = false;
+                                let currentAttendance = null;
 
                                 for (const attendance of attendances) {
                                     if (attendance.event_id === event.id) {
                                         currentStatus = attendance.status;
                                         userAlreadyHaveRecord = true;
+                                        currentAttendance = attendance;
                                         break;
                                     }
                                 }
@@ -315,9 +325,18 @@ export default function Attendance() {
                                                 )}
                                             </div>
                                             {userAlreadyHaveRecord ? (
-                                                <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
-                                                    Request Correction
-                                                </button>
+                                                currentAttendance?.correction_requested ? (
+                                                    <span className="font-geist text-xs text-subtext font-bold">
+                                                        Correction Requested
+                                                    </span>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => handleRequestCorrection(currentAttendance.id)}
+                                                        className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer"
+                                                    >
+                                                        Request Correction
+                                                    </button>
+                                                )
                                             ) : (
                                                 <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button

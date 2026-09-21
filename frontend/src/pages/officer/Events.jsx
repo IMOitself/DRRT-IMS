@@ -647,6 +647,14 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDi
                       {member.membership_application?.course} - {member.membership_application?.year_level} Year
                     </p>
                   </div>
+                  <div>
+                    <div className="flex items-center gap-0.5">
+                      <button className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                        wants correction
+                      </button>
+                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
+                    </div>
+                  </div>
                 </div>
                 {/* stop the click here so the drawer doesn't open */}
                 <div onClick={(e) => e.stopPropagation()} className="flex items-center gap-1 shrink-0">

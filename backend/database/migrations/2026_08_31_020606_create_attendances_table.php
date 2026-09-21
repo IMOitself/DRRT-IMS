@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('timein_hour')->nullable();
             $table->string('timein_minute')->nullable();
             $table->string('timein_ampm', 2)->nullable();
+            $table->boolean('correction_requested')->default(false);
             $table->timestamps();
         });
     }

@@ -62,6 +62,20 @@ class AttendanceController extends Controller
     }
 
     /**
+     * Member asks an officer to correct their own attendance record.
+     */
+    public function requestCorrection(Request $request, Attendance $attendance)
+    {
+        if ($attendance->user_id !== $request->user()->id) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
+        $attendance->update(['correction_requested' => true]);
+
+        return response()->json($attendance, 200);
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
