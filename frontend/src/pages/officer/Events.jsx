@@ -50,6 +50,7 @@ export default function Events() {
 
   const unsavedCount = Object.keys(unsavedChanges).length;
   const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
+  const [isConfirmUnsetDialogOpen, setIsConfirmUnsetDialogOpen] = useState(false);
 
   const handleConfirmSaveDialogSubmit = async () => {
     try {
@@ -277,6 +278,7 @@ export default function Events() {
                         eventId={event.id}
                         getStatus={getStatus}
                         changeStatus={changeStatus}
+                        openUnsetDialog={() => setIsConfirmUnsetDialogOpen(true)}
                         openDrawer={openDrawer}
                       />
                     </div>
@@ -449,7 +451,6 @@ export default function Events() {
         />
       )}
 
-      {/* confirm save dialog */}
       {isConfirmSaveDialogOpen && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
@@ -515,12 +516,46 @@ export default function Events() {
         </div>
       )}
 
+      {isConfirmUnsetDialogOpen && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Unset Attendance?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  This clears the record so the member can set their own attendance again, and modify it afterwards.
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setIsConfirmUnsetDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={() => setIsConfirmUnsetDialogOpen(false)} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">refresh</span>
+                      <span>Unset</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <BottomNav />
     </>
   );
 }
 
-function AttendanceList({ members, eventId, getStatus, changeStatus, openDrawer }) {
+function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(eventId, member.id)
@@ -591,7 +626,7 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openDrawer 
                   {status && (
                     <button
                       title="Unset"
-                      onClick={() => changeStatus(eventId, member.id, null)}
+                      onClick={openUnsetDialog}
                       className="w-9 h-9 rounded flex items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
                       <span className="material-symbols-outlined text-[18px]!">refresh</span>
                     </button>
