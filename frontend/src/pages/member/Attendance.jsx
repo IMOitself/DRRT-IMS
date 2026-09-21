@@ -22,6 +22,10 @@ export default function Attendance() {
     const [formData, setFormData] = useState(initialFormData);
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    // time fields are always 2 digits
+    const handleTimeMakeSure2Digits = (e) =>
+        setFormData({ ...formData, [e.target.name]: e.target.value.padStart(2, "0") });
+
     const [isPresentAttendanceDialogOpen, setIsPresentAttendanceDialogOpen] = useState(false);
     const [isAbsentAttendanceDialogOpen, setIsAbsentAttendanceDialogOpen] = useState(false);
     const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
@@ -76,6 +80,14 @@ export default function Attendance() {
 
         setIsConfirmSaveDialogOpen(false);
 
+    }
+
+    const handleRequestCorrection = (attendanceId) => {
+        api
+            .put(`/attendances/${attendanceId}/correction-request`)
+            .then(() => api.get("/attendances"))
+            .then((res) => setAttendances(res.data))
+            .catch((err) => console.error(err));
     }
 
     useEffect(() => {
@@ -209,11 +221,13 @@ export default function Attendance() {
                             {events.map((event) => {
                                 let currentStatus = "unset";
                                 let userAlreadyHaveRecord = false;
+                                let currentAttendance = null;
 
                                 for (const attendance of attendances) {
                                     if (attendance.event_id === event.id) {
                                         currentStatus = attendance.status;
                                         userAlreadyHaveRecord = true;
+                                        currentAttendance = attendance;
                                         break;
                                     }
                                 }
@@ -311,9 +325,18 @@ export default function Attendance() {
                                                 )}
                                             </div>
                                             {userAlreadyHaveRecord ? (
-                                                <button className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer">
-                                                    Request Correction
-                                                </button>
+                                                currentAttendance?.correction_requested ? (
+                                                    <span className="font-geist text-xs text-subtext font-bold">
+                                                        Correction Requested
+                                                    </span>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => handleRequestCorrection(currentAttendance.id)}
+                                                        className="font-geist text-xs text-blue font-bold hover:underline cursor-pointer"
+                                                    >
+                                                        Request Correction
+                                                    </button>
+                                                )
                                             ) : (
                                                 <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button
@@ -391,27 +414,29 @@ export default function Attendance() {
                                 {/* time in */}
                                 <div className="w-fit flex items-center gap-1">
                                     <input
-                                        type="number"
+                                        type="text"
+                                        inputMode="numeric"
                                         id="timein_hour"
                                         name="timein_hour"
                                         value={formData.timein_hour || ""}
                                         onChange={handleChange}
+                                        onBlur={handleTimeMakeSure2Digits}
                                         placeholder="08"
-                                        min="1"
-                                        max="12"
+                                        maxLength="2"
                                         required
                                         className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                     <span>:</span>
                                     <input
-                                        type="number"
+                                        type="text"
+                                        inputMode="numeric"
                                         id="timein_minute"
                                         name="timein_minute"
                                         value={formData.timein_minute || ""}
                                         onChange={handleChange}
+                                        onBlur={handleTimeMakeSure2Digits}
                                         placeholder="00"
-                                        min="0"
-                                        max="59"
+                                        maxLength="2"
                                         required
                                         className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />

@@ -78,7 +78,7 @@ export default function Header() {
                             Dashboard
                         </NavLink>
                         <NavLink to="/officer/events" className={() => {
-                            const isActive = pathname === "/officer/events" || pathname === "/officer/create-event"
+                            const isActive = pathname.startsWith("/officer/events") || pathname === "/officer/create-event"
 
                             return isActive 
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
