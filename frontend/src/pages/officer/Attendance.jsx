@@ -2,6 +2,7 @@ import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import WIP from "../../components/WIP";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import api from "../../api/axios";
 import { formatDate } from "../../utils/format";
 
@@ -188,7 +189,7 @@ export default function Attendance() {
 
                 {openAttendanceId === event.id && (
                   <div className="border-t border-blue-border/40 pt-4 mt-2">
-                    <AttendanceList />
+                    <AttendanceList members={members} />
                   </div>
                 )}
               </article>
@@ -230,7 +231,12 @@ export default function Attendance() {
   );
 }
 
-function AttendanceList() {
+function getInitials(name = "") {
+  const parts = name.trim().split(/\s+/);
+  return (parts[0]?.[0] ?? "") + (parts.length > 1 ? parts[parts.length - 1][0] : "");
+}
+
+function AttendanceList({ members }) {
   return (
     <div className="space-y-6">
 
@@ -272,17 +278,18 @@ function AttendanceList() {
 
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
-          <div className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
+          {members.map((member) => (
+          <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
             <div className="flex items-center gap-3 overflow-hidden">
               <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
-                SM
+                {getInitials(member.name)}
               </div>
               <div className="min-w-0">
                 <p className="font-geist text-md text-text truncate">
-                  Santos, Maria Clara
+                  {member.name}
                 </p>
                 <p className="text-xs text-subtext truncate">
-                  BSIS - 3rd Year
+                  {member.membership_application?.course} - {member.membership_application?.year_level} Year
                 </p>
               </div>
             </div>
@@ -317,6 +324,7 @@ function AttendanceList() {
               </button>
             </div>
           </div>
+          ))}
         </div>
       </section>
     </div>
