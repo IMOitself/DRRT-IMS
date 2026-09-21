@@ -27,11 +27,18 @@ export default function EventAttendance() {
     setDrawerOpen(false);
   }
 
-  const getSavedStatus = (memberId) =>
-    attendances.find((a) => a.user_id === memberId)?.status;
+  // a pending attendance is not set yet, it still needs an officer to approve it
+  const getSavedStatus = (memberId) => {
+    const attendance = attendances.find((a) => a.user_id === memberId);
+    if (attendance?.pending_approval) return undefined;
+    return attendance?.status;
+  };
 
   const wantsCorrection = (memberId) =>
     !!attendances.find((a) => a.user_id === memberId)?.correction_requested;
+
+  const pendingApproval = (memberId) =>
+    !!attendances.find((a) => a.user_id === memberId)?.pending_approval;
 
   const getStatus = (memberId) => {
     const unsaved = unsavedChanges[memberId];
@@ -248,6 +255,7 @@ export default function EventAttendance() {
             members={members}
             getStatus={getStatus}
             wantsCorrection={wantsCorrection}
+            pendingApproval={pendingApproval}
             changeStatus={changeStatus}
             openUnsetDialog={openUnsetDialog}
             openCorrectionDialog={openCorrectionDialog}
@@ -333,7 +341,16 @@ export default function EventAttendance() {
                   Attendance Record
                 </p>
 
-                {selectedAttendance?.recorder && (
+                {selectedAttendance?.pending_approval && (
+                  <p className="text-xs text-subtext font-medium my-2">
+                    <span className="text-text font-semibold">
+                      {selectedMember.name}
+                    </span>{" "}
+                    wants to set their attendance
+                  </p>
+                )}
+
+                {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
                   <p className="text-xs text-subtext font-medium my-2">
                     This attendance was recorded by:{" "}
                     <span className="text-text font-semibold">
@@ -408,6 +425,19 @@ export default function EventAttendance() {
             </>
           )}
         </div>
+        {/* Drawer Actions */}
+        {selectedAttendance?.pending_approval && (
+          <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
+            <button className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">close</span>
+              Reject
+            </button>
+            <button className="cursor-pointer flex-1 bg-green text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">check</span>
+              Approve
+            </button>
+          </div>
+        )}
       </aside>
       {/* Drawer Overlay */}
       {drawerOpen && (
@@ -555,7 +585,7 @@ export default function EventAttendance() {
   );
 }
 
-function AttendanceList({ members, getStatus, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(member.id)
@@ -621,15 +651,25 @@ function AttendanceList({ members, getStatus, wantsCorrection, changeStatus, ope
                     </p>
                   </div>
                   {wantsCorrection(member.id) && (
-                    <div>
-                      <div className="flex items-center gap-0.5">
-                        <button
-                          onClick={(e) => { e.stopPropagation(); openCorrectionDialog(member.id); }}
-                          className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
-                          wants correction
-                        </button>
-                        <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
-                      </div>
+                    <div className="flex items-center gap-0.5">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); openCorrectionDialog(member.id); }}
+                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                        wants correction
+                      </button>
+                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
+                    </div>
+                  )}
+                  {pendingApproval(member.id) && (
+                    <div className="flex items-center gap-0.5">
+                      <button
+                        onClick={() => openDrawer(member)}
+                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                        update attendance
+                        <span className="material-symbols-outlined text-[18px]!">more_vert</span>
+                      </button>
+                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
+                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">check</button>
                     </div>
                   )}
                 </div>
