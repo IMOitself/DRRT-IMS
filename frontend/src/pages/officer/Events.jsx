@@ -65,36 +65,15 @@ export default function Events() {
   const closeUnsetDialog = () => setIsConfirmUnsetDialogOpen(false);
 
   const [isCorrectionDialogOpen, setIsCorrectionDialogOpen] = useState(false);
-  const [correctionTarget, setCorrectionTarget] = useState(null);
 
   const openCorrectionDialog = (eventId, memberId) => {
-    setCorrectionTarget({ eventId, memberId });
+    setUnsetTarget({ eventId, memberId });
     setIsCorrectionDialogOpen(true);
   };
 
   const closeCorrectionDialog = () => setIsCorrectionDialogOpen(false);
 
-  // approving a correction just unsets the attendance, so the member can set it again
-  const handleApproveCorrection = async () => {
-    const { eventId, memberId } = correctionTarget;
-    const attendance = attendances.find(
-      (a) => a.event_id === eventId && a.user_id === memberId
-    );
-
-    try {
-      if (attendance) await api.delete(`/attendances/${attendance.id}`);
-      setAttendances(attendances.filter((a) => a.id !== attendance?.id));
-    } catch (err) {
-      console.error(err);
-    }
-
-    // drop the pending change too, there is nothing left to save
-    const { [changeKey(eventId, memberId)]: _, ...rest } = unsavedChanges;
-    setUnsavedChanges(rest);
-    closeCorrectionDialog();
-  };
-
-  const handleConfirmUnsetDialogSubmit = async () => {
+  const unsetAttendance = async () => {
     const { eventId, memberId } = unsetTarget;
     const attendance = attendances.find(
       (a) => a.event_id === eventId && a.user_id === memberId
@@ -110,7 +89,9 @@ export default function Events() {
     // drop the pending change too, there is nothing left to save
     const { [changeKey(eventId, memberId)]: _, ...rest } = unsavedChanges;
     setUnsavedChanges(rest);
+
     closeUnsetDialog();
+    closeCorrectionDialog();
   };
 
   const handleConfirmSaveDialogSubmit = async () => {
@@ -601,7 +582,7 @@ export default function Events() {
                     <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                       Cancel
                     </button>
-                    <button onClick={handleConfirmUnsetDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                    <button onClick={unsetAttendance} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]!">refresh</span>
                       <span>Unset</span>
                     </button>
@@ -639,7 +620,7 @@ export default function Events() {
                       <span className="material-symbols-outlined text-[20px]!">close</span>
                       <span>Reject</span>
                     </button>
-                    <button onClick={handleApproveCorrection} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                    <button onClick={unsetAttendance} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]!">check</span>
                       <span>Approve</span>
                     </button>
