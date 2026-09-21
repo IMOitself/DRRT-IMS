@@ -16,7 +16,7 @@ import PasswordForgot from './pages/PasswordForgot';
 
 import OfficerMembers from './pages/officer/Members';
 import OfficerDashboard from './pages/officer/Dashboard';
-import OfficerAttendance from './pages/officer/Attendance';
+import OfficerEvents from './pages/officer/Events';
 import OfficerIncidents from './pages/officer/Incidents';
 import OfficerIncidentDetails from './pages/officer/IncidentDetails';
 import OfficerCreateEvent from './pages/officer/CreateEvent';
@@ -58,7 +58,7 @@ function App() {
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
-        <Route path="/officer/attendance" element={<OfficerAttendance />} />
+        <Route path="/officer/events" element={<OfficerEvents />} />
         <Route path="/officer/members" element={<OfficerMembers />} />
         <Route path="/officer/incidents" element={<OfficerIncidents />} />
         <Route path="/officer/incidents/:id" element={<OfficerIncidentDetails />} />

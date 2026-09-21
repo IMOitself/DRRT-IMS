@@ -90,7 +90,7 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/officer/attendance" className={({ isActive }) =>
+                <NavLink to="/officer/events" className={({ isActive }) =>
                     isActive
                         ? "bottom-nav-active"
                         : "bottom-nav-inactive"
@@ -98,7 +98,7 @@ export default function BottomNav() {
                     {({ isActive }) => (
                         <>
                             <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>how_to_reg</span>
-                            <span className="bottom-nav-label">Attendance</span>
+                            <span className="bottom-nav-label">Events</span>
                         </>
                     )}
                 </NavLink>

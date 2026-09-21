@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import api from "../../api/axios";
 import { formatDate, getInitials } from "../../utils/format";
 
-export default function Attendance() {
+export default function Events() {
 
   const [events, setEvents] = useState([]);
   const [members, setMembers] = useState([]);
@@ -47,7 +47,7 @@ export default function Attendance() {
 
   return (
     <>
-      <title>Attendance - DRRT Officer Portal</title>
+      <title>Events - DRRT Officer Portal</title>
 
       <Header />
 
@@ -60,7 +60,7 @@ export default function Attendance() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
                 <h1 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
-                  Attendance
+                  Events
                 </h1>
                 <p className="text-sm text-subtext mt-1.5">
                   Track and manage attendance for all members across all events.

@@ -31,7 +31,7 @@ export default function CreateEvent() {
 
         try {
             await api.post("/events", formData);
-            navigate("/officer/attendance");
+            navigate("/officer/events");
         } catch (err) {
             console.error(err);
             alert("Failed to create event. Please try again.");
@@ -47,9 +47,9 @@ export default function CreateEvent() {
             <div className="grow w-full">
                 <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
                     {/* Back Link */}
-                    <Link to="/officer/attendance" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
+                    <Link to="/officer/events" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
                         <span className="material-symbols-outlined text-[18px]!">arrow_back</span>
-                        <span>Back to Attendance</span>
+                        <span>Back to Events</span>
                     </Link>
 
                     {/* Header Card */}
