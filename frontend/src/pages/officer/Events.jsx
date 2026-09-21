@@ -60,6 +60,12 @@ export default function Events() {
 
   const closeUnsetDialog = () => setIsConfirmUnsetDialogOpen(false);
 
+  // same dialog, but asking the officer about a member's correction request
+  const openCorrectionDialog = (eventId, memberId) => {
+    setUnsetTarget({ eventId, memberId, isCorrection: true });
+    setIsConfirmUnsetDialogOpen(true);
+  };
+
   const handleConfirmUnsetDialogSubmit = async () => {
     const { eventId, memberId } = unsetTarget;
     const attendance = attendances.find(
@@ -306,6 +312,7 @@ export default function Events() {
                         getStatus={getStatus}
                         changeStatus={changeStatus}
                         openUnsetDialog={(memberId) => openUnsetDialog(event.id, memberId)}
+                        openCorrectionDialog={(memberId) => openCorrectionDialog(event.id, memberId)}
                         openDrawer={openDrawer}
                       />
                     </div>
@@ -553,22 +560,39 @@ export default function Events() {
                     warning
                   </span>
                   <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                    Unset Attendance?
+                    {unsetTarget?.isCorrection ? "Accept Correction?" : "Unset Attendance?"}
                   </p>
                 </div>
                 <p className="font-geist text-text">
-                  Unsetting this will allow the member to set their own attendance again.
+                  {unsetTarget?.isCorrection
+                    ? "Approving this will allow the member to set their attendance again. You can always set it yourself."
+                    : "Unsetting this will allow the member to set their own attendance again."}
                 </p>
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
-                      Cancel
-                    </button>
-                    <button onClick={handleConfirmUnsetDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
-                      <span className="material-symbols-outlined text-[20px]!">refresh</span>
-                      <span>Unset</span>
-                    </button>
+                    {unsetTarget?.isCorrection ? (
+                      <>
+                        <button onClick={closeUnsetDialog} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                          <span className="material-symbols-outlined text-[20px]!">close</span>
+                          <span>Reject</span>
+                        </button>
+                        <button onClick={closeUnsetDialog} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                          <span className="material-symbols-outlined text-[20px]!">check</span>
+                          <span>Approve</span>
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                          Cancel
+                        </button>
+                        <button onClick={handleConfirmUnsetDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                          <span className="material-symbols-outlined text-[20px]!">refresh</span>
+                          <span>Unset</span>
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -582,7 +606,7 @@ export default function Events() {
   );
 }
 
-function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDialog, openDrawer }) {
+function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(eventId, member.id)
@@ -649,7 +673,9 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openUnsetDi
                   </div>
                   <div>
                     <div className="flex items-center gap-0.5">
-                      <button className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); openCorrectionDialog(member.id); }}
+                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
                         wants correction
                       </button>
                       <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
