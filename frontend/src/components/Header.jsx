@@ -151,15 +151,6 @@ export default function Header() {
                     </Link>
                     {isLoggedIn && (
                         <div className="flex items-center justify-center gap-3">
-                            
-                            {/* NEW: Officer-only Create Event Button */}
-                            {user?.role === "officer" && (
-                                <Link to="/officer/create-event" className="hidden md:flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
-                                    <span className="material-symbols-outlined text-[18px]!">calendar_add_on</span>
-                                    New Event
-                                </Link>
-                            )}
-
                             {is_public_pages && (
                                 <Link to={dashboardLink} className="font-geist text-xs md:text-sm bg-blue text-white transition-all px-5 py-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer">
                                     Dashboard

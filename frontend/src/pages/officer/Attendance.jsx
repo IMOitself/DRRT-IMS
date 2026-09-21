@@ -55,6 +55,10 @@ export default function Attendance() {
                   Track and manage attendance for all members across all events.
                 </p>
               </div>
+              <Link to="/officer/create-event" className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
+                <span className="material-symbols-outlined text-[18px]!">calendar_add_on</span>
+                New Event
+              </Link>
             </div>
             <div className="w-full mt-6">
               <div className="relative">
