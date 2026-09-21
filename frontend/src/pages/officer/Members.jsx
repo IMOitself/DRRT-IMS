@@ -337,21 +337,12 @@ export default function Members() {
                             Approve
                         </button>
                     </div>
-                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" ? (
+                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" && (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="text-center text-sm text-subtext">
                             <span className="material-symbols-outlined text-yellow text-[18px] align-middle mr-1">schedule</span>
                             Waiting for applicant to register their account
                         </div>
-                    </div>
-                ) : (
-                    <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-                        <button className="cursor-pointer flex-1 bg-white border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-sm hover:bg-surface-container-low transition-colors">
-                            Edit
-                        </button>
-                        <button className="cursor-pointer flex-1 bg-blue text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-blue transition-colors shadow-sm">
-                            Message
-                        </button>
                     </div>
                 )}
             </aside>
