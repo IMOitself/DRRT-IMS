@@ -63,6 +63,17 @@ class AttendanceController extends Controller
     }
 
     /**
+     * Officer approves an attendance a member set for themselves.
+     */
+    public function approve(Attendance $attendance)
+    {
+        // TODO: officer role only
+        $attendance->update(['pending_approval' => false]);
+
+        return response()->json($attendance, 200);
+    }
+
+    /**
      * Member asks an officer to correct their own attendance record.
      */
     public function requestCorrection(Request $request, Attendance $attendance)
