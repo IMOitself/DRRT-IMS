@@ -32,6 +32,7 @@ class AttendanceController extends Controller
             'user_id' => $request->input('user_id'),
             'event_id' => $request->input('event_id'),
         ], [
+            'recorder_id' => $request->user()->id,
             'status' => $request->input('status'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
             'absent_reason' => $request->input('absent_reason'),

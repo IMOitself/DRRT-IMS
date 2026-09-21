@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->foreignId('recorder_id')->nullable()->constrained('users');
             $table->enum('status', ['present', 'absent', 'late'])->nullable();
             $table->string('proof_of_attendance')->nullable();
             $table->text('absent_reason')->nullable();
