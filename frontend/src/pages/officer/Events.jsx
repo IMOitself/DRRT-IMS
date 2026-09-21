@@ -49,6 +49,21 @@ export default function Events() {
   const unsavedCount = Object.keys(unsavedChanges).length;
   const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
 
+  const handleConfirmSaveDialogSubmit = async () => {
+    try {
+      for (const change of Object.values(unsavedChanges)) {
+        await api.post("/attendances", change);
+      }
+      const res = await api.get("/attendances", { params: { all: 1 } });
+      setAttendances(res.data);
+      setUnsavedChanges({});
+    } catch (err) {
+      console.error(err);
+    }
+
+    setIsConfirmSaveDialogOpen(false);
+  };
+
   // group the pending changes per event, so the dialog can list them by event title
   const changesByEvent = events
     .map((event) => ({
@@ -469,7 +484,7 @@ export default function Events() {
                     <button onClick={() => setIsConfirmSaveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                       Cancel
                     </button>
-                    <button className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                    <button onClick={handleConfirmSaveDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]!">save</span>
                       <span>Save</span>
                     </button>

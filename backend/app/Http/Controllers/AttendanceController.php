@@ -27,9 +27,11 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $attendance = Attendance::create([
+        // one attendance per member per event, so update it if it already exists
+        $attendance = Attendance::updateOrCreate([
             'user_id' => $request->input('user_id'),
             'event_id' => $request->input('event_id'),
+        ], [
             'status' => $request->input('status'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
             'absent_reason' => $request->input('absent_reason'),
