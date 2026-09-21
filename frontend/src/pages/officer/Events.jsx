@@ -588,6 +588,15 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openDrawer 
                 </div>
                 {/* stop the click here so the drawer doesn't open */}
                 <div onClick={(e) => e.stopPropagation()} className="flex items-center gap-1 shrink-0">
+                  {status && (
+                    <button
+                      title="Unset"
+                      onClick={() => changeStatus(eventId, member.id, null)}
+                      className="w-9 h-9 rounded flex items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-[18px]!">refresh</span>
+                    </button>
+                  )}
+
                   {status === "present" ? (
                     <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
                       <span>Present</span>
