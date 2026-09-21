@@ -64,6 +64,29 @@ export default function Login() {
       });
   };
 
+  const testLoginAsMember = () => {
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/login", {
+        email: "imabackgroundcharacter@gmail.com",
+        password: "background",
+      })
+      .then((res) => {
+        login(res.data.token, res.data.user);
+        navigate("/member/dashboard");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
+      });
+  };
+
   return (
     <>
       <title>Login - DRRT Member Portal</title>
@@ -173,6 +196,9 @@ export default function Login() {
 
           <button onClick={testLoginAsOfficer} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
             test: login as officer hehe
+          </button>
+          <button onClick={testLoginAsMember} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as member hehe
           </button>
           <Link to="/test-pages" className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
             test: view all pages (no login)
