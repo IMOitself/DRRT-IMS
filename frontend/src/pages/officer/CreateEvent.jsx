@@ -7,7 +7,7 @@ import BottomNav from "../../components/BottomNav";
 export default function CreateEvent() {
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -31,8 +31,7 @@ export default function CreateEvent() {
 
         try {
             await api.post("/events", formData);
-            // Redirect to dashboard on success
-            navigate("/officer/dashboard");
+            navigate("/officer/attendance");
         } catch (err) {
             console.error(err);
             alert("Failed to create event. Please try again.");
@@ -66,7 +65,7 @@ export default function CreateEvent() {
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
-                            
+
                             {/* General Details */}
                             <div className="space-y-4">
                                 <div>
@@ -77,7 +76,7 @@ export default function CreateEvent() {
                                     <label className="block font-geist text-sm font-bold text-text mb-1.5">Description <span className="text-red">*</span></label>
                                     <textarea name="description" required rows="3" value={formData.description} onChange={handleChange} placeholder="What is this event about?" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                 </div>
-                                
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block font-geist text-sm font-bold text-text mb-1.5">Date <span className="text-red">*</span></label>
@@ -150,7 +149,7 @@ export default function CreateEvent() {
                     </section>
                 </main>
             </div>
-            
+
             <BottomNav />
         </>
     );
