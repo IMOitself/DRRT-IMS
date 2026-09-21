@@ -17,11 +17,9 @@ export default function EventAttendance() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
   const [selectedAttendance, setSelectedAttendance] = useState(null);
-  function openDrawer(eventId, member) {
+  function openDrawer(member) {
     setSelectedMember(member);
-    setSelectedAttendance(
-      attendances.find((a) => a.event_id === eventId && a.user_id === member.id)
-    );
+    setSelectedAttendance(attendances.find((a) => a.user_id === member.id));
     setDrawerOpen(true);
   }
 
@@ -29,26 +27,22 @@ export default function EventAttendance() {
     setDrawerOpen(false);
   }
 
-  const changeKey = (eventId, memberId) => `${eventId}-${memberId}`;
+  const getSavedStatus = (memberId) =>
+    attendances.find((a) => a.user_id === memberId)?.status;
 
-  const getSavedStatus = (eventId, memberId) =>
-    attendances.find((a) => a.event_id === eventId && a.user_id === memberId)
-      ?.status;
+  const wantsCorrection = (memberId) =>
+    !!attendances.find((a) => a.user_id === memberId)?.correction_requested;
 
-  const wantsCorrection = (eventId, memberId) =>
-    !!attendances.find((a) => a.event_id === eventId && a.user_id === memberId)
-      ?.correction_requested;
-
-  const getStatus = (eventId, memberId) => {
-    const unsaved = unsavedChanges[changeKey(eventId, memberId)];
+  const getStatus = (memberId) => {
+    const unsaved = unsavedChanges[memberId];
     if (unsaved) return unsaved.status;
-    return getSavedStatus(eventId, memberId);
+    return getSavedStatus(memberId);
   };
 
-  const changeStatus = (eventId, memberId, status) => {
+  const changeStatus = (memberId, status) => {
     setUnsavedChanges({
       ...unsavedChanges,
-      [changeKey(eventId, memberId)]: { event_id: eventId, user_id: memberId, status },
+      [memberId]: { event_id: eventId, user_id: memberId, status },
     });
   };
 
@@ -57,8 +51,8 @@ export default function EventAttendance() {
   const [isConfirmUnsetDialogOpen, setIsConfirmUnsetDialogOpen] = useState(false);
   const [unsetTarget, setUnsetTarget] = useState(null);
 
-  const openUnsetDialog = (eventId, memberId) => {
-    setUnsetTarget({ eventId, memberId });
+  const openUnsetDialog = (memberId) => {
+    setUnsetTarget(memberId);
     setIsConfirmUnsetDialogOpen(true);
   };
 
@@ -66,18 +60,15 @@ export default function EventAttendance() {
 
   const [isCorrectionDialogOpen, setIsCorrectionDialogOpen] = useState(false);
 
-  const openCorrectionDialog = (eventId, memberId) => {
-    setUnsetTarget({ eventId, memberId });
+  const openCorrectionDialog = (memberId) => {
+    setUnsetTarget(memberId);
     setIsCorrectionDialogOpen(true);
   };
 
   const closeCorrectionDialog = () => setIsCorrectionDialogOpen(false);
 
   const unsetAttendance = async () => {
-    const { eventId, memberId } = unsetTarget;
-    const attendance = attendances.find(
-      (a) => a.event_id === eventId && a.user_id === memberId
-    );
+    const attendance = attendances.find((a) => a.user_id === unsetTarget);
 
     try {
       if (attendance) await api.delete(`/attendances/${attendance.id}`);
@@ -87,7 +78,7 @@ export default function EventAttendance() {
     }
 
     // drop the pending change too, there is nothing left to save
-    const { [changeKey(eventId, memberId)]: _, ...rest } = unsavedChanges;
+    const { [unsetTarget]: _, ...rest } = unsavedChanges;
     setUnsavedChanges(rest);
 
     closeUnsetDialog();
@@ -100,7 +91,7 @@ export default function EventAttendance() {
         await api.post("/attendances", change);
       }
       const res = await api.get("/attendances", { params: { all: 1 } });
-      setAttendances(res.data);
+      setAttendances(res.data.filter((a) => a.event_id === eventId));
       setUnsavedChanges({});
     } catch (err) {
       console.error(err);
@@ -112,11 +103,7 @@ export default function EventAttendance() {
   const getMemberName = (memberId) =>
     members.find((m) => m.id === memberId)?.name;
 
-  const getChangesOfEvent = (eventId) =>
-    Object.values(unsavedChanges).filter((c) => c.event_id === eventId);
-
-  // the save dialog only ever lists this one event
-  const changedEvents = getChangesOfEvent(eventId).length > 0 && event ? [event] : [];
+  const changes = Object.values(unsavedChanges);
 
   useEffect(() => {
 
@@ -132,7 +119,7 @@ export default function EventAttendance() {
     api
       .get("/attendances", { params: { all: 1 } })
       .then((res) => {
-        setAttendances(res.data);
+        setAttendances(res.data.filter((a) => a.event_id === eventId));
       })
       .catch((err) => {
         console.error(err);
@@ -150,7 +137,7 @@ export default function EventAttendance() {
   }, [eventId]);
 
   const countByStatus = (status) =>
-    members.filter((m) => getStatus(eventId, m.id) === status).length;
+    members.filter((m) => getStatus(m.id) === status).length;
 
   return (
     <>
@@ -259,12 +246,11 @@ export default function EventAttendance() {
 
           <AttendanceList
             members={members}
-            eventId={eventId}
             getStatus={getStatus}
             wantsCorrection={wantsCorrection}
             changeStatus={changeStatus}
-            openUnsetDialog={(memberId) => openUnsetDialog(eventId, memberId)}
-            openCorrectionDialog={(memberId) => openCorrectionDialog(eventId, memberId)}
+            openUnsetDialog={openUnsetDialog}
+            openCorrectionDialog={openCorrectionDialog}
             openDrawer={openDrawer}
           />
         </main>
@@ -449,34 +435,30 @@ export default function EventAttendance() {
                 </p>
 
                 <div className="mt-3 space-y-4 max-h-[45vh] overflow-y-auto">
-                  {changedEvents.map((event) => (
-                    <div key={event.id}>
-                      <p className="font-geist text-sm font-bold text-text">
-                        {event.title}
-                      </p>
-                      <ul className="mt-1 ml-5 list-disc space-y-0.5 text-sm text-subtext">
-                        {getChangesOfEvent(event.id).map((change) => (
-                          <li key={change.user_id}>
-                            {getMemberName(change.user_id)} &mdash;{" "}
-                            <span className="capitalize line-through">
-                              {getSavedStatus(event.id, change.user_id) ?? "no record"}
-                            </span>{" "}
-                            &rarr;{" "}
-                            <span
-                              className={`font-semibold capitalize ${change.status === "present"
-                                ? "text-green"
-                                : change.status === "absent"
-                                  ? "text-red"
-                                  : "text-yellow"
-                                }`}
-                            >
-                              {change.status}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  <p className="font-geist text-sm font-bold text-text">
+                    {event?.title}
+                  </p>
+                  <ul className="mt-1 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+                    {changes.map((change) => (
+                      <li key={change.user_id}>
+                        {getMemberName(change.user_id)} &mdash;{" "}
+                        <span className="capitalize line-through">
+                          {getSavedStatus(change.user_id) ?? "no record"}
+                        </span>{" "}
+                        &rarr;{" "}
+                        <span
+                          className={`font-semibold capitalize ${change.status === "present"
+                            ? "text-green"
+                            : change.status === "absent"
+                              ? "text-red"
+                              : "text-yellow"
+                            }`}
+                        >
+                          {change.status}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 <div className="w-full flex items-center mt-4">
@@ -573,10 +555,10 @@ export default function EventAttendance() {
   );
 }
 
-function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ members, getStatus, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
-    (member) => !getStatus(eventId, member.id)
+    (member) => !getStatus(member.id)
   ).length;
 
   return (
@@ -621,10 +603,10 @@ function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeSt
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
           {members.map((member) => {
-            const status = getStatus(eventId, member.id);
+            const status = getStatus(member.id);
             return (
               <div key={member.id}
-                onClick={() => openDrawer(eventId, member)}
+                onClick={() => openDrawer(member)}
                 className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors cursor-pointer">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
@@ -638,7 +620,7 @@ function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeSt
                       {member.membership_application?.course} - {member.membership_application?.year_level} Year
                     </p>
                   </div>
-                  {wantsCorrection(eventId, member.id) && (
+                  {wantsCorrection(member.id) && (
                     <div>
                       <div className="flex items-center gap-0.5">
                         <button
@@ -668,7 +650,7 @@ function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeSt
                     </button>
                   ) : (
                     <button
-                      onClick={() => changeStatus(eventId, member.id, "present")}
+                      onClick={() => changeStatus(member.id, "present")}
                       className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Present
                     </button>
@@ -680,7 +662,7 @@ function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeSt
                     </button>
                   ) : (
                     <button
-                      onClick={() => changeStatus(eventId, member.id, "absent")}
+                      onClick={() => changeStatus(member.id, "absent")}
                       className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Absent
                     </button>
@@ -692,7 +674,7 @@ function AttendanceList({ members, eventId, getStatus, wantsCorrection, changeSt
                     </button>
                   ) : (
                     <button
-                      onClick={() => changeStatus(eventId, member.id, "late")}
+                      onClick={() => changeStatus(member.id, "late")}
                       className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Late
                     </button>

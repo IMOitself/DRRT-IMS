@@ -8,12 +8,7 @@ import { formatDate } from "../../utils/format";
 export default function Events() {
 
   const [events, setEvents] = useState([]);
-  const [members, setMembers] = useState([]);
   const [attendances, setAttendances] = useState([]);
-
-  const getStatus = (eventId, memberId) =>
-    attendances.find((a) => a.event_id === eventId && a.user_id === memberId)
-      ?.status;
 
   useEffect(() => {
 
@@ -30,15 +25,6 @@ export default function Events() {
       .get("/attendances", { params: { all: 1 } })
       .then((res) => {
         setAttendances(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    api
-      .get("/members")
-      .then((res) => {
-        setMembers(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -101,7 +87,9 @@ export default function Events() {
           <section className="space-y-6 md:space-y-8 mb-4">
             {events.map((event) => {
               const countByStatus = (status) =>
-                members.filter((m) => getStatus(event.id, m.id) === status).length;
+                attendances.filter(
+                  (a) => a.event_id === event.id && a.status === status
+                ).length;
               return (
                 <Link
                   to={`/officer/events/${event.id}`}
@@ -193,7 +181,7 @@ export default function Events() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full flex justify-end items-center gap-1 text-xs font-semibold text-text font-geist">
+                  <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-md font-semibold">
                     <span>See attendances</span>
                     <span className="material-symbols-outlined text-[18px]!">
                       keyboard_arrow_right
