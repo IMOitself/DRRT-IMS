@@ -31,12 +31,14 @@ export default function Events() {
 
   const changeKey = (eventId, memberId) => `${eventId}-${memberId}`;
 
+  const getSavedStatus = (eventId, memberId) =>
+    attendances.find((a) => a.event_id === eventId && a.user_id === memberId)
+      ?.status;
+
   const getStatus = (eventId, memberId) => {
     const unsaved = unsavedChanges[changeKey(eventId, memberId)];
     if (unsaved) return unsaved.status;
-    return attendances.find(
-      (a) => a.event_id === eventId && a.user_id === memberId
-    )?.status;
+    return getSavedStatus(eventId, memberId);
   };
 
   const changeStatus = (eventId, memberId, status) => {
@@ -64,21 +66,16 @@ export default function Events() {
     setIsConfirmSaveDialogOpen(false);
   };
 
-  // group the pending changes per event, so the dialog can list them by event title
-  const changesByEvent = events
-    .map((event) => ({
-      event,
-      changes: Object.values(unsavedChanges)
-        .filter((change) => change.event_id === event.id)
-        .map((change) => ({
-          name: members.find((m) => m.id === change.user_id)?.name,
-          oldStatus: attendances.find(
-            (a) => a.event_id === change.event_id && a.user_id === change.user_id
-          )?.status,
-          status: change.status,
-        })),
-    }))
-    .filter((group) => group.changes.length > 0);
+  const getMemberName = (memberId) =>
+    members.find((m) => m.id === memberId)?.name;
+
+  const getChangesOfEvent = (eventId) =>
+    Object.values(unsavedChanges).filter((c) => c.event_id === eventId);
+
+  // only the events the dialog needs to list
+  const changedEvents = events.filter(
+    (event) => getChangesOfEvent(event.id).length > 0
+  );
 
   useEffect(() => {
 
@@ -448,17 +445,17 @@ export default function Events() {
                 </p>
 
                 <div className="mt-3 space-y-4 max-h-[45vh] overflow-y-auto">
-                  {changesByEvent.map(({ event, changes }) => (
+                  {changedEvents.map((event) => (
                     <div key={event.id}>
                       <p className="font-geist text-sm font-bold text-text">
                         {event.title}
                       </p>
                       <ul className="mt-1 ml-5 list-disc space-y-0.5 text-sm text-subtext">
-                        {changes.map((change) => (
-                          <li key={change.name}>
-                            {change.name} &mdash;{" "}
+                        {getChangesOfEvent(event.id).map((change) => (
+                          <li key={change.user_id}>
+                            {getMemberName(change.user_id)} &mdash;{" "}
                             <span className="capitalize line-through">
-                              {change.oldStatus ?? "no record"}
+                              {getSavedStatus(event.id, change.user_id) ?? "no record"}
                             </span>{" "}
                             &rarr;{" "}
                             <span
