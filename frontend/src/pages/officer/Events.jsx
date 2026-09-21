@@ -245,7 +245,7 @@ export default function Events() {
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm">
+                      <div className="flex flex-col flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm">
                         <div className="flex gap-4 text-xs font-geist">
                           <div className="font-bold flex items-center gap-1.5 text-green">
                             <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
@@ -261,6 +261,12 @@ export default function Events() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div className="w-full flex justify-end items-center gap-1 text-xs font-semibold text-text font-geist">
+                      <span>{openAttendanceId === event.id ? "See less" : "See more"}</span>
+                      <span className="material-symbols-outlined text-[18px]!">
+                        {openAttendanceId === event.id ? "keyboard_arrow_up" : "keyboard_arrow_down"}
+                      </span>
                     </div>
                   </div>
 
@@ -477,10 +483,10 @@ export default function Events() {
                             &rarr;{" "}
                             <span
                               className={`font-semibold capitalize ${change.status === "present"
-                                  ? "text-green"
-                                  : change.status === "absent"
-                                    ? "text-red"
-                                    : "text-yellow"
+                                ? "text-green"
+                                : change.status === "absent"
+                                  ? "text-red"
+                                  : "text-yellow"
                                 }`}
                             >
                               {change.status}
