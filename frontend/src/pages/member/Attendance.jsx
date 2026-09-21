@@ -13,11 +13,11 @@ export default function Attendance() {
         event_id: null,
         status: "",
         proof_of_attendance: null,
-        proof_of_absence: null,
+        absent_supporting_image: null,
         absent_reason: "",
         timein_hour: "",
         timein_minute: "",
-        ampm: "AM",
+        timein_ampm: "AM",
     };
     const [formData, setFormData] = useState(initialFormData);
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -417,9 +417,9 @@ export default function Attendance() {
                                     />
                                     <div className="flex flex-col">
                                         <select
-                                            name="ampm"
-                                            id="ampm"
-                                            value={formData.ampm || "AM"}
+                                            name="timein_ampm"
+                                            id="timein_ampm"
+                                            value={formData.timein_ampm || "AM"}
                                             onChange={handleChange}
                                             className="w-fit px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                         >
@@ -491,7 +491,7 @@ export default function Attendance() {
                             </p>
                             <input
                                 type="file"
-                                name="proof_of_absence"
+                                name="absent_supporting_image"
                                 onChange={handleChange}
                                 accept=".pdf,.png,.jpg,.jpeg"
                                 className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"

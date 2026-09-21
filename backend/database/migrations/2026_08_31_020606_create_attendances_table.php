@@ -17,9 +17,11 @@ return new class extends Migration
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->enum('status', ['present', 'absent', 'late'])->nullable();
             $table->string('proof_of_attendance')->nullable();
+            $table->text('absent_reason')->nullable();
+            $table->string('absent_supporting_image')->nullable();
             $table->string('timein_hour')->nullable();
             $table->string('timein_minute')->nullable();
-            $table->string('ampm', 2)->nullable();
+            $table->string('timein_ampm', 2)->nullable();
             $table->timestamps();
         });
     }

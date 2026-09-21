@@ -33,10 +33,10 @@ class AttendanceController extends Controller
             'status' => $request->input('status'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
             'absent_reason' => $request->input('absent_reason'),
-            'proof_of_absence' => $request->input('proof_of_absence'),
+            'absent_supporting_image' => $request->input('absent_supporting_image'),
             'timein_hour' => $request->input('timein_hour'),
             'timein_minute' => $request->input('timein_minute'),
-            'ampm' => $request->input('ampm'),
+            'timein_ampm' => $request->input('timein_ampm'),
         ]);
 
         return response()->json(['attendance_id' => $attendance->id], 201);

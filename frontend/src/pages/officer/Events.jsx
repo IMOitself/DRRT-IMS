@@ -334,7 +334,7 @@ export default function Events() {
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
                       <p className="font-geist text-3xl text-blue font-bold m-0">
                         {selectedAttendance.timein_hour
-                          ? `${selectedAttendance.timein_hour}:${selectedAttendance.timein_minute} ${selectedAttendance.ampm}`
+                          ? `${selectedAttendance.timein_hour}:${selectedAttendance.timein_minute} ${selectedAttendance.timein_ampm}`
                           : "N/A"}
                       </p>
                       <p className="font-geist text-xs text-subtext mt-1">
@@ -365,7 +365,7 @@ export default function Events() {
                     </div>
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
                       <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                        {selectedAttendance.proof_of_absence || "N/A"}
+                        {selectedAttendance.absent_supporting_image || "N/A"}
                       </p>
                       <p className="font-geist text-xs text-subtext mt-1">
                         Proof of Absence
