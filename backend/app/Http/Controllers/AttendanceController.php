@@ -32,6 +32,8 @@ class AttendanceController extends Controller
             'event_id' => $request->input('event_id'),
             'status' => $request->input('status'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
+            'absent_reason' => $request->input('absent_reason'),
+            'proof_of_absence' => $request->input('proof_of_absence'),
             'timein_hour' => $request->input('timein_hour'),
             'timein_minute' => $request->input('timein_minute'),
             'ampm' => $request->input('ampm'),

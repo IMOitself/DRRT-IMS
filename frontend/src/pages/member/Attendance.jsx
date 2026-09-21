@@ -13,6 +13,8 @@ export default function Attendance() {
         event_id: null,
         status: "",
         proof_of_attendance: null,
+        proof_of_absence: null,
+        absent_reason: "",
         timein_hour: "",
         timein_minute: "",
         ampm: "AM",
@@ -21,7 +23,7 @@ export default function Attendance() {
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const [isPresentAttendanceDialogOpen, setIsPresentAttendanceDialogOpen] = useState(false);
-    // const [isAbsentAttendanceDialogOpen, setIsAbsentAttendanceDialogOpen] = useState(false);
+    const [isAbsentAttendanceDialogOpen, setIsAbsentAttendanceDialogOpen] = useState(false);
     const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -40,6 +42,18 @@ export default function Attendance() {
             status: selectedEvent.unsaved_status,
         }));
         setIsPresentAttendanceDialogOpen(false);
+        setIsConfirmSaveDialogOpen(true);
+    }
+
+    const handleAbsentAttendanceDialogSubmit = (e) => {
+        e.preventDefault();
+        setFormData((prev) => ({
+            ...prev,
+            user_id: user.id,
+            event_id: selectedEvent.id,
+            status: selectedEvent.unsaved_status,
+        }));
+        setIsAbsentAttendanceDialogOpen(false);
         setIsConfirmSaveDialogOpen(true);
     }
 
@@ -303,7 +317,11 @@ export default function Attendance() {
                                             ) : (
                                                 <div className={userAlreadyHaveRecord || displayStatus === "unset" ? "hidden" : "flex gap-1 mt-2 justify-end"}>
                                                     <button
-                                                        onClick={() => {setFormData(initialFormData); setIsPresentAttendanceDialogOpen(true)}}
+                                                        onClick={() => {
+                                                            setFormData(initialFormData);
+                                                            if (displayStatus === "absent") setIsAbsentAttendanceDialogOpen(true);
+                                                            else setIsPresentAttendanceDialogOpen(true);
+                                                        }}
                                                         className="flex items-center justify-center gap-1 p-1 px-4 rounded bg-blue text-white hover:bg-blue/80 transition-colors text-xs font-bold cursor-pointer"
                                                     >
                                                         <span className="material-symbols-outlined text-[14px]">save</span>
@@ -421,6 +439,74 @@ export default function Attendance() {
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                    </form>
+                </div>
+            )}
+
+            {/* absent attendance dialog */}
+            {isAbsentAttendanceDialogOpen && (
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                    <form key={selectedEvent.id} onSubmit={(e) => handleAbsentAttendanceDialogSubmit(e)}
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
+                            <button type="button" className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-sm font-bold flex items-center justify-center gap-1">
+                                <span className="material-symbols-outlined text-[16px]!">close</span>
+                                <span>Absent</span>
+                            </button>
+                            <legend className="font-geist text-lg font-bold text-text">
+                                {selectedEvent?.title || "event name here idk"}
+                            </legend>
+
+                        </div>
+
+                        {/* reason for absence */}
+                        <div>
+                            <label htmlFor="absent_reason" className="block font-geist text-sm font-semibold text-text mb-1">
+                                Reason for Absence{" "}
+                                <span className="text-red">*</span>
+                            </label>
+                            <p className="text-sm text-subtext mb-2">
+                                Kindly explain why you were unable to attend. This will be reviewed by the officers.
+                            </p>
+                            <textarea
+                                id="absent_reason"
+                                name="absent_reason"
+                                value={formData.absent_reason || ""}
+                                onChange={handleChange}
+                                rows={4}
+                                required
+                                placeholder="Explain why you were unable to attend"
+                                className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text placeholder:text-subtext focus:ring-1 focus:ring-blue outline-none transition-all"
+                            />
+                        </div>
+
+                        {/* supporting document */}
+                        <div>
+                            <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                Supporting Document
+                            </label>
+                            <p className="text-sm text-subtext mb-2">
+                                Optional. Upload a medical certificate or any document that supports your reason.
+                            </p>
+                            <input
+                                type="file"
+                                name="proof_of_absence"
+                                onChange={handleChange}
+                                accept=".pdf,.png,.jpg,.jpeg"
+                                className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                            />
+                        </div>
+
+                        {/* dialog buttons */}
+                        <div className="w-full flex flex-row items-center justify-end gap-2">
+                            <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all active:scale-[0.98] cursor-pointer">
+                                <span className="material-symbols-outlined text-[16px]!">save</span>
+                                <span>Save</span>
+                            </button>
+                            <button type="button" onClick={() => setIsAbsentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                <span>Cancel</span>
+                            </button>
                         </div>
                     </form>
                 </div>
