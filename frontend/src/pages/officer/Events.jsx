@@ -384,35 +384,41 @@ export default function Events() {
                         Time In
                       </p>
                     </div>
+                    {selectedAttendance.proof_of_attendance && (
                     <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
                       <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                        {selectedAttendance.proof_of_attendance || "N/A"}
+                        {selectedAttendance.proof_of_attendance}
                       </p>
                       <p className="font-geist text-xs text-subtext mt-1">
                         Proof of Attendance
                       </p>
                     </div>
+                    )}
                   </div>
                 )}
 
                 {selectedAttendance?.status === "absent" && (
                   <div className="flex flex-col gap-3">
-                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                        {selectedAttendance.absent_reason || "N/A"}
-                      </p>
-                      <p className="font-geist text-xs text-subtext mt-1">
-                        Absent Reason
-                      </p>
-                    </div>
-                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                        {selectedAttendance.absent_supporting_image || "N/A"}
-                      </p>
-                      <p className="font-geist text-xs text-subtext mt-1">
-                        Proof of Absence
-                      </p>
-                    </div>
+                    {selectedAttendance.absent_reason && (
+                      <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                        <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                          {selectedAttendance.absent_reason}
+                        </p>
+                        <p className="font-geist text-xs text-subtext mt-1">
+                          Reason
+                        </p>
+                      </div>
+                    )}
+                    {selectedAttendance.absent_supporting_image && (
+                      <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                        <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                          {selectedAttendance.absent_supporting_image}
+                        </p>
+                        <p className="font-geist text-xs text-subtext mt-1">
+                          Supporting Image
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
 
