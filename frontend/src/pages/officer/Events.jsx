@@ -166,116 +166,116 @@ export default function Events() {
               const countByStatus = (status) =>
                 members.filter((m) => getStatus(event.id, m.id) === status).length;
               return (
-              <article
-                key={event.id}
-                className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300"
-              >
-                <div className="cursor-pointer"
-                  onClick={() =>
-                    setOpenAttendanceId(
-                      openAttendanceId === event.id ? null : event.id
-                    )
-                  }
+                <article
+                  key={event.id}
+                  className="bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300"
                 >
-                  <div className="flex-1">
-                    {/* venue online */}
-                    {event.venue_online && (
-                      <div className="flex flex-row justify-between items-center gap-2">
-                        <div className="flex items-center gap-1.5 text-blue">
-                          <span className="material-symbols-outlined text-[16px]!">
-                            videocam
-                          </span>
-                          <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                            {event.venue_online}
-                          </span>
-                        </div>
-                        <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
-                          Online
-                        </span>
-                      </div>
-                    )}
-
-                    {/* venue face to face */}
-                    {event.venue_facetoface && (
-                      <div className="flex flex-row items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5 text-blue">
-                          <span className="material-symbols-outlined text-[16px]!">
-                            location_on
-                          </span>
-                          <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                            {event.venue_facetoface}
+                  <div className="cursor-pointer"
+                    onClick={() =>
+                      setOpenAttendanceId(
+                        openAttendanceId === event.id ? null : event.id
+                      )
+                    }
+                  >
+                    <div className="flex-1">
+                      {/* venue online */}
+                      {event.venue_online && (
+                        <div className="flex flex-row justify-between items-center gap-2">
+                          <div className="flex items-center gap-1.5 text-blue">
+                            <span className="material-symbols-outlined text-[16px]!">
+                              videocam
+                            </span>
+                            <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                              {event.venue_online}
+                            </span>
+                          </div>
+                          <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                            Online
                           </span>
                         </div>
-                        <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
-                          Face to Face
-                        </span>
-                      </div>
-                    )}
+                      )}
 
-                    {!event.venue_online && !event.venue_facetoface && (
-                      <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
-                        Event
-                      </p>
-                    )}
+                      {/* venue face to face */}
+                      {event.venue_facetoface && (
+                        <div className="flex flex-row items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 text-blue">
+                            <span className="material-symbols-outlined text-[16px]!">
+                              location_on
+                            </span>
+                            <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                              {event.venue_facetoface}
+                            </span>
+                          </div>
+                          <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                            Face to Face
+                          </span>
+                        </div>
+                      )}
 
-                    <h2 className="font-geist text-2xl font-semibold text-text mt-1">
-                      {event.title}
-                    </h2>
-                  </div>
+                      {!event.venue_online && !event.venue_facetoface && (
+                        <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
+                          Event
+                        </p>
+                      )}
 
-                  <div className="flex justify-between">
-                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-blue text-[18px]!">
-                          event
-                        </span>
-                        <span className="capitalize">{event.type}</span>
-                      </div>
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-blue text-[18px]!">
-                          calendar_today
-                        </span>
-                        <span>{formatDate(event.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-blue text-[18px]!">
-                          people
-                        </span>
-                        <span>{event.participants}</span>
-                      </div>
+                      <h2 className="font-geist text-2xl font-semibold text-text mt-1">
+                        {event.title}
+                      </h2>
                     </div>
 
-                    <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm">
-                      <div className="flex gap-4 text-xs font-geist">
-                        <div className="font-bold flex items-center gap-1.5 text-green">
-                          <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
-                          Present: {countByStatus("present")}
+                    <div className="flex justify-between">
+                      <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
+                        <div className="flex items-center gap-2.5">
+                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                            event
+                          </span>
+                          <span className="capitalize">{event.type}</span>
                         </div>
-                        <div className="font-bold flex items-center gap-1.5 text-red">
-                          <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
-                          Absent: {countByStatus("absent")}
+                        <div className="flex items-center gap-2.5">
+                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                            calendar_today
+                          </span>
+                          <span>{formatDate(event.date)}</span>
                         </div>
-                        <div className="font-bold flex items-center gap-1.5 text-yellow">
-                          <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
-                          Late: {countByStatus("late")}
+                        <div className="flex items-center gap-2.5">
+                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                            people
+                          </span>
+                          <span>{event.participants}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm">
+                        <div className="flex gap-4 text-xs font-geist">
+                          <div className="font-bold flex items-center gap-1.5 text-green">
+                            <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
+                            Present: {countByStatus("present")}
+                          </div>
+                          <div className="font-bold flex items-center gap-1.5 text-red">
+                            <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
+                            Absent: {countByStatus("absent")}
+                          </div>
+                          <div className="font-bold flex items-center gap-1.5 text-yellow">
+                            <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
+                            Late: {countByStatus("late")}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {openAttendanceId === event.id && (
-                  <div className="border-t border-blue-border/40 pt-4 mt-2">
-                    <AttendanceList
-                      members={members}
-                      eventId={event.id}
-                      getStatus={getStatus}
-                      changeStatus={changeStatus}
-                      openDrawer={openDrawer}
-                    />
-                  </div>
-                )}
-              </article>
+                  {openAttendanceId === event.id && (
+                    <div className="border-t border-blue-border/40 pt-4 mt-2">
+                      <AttendanceList
+                        members={members}
+                        eventId={event.id}
+                        getStatus={getStatus}
+                        changeStatus={changeStatus}
+                        openDrawer={openDrawer}
+                      />
+                    </div>
+                  )}
+                </article>
               );
             })}
           </section>
@@ -284,36 +284,36 @@ export default function Events() {
 
       {/* sticky action bar */}
       {unsavedCount > 0 && (
-      <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white border-t border-blue-border shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-text">
-            <span className="material-symbols-outlined text-blue text-[20px]!">
-              border_color
-            </span>
-            <span className="font-geist text-sm font-medium">
-              Unsaved Changes: {unsavedCount} Attendances Updated
-            </span>
-          </div>
-          <div className="flex w-full sm:w-auto gap-3">
-            <button
-              onClick={() => setUnsavedChanges({})}
-              className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
-              <span className="material-symbols-outlined text-[18px]!">
-                history
-              </span>{" "}
-              Reset
-            </button>
-            <button
-              onClick={() => setIsConfirmSaveDialogOpen(true)}
-              className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-blue text-white font-geist text-sm font-semibold hover:bg-blue/90 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
-              <span className="material-symbols-outlined text-[18px]!">
-                save
-              </span>{" "}
-              Save
-            </button>
+        <div className="fixed bottom-16 md:bottom-0 left-0 w-full bg-white border-t border-blue-border shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-40 p-3 md:p-4">
+          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-text">
+              <span className="material-symbols-outlined text-blue text-[20px]!">
+                border_color
+              </span>
+              <span className="font-geist text-sm font-medium">
+                Unsaved Changes: {unsavedCount} Attendances Updated
+              </span>
+            </div>
+            <div className="flex w-full sm:w-auto gap-3">
+              <button
+                onClick={() => setUnsavedChanges({})}
+                className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                <span className="material-symbols-outlined text-[18px]!">
+                  history
+                </span>{" "}
+                Reset
+              </button>
+              <button
+                onClick={() => setIsConfirmSaveDialogOpen(true)}
+                className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-blue text-white font-geist text-sm font-semibold hover:bg-blue/90 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                <span className="material-symbols-outlined text-[18px]!">
+                  save
+                </span>{" "}
+                Save
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       )}
 
 
@@ -385,14 +385,14 @@ export default function Events() {
                       </p>
                     </div>
                     {selectedAttendance.proof_of_attendance && (
-                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                        {selectedAttendance.proof_of_attendance}
-                      </p>
-                      <p className="font-geist text-xs text-subtext mt-1">
-                        Proof of Attendance
-                      </p>
-                    </div>
+                      <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                        <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                          {selectedAttendance.proof_of_attendance}
+                        </p>
+                        <p className="font-geist text-xs text-subtext mt-1">
+                          Proof of Attendance
+                        </p>
+                      </div>
                     )}
                   </div>
                 )}
@@ -476,13 +476,12 @@ export default function Events() {
                             </span>{" "}
                             &rarr;{" "}
                             <span
-                              className={`font-semibold capitalize ${
-                                change.status === "present"
+                              className={`font-semibold capitalize ${change.status === "present"
                                   ? "text-green"
                                   : change.status === "absent"
                                     ? "text-red"
                                     : "text-yellow"
-                              }`}
+                                }`}
                             >
                               {change.status}
                             </span>
@@ -566,8 +565,8 @@ function AttendanceList({ members, eventId, getStatus, changeStatus, openDrawer 
             const status = getStatus(eventId, member.id);
             return (
               <div key={member.id}
-                   onClick={() => openDrawer(eventId, member)}
-                   className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors cursor-pointer">
+                onClick={() => openDrawer(eventId, member)}
+                className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors cursor-pointer">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
                     {getInitials(member.name)}
