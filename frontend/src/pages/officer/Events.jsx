@@ -13,6 +13,21 @@ export default function Events() {
   const [attendances, setAttendances] = useState([]);
   const [openAttendanceId, setOpenAttendanceId] = useState(null);
   const [unsavedChanges, setUnsavedChanges] = useState({});
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [selectedAttendance, setSelectedAttendance] = useState(null);
+
+  function openDrawer(eventId, member) {
+    setSelectedMember(member);
+    setSelectedAttendance(
+      attendances.find((a) => a.event_id === eventId && a.user_id === member.id)
+    );
+    setDrawerOpen(true);
+  }
+
+  function closeDrawer() {
+    setDrawerOpen(false);
+  }
 
   const changeKey = (eventId, memberId) => `${eventId}-${memberId}`;
 
@@ -227,6 +242,7 @@ export default function Events() {
                       eventId={event.id}
                       getStatus={getStatus}
                       changeStatus={changeStatus}
+                      openDrawer={openDrawer}
                     />
                   </div>
                 )}
@@ -269,12 +285,122 @@ export default function Events() {
       </div>
       )}
 
+
+      {/* Attendance Details Drawer */}
+      <aside className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-4 border-b border-blue-border">
+          <h3 className="font-geist text-lg font-bold text-text m-0">
+            Attendance Details
+          </h3>
+          <button
+            aria-label="Close"
+            className="cursor-pointer hover:bg-surface-container-high p-2 transition-colors text-subtext"
+            onClick={closeDrawer}
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        {/* Drawer Content */}
+        <div className="grow overflow-y-auto p-6 space-y-6">
+          {selectedMember && (
+            <>
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="w-20 h-20 text-3xl rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
+                  {getInitials(selectedMember.name)}
+                </div>
+                <h3 className="font-geist text-xl font-bold text-text m-0">
+                  {selectedMember.name}
+                </h3>
+
+                {selectedAttendance?.status === 'present'
+                  ? <span className="bg-green-bg text-green border border-green-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full">PRESENT</span>
+                  : selectedAttendance?.status === 'late'
+                    ? <span className="bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full">LATE</span>
+                    : selectedAttendance?.status === 'absent'
+                      ? <span className="bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full">ABSENT</span>
+                      : <span className="bg-surface-container-high text-subtext border border-blue-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full">NO RECORD</span>
+                }
+              </div>
+
+              <div className="border-t border-blue-border pt-4">
+                <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mb-3">
+                  Attendance Record
+                </p>
+
+                {/* present or late: show time in & proof of attendance */}
+                {(selectedAttendance?.status === "present" || selectedAttendance?.status === "late") && (
+                  <div className="flex flex-col gap-3">
+                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                      <p className="font-geist text-3xl text-blue font-bold m-0">
+                        {selectedAttendance.timein_hour
+                          ? `${selectedAttendance.timein_hour}:${selectedAttendance.timein_minute} ${selectedAttendance.ampm}`
+                          : "N/A"}
+                      </p>
+                      <p className="font-geist text-xs text-subtext mt-1">
+                        Time In
+                      </p>
+                    </div>
+                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                        {selectedAttendance.proof_of_attendance || "N/A"}
+                      </p>
+                      <p className="font-geist text-xs text-subtext mt-1">
+                        Proof of Attendance
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* absent: show absent reason & proof of absence */}
+                {selectedAttendance?.status === "absent" && (
+                  <div className="flex flex-col gap-3">
+                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                        {selectedAttendance.absent_reason || "N/A"}
+                      </p>
+                      <p className="font-geist text-xs text-subtext mt-1">
+                        Absent Reason
+                      </p>
+                    </div>
+                    <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                      <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
+                        {selectedAttendance.proof_of_absence || "N/A"}
+                      </p>
+                      <p className="font-geist text-xs text-subtext mt-1">
+                        Proof of Absence
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* no record yet */}
+                {!selectedAttendance?.status && (
+                  <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                    <p className="font-geist text-xs text-subtext">
+                      No attendance record for this member yet.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </aside>
+      {/* Drawer Overlay */}
+      {drawerOpen && (
+        <div
+          className="fixed inset-0 bg-text/20 z-65 transition-opacity"
+          onClick={closeDrawer}
+        />
+      )}
+
       <BottomNav />
     </>
   );
 }
 
-function AttendanceList({ members, eventId, getStatus, changeStatus }) {
+function AttendanceList({ members, eventId, getStatus, changeStatus, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(eventId, member.id)
@@ -324,7 +450,9 @@ function AttendanceList({ members, eventId, getStatus, changeStatus }) {
           {members.map((member) => {
             const status = getStatus(eventId, member.id);
             return (
-              <div key={member.id} className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors">
+              <div key={member.id}
+                   onClick={() => openDrawer(eventId, member)}
+                   className="flex flex-col md:flex-row gap-2 bg-white border border-blue-border rounded-lg p-2.5 justify-between shadow-sm hover:border-blue transition-colors cursor-pointer">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-blue-bg flex items-center justify-center font-bold text-blue shrink-0 font-geist">
                     {getInitials(member.name)}
@@ -338,7 +466,8 @@ function AttendanceList({ members, eventId, getStatus, changeStatus }) {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 shrink-0">
+                {/* stop the click here so the drawer doesn't open */}
+                <div onClick={(e) => e.stopPropagation()} className="flex items-center gap-1 shrink-0">
                   {status === "present" ? (
                     <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
                       <span>Present</span>
