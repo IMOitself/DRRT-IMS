@@ -61,6 +61,9 @@ export default function Dashboard() {
         : "0.00";
     const isCompliant = attendanceRatePercentage >= 80;
 
+    const pendingAttendanceApprovalCount = attendances.filter((attendance) => attendance.pending_approval).length;
+    const attendanceCorrectionRequestedCount = attendances.filter((attendance) => attendance.correction_requested).length;
+
     function googleCalendarUrl(event) {
         if (!event?.date) return "#";
         // convert 12-hour parts into a floating local time Google Calendar understands
@@ -109,7 +112,7 @@ export default function Dashboard() {
                             </Link>
                         </div>
                     </section>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col">
                             <div>
                                 <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
@@ -164,8 +167,36 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between">
+                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
+                            <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
+                                <span className="material-symbols-outlined text-blue text-[20px]">
+                                    hourglass_top
+                                </span>{" "}
+                                Pending Officer Review
+                            </h2>
+                            <p className="flex font-geist text-4xl font-bold text-text">
+                                {pendingAttendanceApprovalCount}
+                            </p>
+                            <p className="text-sm text-subtext mt-1">
+                                attendance records waiting for approval
+                            </p>
                         </div>
+
+                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
+                            <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
+                                <span className="material-symbols-outlined text-blue text-[20px]">
+                                    edit_note
+                                </span>{" "}
+                                Requested Corrections
+                            </h2>
+                            <p className="font-geist text-4xl font-bold text-text">
+                                {attendanceCorrectionRequestedCount}
+                            </p>
+                            <p className="text-sm text-subtext mt-1">
+                                attendance correction requests you submitted
+                            </p>
+                        </div>
+
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-yellow transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
                             <div>
                                 <div className="flex justify-between items-start mb-1">
