@@ -904,7 +904,7 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                     <button
                       title="Unset"
                       onClick={() => openUnsetDialog(member.id)}
-                      className="w-9 h-9 rounded flex items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
+                      className="hidden md:flex w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
                       <span className="material-symbols-outlined text-[18px]!">refresh</span>
                     </button>
                   )}
@@ -942,6 +942,15 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                       onClick={() => changeStatus(member.id, "late")}
                       className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
                       Late
+                    </button>
+                  )}
+
+                  {status && (
+                    <button
+                      title="Unset"
+                      onClick={() => openUnsetDialog(member.id)}
+                      className="flex md:hidden w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-[18px]!">refresh</span>
                     </button>
                   )}
                 </div>
