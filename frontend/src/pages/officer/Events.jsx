@@ -10,6 +10,20 @@ export default function Events() {
   const [events, setEvents] = useState([]);
   const [attendances, setAttendances] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [venueFilter, setVenueFilter] = useState("all");
+
+  // searching looks through all events, whatever the pill says
+  const matchesVenue = (event) => {
+    if (searchQuery.trim()) return true;
+    if (venueFilter === "online") return Boolean(event.venue_online);
+    if (venueFilter === "facetoface") return Boolean(event.venue_facetoface);
+    return true;
+  };
+
+  const pillClassName = (filter) =>
+    venueFilter === filter && !searchQuery.trim()
+      ? "shrink-0 bg-blue text-white font-geist text-sm px-4 py-2 rounded-full font-semibold shadow-sm cursor-pointer"
+      : "shrink-0 bg-surface text-subtext border border-blue-border/80 font-geist text-sm px-4 py-2 rounded-full hover:bg-surface-container-low transition-colors font-semibold cursor-pointer";
 
   const matchesSearch = (event) => {
     const query = searchQuery.trim().toLowerCase();
@@ -53,7 +67,7 @@ export default function Events() {
 
   }, []);
 
-  const filteredEvents = events.filter(matchesSearch);
+  const filteredEvents = events.filter((event) => matchesSearch(event) && matchesVenue(event));
 
   return (
     <>
@@ -90,20 +104,24 @@ export default function Events() {
                   type="text"
                   placeholder="Search e.g Title, Jan 1, 2026, Gmeet, Face to Face, BSIS 1..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    // back to a plain list once the search is cleared
+                    if (!e.target.value.trim()) setVenueFilter("all");
+                  }}
                   className="w-full bg-surface border border-blue-border rounded-xl py-2.5 pl-10 pr-4 text-sm text-text placeholder:text-subtext/70 focus:outline-none focus:ring-2 focus:ring-blue/30 transition-all shadow-sm"
                 />
               </div>
             </div>
             {/* Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar mt-6 border-t border-blue-border/40">
-              <button className="shrink-0 bg-blue text-white font-geist text-sm px-4 py-2 rounded-full font-semibold shadow-sm">
+              <button onClick={() => setVenueFilter("all")} className={pillClassName("all")}>
                 All Events
               </button>
-              <button className="shrink-0 bg-surface text-subtext border border-blue-border/80 font-geist text-sm px-4 py-2 rounded-full hover:bg-surface-container-low transition-colors font-semibold">
+              <button onClick={() => setVenueFilter("online")} className={pillClassName("online")}>
                 Online
               </button>
-              <button className="shrink-0 bg-surface text-subtext border border-blue-border/80 font-geist text-sm px-4 py-2 rounded-full hover:bg-surface-container-low transition-colors font-semibold">
+              <button onClick={() => setVenueFilter("facetoface")} className={pillClassName("facetoface")}>
                 Face-to-Face
               </button>
             </div>
