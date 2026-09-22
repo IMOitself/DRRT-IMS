@@ -84,6 +84,11 @@ class AttendanceController extends Controller
             return response()->json(['message' => 'Forbidden'], 403);
         }
 
+        // still waiting for an officer, so there is nothing to correct yet
+        if ($attendance->pending_approval) {
+            return response()->json(['message' => 'Attendance is still pending approval'], 422);
+        }
+
         $attendance->update(['correction_requested' => true]);
 
         return response()->json($attendance, 200);
