@@ -168,16 +168,15 @@ export default function Attendance() {
                                         Current Standing Period: 2026
                                     </p>
                                 </div>
-                                <div className="bg-green-bg border border-green-border px-3 py-1 rounded-full flex items-center gap-1.5">
-                                    {attendanceRatePercentage >= 80 && (
-                                        <>
-                                            <span className="w-2 h-2 rounded-full bg-green" />
-                                            <span className="font-geist text-xs font-bold uppercase text-green">
-                                                Compliant
-                                            </span>
-                                        </>
-                                    )}
-                                </div>
+                                {attendanceRatePercentage >= 80 && (
+                                    <div className="bg-green-bg border border-green-border px-3 py-1 rounded-full flex items-center gap-1.5">                                        <>
+                                        <span className="w-2 h-2 rounded-full bg-green" />
+                                        <span className="font-geist text-xs font-bold uppercase text-green">
+                                            Compliant
+                                        </span>
+                                    </>
+                                    </div>
+                                )}
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-end">
@@ -236,10 +235,6 @@ export default function Attendance() {
 
                     {/* attendance list*/}
                     <div className="lg:col-span-7 flex flex-col gap-4">
-                        <h3 className="flex justify-between items-center font-geist text-2xl font-bold text-text">
-                            Recent Events
-                        </h3>
-
                         <div className="space-y-4">
                             {events.map((event) => {
                                 let currentStatus = "unset";
