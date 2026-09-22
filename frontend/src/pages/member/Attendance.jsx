@@ -132,6 +132,8 @@ export default function Attendance() {
             });
     }, [user]);
 
+    const selectedEventSavedStatus = attendances.find((attendance) => attendance.event_id === selectedEvent.id)?.status;
+
     const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
     const attendanceRatePercentage = ((eventsWithPresentAttendance.length / events.length) * 100).toFixed(2);
 
@@ -442,7 +444,7 @@ export default function Attendance() {
                                         value={formData.timein_hour || ""}
                                         onChange={handleChange}
                                         onBlur={handleTimeMakeSure2Digits}
-                                        placeholder="08"
+                                        placeholder={selectedEvent.time_hour}
                                         maxLength="2"
                                         required
                                         className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
@@ -456,7 +458,7 @@ export default function Attendance() {
                                         value={formData.timein_minute || ""}
                                         onChange={handleChange}
                                         onBlur={handleTimeMakeSure2Digits}
-                                        placeholder="00"
+                                        placeholder={selectedEvent.time_minute}
                                         maxLength="2"
                                         required
                                         className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
@@ -646,6 +648,30 @@ export default function Attendance() {
                                 <p className="font-geist text-text">
                                     Once saved, it will be reviewed by the officers. You can still request correction afterwards.
                                 </p>
+
+                                <div className="mt-3 space-y-4 max-h-[45vh] overflow-y-auto">
+                                    <p className="font-geist text-sm font-bold text-text">
+                                        {selectedEvent?.title}
+                                    </p>
+                                    <ul className="mt-1 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+                                        <li>
+                                            <span className="capitalize line-through">
+                                                {selectedEventSavedStatus ?? "no record"}
+                                            </span>{" "}
+                                            &rarr;{" "}
+                                            <span
+                                                className={`font-semibold capitalize ${formData.status === "present"
+                                                    ? "text-green"
+                                                    : formData.status === "absent"
+                                                        ? "text-red"
+                                                        : "text-yellow"
+                                                    }`}
+                                            >
+                                                {formData.status}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div className="w-full flex items-center">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
                                         <button onClick={() => { setIsConfirmSaveDialogOpen(false) }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
