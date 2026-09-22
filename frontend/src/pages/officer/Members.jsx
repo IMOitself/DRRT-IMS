@@ -69,7 +69,7 @@ export default function Members() {
             {/* Main Content Canvas */}
             <main className="grow pb-32">
                 <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 space-y-4">
-                    {/* Active Members Context Header */}
+                    {/* Members Context Header */}
                     <section className="bg-white border border-blue-border p-6 rounded-xl shadow-sm space-y-2">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
@@ -112,9 +112,6 @@ export default function Members() {
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0">
                                 All Members ({listedApplications.length})
-                            </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
-                                Active Only (0)
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 1st Year
@@ -160,11 +157,6 @@ export default function Members() {
                                         <span className="bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
                                             <span className="bg-yellow w-2 h-2 rounded-full" />
                                             AWAITING REGISTRATION
-                                        </span>
-                                    ) : application.status === 'approved_member_now' ? (
-                                        <span className="bg-green-bg text-green inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
-                                            <span className="bg-green w-2 h-2 rounded-full" />
-                                            ACTIVE
                                         </span>
                                     ) : application.status === 'rejected' ? (
                                         <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
@@ -277,15 +269,13 @@ export default function Members() {
                                     ID: {selectedMemberApplication.student_id}
                                 </p>
 
-                                {selectedMemberApplication.status === 'approved_member_now'
-                                    ? <span className={'bg-green-bg text-green border border-green-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>ACTIVE</span>
-                                    : selectedMemberApplication.status === 'pending'
-                                        ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>PENDING</span>
-                                        : selectedMemberApplication.status === 'approved_need_register'
-                                            ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
-                                            : selectedMemberApplication.status === 'rejected'
-                                                ? <span className={'bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>REJECTED</span>
-                                                : ""
+                                {selectedMemberApplication.status === 'pending'
+                                    ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>PENDING</span>
+                                    : selectedMemberApplication.status === 'approved_need_register'
+                                        ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
+                                        : selectedMemberApplication.status === 'rejected'
+                                            ? <span className={'bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>REJECTED</span>
+                                            : ""
                                 }
                             </div>
                             <div className="space-y-4">
