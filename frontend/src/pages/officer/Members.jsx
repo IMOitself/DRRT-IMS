@@ -10,6 +10,8 @@ export default function Members() {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isAddMemberDialogOpen, setIsAddMemberDialogOpen] = useState(false);
     const [selectedMemberApplication, setSelectedMemberApplication] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [memberFilter, setMemberFilter] = useState("all");
     const { user } = useAuth();
 
     const incomingApplications = memberApplications.filter(
@@ -17,6 +19,40 @@ export default function Members() {
     );
     const listedApplications = memberApplications.filter(
         (ma) => !(ma.status === 'pending' || ma.status === 'approved_need_register')
+    );
+
+    const yearLabels = ["", "1st Year", "2nd Year", "3rd Year", "4th Year"];
+
+    // every searchable detail of an application in one string, so any word can match
+    const matchesSearch = (application) => {
+        const query = searchQuery.trim().toLowerCase();
+        if (!query) return true;
+
+        const applicationDetails = [
+            application.full_name,
+            application.email,
+            application.student_id,
+            application.course,
+            application.year_level,
+            yearLabels[application.year_level],
+        ].join(" ").toLowerCase();
+
+        return query.split(/\s+/).every((word) => applicationDetails.includes(word));
+    };
+
+    const matchesFilter = (application) => {
+        if (searchQuery.trim()) return true;
+        if (memberFilter === "all") return true;
+        return Number(application.year_level) === memberFilter;
+    };
+
+    const pillClassName = (filter) =>
+        memberFilter === filter && !searchQuery.trim()
+            ? "whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 hover:bg-blue/80 cursor-pointer"
+            : "whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer";
+
+    const filteredApplications = listedApplications.filter(
+        (application) => matchesSearch(application) && matchesFilter(application)
     );
 
     function openDrawer(application) {
@@ -106,30 +142,29 @@ export default function Members() {
                                 className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white hover:border-blue focus:outline-none focus:ring-1 focus:ring-blue text-base transition-colors"
                                 placeholder="Search by name, ID, course, or squad..."
                                 type="text"
+                                value={searchQuery}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    // back to a plain list once the search is cleared
+                                    if (!e.target.value.trim()) setMemberFilter("all");
+                                }}
                             />
                         </div>
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0">
+                            <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
                                 All Members ({listedApplications.length})
                             </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
-                                1st Year
-                            </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
-                                2nd Year
-                            </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
-                                3rd Year
-                            </button>
-                            <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
-                                4th Year
-                            </button>
+                            {[1, 2, 3, 4].map((year) => (
+                                <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
+                                    {yearLabels[year]}
+                                </button>
+                            ))}
                         </div>
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
-                        {listedApplications.map((application) =>
+                        {filteredApplications.map((application) =>
                             <div
                                 key={application.id}
                                 className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
@@ -169,6 +204,11 @@ export default function Members() {
                                     </span>
                                 </div>
                             </div>
+                        )}
+                        {filteredApplications.length === 0 && (
+                            <p className="font-geist text-sm text-subtext text-center py-4">
+                                No members found.
+                            </p>
                         )}
                     </section>
                 </div>
