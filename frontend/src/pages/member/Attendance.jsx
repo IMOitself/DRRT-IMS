@@ -134,8 +134,24 @@ export default function Attendance() {
 
     const selectedEventSavedStatus = attendances.find((attendance) => attendance.event_id === selectedEvent.id)?.status;
 
+    const hasEventStarted = (event) => {
+        const start = new Date(event.date);
+        if (event.time_hour) {
+            start.setHours(
+                (Number(event.time_hour) % 12) + (event.time_ampm === "PM" ? 12 : 0),
+                Number(event.time_minute) || 0, 0, 0
+            );
+        } else {
+            start.setHours(0, 0, 0, 0);
+        }
+        return start <= new Date();
+    };
+    const startedEvents = events.filter(hasEventStarted);
+
     const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
-    const attendanceRatePercentage = ((eventsWithPresentAttendance.length / events.length) * 100).toFixed(2);
+    const attendanceRatePercentage = startedEvents.length
+        ? ((eventsWithPresentAttendance.length / startedEvents.length) * 100).toFixed(2)
+        : "0.00";
 
     return (
         <>
@@ -211,7 +227,7 @@ export default function Attendance() {
                                     groups
                                 </span>
                                 <span className="font-geist text-5xl font-bold text-text leading-none">
-                                    {events.length}
+                                    {startedEvents.length}
                                 </span>
                                 <span className="font-geist text-xs text-subtext mt-1.5 font-semibold uppercase tracking-wider">
                                     Total Events
@@ -237,6 +253,7 @@ export default function Attendance() {
                     <div className="lg:col-span-7 flex flex-col gap-4">
                         <div className="space-y-4">
                             {events.map((event) => {
+                                const started = hasEventStarted(event);
                                 let currentStatus = "unset";
                                 let userAlreadyHaveRecord = false;
                                 let currentAttendance = null;
@@ -257,7 +274,12 @@ export default function Attendance() {
                                         <div className="flex items-center gap-4">
 
                                             {/* status icon */}
-                                            {displayStatus === "unset" && (
+                                            {!started && (
+                                                <div className="w-12 h-12 rounded-lg bg-surface-container-highest border border-blue-border flex items-center justify-center text-subtext shrink-0">
+                                                    <span className="material-symbols-outlined text-[24px]!">hourglass_top</span>
+                                                </div>
+                                            )}
+                                            {started && displayStatus === "unset" && (
                                                 <div className="w-12 h-12 rounded-lg bg-blue-bg border border-blue-border flex items-center justify-center text-blue shrink-0">
                                                     <span className="material-symbols-outlined text-[24px]!">border_color</span>
                                                 </div>
@@ -301,6 +323,12 @@ export default function Attendance() {
                                             </div>
                                         </div>
 
+                                        {!started ? (
+                                            <div className="px-3 h-9 rounded bg-surface-container-highest border border-blue-border text-subtext text-xs font-bold flex items-center justify-center gap-1">
+                                                <span className="material-symbols-outlined text-[14px]!">hourglass_top</span>
+                                                <span>Not Yet Started</span>
+                                            </div>
+                                        ) : (
                                         <div>
                                             {/* attendance buttons */}
                                             <div className="flex gap-1 justify-start md:justify-end">
@@ -393,6 +421,7 @@ export default function Attendance() {
                                                 </div>
                                             )}
                                         </div>
+                                        )}
                                     </div>
                                 );
                             })}
