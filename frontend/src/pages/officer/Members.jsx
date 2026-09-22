@@ -138,7 +138,10 @@ export default function Members() {
                             </div>
                             <button onClick={() => setIsAddMemberDialogOpen(true)} className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
                                 <span className="material-symbols-outlined text-[18px]!">person_add</span>
-                                Add Member<span className="w-2 h-2 rounded-full bg-yellow" /><span className="text-yellow">{incomingApplications.length}</span>
+                                Add Member
+                                {incomingApplications.length > 0 && 
+                                <><span className="w-2 h-2 rounded-full bg-yellow" /><span className="text-yellow">{incomingApplications.length}</span></>
+                                }
                             </button>
                         </div>
                         <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm rounded-xl">
