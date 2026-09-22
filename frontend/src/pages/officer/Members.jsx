@@ -72,8 +72,8 @@ export default function Members() {
                                     Manage personnel records, squad assignments, and status.
                                 </p>
                             </div>
-                            <button className="bg-blue text-white hover:bg-blue transition-colors py-2 px-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 hover:bg-blue/70 cursor-pointer">
-                                <span className="material-symbols-outlined text-[18px]">add</span>{" "}
+                            <button className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
+                                <span className="material-symbols-outlined text-[18px]!">add</span>
                                 Add Member Guide
                             </button>
                         </div>
