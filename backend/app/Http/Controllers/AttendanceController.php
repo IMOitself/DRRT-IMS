@@ -38,6 +38,8 @@ class AttendanceController extends Controller
             'proof_of_attendance' => $request->input('proof_of_attendance'),
             'absent_reason' => $request->input('absent_reason'),
             'absent_supporting_image' => $request->input('absent_supporting_image'),
+            'late_reason' => $request->input('late_reason'),
+            'late_supporting_image' => $request->input('late_supporting_image'),
             'timein_hour' => $request->input('timein_hour'),
             'timein_minute' => $request->input('timein_minute'),
             'timein_ampm' => $request->input('timein_ampm'),

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import api from "../../api/axios";
-import { formatDate } from "../../utils/format";
+import { formatDate, formatTime } from "../../utils/format";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Attendance() {
@@ -15,6 +15,8 @@ export default function Attendance() {
         proof_of_attendance: null,
         absent_supporting_image: null,
         absent_reason: "",
+        late_supporting_image: null,
+        late_reason: "",
         timein_hour: "",
         timein_minute: "",
         timein_ampm: "AM",
@@ -28,6 +30,7 @@ export default function Attendance() {
 
     const [isPresentAttendanceDialogOpen, setIsPresentAttendanceDialogOpen] = useState(false);
     const [isAbsentAttendanceDialogOpen, setIsAbsentAttendanceDialogOpen] = useState(false);
+    const [isLateAttendanceDialogOpen, setIsLateAttendanceDialogOpen] = useState(false);
     const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -37,15 +40,32 @@ export default function Attendance() {
         setSelectedEvent({ ...event, unsaved_status: unsaved_status });
     }
 
+    const isTimeinLate = () => {
+        if (!selectedEvent.time) return false;
+        const [eventHour, eventMinute] = selectedEvent.time.split(":").map(Number);
+        const timeinHour = (Number(formData.timein_hour) % 12) + (formData.timein_ampm === "PM" ? 12 : 0);
+        const timeinTotalMinutes = timeinHour * 60 + Number(formData.timein_minute);
+        return timeinTotalMinutes > eventHour * 60 + eventMinute + 5;
+    }
+
     const handlePresentAttendanceDialogSubmit = (e) => {
         e.preventDefault();
+        const isLate = isTimeinLate();
         setFormData((prev) => ({
             ...prev,
             user_id: user.id,
             event_id: selectedEvent.id,
-            status: selectedEvent.unsaved_status,
+            status: isLate ? "late" : "present",
         }));
+        if (isLate) setSelectedEvent((prev) => ({ ...prev, unsaved_status: "late" }));
         setIsPresentAttendanceDialogOpen(false);
+        if (isLate) setIsLateAttendanceDialogOpen(true);
+        else setIsConfirmSaveDialogOpen(true);
+    }
+
+    const handleLateAttendanceDialogSubmit = (e) => {
+        e.preventDefault();
+        setIsLateAttendanceDialogOpen(false);
         setIsConfirmSaveDialogOpen(true);
     }
 
@@ -532,6 +552,77 @@ export default function Attendance() {
                             <button type="button" onClick={() => setIsAbsentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                                 <span>Cancel</span>
                             </button>
+                        </div>
+                    </form>
+                </div>
+            )}
+
+            {/* late attendance dialog */}
+            {isLateAttendanceDialogOpen && (
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                    <form key={selectedEvent.id} onSubmit={(e) => handleLateAttendanceDialogSubmit(e)}
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
+                            <button type="button" className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-sm font-bold flex items-center justify-center gap-1">
+                                <span className="material-symbols-outlined text-[16px]!">schedule</span>
+                                <span>Late</span>
+                            </button>
+                            <legend className="font-geist text-lg font-bold text-text">
+                                {selectedEvent?.title || "event name here idk"}
+                            </legend>
+
+                        </div>
+
+                        {/* reason for being late */}
+                        <div>
+                            <label htmlFor="late_reason" className="block font-geist text-sm font-semibold text-text mb-1">
+                                Reason for Being Late{" "}
+                                <span className="text-red">*</span>
+                            </label>
+                            <p className="text-sm text-subtext mb-2">
+                                The event started at <span className="font-bold text-text">{formatTime(selectedEvent.time)}</span>.
+                                Your time in is <span className="font-bold text-text">{formData.timein_hour}:{formData.timein_minute} {formData.timein_ampm}</span>.<br />
+                                This is more than 5 minutes. Kindly explain why you were late. This will be reviewed by the officers.
+                            </p>
+                            <textarea
+                                id="late_reason"
+                                name="late_reason"
+                                value={formData.late_reason || ""}
+                                onChange={handleChange}
+                                rows={4}
+                                required
+                                placeholder="Explain why you were late"
+                                className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text placeholder:text-subtext focus:ring-1 focus:ring-blue outline-none transition-all"
+                            />
+                        </div>
+
+                        {/* supporting document */}
+                        <div>
+                            <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                Supporting Document
+                            </label>
+                            <p className="text-sm text-subtext mb-2">
+                                Optional. Upload any document or photo that supports your reason.
+                            </p>
+                            <input
+                                type="file"
+                                name="late_supporting_image"
+                                onChange={handleChange}
+                                accept=".pdf,.png,.jpg,.jpeg"
+                                className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                            />
+                        </div>
+
+                        {/* dialog buttons */}
+                        <div className="w-full flex flex-row items-center justify-end gap-2">
+                            <button type="button" onClick={() => { setIsLateAttendanceDialogOpen(false); setIsPresentAttendanceDialogOpen(true); }} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                <span>Back</span>
+                            </button>
+                            <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all active:scale-[0.98] cursor-pointer">
+                                <span className="material-symbols-outlined text-[16px]!">save</span>
+                                <span>Save</span>
+                            </button>
+
                         </div>
                     </form>
                 </div>

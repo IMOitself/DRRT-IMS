@@ -35,3 +35,13 @@ export function formatDate(dateString) {
         year: "numeric",
     });
 }
+export function formatTime(timeString) {
+    if (!timeString) return "";
+
+    // HH:MM (24 hour)
+    const [hour, minute] = timeString.split(":").map(Number);
+    if (isNaN(hour) || isNaN(minute)) return timeString;
+
+    const ampm = hour >= 12 ? "PM" : "AM";
+    return `${hour % 12 || 12}:${String(minute).padStart(2, "0")} ${ampm}`;
+}

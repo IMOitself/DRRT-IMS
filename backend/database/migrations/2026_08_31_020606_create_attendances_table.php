@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('proof_of_attendance')->nullable();
             $table->text('absent_reason')->nullable();
             $table->string('absent_supporting_image')->nullable();
+            $table->text('late_reason')->nullable();
+            $table->string('late_supporting_image')->nullable();
             $table->string('timein_hour')->nullable();
             $table->string('timein_minute')->nullable();
             $table->string('timein_ampm', 2)->nullable();
