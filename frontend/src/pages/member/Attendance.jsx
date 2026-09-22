@@ -327,7 +327,7 @@ export default function Attendance() {
                                         </div>
 
                                         {!started ? (
-                                            <div className="px-3 h-9 rounded bg-surface-container-highest border border-blue-border text-subtext text-xs font-bold flex items-center justify-center gap-1">
+                                            <div className="px-3 h-9 rounded bg-surface-container-low border border-blue-border text-subtext text-xs font-bold flex items-center justify-center gap-1">
                                                 <span className="material-symbols-outlined text-[14px]!">hourglass_top</span>
                                                 <span>Not Yet Started</span>
                                             </div>
