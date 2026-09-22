@@ -24,7 +24,6 @@ export default function Members() {
         api
             .get("/membership-applications")
             .then((res) => {
-                console.log(res.data.data);
                 setMemberApplications(res.data.data);
             })
             .catch((err) => console.error(err));
