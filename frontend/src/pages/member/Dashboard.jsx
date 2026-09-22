@@ -9,6 +9,8 @@ export default function Dashboard() {
 
     const [events, setEvents] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState([]);
+    const [expandedIds, setExpandedIds] = useState([]);
+    const [overflowIds, setOverflowIds] = useState([]);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -132,29 +134,118 @@ export default function Dashboard() {
                             </button>
                         </div>
                     </div>
-                    {/* Recent Activity Section */}
+                    
                     <section className="space-y-2">
                         <div className="flex justify-between items-center mb-1">
                             <h2 className="font-geist text-2xl-mobile font-bold text-text">
-                                Recent Activity
+                                Events
                             </h2>
                         </div>
-                        <div className="bg-white rounded-xl shadow-sm divide-y divide-blue-divide overflow-hidden">
-                            <div className="p-4 flex items-start gap-4 hover:bg-surface-container-low/50 transition-colors">
-                                <div className="bg-green-bg text-green p-2 rounded-full border border-green-border shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]">
-                                        how_to_reg
-                                    </span>
+
+                        <div className="space-y-6 md:space-y-8">
+                            {events.map((event) => (
+                                <div
+                                    key={event.id}
+                                    className="block bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2"
+                                >
+                                    <div className="flex-1">
+                                        {/* venue online */}
+                                        {event.venue_online && (
+                                            <div className="flex flex-row justify-between items-center gap-2">
+                                                <div className="flex items-center gap-1.5 text-blue">
+                                                    <span className="material-symbols-outlined text-[16px]!">
+                                                        videocam
+                                                    </span>
+                                                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                                                        {event.venue_online}
+                                                    </span>
+                                                </div>
+                                                <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                                                    Online
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {/* venue face to face */}
+                                        {event.venue_facetoface && (
+                                            <div className="flex flex-row items-center justify-between gap-2">
+                                                <div className="flex items-center gap-1.5 text-blue">
+                                                    <span className="material-symbols-outlined text-[16px]!">
+                                                        location_on
+                                                    </span>
+                                                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                                                        {event.venue_facetoface}
+                                                    </span>
+                                                </div>
+                                                <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                                                    Face to Face
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {!event.venue_online && !event.venue_facetoface && (
+                                            <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
+                                                Event
+                                            </p>
+                                        )}
+
+                                        <h2 className="font-geist text-2xl font-semibold text-text mt-1">
+                                            {event.title}
+                                        </h2>
+                                        <p
+                                            ref={(el) => {
+                                                if (!el || overflowIds.includes(event.id)) return;
+                                                if (el.scrollHeight > el.clientHeight + 1)
+                                                    setOverflowIds((ids) => [...ids, event.id]);
+                                            }}
+                                            className={`font-geist text-sm text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}
+                                        >
+                                            {event.description}
+                                        </p>
+                                        {overflowIds.includes(event.id) && (
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setExpandedIds(
+                                                        expandedIds.includes(event.id)
+                                                            ? expandedIds.filter((id) => id !== event.id)
+                                                            : [...expandedIds, event.id]
+                                                    )
+                                                }
+                                                className="font-geist text-sm text-blue font-semibold cursor-pointer"
+                                            >
+                                                {expandedIds.includes(event.id) ? "See Less" : "See More..."}
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-xs md:text-md font-semibold">
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="material-symbols-outlined text-blue text-[18px]!">
+                                                event
+                                            </span>
+                                            <span className="capitalize">{event.type}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="material-symbols-outlined text-blue text-[18px]!">
+                                                calendar_today
+                                            </span>
+                                            <span>{formatDate(event.date)}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="material-symbols-outlined text-blue text-[18px]!">
+                                                people
+                                            </span>
+                                            <span>{event.participants}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="grow">
-                                    <p className="text-base text-text font-semibold">
-                                        Present in event name here idk
-                                    </p>
-                                    <p className="text-sm text-subtext mt-0.5">
-                                        Oct 12, 2026 • 8:00 AM
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
+                            {events.length === 0 && (
+                                <p className="font-geist text-sm text-subtext text-center py-4">
+                                    No events found.
+                                </p>
+                            )}
                         </div>
                     </section>
                 </div>
