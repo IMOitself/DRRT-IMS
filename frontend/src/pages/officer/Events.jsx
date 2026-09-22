@@ -69,6 +69,20 @@ export default function Events() {
 
   }, []);
 
+  // an event that has not started yet has no attendance to see
+  const hasEventStarted = (event) => {
+    const start = new Date(event.date);
+    if (event.time_hour) {
+      start.setHours(
+        (Number(event.time_hour) % 12) + (event.time_ampm === "PM" ? 12 : 0),
+        Number(event.time_minute) || 0, 0, 0
+      );
+    } else {
+      start.setHours(0, 0, 0, 0);
+    }
+    return start <= new Date();
+  };
+
   const filteredEvents = events.filter((event) => matchesSearch(event) && matchesVenue(event));
 
   return (
@@ -139,7 +153,8 @@ export default function Events() {
                 <Link
                   to={`/officer/events/${event.id}`}
                   key={event.id}
-                  className="block bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300 hover:border-blue"
+                  onClick={(e) => { if (!hasEventStarted(event)) e.preventDefault(); }}
+                  className={`block bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300 ${hasEventStarted(event) ? "hover:border-blue" : "cursor-not-allowed"}`}
                 >
                   <div className="flex-1">
                     {/* venue online */}
@@ -252,12 +267,21 @@ export default function Events() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-md font-semibold">
-                    <span>See attendances</span>
-                    <span className="material-symbols-outlined text-[18px]!">
-                      keyboard_arrow_right
-                    </span>
-                  </div>
+                  {hasEventStarted(event) ? (
+                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-md font-semibold">
+                      <span>See attendances</span>
+                      <span className="material-symbols-outlined text-[18px]!">
+                        keyboard_arrow_right
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="w-full flex items-center gap-1 text-subtext text-sm md:text-md font-semibold">
+                      <span className="material-symbols-outlined text-[18px]!">
+                        hourglass_top
+                      </span>
+                      <span>Not Started Yet</span>
+                    </div>
+                  )}
                 </Link>
               );
             })}
