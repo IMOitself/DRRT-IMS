@@ -357,23 +357,13 @@ export default function Members() {
                                             Duty Performance
                                         </p>
 
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                                                <p className="font-geist text-3xl text-blue font-bold m-0">
-                                                    N/A
-                                                </p>
-                                                <p className="font-geist text-xs text-subtext mt-1">
-                                                    Attendance Rate
-                                                </p>
-                                            </div>
-                                            <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                                                <p className="font-geist text-3xl text-blue font-bold m-0">
-                                                    N/A
-                                                </p>
-                                                <p className="font-geist text-xs text-subtext mt-1">
-                                                    Incidents Handled
-                                                </p>
-                                            </div>
+                                        <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
+                                            <p className="font-geist text-3xl text-blue font-bold m-0">
+                                                N/A
+                                            </p>
+                                            <p className="font-geist text-xs text-subtext mt-1">
+                                                Attendance Rate
+                                            </p>
                                         </div>
                                     </div>
                                 )}
