@@ -157,12 +157,16 @@ export default function Register() {
                     type="text"
                     id="fullname"
                     name="fullname"
-                    placeholder="Juan Dela Cruz"
                     required
+                    readOnly
+                    tabIndex={-1}
+                    aria-readonly="true"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-blue-bg/40 border border-blue-border rounded-xl text-sm text-subtext placeholder:text-subtext/50 outline-none cursor-not-allowed"
                   />
+                  <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-subtext text-[18px]!">
+                    lock
+                  </span>
                 </div>
               </div>
 
@@ -172,7 +176,7 @@ export default function Register() {
                   htmlFor="email"
                   className="block font-geist text-xs font-bold text-text mb-1.5"
                 >
-                  Institutional Email
+                  Email
                 </label>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">
@@ -182,13 +186,32 @@ export default function Register() {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="jdelacruz@lvcc.edu.ph"
                     required
+                    readOnly
+                    tabIndex={-1}
+                    aria-readonly="true"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-blue-bg/40 border border-blue-border rounded-xl text-sm text-subtext placeholder:text-subtext/50 outline-none cursor-not-allowed"
                   />
+                  <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-subtext text-[18px]!">
+                    lock
+                  </span>
                 </div>
+                <p className="mt-1.5 flex items-start gap-1.5 text-xs text-subtext">
+                  <span className="material-symbols-outlined text-[14px]! mt-0.5">
+                    info
+                  </span>
+                  <span>
+                    Your name and email are from your approved membership application.<br/>
+                    If you think they are wrong, you can always{" "}
+                    <Link
+                      to="/join-form"
+                      className="font-medium text-blue underline underline-offset-2 hover:opacity-80"
+                    >
+                      fill up another membership form
+                    </Link>
+                  </span>
+                </p>
               </div>
 
               {/* Password Grid */}
