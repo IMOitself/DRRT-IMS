@@ -403,7 +403,7 @@ export default function EventAttendance() {
 
                 {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
                   <p className="text-xs text-subtext font-medium my-2">
-                    This attendance was recorded by:{" "}
+                    This was recorded by:{" "}
                     <span className="text-text font-semibold">
                       {selectedAttendance.recorder.name}
                     </span>{" "}
