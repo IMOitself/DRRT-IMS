@@ -121,7 +121,7 @@ export default function Dashboard() {
                                     <span className="material-symbols-outlined text-[18px]">
                                         schedule
                                     </span>{" "}
-                                    {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time || ""}` : "..."}
+                                    {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}` : "..."}
                                 </p>
                             </div>
                             <button className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">

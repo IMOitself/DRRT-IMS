@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->enum('type', ['drill', 'meeting', 'deployment'])->nullable();
             $table->string('date')->nullable();
-            $table->string('time')->nullable();
+            $table->string('time_hour')->nullable();
+            $table->string('time_minute')->nullable();
+            $table->string('time_ampm', 2)->nullable();
             $table->string('participants')->nullable();
             $table->enum('venue_online', ['zoom', 'gmeet'])->nullable();
             $table->string('venue_facetoface')->nullable();

@@ -12,7 +12,9 @@ export default function CreateEvent() {
         title: "",
         description: "",
         date: "",
-        time: "",
+        time_hour: "",
+        time_minute: "",
+        time_ampm: "AM",
         type: "meeting", // default
         participants: "",
         venue_facetoface: "",
@@ -24,6 +26,10 @@ export default function CreateEvent() {
         const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
         setFormData({ ...formData, [e.target.name]: value });
     };
+
+    // time fields are always 2 digits
+    const handleTimeMakeSure2Digits = (e) =>
+        setFormData({ ...formData, [e.target.name]: e.target.value.padStart(2, "0") });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,7 +90,15 @@ export default function CreateEvent() {
                                     </div>
                                     <div>
                                         <label className="block font-geist text-sm font-bold text-text mb-1.5">Time <span className="text-red">*</span></label>
-                                        <input type="time" name="time" required value={formData.time} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                        <div className="flex items-center gap-1">
+                                            <input type="text" inputMode="numeric" name="time_hour" required maxLength="2" placeholder="08" value={formData.time_hour} onChange={handleChange} onBlur={handleTimeMakeSure2Digits} className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                            <span>:</span>
+                                            <input type="text" inputMode="numeric" name="time_minute" required maxLength="2" placeholder="00" value={formData.time_minute} onChange={handleChange} onBlur={handleTimeMakeSure2Digits} className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                            <select name="time_ampm" value={formData.time_ampm} onChange={handleChange} className="px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all">
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

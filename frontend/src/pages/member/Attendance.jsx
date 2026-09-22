@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import api from "../../api/axios";
-import { formatDate, formatTime } from "../../utils/format";
+import { formatDate } from "../../utils/format";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Attendance() {
@@ -40,12 +40,13 @@ export default function Attendance() {
         setSelectedEvent({ ...event, unsaved_status: unsaved_status });
     }
 
+    const toTotalMinutes = (hour, minute, ampm) =>
+        ((Number(hour) % 12) + (ampm === "PM" ? 12 : 0)) * 60 + Number(minute);
+
     const isTimeinLate = () => {
-        if (!selectedEvent.time) return false;
-        const [eventHour, eventMinute] = selectedEvent.time.split(":").map(Number);
-        const timeinHour = (Number(formData.timein_hour) % 12) + (formData.timein_ampm === "PM" ? 12 : 0);
-        const timeinTotalMinutes = timeinHour * 60 + Number(formData.timein_minute);
-        return timeinTotalMinutes > eventHour * 60 + eventMinute + 5;
+        if (!selectedEvent.time_hour) return false;
+        return toTotalMinutes(formData.timein_hour, formData.timein_minute, formData.timein_ampm) >
+            toTotalMinutes(selectedEvent.time_hour, selectedEvent.time_minute, selectedEvent.time_ampm) + 5;
     }
 
     const handlePresentAttendanceDialogSubmit = (e) => {
@@ -580,7 +581,7 @@ export default function Attendance() {
                                 <span className="text-red">*</span>
                             </label>
                             <p className="text-sm text-subtext mb-2">
-                                The event started at <span className="font-bold text-text">{formatTime(selectedEvent.time)}</span>.
+                                The event started at <span className="font-bold text-text">{selectedEvent.time_hour}:{selectedEvent.time_minute} {selectedEvent.time_ampm}</span>.
                                 Your time in is <span className="font-bold text-text">{formData.timein_hour}:{formData.timein_minute} {formData.timein_ampm}</span>.<br />
                                 This is more than 5 minutes. Kindly explain why you were late. This will be reviewed by the officers.
                             </p>
