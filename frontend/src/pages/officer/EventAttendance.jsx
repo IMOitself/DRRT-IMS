@@ -46,6 +46,13 @@ export default function EventAttendance() {
     return getSavedStatus(memberId);
   };
 
+  const getTimein = (memberId) => {
+    const attendance = attendances.find((a) => a.user_id === memberId);
+    if (!attendance?.timein_hour) return null;
+    if (attendance.status !== "present" && attendance.status !== "late") return null;
+    return `${attendance.timein_hour}:${attendance.timein_minute} ${attendance.timein_ampm}`;
+  };
+
   const changeStatus = (memberId, status) => {
     setUnsavedChanges({
       ...unsavedChanges,
@@ -303,6 +310,7 @@ export default function EventAttendance() {
           <AttendanceList
             members={members}
             getStatus={getStatus}
+            getTimein={getTimein}
             wantsCorrection={wantsCorrection}
             pendingApproval={pendingApproval}
             openRejectDialog={openRejectDialog}
@@ -753,7 +761,7 @@ function SubmittedAttendance({ attendance }) {
   );
 }
 
-function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, openRejectDialog, openApproveDialog, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendingApproval, openRejectDialog, openApproveDialog, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(member.id)
@@ -850,9 +858,19 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
                     <p className="font-geist text-md text-text truncate">
                       {member.name}
                     </p>
-                    <p className="text-xs text-subtext truncate">
-                      {member.membership_application?.course} - {member.membership_application?.year_level}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-xs text-subtext truncate">
+                        {member.membership_application?.course} - {member.membership_application?.year_level}
+                      </p>
+                      {getTimein(member.id) && (
+                        <p className="text-xs text-subtext flex items-center gap-1">
+                          <span className="material-symbols-outlined text-[12px]!">
+                            schedule
+                          </span>
+                          Time In: {getTimein(member.id)}
+                        </p>
+                      )}
+                    </div>
                   </div>
                   {wantsCorrection(member.id) && (
                     <div className="flex items-center gap-0.5">
