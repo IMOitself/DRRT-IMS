@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'officer'
         ]);
         $member = User::factory()->create([
-            'name' => 'background character',
+            'name' => 'Background, Character C.',
             'email' => 'imabackgroundcharacter@gmail.com',
             'password' => 'background',
             'role' => 'member'
