@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import { formatDate } from "../../utils/format";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
 
@@ -53,12 +54,12 @@ export default function Dashboard() {
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                            <button className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
+                            <Link to="/member/attendance" className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]">
                                     calendar_month
                                 </span>{" "}
-                                Attendance Record
-                            </button>
+                                Attendance Records
+                            </Link>
                         </div>
                     </section>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
