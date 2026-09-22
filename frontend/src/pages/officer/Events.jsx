@@ -11,6 +11,8 @@ export default function Events() {
   const [attendances, setAttendances] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [venueFilter, setVenueFilter] = useState("all");
+  const [expandedIds, setExpandedIds] = useState([]);
+  const [overflowIds, setOverflowIds] = useState([]);
 
   // searching looks through all events, whatever the pill says
   const matchesVenue = (event) => {
@@ -183,6 +185,32 @@ export default function Events() {
                     <h2 className="font-geist text-2xl font-semibold text-text mt-1">
                       {event.title}
                     </h2>
+                    <p
+                      ref={(el) => {
+                        if (!el || overflowIds.includes(event.id)) return;
+                        if (el.scrollHeight > el.clientHeight + 1)
+                          setOverflowIds((ids) => [...ids, event.id]);
+                      }}
+                      className={`font-geist text-sm text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}
+                    >
+                      {event.description}
+                    </p>
+                    {overflowIds.includes(event.id) && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setExpandedIds(
+                            expandedIds.includes(event.id)
+                              ? expandedIds.filter((id) => id !== event.id)
+                              : [...expandedIds, event.id]
+                          );
+                        }}
+                        className="font-geist text-sm text-blue font-semibold"
+                      >
+                        {expandedIds.includes(event.id) ? "See Less" : "See More..."}
+                      </button>
+                    )}
                   </div>
 
                   <div className="flex justify-between flex-col md:flex-row">
