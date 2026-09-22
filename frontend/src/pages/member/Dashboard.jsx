@@ -17,8 +17,13 @@ export default function Dashboard() {
         api
             .get("/events")
             .then((res) => {
+                const today = new Date().setHours(0, 0, 0, 0);
+                setUpcomingEvent(
+                    res.data
+                        .filter((event) => new Date(event.date).setHours(0, 0, 0, 0) >= today)
+                        .sort((a, b) => new Date(a.date) - new Date(b.date))[0]
+                );
                 setEvents(res.data.reverse());
-                setUpcomingEvent(res.data.reverse()[0]); // TODO: actually fetch the upcoming event based on date
             })
             .catch((err) => {
                 console.error(err);
