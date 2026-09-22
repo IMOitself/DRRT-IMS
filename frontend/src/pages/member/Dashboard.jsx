@@ -31,6 +31,23 @@ export default function Dashboard() {
             });
     }, [])
 
+    function googleCalendarUrl(event) {
+        if (!event?.date) return "#";
+        // convert 12-hour parts into a floating local time Google Calendar understands
+        let hour = parseInt(event.time_hour || "0", 10) % 12;
+        if ((event.time_ampm || "").toUpperCase() === "PM") hour += 12;
+        const start = `${event.date.replaceAll("-", "")}T${String(hour).padStart(2, "0")}${String(event.time_minute || "00").padStart(2, "0")}00`;
+        const end = `${event.date.replaceAll("-", "")}T${String((hour + 1) % 24).padStart(2, "0")}${String(event.time_minute || "00").padStart(2, "0")}00`;
+        const params = new URLSearchParams({
+            action: "TEMPLATE",
+            text: event.title || "",
+            dates: `${start}/${end}`,
+            details: event.description || "",
+            location: event.venue_facetoface || event.venue_online || "",
+        });
+        return `https://calendar.google.com/calendar/render?${params.toString()}`;
+    }
+
     return (
         <>
             <title>Dashboard - DRRT Member Portal</title>
@@ -132,15 +149,20 @@ export default function Dashboard() {
                                     {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}` : "..."}
                                 </p>
                             </div>
-                            <button className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold">
+                            <a
+                                href={upcomingEvent ? googleCalendarUrl(upcomingEvent) : "#"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold"
+                            >
                                 <span className="material-symbols-outlined text-[18px]">
                                     calendar_add_on
                                 </span>{" "}
-                                Add to Calendar
-                            </button>
+                                Add to Google Calendar
+                            </a>
                         </div>
                     </div>
-                    
+
                     <section className="space-y-2">
                         <div className="flex justify-between items-center mb-1">
                             <h2 className="font-geist text-2xl-mobile font-bold text-text">
