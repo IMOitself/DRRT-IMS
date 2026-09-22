@@ -115,7 +115,7 @@ export default function Attendance() {
         api
             .get("/events")
             .then((res) => {
-                setEvents(res.data.reverse());
+                setEvents(res.data);
             })
             .catch((err) => {
                 console.error(err);
@@ -134,7 +134,7 @@ export default function Attendance() {
 
     const selectedEventSavedStatus = attendances.find((attendance) => attendance.event_id === selectedEvent.id)?.status;
 
-    const hasEventStarted = (event) => {
+    const eventStartDate = (event) => {
         const start = new Date(event.date);
         if (event.time_hour) {
             start.setHours(
@@ -144,8 +144,11 @@ export default function Attendance() {
         } else {
             start.setHours(0, 0, 0, 0);
         }
-        return start <= new Date();
+        return start;
     };
+    const hasEventStarted = (event) => eventStartDate(event) <= new Date();
+
+    const sortedEvents = [...events].sort((a, b) => eventStartDate(b) - eventStartDate(a));
     const startedEvents = events.filter(hasEventStarted);
 
     const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
@@ -252,7 +255,7 @@ export default function Attendance() {
                     {/* attendance list*/}
                     <div className="lg:col-span-7 flex flex-col gap-4">
                         <div className="space-y-4">
-                            {events.map((event) => {
+                            {sortedEvents.map((event) => {
                                 const started = hasEventStarted(event);
                                 let currentStatus = "unset";
                                 let userAlreadyHaveRecord = false;
