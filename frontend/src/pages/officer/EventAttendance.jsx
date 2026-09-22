@@ -759,6 +759,43 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
     (member) => !getStatus(member.id)
   ).length;
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [memberFilter, setMemberFilter] = useState("all");
+
+  const yearLabels = ["", "1st Year", "2nd Year", "3rd Year", "4th Year"];
+
+  // every searchable detail of a member in one string, so any word can match
+  const matchesSearch = (member) => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return true;
+
+    const application = member.membership_application;
+    const memberDetails = [
+      member.name,
+      member.email,
+      application?.student_id,
+      application?.course,
+      application?.year_level,
+      yearLabels[application?.year_level],
+    ].join(" ").toLowerCase();
+
+    return query.split(/\s+/).every((word) => memberDetails.includes(word));
+  };
+
+  const matchesFilter = (member) => {
+    if (searchQuery.trim()) return true;
+    if (memberFilter === "no_record") return !getStatus(member.id);
+    if (memberFilter === "all") return true;
+    return Number(member.membership_application?.year_level) === memberFilter;
+  };
+
+  const pillClassName = (filter) =>
+    memberFilter === filter && !searchQuery.trim()
+      ? "whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer"
+      : "whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer";
+
+  const filteredMembers = members.filter((member) => matchesSearch(member) && matchesFilter(member));
+
   return (
     <div className="space-y-6">
 
@@ -770,37 +807,36 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
           </span>
           <input
             className="w-full pl-10 pr-4 py-2 border border-blue-border rounded-lg bg-white focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue text-sm transition-colors"
-            placeholder="Search by name, ID, or squad..."
+            placeholder="Search by name, ID, or course..."
             type="text"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              // back to a plain list once the search is cleared
+              if (!e.target.value.trim()) setMemberFilter("all");
+            }}
           />
         </div>
 
         {/* Rapid Level Filters */}
         <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-semibold">
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer">
+          <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
             All Members ({members.length})
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
+          <button onClick={() => setMemberFilter("no_record")} className={pillClassName("no_record")}>
             No Record ({noRecordCount})
           </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            1st Year
-          </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            2nd Year
-          </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            3rd Year
-          </button>
-          <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer">
-            4th Year
-          </button>
+          {[1, 2, 3, 4].map((year) => (
+            <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
+              {yearLabels[year]}
+            </button>
+          ))}
         </div>
       </div>
 
       <section className="flex gap-2">
         <div className="flex-1 space-y-2">
-          {members.map((member) => {
+          {filteredMembers.map((member) => {
             const status = getStatus(member.id);
             return (
               <div key={member.id}
@@ -894,6 +930,11 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
               </div>
             );
           })}
+          {filteredMembers.length === 0 && (
+            <p className="font-geist text-sm text-subtext text-center py-4">
+              No members found.
+            </p>
+          )}
         </div>
       </section>
     </div>
