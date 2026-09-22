@@ -9,6 +9,27 @@ export default function Events() {
 
   const [events, setEvents] = useState([]);
   const [attendances, setAttendances] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const matchesSearch = (event) => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return true;
+
+    const eventDetails = [
+      event.title,
+      event.description,
+      event.type,
+      event.participants,
+      event.venue_online,
+      event.venue_facetoface,
+      event.venue_online ? "Online" : "Face to Face Facetoface",
+      event.date,
+      formatDate(event.date),
+      `${event.time_hour}:${event.time_minute} ${event.time_ampm}`,
+    ].join(" ").toLowerCase();
+
+    return query.split(/\s+/).every((word) => eventDetails.includes(word));
+  };
 
   useEffect(() => {
 
@@ -31,6 +52,8 @@ export default function Events() {
       });
 
   }, []);
+
+  const filteredEvents = events.filter(matchesSearch);
 
   return (
     <>
@@ -65,7 +88,9 @@ export default function Events() {
                 </span>
                 <input
                   type="text"
-                  placeholder="Search drills, webinars..."
+                  placeholder="Search e.g Title, Jan 1, 2026, Gmeet, Face to Face, BSIS 1..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-surface border border-blue-border rounded-xl py-2.5 pl-10 pr-4 text-sm text-text placeholder:text-subtext/70 focus:outline-none focus:ring-2 focus:ring-blue/30 transition-all shadow-sm"
                 />
               </div>
@@ -85,7 +110,7 @@ export default function Events() {
           </section>
           {/* Event Cards Container */}
           <section className="space-y-6 md:space-y-8 mb-4">
-            {events.map((event) => {
+            {filteredEvents.map((event) => {
               const countByStatus = (status) =>
                 attendances.filter(
                   (a) => a.event_id === event.id && !a.pending_approval && a.status === status
@@ -190,6 +215,11 @@ export default function Events() {
                 </Link>
               );
             })}
+            {filteredEvents.length === 0 && (
+              <p className="font-geist text-sm text-subtext text-center py-4">
+                No events found.
+              </p>
+            )}
           </section>
         </main>
       </div>
