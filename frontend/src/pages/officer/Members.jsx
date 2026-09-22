@@ -8,11 +8,20 @@ import { getInitials } from "../../utils/format";
 export default function Members() {
     const [memberApplications, setMemberApplications] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [isAddMemberDialogOpen, setIsAddMemberDialogOpen] = useState(false);
     const [selectedMemberApplication, setSelectedMemberApplication] = useState(null);
     const { user } = useAuth();
 
+    const incomingApplications = memberApplications.filter(
+        (ma) => ma.status === 'pending' || ma.status === 'approved_need_register'
+    );
+    const listedApplications = memberApplications.filter(
+        (ma) => !(ma.status === 'pending' || ma.status === 'approved_need_register')
+    );
+
     function openDrawer(application) {
         setSelectedMemberApplication(application);
+        setIsAddMemberDialogOpen(false);
         setDrawerOpen(true);
     }
 
@@ -71,25 +80,17 @@ export default function Members() {
                                     Manage personnel records, squad assignments, and status.
                                 </p>
                             </div>
-                            <button className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
-                                <span className="material-symbols-outlined text-[18px]!">add</span>
-                                Add Member Guide
+                            <button onClick={() => setIsAddMemberDialogOpen(true)} className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
+                                <span className="material-symbols-outlined text-[18px]!">person_add</span>
+                                Add Member<span className="w-2 h-2 rounded-full bg-yellow" /><span className="text-yellow">{incomingApplications.length}</span>
                             </button>
                         </div>
                         <div className="flex flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm shadow-sm rounded-xl">
                             <div className="font-geist text-sm text-text font-semibold">
-                                Total Members: <span className="text-blue font-bold">{memberApplications.length} Registered</span>
+                                Total Members: <span className="text-blue font-bold">{listedApplications.length} Registered</span>
                             </div>
-                            <div className="flex gap-4 text-xs font-geist">
-                                <div className="flex items-center gap-1.5 text-green font-medium">
-                                    <span className="w-2 h-2 rounded-full bg-green" /> Active: 0
-                                </div>
-                                <div className="flex items-center gap-1.5 text-yellow font-medium">
-                                    <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {memberApplications.filter((ma) => ma.status === 'pending').length}
-                                </div>
-                                <div className="flex items-center gap-1.5 text-red font-medium">
-                                    <span className="w-2 h-2 rounded-full bg-red" /> Inactive: 0
-                                </div>
+                            <div className="text-yellow font-medium">
+                                <span className="w-2 h-2 rounded-full bg-yellow" /> Pending: {incomingApplications.length}
                             </div>
                         </div>
                     </section>
@@ -110,7 +111,7 @@ export default function Members() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0">
-                                All Members ({memberApplications.length})
+                                All Members ({listedApplications.length})
                             </button>
                             <button className="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-surface-dim transition-colors shrink-0">
                                 Active Only (0)
@@ -131,7 +132,7 @@ export default function Members() {
                     </div>
                     {/* Member List Cards */}
                     <section className="space-y-2">
-                        {memberApplications.map((application) =>
+                        {listedApplications.map((application) =>
                             <div
                                 key={application.id}
                                 className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
@@ -180,6 +181,72 @@ export default function Members() {
                     </section>
                 </div>
             </main>
+            {isAddMemberDialogOpen && (
+                <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                    Pending Applications
+                                </p>
+                                <p className="font-geist text-text">
+                                    Click on the application below to view details.
+                                </p>
+
+                                <div className="mt-3 space-y-2 max-h-[45vh] overflow-y-auto">
+                                    {incomingApplications.length === 0 && (
+                                        <p className="font-geist text-sm text-subtext">No pending applications.</p>
+                                    )}
+                                    {incomingApplications.map((application) =>
+                                        <div
+                                            key={application.id}
+                                            className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
+                                            onClick={() => openDrawer(application)}>
+                                            <div className="flex items-center gap-3 overflow-hidden">
+                                                <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
+                                                    {getInitials(application.full_name)}
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <p className="font-geist text-text truncate group-hover:text-blue transition-colors">
+                                                        {application.full_name}
+                                                    </p>
+                                                    <p className="text-[11px] text-subtext truncate">
+                                                        ID: {application.student_id} &bull; {application.course + " " + application.year_level}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2 shrink-0">
+                                                {application.status === 'pending' ? (
+                                                    <span className="bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                                        <span className="bg-yellow animate-pulse w-2 h-2 rounded-full" />
+                                                        PENDING
+                                                    </span>
+                                                ) : (
+                                                    <span className="bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                                        <span className="bg-yellow w-2 h-2 rounded-full" />
+                                                        AWAITING REGISTRATION
+                                                    </span>
+                                                )}
+                                                <span className="material-symbols-outlined text-subtext text-[18px]">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="w-full flex items-center">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsAddMemberDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Member Profile Drawer */}
             <aside className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
