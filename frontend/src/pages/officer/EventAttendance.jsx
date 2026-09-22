@@ -399,7 +399,7 @@ export default function EventAttendance() {
                     </span>{" "}
                     wants to set their attendance
                   </p>
-                ): ""}
+                ) : ""}
 
                 {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
                   <p className="text-xs text-subtext font-medium my-2">
@@ -488,7 +488,7 @@ export default function EventAttendance() {
               Approve
             </button>
           </div>
-        ): ""}
+        ) : ""}
       </aside>
       {/* Drawer Overlay */}
       {drawerOpen && (
@@ -710,46 +710,46 @@ export default function EventAttendance() {
 
 function SubmittedAttendance({ attendance }) {
   return (
-      <ul className="mt-3 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+    <ul className="mt-3 ml-5 list-disc space-y-0.5 text-sm text-subtext">
+      <li>
+        Status:{" "}
+        <span className="font-semibold capitalize text-text">
+          {attendance?.status ?? "none"}
+        </span>
+      </li>
+      {attendance?.timein_hour && (
         <li>
-          Status:{" "}
-          <span className="font-semibold capitalize text-text">
-            {attendance?.status ?? "none"}
+          Time In:{" "}
+          <span className="font-semibold text-text">
+            {attendance.timein_hour}:{attendance.timein_minute} {attendance.timein_ampm}
           </span>
         </li>
-        {attendance?.timein_hour && (
-          <li>
-            Time In:{" "}
-            <span className="font-semibold text-text">
-              {attendance.timein_hour}:{attendance.timein_minute} {attendance.timein_ampm}
-            </span>
-          </li>
-        )}
-        {attendance?.proof_of_attendance && (
-          <li>
-            Proof of Attendance:{" "}
-            <span className="font-semibold text-text wrap-break-word">
-              {attendance.proof_of_attendance}
-            </span>
-          </li>
-        )}
-        {attendance?.absent_reason && (
-          <li>
-            Reason:{" "}
-            <span className="font-semibold text-text wrap-break-word">
-              {attendance.absent_reason}
-            </span>
-          </li>
-        )}
-        {attendance?.absent_supporting_image && (
-          <li>
-            Supporting Image:{" "}
-            <span className="font-semibold text-text wrap-break-word">
-              {attendance.absent_supporting_image}
-            </span>
-          </li>
-        )}
-      </ul>
+      )}
+      {attendance?.proof_of_attendance && (
+        <li>
+          Proof of Attendance:{" "}
+          <span className="font-semibold text-text wrap-break-word">
+            {attendance.proof_of_attendance}
+          </span>
+        </li>
+      )}
+      {attendance?.absent_reason && (
+        <li>
+          Reason:{" "}
+          <span className="font-semibold text-text wrap-break-word">
+            {attendance.absent_reason}
+          </span>
+        </li>
+      )}
+      {attendance?.absent_supporting_image && (
+        <li>
+          Supporting Image:{" "}
+          <span className="font-semibold text-text wrap-break-word">
+            {attendance.absent_supporting_image}
+          </span>
+        </li>
+      )}
+    </ul>
   );
 }
 
@@ -825,7 +825,6 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
                         className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
                         wants correction
                       </button>
-                      <button className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
                     </div>
                   )}
                   {pendingApproval(member.id) && (
