@@ -392,14 +392,14 @@ export default function EventAttendance() {
                   Attendance Record
                 </p>
 
-                {selectedAttendance?.pending_approval && (
+                {selectedAttendance?.pending_approval ? (
                   <p className="text-xs text-subtext font-medium my-2">
                     <span className="text-text font-semibold">
                       {selectedMember.name}
                     </span>{" "}
                     wants to set their attendance
                   </p>
-                )}
+                ): ""}
 
                 {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
                   <p className="text-xs text-subtext font-medium my-2">
@@ -477,7 +477,7 @@ export default function EventAttendance() {
           )}
         </div>
         {/* Drawer Actions */}
-        {selectedAttendance?.pending_approval && (
+        {selectedAttendance?.pending_approval ? (
           <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
             <button onClick={() => openRejectDialog(selectedMember.id)} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
               <span className="material-symbols-outlined text-[18px]">close</span>
@@ -488,7 +488,7 @@ export default function EventAttendance() {
               Approve
             </button>
           </div>
-        )}
+        ): ""}
       </aside>
       {/* Drawer Overlay */}
       {drawerOpen && (
