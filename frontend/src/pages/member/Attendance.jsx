@@ -285,9 +285,19 @@ export default function Attendance() {
                                                 <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
                                                     <span className="material-symbols-outlined text-[16px]!">
                                                         calendar_today
-                                                    </span>{" "}
-                                                    {formatDate(event.date)} {event.venue_online && "(Online)" || event.venue_facetoface && "(Face to Face)"}
+                                                    </span>
+                                                    {formatDate(event.date)}
+                                                    {event.time_hour && ` ${event.time_hour}:${event.time_minute} ${event.time_ampm}`}
                                                 </p>
+                                                {(currentStatus === "present" || currentStatus === "late") &&
+                                                    currentAttendance?.timein_hour && (
+                                                        <p className="text-sm text-subtext flex items-center gap-1 mt-0.5">
+                                                            <span className="material-symbols-outlined text-[16px]!">
+                                                                schedule
+                                                            </span>
+                                                            Time In: {currentAttendance.timein_hour}:{currentAttendance.timein_minute} {currentAttendance.timein_ampm}
+                                                        </p>
+                                                    )}
                                             </div>
                                         </div>
 
