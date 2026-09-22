@@ -815,7 +815,7 @@ function AttendanceList({ members, getStatus, wantsCorrection, pendingApproval, 
                       {member.name}
                     </p>
                     <p className="text-xs text-subtext truncate">
-                      {member.membership_application?.course} - {member.membership_application?.year_level} Year
+                      {member.membership_application?.course} - {member.membership_application?.year_level}
                     </p>
                   </div>
                   {wantsCorrection(member.id) && (
