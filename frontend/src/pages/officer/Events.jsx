@@ -142,8 +142,8 @@ export default function Events() {
                     </h2>
                   </div>
 
-                  <div className="flex justify-between">
-                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
+                  <div className="flex justify-between flex-col md:flex-row">
+                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-xs md:text-md font-semibold">
                       <div className="flex items-center gap-2.5">
                         <span className="material-symbols-outlined text-blue text-[18px]!">
                           event
@@ -164,7 +164,7 @@ export default function Events() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col flex-wrap p-3 gap-x-4 gap-y-2 justify-between items-center text-sm">
+                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-sm">
                       <div className="flex gap-4 text-xs font-geist">
                         <div className="font-bold flex items-center gap-1.5 text-green">
                           <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
