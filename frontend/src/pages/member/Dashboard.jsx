@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 export default function Dashboard() {
 
     const [events, setEvents] = useState([]);
+    const [attendances, setAttendances] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState([]);
     const [expandedIds, setExpandedIds] = useState([]);
     const [overflowIds, setOverflowIds] = useState([]);
@@ -29,7 +30,36 @@ export default function Dashboard() {
             .catch((err) => {
                 console.error(err);
             });
+
+        api
+            .get("/attendances")
+            .then((res) => {
+                setAttendances(res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }, [])
+
+    const eventStartDate = (event) => {
+        const start = new Date(event.date);
+        if (event.time_hour) {
+            start.setHours(
+                (Number(event.time_hour) % 12) + (event.time_ampm === "PM" ? 12 : 0),
+                Number(event.time_minute) || 0, 0, 0
+            );
+        } else {
+            start.setHours(0, 0, 0, 0);
+        }
+        return start;
+    };
+    const startedEvents = events.filter((event) => eventStartDate(event) <= new Date());
+
+    const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
+    const attendanceRatePercentage = startedEvents.length
+        ? ((eventsWithPresentAttendance.length / startedEvents.length) * 100).toFixed(2)
+        : "0.00";
+    const isCompliant = attendanceRatePercentage >= 80;
 
     function googleCalendarUrl(event) {
         if (!event?.date) return "#";
@@ -88,6 +118,9 @@ export default function Dashboard() {
                                     </span>{" "}
                                     Attendance Compliance
                                 </h2>
+                                <p className="text-sm text-subtext -mt-3 mb-4">
+                                    Current Standing Period: 2026
+                                </p>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="relative w-20 h-20 shrink-0">
@@ -100,28 +133,32 @@ export default function Dashboard() {
                                             strokeWidth="3.5"
                                         />
                                         <path
-                                            className="text-green"
+                                            className={isCompliant ? "text-green" : "text-yellow"}
                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                                             fill="none"
                                             stroke="currentColor"
-                                            strokeDasharray="85, 100"
+                                            strokeDasharray={`${attendanceRatePercentage}, 100`}
                                             strokeWidth="3.5"
                                             strokeLinecap="round"
                                         />
                                     </svg>
-                                    <div className="absolute inset-0 flex items-center justify-center font-geist text-2xl font-bold text-text">
-                                        85%
+                                    <div className="absolute inset-0 flex items-center justify-center font-geist text-xl font-bold text-text">
+                                        {Math.round(attendanceRatePercentage)}%
                                     </div>
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="font-geist text-sm text-green font-bold flex items-center gap-1">
+                                    <p className={`font-geist text-sm font-bold flex items-center gap-1 ${isCompliant ? "text-green" : "text-yellow"}`}>
                                         <span className="material-symbols-outlined text-[16px] filled-icon">
-                                            check_circle
+                                            {isCompliant ? "check_circle" : "warning"}
                                         </span>{" "}
-                                        Safe Standing
+                                        {isCompliant ? "Safe Standing" : "At Risk"}
                                     </p>
                                     <p className="text-sm text-subtext">
-                                        Based on attendance on last 5 events
+                                        Present on {eventsWithPresentAttendance.length} of {startedEvents.length} events
+                                    </p>
+                                    <p className="text-xs font-geist text-subtext font-semibold flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green" />{" "}
+                                        80% Requirement
                                     </p>
                                 </div>
                             </div>
