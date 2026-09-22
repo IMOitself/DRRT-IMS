@@ -105,7 +105,7 @@ export default function Dashboard() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
                             <Link to="/member/attendance" className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
-                                <span className="material-symbols-outlined text-[18px]">
+                                <span className="material-symbols-outlined text-[18px]!">
                                     calendar_month
                                 </span>{" "}
                                 Attendance Records
@@ -116,7 +116,7 @@ export default function Dashboard() {
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col">
                             <div>
                                 <h2 className="font-geist text-sm text-subtext flex items-center gap-2 mb-4 font-bold uppercase tracking-wider">
-                                    <span className="material-symbols-outlined text-blue text-[20px]">
+                                    <span className="material-symbols-outlined text-blue text-[20px]!">
                                         verified
                                     </span>{" "}
                                     Attendance Compliance
@@ -151,7 +151,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="space-y-1">
                                     <p className={`font-geist text-sm font-bold flex items-center gap-1 ${isCompliant ? "text-green" : "text-yellow"}`}>
-                                        <span className="material-symbols-outlined text-[16px] filled-icon">
+                                        <span className="material-symbols-outlined text-[16px]! filled-icon">
                                             {isCompliant ? "check_circle" : "warning"}
                                         </span>{" "}
                                         {isCompliant ? "Safe Standing" : "At Risk"}
@@ -169,7 +169,7 @@ export default function Dashboard() {
 
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
                             <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                                <span className="material-symbols-outlined text-blue text-[20px]">
+                                <span className="material-symbols-outlined text-blue text-[20px]!">
                                     hourglass_top
                                 </span>{" "}
                                 Pending Officer Review
@@ -184,7 +184,7 @@ export default function Dashboard() {
 
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
                             <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                                <span className="material-symbols-outlined text-blue text-[20px]">
+                                <span className="material-symbols-outlined text-blue text-[20px]!">
                                     edit_note
                                 </span>{" "}
                                 Requested Corrections
@@ -201,7 +201,7 @@ export default function Dashboard() {
                             <div>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                                        <span className="material-symbols-outlined text-yellow text-[20px]">
+                                        <span className="material-symbols-outlined text-yellow text-[20px]!">
                                             event_upcoming
                                         </span>{" "}
                                         Upcoming Event
@@ -211,7 +211,7 @@ export default function Dashboard() {
                                     {upcomingEvent?.title || "Loading..."}
                                 </h3>
                                 <p className="text-base text-subtext flex items-center gap-1.5 mt-1">
-                                    <span className="material-symbols-outlined text-[18px]">
+                                    <span className="material-symbols-outlined text-[18px]!">
                                         schedule
                                     </span>{" "}
                                     {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}` : "..."}
@@ -223,7 +223,7 @@ export default function Dashboard() {
                                 rel="noopener noreferrer"
                                 className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold"
                             >
-                                <span className="material-symbols-outlined text-[18px]">
+                                <span className="material-symbols-outlined text-[18px]!">
                                     calendar_add_on
                                 </span>{" "}
                                 Add to Google Calendar
