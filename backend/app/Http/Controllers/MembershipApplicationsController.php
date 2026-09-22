@@ -65,6 +65,9 @@ class MembershipApplicationsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $application = MembershipApplication::find($id);
+        $application->delete();
+
+        return response()->json(['application_id' => $id], 200);
     }
 }

@@ -12,6 +12,8 @@ export default function Members() {
     const [selectedMemberApplication, setSelectedMemberApplication] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [memberFilter, setMemberFilter] = useState("all");
+    const [selectedForDelete, setSelectedForDelete] = useState([]);
+    const [isConfirmDeleteDialogOpen, setIsConfirmDeleteDialogOpen] = useState(false);
     const { user } = useAuth();
 
     const incomingApplications = memberApplications.filter(
@@ -92,6 +94,24 @@ export default function Members() {
                     app.id === selectedMemberApplication.id ? { ...app, status: status } : app
                 );
                 setMemberApplications(updatedList);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const toggleSelectedForDelete = (id) => {
+        setSelectedForDelete((selected) =>
+            selected.includes(id) ? selected.filter((selectedId) => selectedId !== id) : [...selected, id]
+        );
+    };
+
+    const handleConfirmDelete = () => {
+        Promise.all(
+            selectedForDelete.map((id) => api.delete("/membership-applications/" + id))
+        )
+            .then(() => {
+                setMemberApplications(memberApplications.filter((ma) => !selectedForDelete.includes(ma.id)));
+                setSelectedForDelete([]);
+                setIsConfirmDeleteDialogOpen(false);
             })
             .catch((err) => console.error(err));
     };
@@ -213,6 +233,51 @@ export default function Members() {
                     </section>
                 </div>
             </main>
+            {isConfirmDeleteDialogOpen && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-red mb-1 text-[30px]!">
+                                        warning
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Delete Applications?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    This cannot be undone. The following applications will be permanently deleted.
+                                </p>
+
+                                <ul className="mt-3 ml-5 list-disc space-y-0.5 text-sm text-subtext max-h-[45vh] overflow-y-auto">
+                                    {incomingApplications
+                                        .filter((application) => selectedForDelete.includes(application.id))
+                                        .map((application) =>
+                                            <li key={application.id}>
+                                                <span className="font-semibold text-text">{application.full_name}</span>
+                                                {" "}&bull; {yearLabels[application.year_level]}
+                                            </li>
+                                        )}
+                                </ul>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmDeleteDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={handleConfirmDelete} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">delete</span>
+                                            <span>Delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {isAddMemberDialogOpen && (
                 <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
                     <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
@@ -235,6 +300,13 @@ export default function Members() {
                                             className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
                                             onClick={() => openDrawer(application)}>
                                             <div className="flex items-center gap-3 overflow-hidden">
+                                                <input
+                                                    type="checkbox"
+                                                    className="w-4 h-4 accent-red shrink-0 cursor-pointer"
+                                                    checked={selectedForDelete.includes(application.id)}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    onChange={() => toggleSelectedForDelete(application.id)}
+                                                />
                                                 <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
                                                     {getInitials(application.full_name)}
                                                 </div>
@@ -268,9 +340,15 @@ export default function Members() {
                                 </div>
                                 <div className="w-full flex items-center">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => setIsAddMemberDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => { setSelectedForDelete([]); setIsAddMemberDialogOpen(false); }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
                                             Close
                                         </button>
+                                        {selectedForDelete.length > 0 && (
+                                            <button onClick={() => setIsConfirmDeleteDialogOpen(true)} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                                <span className="material-symbols-outlined text-[20px]!">delete</span>
+                                                <span>Delete ({selectedForDelete.length})</span>
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>

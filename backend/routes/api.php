@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);
     Route::put('/membership-applications/{application}', [MembershipApplicationsController::class, 'update']);
-    // Route::delete('/membership-applications/{application}', [MembershipApplicationsController::class, 'destroy']);
+    Route::delete('/membership-applications/{application}', [MembershipApplicationsController::class, 'destroy']);
     
     Route::get('/members', function () {
         return User::where('role', 'member')->with('membershipApplication')->get();
