@@ -22,6 +22,8 @@ export default function JoinDRRTFormStatus() {
         "REJECTED": "bg-red"
     }
 
+    const isApproved = application.data?.status.toUpperCase().startsWith("APPROVED");
+
     const [copied, setCopied] = useState(false);
     const copyToClipboard = async (text) => {
         try {
@@ -60,10 +62,10 @@ export default function JoinDRRTFormStatus() {
                         {/* Main Headline */}
                         <div className="space-y-2">
                             <span className="font-geist text-xs font-bold text-green bg-green-bg px-3 py-1 rounded-full uppercase tracking-wider inline-block">
-                                Application Received
+                                {isApproved ? "Application Approved" : "Application Received"}
                             </span>
                             <h1 className="font-geist text-2xl md:text-3xl font-bold text-text">
-                                Your Application Has Been Submitted!
+                                {isApproved ? "Your Application Has Been Approved" : "Your Application Has Been Submitted!"}
                             </h1>
                             <p className="text-base text-subtext mx-auto leading-relaxed">
                                 Thank you for applying to join the Disaster Response and Readiness
