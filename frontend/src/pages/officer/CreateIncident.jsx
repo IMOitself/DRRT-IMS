@@ -44,7 +44,7 @@ function LetterRow({ letter, name, placeholder }) {
 export default function CreateIncident() {
   return (
     <>
-      <title>Create Incident - DRRT Officer Portal</title>
+      <title>Create Incident Report - DRRT Officer Portal</title>
 
       <Header />
 
@@ -61,7 +61,7 @@ export default function CreateIncident() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h2 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
-                  Create Incident
+                  Create Incident Report
                 </h2>
                 <p className="text-sm text-subtext mt-1">
                   Fill out to create an incident report below. Once submitted, the report is locked and only the adviser can view it.
@@ -73,10 +73,10 @@ export default function CreateIncident() {
           <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
             <div className="text-center uppercase space-y-1">
-              <p>LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
-              <p>STANDBY DUTY - EXTERNAL</p>
-              <p className="font-bold">PERSONAL MEDICAL SAMPLE HISTORY</p>
-              <p className="pt-2 pb-1 border-b-3 border-text text-subtext">
+              <p className="font-semibold">LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
+              <p className="font-semibold">STANDBY DUTY - EXTERNAL</p>
+              <p className="font-bold text-blue">PERSONAL MEDICAL SAMPLE HISTORY</p>
+              <p className="pt-2 pb-1 border-b-3 border-blue-border text-subtext">
                 NOTE: THIS FORM IS TEMPORARY BUT CONFIDENTIAL INFORMATION CONTAINED HERE WILL BE
                 RELEASED ONLY IF YOU HAVE AUTHORIZED US TO DO SO.
               </p>
