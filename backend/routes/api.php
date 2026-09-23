@@ -9,7 +9,9 @@ use App\Models\User;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/send-verification-code', [AuthController::class, 'sendVerificationCode']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/send-password-reset-code', [AuthController::class, 'sendPasswordResetCode']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::post('/login',[AuthController::class, 'login']);
 Route::get('/events', [EventsController::class, 'index']);
 Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);
 Route::get('/membership-applications/{application}', [MembershipApplicationsController::class, 'show']);

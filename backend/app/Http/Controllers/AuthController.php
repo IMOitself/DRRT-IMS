@@ -66,6 +66,50 @@ class AuthController extends Controller
         return response()->json(['message' => 'Verification code sent.']);
     }
 
+    public function sendPasswordResetCode(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|exists:users,email',
+        ]);
+
+        $code = (string) random_int(100000, 999999);
+
+        Cache::put('password_reset_' . $request->email, $code, now()->addMinutes(10));
+
+        try {
+            Mail::raw("Your DRRT-IMS password reset code is: {$code}\n\nThis code is valid for 10 minutes. Do not share it with anyone.", function ($message) use ($request) {
+                $message->to($request->email)->subject('Your DRRT-IMS password reset code');
+            });
+        } catch (\Throwable $e) {
+            Log::error('Failed to send password reset code: ' . $e->getMessage());
+
+            return response()->json([
+                'message' => 'Could not send the reset email. Please try again or contact an officer.',
+            ], 500);
+        }
+
+        return response()->json(['message' => 'Password reset code sent.']);
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|exists:users,email',
+            'code' => 'required|string',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if (Cache::get('password_reset_' . $request->email) !== $request->code) {
+            return response()->json(['message' => 'The verification code is invalid or has expired.'], 422);
+        }
+
+        User::where('email', $request->email)->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        Cache::forget('password_reset_' . $request->email);
+
+        return response()->json(['message' => 'Password has been reset.']);
+    }
+
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',

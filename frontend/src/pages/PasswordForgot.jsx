@@ -1,19 +1,88 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import api from "../api/axios";
 import Header from "../components/Header";
 import BottomNav from "../components/BottomNav";
-import WIP from "../components/WIP";
 
 export default function PasswordForgot() {
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleError = (err) => {
+    setIsLoading(false);
+    setErrorMessage(err.response?.data?.message || "Something went wrong. Please try again.");
+  };
+
+  const handleSendCode = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/send-password-reset-code", { email: email })
+      .then(() => {
+        setIsLoading(false);
+        setStep(2);
+      })
+      .catch(handleError);
+  };
+
+  const handleResend = () => {
+    setErrorMessage("");
+    api
+      .post("/send-password-reset-code", { email: email })
+      .then(() => alert("A new verification code has been sent to your email."))
+      .catch(handleError);
+  };
+
+  const handleVerify = (e) => {
+    e.preventDefault();
+    setErrorMessage("");
+    setStep(3);
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/reset-password", { email: email, code: code, password: password })
+      .then(() => {
+        alert("Your password has been reset. You can now log in.");
+        navigate("/login");
+      })
+      .catch(handleError);
+  };
+
+  const errorBox = errorMessage && (
+    <div className="bg-red-bg text-red border border-red-border rounded-xl p-3 mb-4 text-sm font-medium">
+      {errorMessage}
+    </div>
+  );
+
   return (
     <>
       <title>Reset Password - DRRT Member Portal</title>
 
       <Header />
-      <WIP />
 
       {/* Main Container with extra bottom padding for mobile navbar space */}
       <div className="grow w-full flex items-center justify-center p-4 md:p-8 pb-24 md:pb-8">
         {/* Step 1 Card Container */}
+        {step === 1 && (
         <main className="max-w-md w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
             {/* Step Indicator Badge */}
@@ -38,14 +107,16 @@ export default function PasswordForgot() {
               </div>
             </div>
 
+            {errorBox}
+
             {/* Email Request Form */}
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+            <form onSubmit={handleSendCode} className="space-y-4">
               <div>
                 <label
                   htmlFor="email"
                   className="block font-geist text-xs font-bold text-text mb-1.5"
                 >
-                  Registered Institutional Email
+                  Registered Email
                 </label>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">
@@ -55,8 +126,10 @@ export default function PasswordForgot() {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="student@lvcc.edu.ph"
+                    placeholder="student@gmail.com"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
@@ -64,12 +137,11 @@ export default function PasswordForgot() {
 
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 cursor-pointer"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 cursor-pointer disabled:opacity-50"
               >
-                <span>Send Verification Code</span>
-                <span className="material-symbols-outlined text-[18px]!">
-                  mark_email_read
-                </span>
+                <span className="material-symbols-outlined text-[18px]!">mark_email_read</span>
+                <span>{isLoading ? "Sending Code..." : "Send Verification Code"}</span>
               </button>
             </form>
 
@@ -88,7 +160,10 @@ export default function PasswordForgot() {
           </div>
         </main>
 
+        )}
+
         {/* Step 2 Card Container */}
+        {step === 2 && (
         <main className="max-w-md w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
             {/* Step Indicator Badge */}
@@ -113,8 +188,10 @@ export default function PasswordForgot() {
               </div>
             </div>
 
+            {errorBox}
+
             {/* Verification Code Form */}
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            <form onSubmit={handleVerify} className="space-y-5">
               <div>
                 <label
                   htmlFor="verification_code"
@@ -132,23 +209,23 @@ export default function PasswordForgot() {
                     inputMode="numeric"
                     placeholder="123456"
                     required
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
                     className="w-full tracking-[0.25em] sm:tracking-[0.5em] text-center font-mono text-xl sm:text-2xl font-bold py-3 px-3 sm:px-4 min-h-11 bg-surface border border-blue-border rounded-xl text-text placeholder:text-subtext/30 placeholder:tracking-[0.25em] sm:placeholder:tracking-[0.5em] focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
                 <p className="text-[11px] text-subtext/70 text-center mt-2">
                   Code expires in{" "}
-                  <span className="font-bold text-yellow">09:59</span>
+                  <span className="font-bold text-yellow">10 minutes</span>
                 </p>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer disabled:opacity-50"
               >
                 <span>Verify Code</span>
-                <span className="material-symbols-outlined text-[18px]!">
-                  verified
-                </span>
               </button>
             </form>
 
@@ -156,7 +233,7 @@ export default function PasswordForgot() {
             <div className="mt-6 pt-4 border-t border-blue-border/40 flex flex-wrap items-center justify-between gap-2 text-xs">
               <button
                 type="button"
-                onClick={() => alert("A new verification code has been sent to your email.")}
+                onClick={handleResend}
                 className="text-blue font-bold hover:underline flex items-center gap-1 py-2 px-1 rounded-lg cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]!">
@@ -164,20 +241,24 @@ export default function PasswordForgot() {
                 </span>
                 <span>Resend Code</span>
               </button>
-              <Link
-                to="/forgot-password"
-                className="text-subtext font-bold hover:text-blue transition-colors flex items-center gap-1 py-2 px-1 rounded-lg"
+              <button
+                type="button"
+                onClick={() => { setErrorMessage(""); setStep(1); }}
+                className="text-subtext font-bold hover:text-blue transition-colors flex items-center gap-1 py-2 px-1 rounded-lg cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]!">
                   arrow_back
                 </span>
                 <span>Change Email</span>
-              </Link>
+              </button>
             </div>
           </div>
         </main>
 
+        )}
+
         {/* Step 3 Card Container */}
+        {step === 3 && (
         <main className="max-w-md w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
             {/* Step Indicator Badge */}
@@ -202,8 +283,10 @@ export default function PasswordForgot() {
               </div>
             </div>
 
+            {errorBox}
+
             {/* Password Creation Form */}
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+            <form onSubmit={handleReset} className="space-y-4">
               {/* New Password Field */}
               <div>
                 <label
@@ -222,6 +305,8 @@ export default function PasswordForgot() {
                     name="new_password"
                     placeholder="••••••••"
                     required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     minLength={8}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
@@ -246,49 +331,20 @@ export default function PasswordForgot() {
                     name="confirm_new_password"
                     placeholder="••••••••"
                     required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     minLength={8}
                     className="w-full pl-10 pr-4 py-3 sm:py-2.5 min-h-11 bg-surface border border-blue-border rounded-xl text-sm text-text placeholder:text-subtext/50 focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
               </div>
 
-              {/* Password Complexity Checklist */}
-              <div className="p-3.5 bg-surface rounded-xl border border-blue-border/60 space-y-2 text-xs">
-                <span className="font-geist text-[11px] font-bold text-subtext uppercase tracking-wider block mb-1">
-                  Password Requirements
-                </span>
-                <div className="flex items-center gap-2 text-green">
-                  <span className="material-symbols-outlined text-[16px]! shrink-0">
-                    check_circle
-                  </span>
-                  <span>At least 8 characters long</span>
-                </div>
-                <div className="flex items-center gap-2 text-subtext/70">
-                  <span className="material-symbols-outlined text-[16px]! shrink-0">
-                    radio_button_unchecked
-                  </span>
-                  <span>At least 1 uppercase letter (A-Z)</span>
-                </div>
-                <div className="flex items-center gap-2 text-subtext/70">
-                  <span className="material-symbols-outlined text-[16px]! shrink-0">
-                    radio_button_unchecked
-                  </span>
-                  <span>At least 1 number (0-9)</span>
-                </div>
-                <div className="flex items-center gap-2 text-subtext/70">
-                  <span className="material-symbols-outlined text-[16px]! shrink-0">
-                    radio_button_unchecked
-                  </span>
-                  <span>At least 1 special character (@, #, $, etc.)</span>
-                </div>
-              </div>
-
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 cursor-pointer"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 cursor-pointer disabled:opacity-50"
               >
-                <span>Reset Password</span>
-                <span className="material-symbols-outlined text-[18px]!">check</span>
+                <span>{isLoading ? "Resetting..." : "Reset Password"}</span>
               </button>
             </form>
 
@@ -306,7 +362,7 @@ export default function PasswordForgot() {
             </div>
           </div>
         </main>
-
+        )}
       </div>
 
       <BottomNav />
