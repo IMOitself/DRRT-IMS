@@ -24,7 +24,9 @@ class MembershipApplicationsController extends Controller
     {
         $application = MembershipApplication::create([
             'student_id' => $request->input('student_id'),
-            'full_name' => $request->input('full_name'),
+            'last_name' => $request->input('last_name'),
+            'first_name' => $request->input('first_name'),
+            'middle_name' => $request->input('middle_name'),
             'course' => $request->input('course'),
             'year_level' => $request->input('year_level'),
             'email' => $request->input('email'),

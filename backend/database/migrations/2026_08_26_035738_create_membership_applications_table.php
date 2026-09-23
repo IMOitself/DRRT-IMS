@@ -18,7 +18,9 @@ return new class extends Migration
             $table->foreignId('reviewer_id')->nullable()->constrained('users');
             $table->timestamp('date_applied')->useCurrent();
             $table->string('student_id');
-            $table->string('full_name');
+            $table->string('last_name');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
             $table->string('course');
             $table->integer('year_level');
             $table->string('email');

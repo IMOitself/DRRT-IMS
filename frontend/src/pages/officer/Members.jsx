@@ -32,6 +32,9 @@ export default function Members() {
 
         const applicationDetails = [
             application.full_name,
+            application.last_name,
+            application.first_name,
+            application.middle_name,
             application.email,
             application.student_id,
             application.course,

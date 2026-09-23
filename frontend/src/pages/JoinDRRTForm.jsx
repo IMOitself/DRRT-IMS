@@ -16,7 +16,9 @@ export default function JoinDRRTForm() {
 
     const initialFormData = {
         student_id: '',
-        full_name: '',
+        last_name: '',
+        first_name: '',
+        middle_name: '',
         course: '',
         year_level: '',
         email: '',
@@ -29,7 +31,7 @@ export default function JoinDRRTForm() {
 
     const [formData, setFormData] = useState(() => {
         const autoSavedFormData = localStorage.getItem(AUTO_SAVED_FORM_DATA_KEY);
-        if (autoSavedFormData) return JSON.parse(autoSavedFormData);
+        if (autoSavedFormData) return { ...initialFormData, ...JSON.parse(autoSavedFormData) };
         return initialFormData;
     });
 
@@ -57,7 +59,9 @@ export default function JoinDRRTForm() {
     const testAutoFillEveryField = () => {
         setFormData({
             student_id: "24-00123ABC",
-            full_name: "Braus, Sasha B.",
+            last_name: "Braus",
+            first_name: "Sasha",
+            middle_name: "Blouse",
             course: "BSIS",
             year_level: "1",
             email: "sasha.braus@gmail.com",
@@ -139,21 +143,56 @@ export default function JoinDRRTForm() {
                                         className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
-                                {/* Full Name */}
+                                {/* Last Name */}
                                 <div>
-                                    <label htmlFor="full-name" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Full Name <span className="text-red">*</span>
+                                    <label htmlFor="last-name" className="block font-geist text-sm font-semibold text-text mb-1">
+                                        Last Name <span className="text-red">*</span>
                                     </label>
                                     <input
-                                        value={formData.full_name}
+                                        value={formData.last_name}
                                         onChange={handleChange}
                                         type="text"
-                                        id="full-name"
-                                        name="full_name"
+                                        id="last-name"
+                                        name="last_name"
                                         required
-                                        pattern="[a-zA-Z\s]+,\s*[a-zA-Z\s]+(\s+[a-zA-Z]\.?)?"
-                                        title="Full name, for example: Ackerman, Levi A. (include the comma)"
-                                        placeholder="Surname, Firstname M."
+                                        pattern="[a-zA-Z\s'-]+"
+                                        title="Your surname, for example: Ackerman"
+                                        placeholder="e.g. Ackerman"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                    />
+                                </div>
+                                {/* First Name */}
+                                <div>
+                                    <label htmlFor="first-name" className="block font-geist text-sm font-semibold text-text mb-1">
+                                        First Name <span className="text-red">*</span>
+                                    </label>
+                                    <input
+                                        value={formData.first_name}
+                                        onChange={handleChange}
+                                        type="text"
+                                        id="first-name"
+                                        name="first_name"
+                                        required
+                                        pattern="[a-zA-Z\s'-]+"
+                                        title="Your given name, for example: Levi"
+                                        placeholder="e.g. Levi"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
+                                    />
+                                </div>
+                                {/* Middle Name */}
+                                <div>
+                                    <label htmlFor="middle-name" className="block font-geist text-sm font-semibold text-text mb-1">
+                                        Middle Name <span className="text-subtext font-normal">(optional)</span>
+                                    </label>
+                                    <input
+                                        value={formData.middle_name}
+                                        onChange={handleChange}
+                                        type="text"
+                                        id="middle-name"
+                                        name="middle_name"
+                                        pattern="[a-zA-Z\s'-]*"
+                                        title="Your middle name, for example: Ackerman. Leave blank if you have none"
+                                        placeholder="e.g. Ackerman"
                                         className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
                                 </div>
