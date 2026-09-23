@@ -70,13 +70,13 @@ export default function CreateIncident() {
             </div>
           </section>
 
-          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-20 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
+          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
             <div className="text-center uppercase space-y-1">
               <p>LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
               <p>STANDBY DUTY - EXTERNAL</p>
-              <p className="font-bold text-blue">PERSONAL MEDICAL SAMPLE HISTORY</p>
-              <p className="pt-2 pb-1 border-b-3 border-text">
+              <p className="font-bold">PERSONAL MEDICAL SAMPLE HISTORY</p>
+              <p className="pt-2 pb-1 border-b-3 border-text text-subtext">
                 NOTE: THIS FORM IS TEMPORARY BUT CONFIDENTIAL INFORMATION CONTAINED HERE WILL BE
                 RELEASED ONLY IF YOU HAVE AUTHORIZED US TO DO SO.
               </p>
@@ -112,14 +112,16 @@ export default function CreateIncident() {
             <div className="space-y-2">
               <p className="text-blue font-bold">Vital Signs:</p>
               {[0, 1, 2].map((row) => (
-                <div key={row} className="flex flex-wrap gap-x-3 gap-y-2">
+                <div key={row} className="grid grid-cols-5 md:grid-cols-[max-content_repeat(5,minmax(0,1fr))] gap-x-2 md:gap-x-3 gap-y-2">
                   {vitalSigns.map((vital) => (
-                    <label key={vital.name} className="flex items-end gap-1 font-normal!">
+                    <label key={vital.name} className={"flex md:flex-row md:items-end md:gap-1 min-w-0 font-normal! " + (vital.type === "time" ? "items-end gap-1 col-span-5 md:col-span-1" : "flex-col gap-0.5")}>
                       {vital.label}:
                       <input
                         type={vital.type || "text"}
                         name={`vitals[${row}][${vital.name}]`}
-                        className={lineInput + " w-16"}
+                        className={lineInput + (vital.type === "time" ? " w-fit md:w-28 shrink-0 min-w-28! cursor-pointer [&::-webkit-calendar-picker-indicator]:hidden" : " w-full")}
+                        // the picker icon is hidden to save space, so clicking the input opens it instead
+                        onClick={vital.type === "time" ? (e) => { try { e.currentTarget.showPicker(); } catch { /* unsupported */ } } : undefined}
                       />
                     </label>
                   ))}
@@ -143,7 +145,7 @@ export default function CreateIncident() {
                 TREATMENT:
                 <textarea
                   name="treatment"
-                  rows={6}
+                  rows={3}
                   className="w-full resize-none bg-transparent border-0 px-1 font-normal text-text leading-8 focus:outline-none"
                   style={{
                     backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--color-text) calc(2rem - 1px), var(--color-text) 2rem)",
