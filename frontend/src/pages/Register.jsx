@@ -19,6 +19,8 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [step, setStep] = useState(1);
+  const [code, setCode] = useState("");
 
   useEffect(() => {
     if (applicationId) {
@@ -37,6 +39,15 @@ export default function Register() {
     }
   }, [applicationId, token]);
 
+  const handleError = (err) => {
+    setIsLoading(false);
+    if (err.response && err.response.data && err.response.data.message) {
+      setErrorMessage(err.response.data.message);
+    } else {
+      setErrorMessage("Something went wrong. Please try again.");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -49,24 +60,41 @@ export default function Register() {
     setErrorMessage("");
 
     api
+      .post("/send-verification-code", { email: email })
+      .then(() => {
+        setIsLoading(false);
+        setStep(2);
+      })
+      .catch(handleError);
+  };
+
+  const handleVerify = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
       .post("/register", {
         name: name,
         email: email,
         password: password,
+        code: code,
         membership_application_id: applicationId,
       })
       .then((res) => {
         login(res.data.token, res.data.user);
         navigate("/member/dashboard");
       })
-      .catch((err) => {
-        setIsLoading(false);
-        if (err.response && err.response.data && err.response.data.message) {
-          setErrorMessage(err.response.data.message);
-        } else {
-          setErrorMessage("Something went wrong. Please try again.");
-        }
-      });
+      .catch(handleError);
+  };
+
+  const handleResend = () => {
+    setErrorMessage("");
+    api
+      .post("/send-verification-code", { email: email })
+      .then(() => alert("A new verification code has been sent to your email."))
+      .catch(handleError);
   };
 
   if (!applicationId) {
@@ -110,6 +138,7 @@ export default function Register() {
       {/* Main Wrapper with extra bottom padding on mobile to clear bottom navbar */}
       <div className="grow w-full flex items-center justify-center p-4 md:p-8 pb-24 md:pb-8">
         {/* Main Registration Container */}
+        {step === 1 && (
         <main className="max-w-xl w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
             {/* Step Indicator Badge */}
@@ -301,7 +330,7 @@ export default function Register() {
                 disabled={isLoading}
                 className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-4 disabled:opacity-50"
               >
-                <span>{isLoading ? "Creating Account..." : "Next"}</span>
+                <span>{isLoading ? "Sending Code..." : "Next"}</span>
                 <span className="material-symbols-outlined text-[18px]!">
                   {isLoading ? "hourglass_empty" : "arrow_forward"}
                 </span>
@@ -322,7 +351,9 @@ export default function Register() {
             </div>
           </div>
         </main>
+        )}
 
+        {step === 2 && (
         <main className="max-w-md w-full mx-auto space-y-6">
           <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden">
             {/* Step Indicator Badge */}
@@ -348,7 +379,13 @@ export default function Register() {
             </div>
 
             {/* Verification Code Form */}
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            {errorMessage && (
+              <div className="bg-red-bg text-red border border-red-border rounded-xl p-3 mb-4 text-sm font-medium">
+                {errorMessage}
+              </div>
+            )}
+
+            <form onSubmit={handleVerify} className="space-y-5">
               <div>
                 <label
                   htmlFor="verification_code"
@@ -366,22 +403,25 @@ export default function Register() {
                     inputMode="numeric"
                     placeholder="123456"
                     required
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
                     className="w-full tracking-[0.25em] sm:tracking-[0.5em] text-center font-mono text-xl sm:text-2xl font-bold py-3 px-3 sm:px-4 min-h-11 bg-surface border border-blue-border rounded-xl text-text placeholder:text-subtext/30 placeholder:tracking-[0.25em] sm:placeholder:tracking-[0.5em] focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all"
                   />
                 </div>
                 <p className="text-[11px] text-subtext/70 text-center mt-2">
                   Code expires in{" "}
-                  <span className="font-bold text-yellow">09:59</span>
+                  <span className="font-bold text-yellow">10 minutes</span>
                 </p>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
+                disabled={isLoading}
+                className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer disabled:opacity-50"
               >
-                <span>Verify Code</span>
+                <span>{isLoading ? "Creating Account..." : "Verify Code"}</span>
                 <span className="material-symbols-outlined text-[18px]!">
-                  verified
+                  {isLoading ? "hourglass_empty" : "verified"}
                 </span>
               </button>
             </form>
@@ -390,7 +430,7 @@ export default function Register() {
             <div className="mt-6 pt-4 border-t border-blue-border/40 flex flex-wrap items-center justify-between gap-2 text-xs">
               <button
                 type="button"
-                onClick={() => alert("A new verification code has been sent to your email.")}
+                onClick={handleResend}
                 className="text-blue font-bold hover:underline flex items-center gap-1 py-2 px-1 rounded-lg cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]!">
@@ -398,18 +438,20 @@ export default function Register() {
                 </span>
                 <span>Resend Code</span>
               </button>
-              <Link
-                to="/forgot-password"
-                className="text-subtext font-bold hover:text-blue transition-colors flex items-center gap-1 py-2 px-1 rounded-lg"
+              <button
+                type="button"
+                onClick={() => setStep(1)}
+                className="text-subtext font-bold hover:text-blue transition-colors flex items-center gap-1 py-2 px-1 rounded-lg cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]!">
                   arrow_back
                 </span>
-                <span>Change Email</span>
-              </Link>
+                <span>Go Back</span>
+              </button>
             </div>
           </div>
         </main>
+        )}
       </div>
 
       <BottomNav />

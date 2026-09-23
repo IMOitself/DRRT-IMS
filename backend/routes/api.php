@@ -8,6 +8,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Models\User;
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/send-verification-code', [AuthController::class, 'sendVerificationCode']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/events', [EventsController::class, 'index']);
 Route::post('/membership-applications', [MembershipApplicationsController::class, 'store']);

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\MembershipApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -17,13 +19,47 @@ class AuthController extends Controller
         return $user;
     }
 
+    public function sendVerificationCode(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $code = (string) random_int(100000, 999999);
+
+        Cache::put('email_verification_' . $request->email, $code, now()->addMinutes(10));
+
+        // ==== EDIT THE EMAIL MESSAGE HERE ====
+        $subject = 'Your DRRT-IMS verification code';
+        $body = <<<TEXT
+        Hello!
+
+        Your DRRT-IMS email verification code is: {$code}
+
+        This code is valid for 10 minutes. Do not share it with anyone.
+
+        - DRRT Information Management System
+        TEXT;
+        // ==== END OF EMAIL MESSAGE ====
+
+        Mail::raw($body, function ($message) use ($request, $subject) {
+            $message->to($request->email)->subject($subject);
+        });
+
+        return response()->json(['message' => 'Verification code sent.']);
+    }
+
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'code' => 'required|string',
             'membership_application_id' => 'required|exists:membership_applications,id',
         ]);
+
+        if (Cache::get('email_verification_' . $request->email) !== $request->code) {
+            return response()->json(['message' => 'The verification code is invalid or has expired.'], 422);
+        }
 
         $application = MembershipApplication::find($request->membership_application_id);
 
@@ -42,6 +78,8 @@ class AuthController extends Controller
             'status' => 'approved_member_now',
             'user_id' => $user->id,
         ]);
+
+        Cache::forget('email_verification_' . $request->email);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
