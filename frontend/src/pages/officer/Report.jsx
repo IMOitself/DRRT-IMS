@@ -5,7 +5,7 @@ import BottomNav from "../../components/BottomNav";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 
-export default function ReportBuilder() {
+export default function Report() {
     const { user } = useAuth();
     
     // Data from Backend
@@ -53,9 +53,9 @@ export default function ReportBuilder() {
         setImages(newImages);
     };
 
-    // Document generation is not wired up yet: the .docx template it needs was
-    // never committed, so the backend export was removed. The form below still
-    // collects everything the report will need once that lands.
+    // Not wired up yet: the .docx template the backend export needs was never
+    // committed, so generation is disabled. The form still collects everything
+    // the report will need once that lands.
     const handleSubmit = (e) => {
         e.preventDefault();
         alert("Report generation isn't available yet. The activity report template still needs to be set up.");
@@ -63,7 +63,7 @@ export default function ReportBuilder() {
 
     return (
         <>
-            <title>Generate Report - DRRT</title>
+            <title>Report - DRRT</title>
             <Header />
 
             <main className="max-w-4xl mx-auto w-full px-4 py-6 pb-28 md:pb-12 space-y-6">
