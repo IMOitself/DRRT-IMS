@@ -184,7 +184,7 @@ export default function CreateIncident() {
                   Cancel
                 </button>
               </Link>
-              <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
+              <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
                 <span>Submit Report</span>
                 <span className="material-symbols-outlined text-[18px]!">send</span>
               </button>
