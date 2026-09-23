@@ -92,7 +92,7 @@ export default function Dashboard() {
                 </span>{" "}
                 Manage Events & Attendance
               </Link>
-              <Link to="/officer/create-incident" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
+              <Link to="/officer/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
                 <span className="material-symbols-outlined text-[18px]!">
                   emergency
                 </span>{" "}
