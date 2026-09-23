@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 
@@ -48,8 +49,28 @@ export default function CreateIncident() {
       <Header />
 
       <main className="grow pb-32">
-        <div className="max-w-3xl mx-auto px-4 md:px-8 py-6">
-          <form className="bg-white border border-blue-border shadow-sm p-6 md:p-10 text-text text-sm space-y-6">
+        <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 space-y-4">
+          {/* Back Link */}
+          <Link to="/officer/incidents" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
+            <span className="material-symbols-outlined text-[18px]!">arrow_back</span>
+            <span>Back to Incidents</span>
+          </Link>
+
+          {/* Incidents Context Header */}
+          <section className="bg-white border border-blue-border p-6 rounded-xl shadow-sm space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
+                  Create Incident
+                </h2>
+                <p className="text-sm text-subtext mt-1">
+                  Fill out to create an incident report below. Once submitted, the report is locked and only the adviser can view it.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-20 font-geist text-text text-sm space-y-6">
             {/* Form Heading */}
             <div className="text-center uppercase space-y-1 text-xs md:text-sm">
               <p>LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
