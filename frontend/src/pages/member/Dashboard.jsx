@@ -53,7 +53,8 @@ export default function Dashboard() {
         }
         return start;
     };
-    const startedEvents = events.filter((event) => eventStartDate(event) <= new Date());
+    const hasEventStarted = (event) => eventStartDate(event) <= new Date();
+    const startedEvents = events.filter(hasEventStarted);
 
     const eventsWithPresentAttendance = attendances.filter((attendance) => attendance.status === "present");
     const attendanceRatePercentage = startedEvents.length
@@ -334,6 +335,12 @@ export default function Dashboard() {
                                             </span>
                                             <span>{event.participants}</span>
                                         </div>
+                                        {!hasEventStarted(event) && (
+                                            <div className="px-3 h-9 rounded bg-surface-container-low border border-blue-border text-subtext text-xs font-bold flex items-center justify-center gap-1">
+                                                <span className="material-symbols-outlined text-[14px]!">hourglass_top</span>
+                                                <span>Not Yet Started</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}
