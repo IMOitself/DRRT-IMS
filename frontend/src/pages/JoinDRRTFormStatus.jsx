@@ -8,7 +8,10 @@ export default function JoinDRRTFormStatus() {
     const { id } = useParams();
     const location = useLocation();
 
+    const token = new URLSearchParams(location.search).get("token");
+
     const [application, setApplication] = useState([]);
+    const [forbidden, setForbidden] = useState(false);
     const statusCssColor = {
         "PENDING": "bg-yellow-bg text-yellow",
         "APPROVED_NEED_REGISTER": "bg-green-bg text-green",
@@ -37,10 +40,13 @@ export default function JoinDRRTFormStatus() {
 
     useEffect(() => {
         api
-            .get(`/membership-applications/${id}`)
+            .get(`/membership-applications/${id}`, { params: { token } })
             .then((res) => setApplication(res.data))
-            .catch((err) => console.error(err));
-    }, [id]);
+            .catch((err) => {
+                if (err.response?.status === 403) setForbidden(true);
+                console.error(err);
+            });
+    }, [id, token]);
 
     return (
         <>
@@ -50,6 +56,17 @@ export default function JoinDRRTFormStatus() {
             <div className="grow w-full flex items-center justify-center">
                 {/* Main Confirmation Container */}
                 <main className="max-w-2xl mx-auto w-full px-4 md:px-8 py-10 pb-28 md:pb-12 space-y-6">
+                    {forbidden ? (
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-10 shadow-sm text-center space-y-2">
+                            <h1 className="font-geist text-2xl font-bold text-text">
+                                This Application Is Private
+                            </h1>
+                            <p className="text-base text-subtext leading-relaxed">
+                                Only an officer or the member who submitted this application can view it.
+                                Please log in with that account.
+                            </p>
+                        </div>
+                    ) : (<>
                     <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden text-center space-y-6">
                         {/* Decorative Background Glow */}
                         <div className="absolute top-0 right-1/2 translate-x-1/2 -mt-12 w-64 h-64 bg-green-bg/20 rounded-full blur-3xl" />
@@ -79,9 +96,9 @@ export default function JoinDRRTFormStatus() {
                                     Copy this link to check anytime:
                                 </span>
                                 <button className="flex min-w-0 text-sm items-center font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-3 py-1 rounded-lg active:scale-95"
-                                    onClick={() => copyToClipboard(window.location.origin + location.pathname)}>
+                                    onClick={() => copyToClipboard(window.location.origin + location.pathname + location.search)}>
                                     <span className="font-mono truncate">
-                                        {window.location.origin + location.pathname}
+                                        {window.location.origin + location.pathname + location.search}
                                     </span>
                                     <span className="material-symbols-outlined text-blue text-[20px]! hover:bg-blue-bg rounded-lg">
                                         {copied ? "check" : "content_copy"}
@@ -102,7 +119,7 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {application.data?.status.toUpperCase() === "APPROVED_NEED_REGISTER" ? (
                             <div className="w-full flex items-center justify-center gap-3">
-                                <Link to={`/register?application_id=${id}`} className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
+                                <Link to={`/register?application_id=${id}&token=${token}`} className="w-full px-6 py-3 rounded-xl bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all text-center">
                                     Register Your Account
                                 </Link>
                             </div>
@@ -257,6 +274,7 @@ export default function JoinDRRTFormStatus() {
                             </Link>
                         </div>
                     </div>
+                    </>)}
                 </main>
             </div>
 

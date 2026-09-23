@@ -11,6 +11,7 @@ export default function Register() {
   const { login } = useAuth();
 
   const applicationId = searchParams.get("application_id");
+  const token = searchParams.get("token");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export default function Register() {
   useEffect(() => {
     if (applicationId) {
       api
-        .get(`/membership-applications/${applicationId}`)
+        .get(`/membership-applications/${applicationId}`, { params: { token } })
         .then((res) => {
           const app = res.data.data;
           if (app) {
@@ -34,7 +35,7 @@ export default function Register() {
           console.error("Failed to load application details:", err);
         });
     }
-  }, [applicationId]);
+  }, [applicationId, token]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -51,7 +51,7 @@ export default function JoinDRRTForm() {
             .post("/membership-applications", formData)
             .then((res) => {
                 localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
-                navigate(`/join-form/${res.data.application_id}`);
+                navigate(`/join-form/${res.data.application_id}?token=${res.data.access_token}`);
             })
             .catch((err) => console.error(err));
     }

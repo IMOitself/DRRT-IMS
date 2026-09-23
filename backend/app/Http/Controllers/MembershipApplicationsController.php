@@ -8,6 +8,12 @@ use App\Models\User;
 
 class MembershipApplicationsController extends Controller
 {
+    // secret link token, so whoever submitted the form can still open it before registering
+    private function accessToken(MembershipApplication $application)
+    {
+        return hash_hmac('sha256', (string) $application->id, config('app.key'));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -37,14 +43,27 @@ class MembershipApplicationsController extends Controller
             'class_schedule' => $request->input('class_schedule')
         ]);
 
-        return response()->json(['application_id' => $application->id], 201);
+        return response()->json([
+            'application_id' => $application->id,
+            'access_token' => $this->accessToken($application),
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(MembershipApplication $application)
+    public function show(Request $request, MembershipApplication $application)
     {
+        // only officers, the member who owns the application, and whoever holds its link token may view it
+        $user = auth('sanctum')->user();
+        $isOwner = $user && $user->id === $application->user_id;
+        $isOfficer = $user && $user->role === 'officer';
+        $hasToken = hash_equals($this->accessToken($application), (string) $request->query('token'));
+
+        if (! $isOwner && ! $isOfficer && ! $hasToken) {
+            return response()->json(['message' => 'You are not allowed to view this application.'], 403);
+        }
+
         return response()->json(['data' => $application], 200);
     }
 
