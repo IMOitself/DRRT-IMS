@@ -153,8 +153,11 @@ export default function Events() {
                 <Link
                   to={`/officer/events/${event.id}`}
                   key={event.id}
-                  onClick={(e) => { if (!hasEventStarted(event)) e.preventDefault(); }}
-                  className={`block bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300 ${hasEventStarted(event) ? "hover:border-blue" : "cursor-not-allowed"}`}
+                  draggable={false}
+                  onClick={(e) => {
+                    if (!hasEventStarted(event) || !window.getSelection().isCollapsed) e.preventDefault();
+                  }}
+                  className={`block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}
                 >
                   <div className="flex-1">
                     {/* venue online */}
