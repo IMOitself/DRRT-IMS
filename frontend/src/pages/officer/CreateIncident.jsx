@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 
 // underlined blank, like the lines on the paper form
-const lineInput = "min-w-0 bg-transparent border-0 border-b border-text px-1 text-sm focus:outline-none focus:border-blue";
+const lineInput = "min-w-0 bg-transparent border-0 border-b border-text px-1 font-normal text-text focus:outline-none focus:border-blue";
 
 const sampleHistory = [
   { letter: "S", name: "signs_symptoms", placeholder: "Signs & Symptoms" },
@@ -35,7 +35,7 @@ const vitalSigns = [
 function LetterRow({ letter, name, placeholder }) {
   return (
     <label className="flex items-end gap-2">
-      <span>{letter} -</span>
+      <span className="text-blue">{letter} -</span>
       <textarea rows={1} name={name} placeholder={placeholder} className={lineInput + " flex-1 resize-none field-sizing-content"} />
     </label>
   );
@@ -70,12 +70,12 @@ export default function CreateIncident() {
             </div>
           </section>
 
-          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-20 font-geist text-text text-sm space-y-6">
+          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-20 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
-            <div className="text-center uppercase space-y-1 text-xs md:text-sm">
+            <div className="text-center uppercase space-y-1">
               <p>LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
               <p>STANDBY DUTY - EXTERNAL</p>
-              <p className="font-bold">PERSONAL MEDICAL SAMPLE HISTORY</p>
+              <p className="font-bold text-blue">PERSONAL MEDICAL SAMPLE HISTORY</p>
               <p className="pt-2 pb-1 border-b-3 border-text">
                 NOTE: THIS FORM IS TEMPORARY BUT CONFIDENTIAL INFORMATION CONTAINED HERE WILL BE
                 RELEASED ONLY IF YOU HAVE AUTHORIZED US TO DO SO.
@@ -110,11 +110,11 @@ export default function CreateIncident() {
 
             {/* Vital Signs */}
             <div className="space-y-2">
-              <p>Vital Signs:</p>
+              <p className="text-blue font-bold">Vital Signs:</p>
               {[0, 1, 2].map((row) => (
                 <div key={row} className="flex flex-wrap gap-x-3 gap-y-2">
                   {vitalSigns.map((vital) => (
-                    <label key={vital.name} className="flex items-end gap-1">
+                    <label key={vital.name} className="flex items-end gap-1 font-normal!">
                       {vital.label}:
                       <input
                         type={vital.type || "text"}
@@ -144,7 +144,7 @@ export default function CreateIncident() {
                 <textarea
                   name="treatment"
                   rows={6}
-                  className="w-full resize-none bg-transparent border-0 px-1 text-sm leading-8 focus:outline-none"
+                  className="w-full resize-none bg-transparent border-0 px-1 font-normal text-text leading-8 focus:outline-none"
                   style={{
                     backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--color-text) calc(2rem - 1px), var(--color-text) 2rem)",
                   }}
