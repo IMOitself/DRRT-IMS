@@ -40,11 +40,20 @@ class AuthController extends Controller
 
         - DRRT Information Management System
         TEXT;
+        $html = <<<HTML
+        <div style="font-family:Arial,sans-serif;color:#333;max-width:480px;margin:0 auto;padding:24px;">
+            <p style="font-size:16px;margin:0 0 16px;">Hello!</p>
+            <p style="font-size:14px;margin:0 0 12px;">Your <strong>DRRT-IMS</strong> email verification code is:</p>
+            <div style="width:100%;box-sizing:border-box;background:#f3f4f6;border:1px solid #d1d5db;border-radius:8px;padding:20px 0;text-align:center;font-size:36px;font-weight:bold;letter-spacing:10px;color:#111;">{$code}</div>
+            <p style="font-size:14px;margin:16px 0 0;">This code is valid for <strong>10 minutes</strong>. Do not share it with anyone.</p>
+            <p style="font-size:12px;color:#888;margin:24px 0 0;">&mdash; DRRT Information Management System</p>
+        </div>
+        HTML;
         // ==== END OF EMAIL MESSAGE ====
 
         try {
-            Mail::raw($body, function ($message) use ($request, $subject) {
-                $message->to($request->email)->subject($subject);
+            Mail::html($html, function ($message) use ($request, $subject, $body) {
+                $message->to($request->email)->subject($subject)->text($body);
             });
         } catch (\Throwable $e) {
             Log::error('Failed to send verification code: ' . $e->getMessage());
