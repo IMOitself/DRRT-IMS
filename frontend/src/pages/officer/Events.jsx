@@ -96,7 +96,7 @@ export default function Events() {
         {/* Main Container */}
         <main className="max-w-5xl mx-auto w-full px-4 md:px-8 py-6 mb-40 space-y-6 md:space-y-8">
           {/* Page Header & Search Card */}
-          <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm">
+          <section className="bg-white border border-blue-border/80 rounded-2xl p-6 shadow-sm">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
                 <h1 className="font-geist text-2xl md:text-3xl font-bold text-text mt-1">
@@ -179,16 +179,16 @@ export default function Events() {
 
                     {/* venue face to face */}
                     {event.venue_facetoface && (
-                      <div className="flex flex-row items-center justify-between gap-2">
+                      <div className="flex flex-row items-center justify-between gap-2 text-sm">
                         <div className="flex items-center gap-1.5 text-blue">
                           <span className="material-symbols-outlined text-[16px]!">
                             location_on
                           </span>
-                          <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                          <span className="font-geist font-bold uppercase tracking-wider">
                             {event.venue_facetoface}
                           </span>
                         </div>
-                        <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                        <span className="font-geist font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
                           Face to Face
                         </span>
                       </div>
@@ -209,8 +209,7 @@ export default function Events() {
                         if (el.scrollHeight > el.clientHeight + 1)
                           setOverflowIds((ids) => [...ids, event.id]);
                       }}
-                      className={`font-geist text-sm text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}
-                    >
+                      className={`font-geist text-lg text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}>
                       {event.description}
                     </p>
                     {overflowIds.includes(event.id) && (
@@ -232,7 +231,7 @@ export default function Events() {
                   </div>
 
                   <div className="flex justify-between flex-col md:flex-row">
-                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-xs md:text-md font-semibold">
+                    <div className="flex flex-wrap gap-4 my-3 text-subtext text-sm md:text-lg font-semibold">
                       <div className="flex items-center gap-2.5">
                         <span className="material-symbols-outlined text-blue text-[18px]!">
                           event
@@ -253,8 +252,8 @@ export default function Events() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-sm">
-                      <div className="flex gap-4 text-xs font-geist">
+                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-lg">
+                      <div className="flex gap-4 font-geist">
                         <div className="font-bold flex items-center gap-1.5 text-green">
                           <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
                           Present: {countByStatus("present")}
