@@ -18,58 +18,6 @@ export default function BottomNav() {
                         </>
                     )}
                 </NavLink>
-
-                <NavLink to="/adviser/vault" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>shield</span>
-                            <span className="bottom-nav-label">Vault</span>
-                        </>
-                    )}
-                </NavLink>
-
-                <NavLink to="/adviser/bylaws" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>gavel</span>
-                            <span className="bottom-nav-label">Bylaws</span>
-                        </>
-                    )}
-                </NavLink>
-
-                <NavLink to="/adviser/reports" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>description</span>
-                            <span className="bottom-nav-label">Reports</span>
-                        </>
-                    )}
-                </NavLink>
-
-                <NavLink to="/adviser/approvals" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>fact_check</span>
-                            <span className="bottom-nav-label">Approvals</span>
-                        </>
-                    )}
-                </NavLink>
             </nav>
         );
     }

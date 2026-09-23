@@ -28,10 +28,6 @@ import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
-import AdviserVault from './pages/adviser/Vault';
-import AdviserBylaws from './pages/adviser/Bylaws';
-import AdviserReports from './pages/adviser/Reports';
-import AdviserApprovals from './pages/adviser/Approvals';
 
 function App() {
   const { pathname } = useLocation();
@@ -53,10 +49,6 @@ function App() {
       <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
 
       <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
-      <Route path="/adviser/vault" element={<AdviserVault />} />
-      <Route path="/adviser/bylaws" element={<AdviserBylaws />} />
-      <Route path="/adviser/reports" element={<AdviserReports />} />
-      <Route path="/adviser/approvals" element={<AdviserApprovals />} />
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/report-builder" element={<ReportBuilder />} />
