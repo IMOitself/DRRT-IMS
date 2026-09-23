@@ -177,8 +177,8 @@ export default function Login() {
                 </div>
               </div>
               <button type="submit" disabled={isLoading} className="w-full bg-blue text-white hover:bg-blue transition-all font-geist font-bold py-3 min-h-11 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] mt-2 disabled:opacity-50 cursor-pointer">
-                <span>{isLoading ? "Signing In..." : "Sign In"}</span>
                 <span className="material-symbols-outlined text-[18px]!">login</span>
+                <span>{isLoading ? "Signing In..." : "Sign In"}</span>
               </button>
             </form>
             {/* Test Login Button */}
