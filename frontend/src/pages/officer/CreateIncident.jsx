@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 
 // underlined blank, like the lines on the paper form
-const lineInput = "min-w-0 bg-transparent border-0 border-b border-text px-1 font-normal text-text focus:outline-none focus:border-blue";
+const lineInput = "min-w-0 bg-transparent border-0 border-b border-blue-border px-1 font-normal text-text focus:outline-none focus:border-blue";
 
 const sampleHistory = [
   { letter: "S", name: "signs_symptoms", placeholder: "Signs & Symptoms" },
@@ -171,7 +171,7 @@ export default function CreateIncident() {
                   rows={3}
                   className="w-full resize-none bg-transparent border-0 px-1 font-normal text-text leading-8 focus:outline-none"
                   style={{
-                    backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--color-text) calc(2rem - 1px), var(--color-text) 2rem)",
+                    backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--color-blue-border) calc(2rem - 1px), var(--color-blue-border) 2rem)",
                   }}
                 />
               </label>
