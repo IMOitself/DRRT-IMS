@@ -6,7 +6,6 @@ use App\Http\Controllers\MembershipApplicationsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AttendanceController;
 use App\Models\User;
-use App\Http\Controllers\ExportController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -34,8 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events', [EventsController::class, 'store']);
     // Route::put('/events/{event}', [EventsController::class, 'update']);
     // Route::delete('/events/{event}', [EventsController::class, 'destroy']);
-
-    Route::post('/generate-activity-report', [ExportController::class, 'generateActivityReport']);
     
     Route::get('/attendances', [AttendanceController::class, 'index']);
     Route::post('/attendances', [AttendanceController::class, 'store']);

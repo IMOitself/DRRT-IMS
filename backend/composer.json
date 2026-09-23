@@ -10,8 +10,7 @@
         "fakerphp/faker": "^1.23",
         "laravel/framework": "^13.17",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^3.0",
-        "phpoffice/phpword": "^1.4"
+        "laravel/tinker": "^3.0"
     },
     "require-dev": {
         "laravel/pail": "^1.2.5",

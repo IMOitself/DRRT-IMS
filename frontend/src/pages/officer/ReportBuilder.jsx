@@ -7,7 +7,6 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function ReportBuilder() {
     const { user } = useAuth();
-    const [isSubmitting, setIsSubmitting] = useState(false);
     
     // Data from Backend
     const [events, setEvents] = useState([]);
@@ -54,51 +53,12 @@ export default function ReportBuilder() {
         setImages(newImages);
     };
 
-    const handleSubmit = async (e) => {
+    // Document generation is not wired up yet: the .docx template it needs was
+    // never committed, so the backend export was removed. The form below still
+    // collects everything the report will need once that lands.
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if (!selectedEventId) return alert("Please select an event first!");
-        
-        setIsSubmitting(true);
-
-        // We use FormData to send files + text together
-        const payload = new FormData();
-        payload.append('event_id', selectedEventId);
-        
-        // Append all basic text fields
-        Object.keys(formData).forEach(key => payload.append(key, formData[key]));
-        
-        // Append dynamic tables as JSON strings
-        payload.append('objectives', JSON.stringify(objectives));
-        payload.append('activities', JSON.stringify(activities));
-        payload.append('issues', JSON.stringify(issues));
-
-        // Append images (image1, image2, image3, etc.)
-        images.forEach((img, i) => {
-            if (img) payload.append(`image${i + 1}`, img);
-        });
-
-        try {
-            // Request the file download from Laravel
-            const res = await api.post("/generate-activity-report", payload, {
-                responseType: 'blob', // IMPORTANT for downloading files!
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-
-            // Create a download link and click it magically
-            const url = window.URL.createObjectURL(new Blob([res.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `Activity_Report_${selectedEventId}.docx`);
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-        } catch (err) {
-            console.error(err);
-            alert("Failed to generate report. Please check the console.");
-        } finally {
-            setIsSubmitting(false);
-        }
+        alert("Report generation isn't available yet. The activity report template still needs to be set up.");
     };
 
     return (
@@ -282,9 +242,9 @@ export default function ReportBuilder() {
                         </div>
                     </section>
 
-                    <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-blue text-white rounded-xl font-bold font-geist shadow-md hover:bg-blue/90 disabled:opacity-50 flex items-center justify-center gap-2">
+                    <button type="submit" className="w-full py-4 bg-blue text-white rounded-xl font-bold font-geist shadow-md hover:bg-blue/90 disabled:opacity-50 flex items-center justify-center gap-2">
                         <span className="material-symbols-outlined">description</span>
-                        {isSubmitting ? "Generating Document..." : "Generate Activity Report (.docx)"}
+                        Generate Activity Report (.docx)
                     </button>
                 </form>
             </main>
