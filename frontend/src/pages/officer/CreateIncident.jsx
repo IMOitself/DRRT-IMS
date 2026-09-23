@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../api/axios";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 
@@ -44,15 +45,24 @@ function LetterRow({ letter, name, placeholder }) {
 
 export default function CreateIncident() {
   const [isConfirmSubmitDialogOpen, setIsConfirmSubmitDialogOpen] = useState(false);
+  const formRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsConfirmSubmitDialogOpen(true);
   };
 
-  const handleConfirmSubmit = () => {
-    // TODO: send report to the backend
-    setIsConfirmSubmitDialogOpen(false);
+  const handleConfirmSubmit = async () => {
+    try {
+      // field names like vitals[0][bp] are parsed into nested arrays by laravel
+      await api.post("/incident-reports", new FormData(formRef.current));
+      navigate("/officer/incidents");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit incident report.");
+      setIsConfirmSubmitDialogOpen(false);
+    }
   };
 
   return (
@@ -83,7 +93,7 @@ export default function CreateIncident() {
             </div>
           </section>
 
-          <form onSubmit={handleSubmit} className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
+          <form ref={formRef} onSubmit={handleSubmit} className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
             <div className="text-center uppercase space-y-1">
               <p className="font-semibold">LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
@@ -104,20 +114,20 @@ export default function CreateIncident() {
               <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
                 <label className="flex items-end gap-2 flex-1 min-w-48">
                   NAME:
-                  <input type="text" name="name" className={lineInput + " flex-1"} />
+                  <input type="text" name="name" required className={lineInput + " flex-1"} />
                 </label>
                 <label className="flex items-end gap-2">
                   AGE:
-                  <input type="number" name="age" min="0" className={lineInput + " w-16"} />
+                  <input type="number" name="age" min="0" required className={lineInput + " w-16"} />
                 </label>
               </div>
               <label className="flex items-end gap-2">
                 ADDRESS:
-                <input type="text" name="address" className={lineInput + " flex-1"} />
+                <input type="text" name="address" required className={lineInput + " flex-1"} />
               </label>
               <label className="flex items-end gap-2">
                 CC:
-                <input type="text" name="chief_complaint" placeholder="Chief Complaint" className={lineInput + " flex-1"} />
+                <input type="text" name="chief_complaint" placeholder="Chief Complaint" required className={lineInput + " flex-1"} />
               </label>
             </div>
 
