@@ -95,7 +95,7 @@ export default function JoinDRRTFormStatus() {
 
                                 <span className={`${statusCssColor[application.data?.status.toUpperCase()]} inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit`}>
                                     <span className={`${statusDotCssColor[application.data?.status.toUpperCase()]} animate-pulse w-2 h-2 rounded-full`} />
-                                    {application.data?.status.toUpperCase()}
+                                    {application.data?.status.toUpperCase().replace(/_/g, " ")}
                                 </span>
 
                             </div>
