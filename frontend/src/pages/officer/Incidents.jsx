@@ -1,16 +1,19 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../api/axios";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import { getInitials, formatDate } from "../../utils/format";
 
-// static placeholder data until the incidents api is wired up
-const incidents = [
-  { id: 1, date: "2026-09-21", patient_name: "Juan Dela Cruz" },
-  { id: 2, date: "2026-09-18", patient_name: "Maria Santos" },
-  { id: 3, date: "2026-09-12", patient_name: "Jose Rizal Reyes" },
-];
-
 export default function Incidents() {
+  const [incidents, setIncidents] = useState([]);
+
+  useEffect(() => {
+    api.get("/incident-reports")
+      .then((response) => setIncidents(response.data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <>
       <title>Incidents - DRRT Officer Portal</title>
@@ -61,14 +64,14 @@ export default function Incidents() {
                 className="bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
-                    {getInitials(incident.patient_name)}
+                    {getInitials(incident.name)}
                   </div>
                   <div className="min-w-0">
                     <p className="font-geist text-text truncate">
-                      {incident.patient_name}
+                      {incident.name || "Unnamed patient"}
                     </p>
                     <p className="text-[11px] text-subtext truncate">
-                      {formatDate(incident.date)}
+                      {formatDate((incident.date || incident.created_at).slice(0, 10))}
                     </p>
                   </div>
                 </div>
