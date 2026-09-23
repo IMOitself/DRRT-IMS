@@ -95,7 +95,7 @@ export default function CreateIncident() {
 
           <form ref={formRef} onSubmit={handleSubmit} className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
-            <div className="text-center uppercase space-y-1">
+            <div className="text-center uppercase space-y-1 text-sm">
               <p className="font-semibold">LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
               <p className="font-semibold">STANDBY DUTY - EXTERNAL</p>
               <p className="font-bold text-blue">PERSONAL MEDICAL SAMPLE HISTORY</p>
