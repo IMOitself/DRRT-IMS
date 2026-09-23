@@ -163,6 +163,19 @@ export default function CreateIncident() {
                 </label>
               </div>
             </div>
+
+            {/* Submission Actions */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
+              <Link to="/officer/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all">
+                <button type="button" className="w-full text-center">
+                  Cancel
+                </button>
+              </Link>
+              <button type="submit" className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist text-sm font-bold px-8 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] active:opacity-50 cursor-pointer">
+                <span>Submit Report</span>
+                <span className="material-symbols-outlined text-[18px]!">send</span>
+              </button>
+            </div>
           </form>
         </div>
       </main>
