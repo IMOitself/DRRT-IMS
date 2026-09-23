@@ -147,15 +147,15 @@ export default function CreateEvent() {
                                     <div>
                                         <label className="block font-geist text-sm font-bold text-text mb-1.5">Online Platform</label>
                                         <div className="grid grid-cols-2 gap-2">
-                                            {["Google Meet", "Zoom"].map((platform) => (
+                                            {[["gmeet", "Google Meet"], ["zoom", "Zoom"]].map(([value, label]) => (
                                                 <button
-                                                    key={platform}
+                                                    key={value}
                                                     type="button"
-                                                    onClick={() => handleVenueOnline(platform)}
-                                                    className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border font-geist text-sm font-semibold outline-none transition-all cursor-pointer ${formData.venue_online === platform ? "border-blue bg-blue/10 text-blue" : "border-blue-border bg-surface text-subtext hover:border-blue"}`}
+                                                    onClick={() => handleVenueOnline(value)}
+                                                    className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border font-geist text-sm font-semibold outline-none transition-all cursor-pointer ${formData.venue_online === value ? "border-blue bg-blue/10 text-blue" : "border-blue-border bg-surface text-subtext hover:border-blue"}`}
                                                 >
                                                     <span className="material-symbols-outlined text-[20px]!">videocam</span>
-                                                    {platform}
+                                                    {label}
                                                 </button>
                                             ))}
                                         </div>
