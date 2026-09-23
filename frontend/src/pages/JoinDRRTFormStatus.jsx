@@ -15,14 +15,12 @@ export default function JoinDRRTFormStatus() {
     const statusCssColor = {
         "PENDING": "bg-yellow-bg text-yellow",
         "APPROVED_NEED_REGISTER": "bg-green-bg text-green",
-        "APPROVED_MEMBER_NOW": "bg-green-bg text-green",
-        "REJECTED": "bg-red-bg text-red"
+        "APPROVED_MEMBER_NOW": "bg-green-bg text-green"
     }
     const statusDotCssColor = {
         "PENDING": "bg-yellow",
         "APPROVED_NEED_REGISTER": "bg-green",
-        "APPROVED_MEMBER_NOW": "bg-green",
-        "REJECTED": "bg-red"
+        "APPROVED_MEMBER_NOW": "bg-green"
     }
 
     const isApproved = application.data?.status.toUpperCase().startsWith("APPROVED");

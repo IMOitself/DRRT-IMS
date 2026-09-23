@@ -125,8 +125,9 @@ export default function Members() {
         ? ((presentAttendances.length / startedEvents.length) * 100).toFixed(2)
         : "0.00";
 
-    const handleReject = () => {
-        updateMemberApplication("rejected");
+    const handleDelete = () => {
+        setSelectedForDelete([selectedMemberApplication.id]);
+        setIsConfirmDeleteDialogOpen(true);
     };
 
     const handleApprove = () => {
@@ -161,6 +162,7 @@ export default function Members() {
                 setMemberApplications(memberApplications.filter((ma) => !selectedForDelete.includes(ma.id)));
                 setSelectedForDelete([]);
                 setIsConfirmDeleteDialogOpen(false);
+                if (selectedMemberApplication && selectedForDelete.includes(selectedMemberApplication.id)) closeDrawer();
             })
             .catch((err) => console.error(err));
     };
@@ -264,11 +266,6 @@ export default function Members() {
                                         <span className="bg-yellow-bg text-yellow inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
                                             <span className="bg-yellow w-2 h-2 rounded-full" />
                                             AWAITING REGISTRATION
-                                        </span>
-                                    ) : application.status === 'rejected' ? (
-                                        <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
-                                            <span className="bg-red w-2 h-2 rounded-full" />
-                                            REJECTED
                                         </span>
                                     ) : ('')}
                                     <span className="material-symbols-outlined text-subtext text-[18px]">
@@ -443,9 +440,7 @@ export default function Members() {
                                     ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>PENDING</span>
                                     : selectedMemberApplication.status === 'approved_need_register'
                                         ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
-                                        : selectedMemberApplication.status === 'rejected'
-                                            ? <span className={'bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>REJECTED</span>
-                                            : ""
+                                        : ""
                                 }
                             </div>
                             <div className="space-y-4">
@@ -566,8 +561,8 @@ export default function Members() {
                 {/* Drawer Actions */}
                 {selectedMemberApplication && selectedMemberApplication.status === "pending" ? (
                     <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-                        <button onClick={handleReject} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
-                            <span className="material-symbols-outlined text-[18px]">close</span>
+                        <button onClick={handleDelete} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
                             Reject
                         </button>
                         <button onClick={handleApprove} className="cursor-pointer flex-1 bg-green text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
