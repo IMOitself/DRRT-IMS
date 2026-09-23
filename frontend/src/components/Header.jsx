@@ -22,7 +22,10 @@ export default function Header() {
                     <div>
                         <h1 className="font-geist text-lg md:text-xl font-bold text-blue flex items-center gap-2">
                             DRRT 
-                            <span className="hidden lg:inline">Portal</span>
+                            {pathname.startsWith("/member") && <span className="hidden lg:inline">Member</span>}
+                            {pathname.startsWith("/officer") && <span className="hidden lg:inline">Officer</span>}
+                            {pathname.startsWith("/adviser") && <span className="hidden lg:inline">Adviser</span>}
+                            <span className="hidden md:inline">Portal</span>
                             <span className="font-geist text-sm text-blue font-semibold bg-blue-bg px-2 py-0.5 rounded-full uppercase tracking-wider">
                                 LVCC
                             </span>
