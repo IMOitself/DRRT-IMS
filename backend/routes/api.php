@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembershipApplicationsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\IncidentReportsController;
 use App\Models\User;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -43,4 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/attendances/{attendance}/approve', [AttendanceController::class, 'approve']);
     Route::put('/attendances/{attendance}/correction-request', [AttendanceController::class, 'requestCorrection']);
     Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy']);
+
+    Route::get('/incident-reports', [IncidentReportsController::class, 'index']);
+    Route::post('/incident-reports', [IncidentReportsController::class, 'store']);
 });
