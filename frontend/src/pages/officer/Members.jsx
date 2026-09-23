@@ -63,6 +63,10 @@ export default function Members() {
         (application) => matchesSearch(application) && matchesFilter(application)
     );
 
+    // the status page needs the link token for applicants who have no account yet
+    const applicationStatusLink = (application) =>
+        `${window.location.origin}/join-form/${application.id}?token=${application.access_token}`;
+
     const copyToClipboard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
@@ -516,9 +520,9 @@ export default function Members() {
                                                 Send this link to the applicant so they can check their status and create their account:
                                             </p>
                                             <button className="flex w-full min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-3 py-1 rounded-lg active:scale-95"
-                                                onClick={() => copyToClipboard(window.location.origin + "/join-form/" + selectedMemberApplication.id)}>
+                                                onClick={() => copyToClipboard(applicationStatusLink(selectedMemberApplication))}>
                                                 <span className="font-mono truncate">
-                                                    {window.location.origin + "/join-form/" + selectedMemberApplication.id}
+                                                    {applicationStatusLink(selectedMemberApplication)}
                                                 </span>
                                                 <span className="material-symbols-outlined text-blue text-[20px]! ml-auto">
                                                     {copied ? "check" : "content_copy"}

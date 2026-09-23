@@ -19,7 +19,11 @@ class MembershipApplicationsController extends Controller
      */
     public function index()
     {
-        $applications = MembershipApplication::all();
+        $applications = MembershipApplication::all()->map(function ($application) {
+            // officers share this link with applicants who have no account yet
+            $application->access_token = $this->accessToken($application);
+            return $application;
+        });
         return response()->json(['data' => $applications], 200);
     }
 
