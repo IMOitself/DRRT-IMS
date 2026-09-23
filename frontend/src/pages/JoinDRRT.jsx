@@ -108,9 +108,10 @@ export default function JoinDRRT() {
                                     </h2>
                                 </div>
                                 {/* Timeline Steps */}
-                                <div className="relative pl-8 border-l-2 border-blue-border/60 ml-3 space-y-8">
+                                <div className="relative pl-8 space-y-8">
                                     {/* Step 1 (Current / Active) */}
                                     <div className="relative">
+                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
                                         <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs ring-4 ring-background shadow-md">
                                             1
                                         </div>
@@ -127,6 +128,7 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 2 */}
                                     <div className="relative">
+                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
                                         <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             2
                                         </div>
@@ -143,6 +145,7 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 3 */}
                                     <div className="relative">
+                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
                                         <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             3
                                         </div>
