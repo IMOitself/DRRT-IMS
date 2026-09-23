@@ -27,6 +27,20 @@ export default function CreateEvent() {
         setFormData({ ...formData, [e.target.name]: value });
     };
 
+    const handleVenueOnline = (platform) =>
+        setFormData((prev) => ({
+            ...prev,
+            venue_online: prev.venue_online === platform ? "" : platform,
+            venue_facetoface: prev.venue_online === platform ? prev.venue_facetoface : "",
+        }));
+
+    const handleVenueFacetoface = (e) =>
+        setFormData((prev) => ({
+            ...prev,
+            venue_facetoface: e.target.value,
+            venue_online: e.target.value ? "" : prev.venue_online,
+        }));
+
     // time fields are always 2 digits
     const handleTimeMakeSure2Digits = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value.padStart(2, "0") });
@@ -76,7 +90,7 @@ export default function CreateEvent() {
                             <div className="space-y-4">
                                 <div>
                                     <label className="block font-geist text-sm font-bold text-text mb-1.5">Event Title <span className="text-red">*</span></label>
-                                    <input type="text" name="title" required value={formData.title} onChange={handleChange} placeholder="e.g. Mandatory Earthquake Drill" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                    <input type="text" name="title" required value={formData.title} onChange={handleChange} placeholder="e.g. Foundation Week" className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                 </div>
                                 <div>
                                     <label className="block font-geist text-sm font-bold text-text mb-1.5">Description <span className="text-red">*</span></label>
@@ -127,14 +141,23 @@ export default function CreateEvent() {
                                         <label className="block font-geist text-sm font-bold text-text mb-1.5">On-Site Venue</label>
                                         <div className="relative">
                                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">location_on</span>
-                                            <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleChange} placeholder="e.g. Main Quadrangle" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                            <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleVenueFacetoface} placeholder="e.g. Main Quadrangle" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Online Link (Zoom/Meet)</label>
-                                        <div className="relative">
-                                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">link</span>
-                                            <input type="text" name="venue_online" value={formData.venue_online} onChange={handleChange} placeholder="https://meet.google.com/..." className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Online Platform</label>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {["Google Meet", "Zoom"].map((platform) => (
+                                                <button
+                                                    key={platform}
+                                                    type="button"
+                                                    onClick={() => handleVenueOnline(platform)}
+                                                    className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border font-geist text-sm font-semibold outline-none transition-all cursor-pointer ${formData.venue_online === platform ? "border-blue bg-blue/10 text-blue" : "border-blue-border bg-surface text-subtext hover:border-blue"}`}
+                                                >
+                                                    <span className="material-symbols-outlined text-[20px]!">videocam</span>
+                                                    {platform}
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
