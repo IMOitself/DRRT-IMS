@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
@@ -42,6 +43,18 @@ function LetterRow({ letter, name, placeholder }) {
 }
 
 export default function CreateIncident() {
+  const [isConfirmSubmitDialogOpen, setIsConfirmSubmitDialogOpen] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsConfirmSubmitDialogOpen(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    // TODO: send report to the backend
+    setIsConfirmSubmitDialogOpen(false);
+  };
+
   return (
     <>
       <title>Create Incident Report - DRRT Officer Portal</title>
@@ -70,7 +83,7 @@ export default function CreateIncident() {
             </div>
           </section>
 
-          <form className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
+          <form onSubmit={handleSubmit} className="w-full bg-white border border-blue-border rounded-xl shadow-sm p-6 md:p-16 font-geist text-text text-xs md:text-lg space-y-6 [&_label]:font-bold">
             {/* Form Heading */}
             <div className="text-center uppercase space-y-1">
               <p className="font-semibold">LVCC DRRT (DISASTER RESPONSE AND RESCUE TEAM) CLUB</p>
@@ -179,6 +192,40 @@ export default function CreateIncident() {
           </form>
         </div>
       </main>
+
+      {isConfirmSubmitDialogOpen && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Submit Incident Report?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Once submitted, the report is locked and only the adviser can view it.
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setIsConfirmSubmitDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={handleConfirmSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">send</span>
+                      <span>Submit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </>
