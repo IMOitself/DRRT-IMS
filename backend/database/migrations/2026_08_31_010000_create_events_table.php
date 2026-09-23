@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->enum('type', ['drill', 'meeting', 'deployment'])->nullable();
+            $table->enum('type', ['drill', 'meeting', 'deployment', 'others'])->nullable();
             $table->string('date')->nullable();
             $table->string('time_hour')->nullable();
             $table->string('time_minute')->nullable();
