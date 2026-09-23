@@ -12,8 +12,6 @@ const AUTO_SAVED_FORM_DATA_KEY = "auto_saved_join_form";
 export default function JoinDRRTForm() {
     const navigate = useNavigate();
 
-
-
     const initialFormData = {
         student_id: '',
         last_name: '',
@@ -259,7 +257,7 @@ export default function JoinDRRTForm() {
                                 {/* Email */}
                                 <div>
                                     <label htmlFor="email" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Email <span className="text-red">*</span>
+                                        Your Email <span className="text-red">*</span>
                                     </label>
                                     <input
                                         value={formData.email}
@@ -277,7 +275,7 @@ export default function JoinDRRTForm() {
                                 {/* Mobile Number */}
                                 <div>
                                     <label htmlFor="mobile" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Mobile Number <span className="text-red">*</span>
+                                        Your Number <span className="text-red">*</span>
                                     </label>
                                     <input
                                         value={formData.phone_number}
@@ -311,7 +309,7 @@ export default function JoinDRRTForm() {
                                 {/* Emergency Contact Phone */}
                                 <div>
                                     <label htmlFor="emergency-phone" className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Emergency Contact Phone <span className="text-red">*</span>
+                                        Emergency Contact Number <span className="text-red">*</span>
                                     </label>
                                     <input
                                         value={formData.emergency_phone}
