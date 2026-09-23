@@ -25,17 +25,17 @@ class DatabaseSeeder extends Seeder
         //     'role' => 'member'
         // ]);
 
-        // User::factory()->create([
-        //     'name' => 'king fritz',
-        //     'email' => 'king.fritz@gmail.com',
-        //     'role' => 'adviser'
-        // ]);
-
         $officer = User::factory()->create([
             'name' => 'Captain Erwin',
             'email' => 'captain.erwin@gmail.com',
             'password' => 'shinzousasageyo',
             'role' => 'officer'
+        ]);
+        User::factory()->create([
+            'name' => 'King Fritz',
+            'email' => 'king.fritz@gmail.com',
+            'password' => 'foundingtitan',
+            'role' => 'adviser'
         ]);
         $member = User::factory()->create([
             'name' => 'Background, Character C.',

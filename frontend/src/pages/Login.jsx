@@ -64,6 +64,29 @@ export default function Login() {
       });
   };
 
+  const testLoginAsAdviser = () => {
+    setIsLoading(true);
+    setErrorMessage("");
+
+    api
+      .post("/login", {
+        email: "king.fritz@gmail.com",
+        password: "foundingtitan",
+      })
+      .then((res) => {
+        login(res.data.token, res.data.user);
+        navigate("/adviser/dashboard");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        if (err.response && err.response.data && err.response.data.message) {
+          setErrorMessage(err.response.data.message);
+        } else {
+          setErrorMessage("Something went wrong. Please try again.");
+        }
+      });
+  };
+
   const testLoginAsMember = () => {
     setIsLoading(true);
     setErrorMessage("");
@@ -199,6 +222,9 @@ export default function Login() {
           </button>
           <button onClick={testLoginAsMember} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
             test: login as member hehe
+          </button>
+          <button onClick={testLoginAsAdviser} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as adviser hehe
           </button>
           <Link to="/test-pages" className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
             test: view all pages (no login)
