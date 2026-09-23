@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -41,9 +42,17 @@ class AuthController extends Controller
         TEXT;
         // ==== END OF EMAIL MESSAGE ====
 
-        Mail::raw($body, function ($message) use ($request, $subject) {
-            $message->to($request->email)->subject($subject);
-        });
+        try {
+            Mail::raw($body, function ($message) use ($request, $subject) {
+                $message->to($request->email)->subject($subject);
+            });
+        } catch (\Throwable $e) {
+            Log::error('Failed to send verification code: ' . $e->getMessage());
+
+            return response()->json([
+                'message' => 'Could not send the verification email. Please try again or contact an officer.',
+            ], 500);
+        }
 
         return response()->json(['message' => 'Verification code sent.']);
     }
