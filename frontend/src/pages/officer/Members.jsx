@@ -14,6 +14,9 @@ export default function Members() {
     const [memberFilter, setMemberFilter] = useState("all");
     const [selectedForDelete, setSelectedForDelete] = useState([]);
     const [isConfirmDeleteDialogOpen, setIsConfirmDeleteDialogOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const [events, setEvents] = useState([]);
+    const [attendances, setAttendances] = useState([]);
     const { user } = useAuth();
 
     const incomingApplications = memberApplications.filter(
@@ -60,6 +63,16 @@ export default function Members() {
         (application) => matchesSearch(application) && matchesFilter(application)
     );
 
+    const copyToClipboard = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy:", err);
+        }
+    };
+
     function openDrawer(application) {
         setSelectedMemberApplication(application);
         setIsAddMemberDialogOpen(false);
@@ -77,7 +90,40 @@ export default function Members() {
                 setMemberApplications(res.data.data);
             })
             .catch((err) => console.error(err));
+
+        api
+            .get("/events")
+            .then((res) => setEvents(res.data))
+            .catch((err) => console.error(err));
+
+        api
+            .get("/attendances", { params: { all: 1 } })
+            .then((res) => setAttendances(res.data))
+            .catch((err) => console.error(err));
     }, []);
+
+    const hasEventStarted = (event) => {
+        const start = new Date(event.date);
+        if (event.time_hour) {
+            start.setHours(
+                (Number(event.time_hour) % 12) + (event.time_ampm === "PM" ? 12 : 0),
+                Number(event.time_minute) || 0, 0, 0
+            );
+        } else {
+            start.setHours(0, 0, 0, 0);
+        }
+        return start <= new Date();
+    };
+
+    const startedEvents = events.filter(hasEventStarted);
+    const presentAttendances = attendances.filter(
+        (attendance) =>
+            attendance.user_id === selectedMemberApplication?.user_id &&
+            attendance.status === "present"
+    );
+    const attendanceRatePercentage = startedEvents.length
+        ? ((presentAttendances.length / startedEvents.length) * 100).toFixed(2)
+        : "0.00";
 
     const handleReject = () => {
         updateMemberApplication("rejected");
@@ -142,8 +188,8 @@ export default function Members() {
                             <button onClick={() => setIsAddMemberDialogOpen(true)} className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5">
                                 <span className="material-symbols-outlined text-[18px]!">person_add</span>
                                 Add Member
-                                {incomingApplications.length > 0 && 
-                                <><span className="w-2 h-2 rounded-full bg-yellow" /><span className="text-yellow">{incomingApplications.length}</span></>
+                                {incomingApplications.length > 0 &&
+                                    <><span className="w-2 h-2 rounded-full bg-yellow" /><span className="text-yellow">{incomingApplications.length}</span></>
                                 }
                             </button>
                         </div>
@@ -471,7 +517,18 @@ export default function Members() {
                                         <div className="bg-yellow-bg border border-yellow-border rounded-xl p-4 text-center space-y-1">
                                             <span className="material-symbols-outlined text-yellow text-[32px]!">hourglass_top</span>
                                             <p className="font-geist text-sm font-bold text-yellow">Awaiting Account Registration</p>
-                                            <p className="text-xs text-subtext">This applicant has been approved but hasn't created their account yet.</p>
+                                            <p className="text-xs text-subtext">
+                                                Send this link to the applicant so they can check their status and create their account:
+                                            </p>
+                                            <button className="flex w-full min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-3 py-1 rounded-lg active:scale-95"
+                                                onClick={() => copyToClipboard(window.location.origin + "/join-form/" + selectedMemberApplication.id)}>
+                                                <span className="font-mono truncate">
+                                                    {window.location.origin + "/join-form/" + selectedMemberApplication.id}
+                                                </span>
+                                                <span className="material-symbols-outlined text-blue text-[20px]! ml-auto">
+                                                    {copied ? "check" : "content_copy"}
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
                                 )}
@@ -481,12 +538,23 @@ export default function Members() {
                                             Duty Performance
                                         </p>
 
-                                        <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                                            <p className="font-geist text-3xl text-blue font-bold m-0">
-                                                N/A
-                                            </p>
-                                            <p className="font-geist text-xs text-subtext mt-1">
-                                                Attendance Rate
+                                        <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 space-y-3">
+                                            <div className="flex justify-between items-end">
+                                                <span className="font-geist text-sm font-semibold text-subtext">
+                                                    Attendance Rate
+                                                </span>
+                                                <span className="font-geist text-3xl font-bold text-blue leading-none">
+                                                    {attendanceRatePercentage}%
+                                                </span>
+                                            </div>
+                                            <div className="h-3.5 w-full bg-progress-ring-track rounded-full overflow-hidden relative">
+                                                {/* 80% threshold marker */}
+                                                <div className="absolute h-full w-0.5 bg-red z-10 left-[80%]" />
+                                                {/* progress bar */}
+                                                <div className="h-full bg-blue rounded-full transition-all duration-500" style={{ width: attendanceRatePercentage + "%" }} />
+                                            </div>
+                                            <p className="font-geist text-xs text-subtext">
+                                                Present on {presentAttendances.length} of {startedEvents.length} Events
                                             </p>
                                         </div>
                                     </div>
