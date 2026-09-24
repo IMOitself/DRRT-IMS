@@ -53,7 +53,7 @@ export default function Members() {
 
     const matchesFilter = (application) => {
         if (searchQuery.trim()) return true;
-        if (memberFilter === "all") return true;
+        if (memberFilter === "all") return application.status !== "graduated";
         if (memberFilter === "graduated") return application.status === "graduated";
         return Number(application.year_level) === memberFilter;
     };
@@ -264,7 +264,7 @@ export default function Members() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
-                                All Members ({listedApplications.length})
+                                All Members ({listedApplications.filter((ma) => ma.status !== "graduated").length})
                             </button>
                             {[1, 2, 3, 4].map((year) => (
                                 <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
@@ -273,7 +273,7 @@ export default function Members() {
                             ))}
                             <div className="w-0.5 bg-blue-border shrink-0" />
                             <button onClick={() => setMemberFilter("graduated")} className={pillClassName("graduated")}>
-                                Graduated
+                                Graduated ({listedApplications.filter((ma) => ma.status === "graduated").length})
                             </button>
                         </div>
                     </div>
