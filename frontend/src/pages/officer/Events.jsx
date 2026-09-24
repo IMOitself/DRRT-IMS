@@ -66,7 +66,7 @@ export default function Events() {
   useEffect(() => {
 
     api
-      .get("/events")
+      .get("/events", { params: { all: 1 } })
       .then((res) => {
         setEvents(res.data.reverse());
       })
@@ -98,6 +98,9 @@ export default function Events() {
     }
     return start <= new Date();
   };
+
+  // a pending event has no attendance yet either
+  const canSeeAttendance = (event) => hasEventStarted(event) && !event.pending_approval;
 
   const filteredEvents = events.filter((event) => matchesSearch(event) && matchesVenue(event));
 
@@ -171,9 +174,9 @@ export default function Events() {
                   key={event.id}
                   draggable={false}
                   onClick={(e) => {
-                    if (!hasEventStarted(event) || !window.getSelection().isCollapsed) e.preventDefault();
+                    if (!canSeeAttendance(event) || !window.getSelection().isCollapsed) e.preventDefault();
                   }}
-                  className={`relative group block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}>
+                  className={`relative group block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${canSeeAttendance(event) ? " hover:border-blue" : ""}`}>
                   <div className="flex-1 flex flex-col gap-1 pr-8">
                     {/* venue online */}
                     {event.venue_online && (
@@ -271,7 +274,14 @@ export default function Events() {
                     </div>
 
                     <div className="flex flex-wrap gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
-                      {hasEventStarted(event) ? (
+                      {event.pending_approval ? (
+                        <div className="flex items-center gap-2.5 text-yellow">
+                          <span className="material-symbols-outlined text-[18px]!">
+                            hourglass_top
+                          </span>
+                          <span>Pending Approval</span>
+                        </div>
+                      ) : hasEventStarted(event) ? (
                         <div className="flex items-center gap-2.5">
                           <div className="flex gap-4 font-geist">
                             <div className=" flex items-center gap-1.5 text-green">
@@ -298,7 +308,7 @@ export default function Events() {
                       )}
                     </div>
                   </div>
-                  {hasEventStarted(event) && (
+                  {canSeeAttendance(event) && (
                     <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80 text-sm md:text-lg font-semibold group-hover:translate-x-1 transition-transform">
                       <span>See attendances</span>
                       <span className="material-symbols-outlined text-[18px]!">

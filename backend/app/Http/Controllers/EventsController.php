@@ -10,9 +10,14 @@ class EventsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::all();
+        // pending events are only for officers and advisers to see
+        if ($request->filled('all')) {
+            return response()->json(Event::all(), 200);
+        }
+
+        $events = Event::where('pending_approval', false)->get();
         return response()->json($events, 200);
     }
 
@@ -33,6 +38,8 @@ class EventsController extends Controller
             'venue_online' => $request->input('venue_online'),
             'venue_facetoface' => $request->input('venue_facetoface'),
             'require_proof_of_attendance' => $request->input('require_proof_of_attendance', false),
+            // waits for an adviser to approve it
+            'pending_approval' => true,
         ]);
 
         return response()->json(['event_id' => $event->id], 201);
@@ -67,6 +74,17 @@ class EventsController extends Controller
         ]));
 
         return response()->json(['event_id' => $event->id], 200);
+    }
+
+    /**
+     * Adviser approves an event an officer created.
+     */
+    public function approve(Event $event)
+    {
+        // TODO: adviser role only
+        $event->update(['pending_approval' => false]);
+
+        return response()->json($event, 200);
     }
 
     /**
