@@ -72,7 +72,7 @@ export default function Dashboard() {
           <section className="bg-white border border-blue-border p-4 md:p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
             <div>
               <h1 className="font-geist text-3xl md:text-5xl text-text font-bold">
-                Welcome, {user?.name}
+                Welcome back, {user?.membership_application?.first_name}
               </h1>
               <p className="text-base text-subtext mt-1">
                 Officer • {user?.email || "loading.."}
@@ -83,7 +83,7 @@ export default function Dashboard() {
                 <span className="material-symbols-outlined text-[18px]!">
                   calendar_month
                 </span>{" "}
-                Manage Events & Attendance
+                Manage Events
               </Link>
             </div>
           </section>

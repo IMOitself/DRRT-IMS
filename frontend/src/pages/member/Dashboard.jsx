@@ -95,7 +95,7 @@ export default function Dashboard() {
                         <div>
                             <div className="flex items-center gap-2 flex-wrap">
                                 <h1 className="font-geist text-3xl md:text-5xl text-text font-bold">
-                                    Welcome, {user?.membership_application?.full_name || user?.name}
+                                    Welcome back, {user?.membership_application?.first_name}
                                 </h1>
                             </div>
                             <p className="text-base text-subtext mt-1">
