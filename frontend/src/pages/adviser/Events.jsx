@@ -153,9 +153,9 @@ export default function Events() {
                   onClick={(e) => {
                     if (!hasEventStarted(event) || !window.getSelection().isCollapsed) e.preventDefault();
                   }}
-                  className={`block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}
+                  className={`group block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}
                 >
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col gap-1">
                     {/* venue online */}
                     {event.venue_online && (
                       <div className="flex flex-row justify-between items-center gap-2">
@@ -184,7 +184,7 @@ export default function Events() {
                             {event.venue_facetoface}
                           </span>
                         </div>
-                        <span className="font-geist font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
+                        <span className="font-geist font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full text-center">
                           Face to Face
                         </span>
                       </div>
@@ -196,38 +196,41 @@ export default function Events() {
                       </p>
                     )}
 
-                    <h2 className="font-geist text-2xl font-semibold text-text mt-1">
+                    <h2 className="font-geist text-2xl font-semibold text-text mt-2 w-full truncate">
                       {event.title}
                     </h2>
-                    <p
-                      ref={(el) => {
-                        if (!el || overflowIds.includes(event.id)) return;
-                        if (el.scrollHeight > el.clientHeight + 1)
-                          setOverflowIds((ids) => [...ids, event.id]);
-                      }}
-                      className={`font-geist text-lg text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}>
-                      {event.description}
-                    </p>
-                    {overflowIds.includes(event.id) && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setExpandedIds(
-                            expandedIds.includes(event.id)
-                              ? expandedIds.filter((id) => id !== event.id)
-                              : [...expandedIds, event.id]
-                          );
+                    <div>
+                      <p
+                        ref={(el) => {
+                          if (!el || overflowIds.includes(event.id)) return;
+                          const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+                        if (el.scrollHeight - el.clientHeight > lineHeight / 2)
+                            setOverflowIds((ids) => [...ids, event.id]);
                         }}
-                        className="font-geist text-sm text-blue font-semibold"
-                      >
-                        {expandedIds.includes(event.id) ? "See Less" : "See More..."}
-                      </button>
-                    )}
+                        className={`font-geist text-lg text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}>
+                        {event.description}
+                      </p>
+                      {overflowIds.includes(event.id) && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setExpandedIds(
+                              expandedIds.includes(event.id)
+                                ? expandedIds.filter((id) => id !== event.id)
+                                : [...expandedIds, event.id]
+                            );
+                          }}
+                          className="font-geist text-sm text-blue font-semibold cursor-pointer"
+                        >
+                          {expandedIds.includes(event.id) ? "See Less" : "See More..."}
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                   <div className="flex justify-between flex-col md:flex-row">
-                    <div className="flex flex-wrap gap-4 my-3 text-subtext text-sm md:text-lg font-semibold">
+                    <div className="flex flex-wrap gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
                       <div className="flex items-center gap-2.5">
                         <span className="material-symbols-outlined text-blue text-[18px]!">
                           event
@@ -248,34 +251,36 @@ export default function Events() {
                       </div>
                     </div>
 
-                    {hasEventStarted(event) ? (  
-                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-lg font-bold">
-                      <div className="flex gap-4 font-geist">
-                        <div className=" flex items-center gap-1.5 text-green">
-                          <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
-                          Present: {countByStatus("present")}
+                    <div className="flex flex-wrap gap-4 my-3 text-subtext text-sm md:text-md font-semibold">
+                      {hasEventStarted(event) ? (
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex gap-4 font-geist">
+                            <div className=" flex items-center gap-1.5 text-green">
+                              <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
+                              Present: {countByStatus("present")}
+                            </div>
+                            <div className="flex items-center gap-1.5 text-red">
+                              <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
+                              Absent: {countByStatus("absent")}
+                            </div>
+                            <div className="flex items-center gap-1.5 text-yellow">
+                              <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
+                              Late: {countByStatus("late")}
+                            </div>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1.5 text-red">
-                          <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
-                          Absent: {countByStatus("absent")}
+                      ) : (
+                        <div className="flex items-center gap-2.5">
+                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                            schedule
+                          </span>
+                          <span>Not Started Yet</span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-yellow">
-                          <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
-                          Late: {countByStatus("late")}
-                        </div>
-                      </div>
+                      )}
                     </div>
-                    ) : (
-                    <div className="flex flex-row items-center py-3 gap-2 text-lg font-semibold">
-                      <span className="material-symbols-outlined text-[18px]!">
-                        hourglass_top
-                      </span>
-                      <span>Not Started Yet</span>
-                    </div>
-                    )}
                   </div>
                   {hasEventStarted(event) && (
-                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-md font-semibold">
+                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80 text-sm md:text-lg font-semibold group-hover:translate-x-1 transition-transform">
                       <span>See attendances</span>
                       <span className="material-symbols-outlined text-[18px]!">
                         keyboard_arrow_right

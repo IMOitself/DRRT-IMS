@@ -173,7 +173,7 @@ export default function Events() {
                   onClick={(e) => {
                     if (!hasEventStarted(event) || !window.getSelection().isCollapsed) e.preventDefault();
                   }}
-                  className={`relative block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}>
+                  className={`relative group block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}>
                   <div className="flex-1 flex flex-col gap-1 pr-8">
                     {/* venue online */}
                     {event.venue_online && (
@@ -299,7 +299,7 @@ export default function Events() {
                     </div>
                   </div>
                   {hasEventStarted(event) && (
-                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-lg font-semibold">
+                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80 text-sm md:text-lg font-semibold group-hover:translate-x-1 transition-transform">
                       <span>See attendances</span>
                       <span className="material-symbols-outlined text-[18px]!">
                         keyboard_arrow_right
