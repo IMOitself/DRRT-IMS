@@ -4,9 +4,6 @@ import { useEffect } from 'react';
 
 import Report from './pages/officer/Report';
 
-import TestPages from './pages/TEST-PAGES';
-import TestExcuse from './pages/TEST-EXCUSE';
-
 import JoinDRRT from './pages/JoinDRRT';
 import JoinDRRTForm from './pages/JoinDRRTForm';
 import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
@@ -39,8 +36,6 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/test-pages" element={<TestPages />} />
-      <Route path="/test-excuse" element={<TestExcuse />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

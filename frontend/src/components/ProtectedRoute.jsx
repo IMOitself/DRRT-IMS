@@ -5,10 +5,6 @@ export default function ProtectedRoute({ allowedRoles }) {
     const location = useLocation();
     const { user, loading, isLoggedIn } = useAuth();
 
-    // TODO: remove this test code :D.
-    // bypass authentication if from test page
-    if (sessionStorage.getItem("testMode") === "true") return <Outlet />;
-
     if (loading) {
         return (
             <div className="flex h-screen items-center justify-center text-subtext">

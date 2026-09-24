@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getInitials } from "../utils/format";
 
@@ -45,9 +45,6 @@ export default function AccountDropdown() {
                     >
                         View Profile
                     </li>
-                    <Link to="/test-pages" className="px-4 py-2 hover:bg-surface-container-highest cursor-pointer text-subtext">
-                        test: view all pages
-                    </Link>
                     <li
                         onClick={handleLogout}
                         className="px-4 py-2 hover:bg-surface-container-highest cursor-pointer text-subtext"
