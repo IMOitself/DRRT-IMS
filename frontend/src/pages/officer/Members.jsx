@@ -173,12 +173,14 @@ export default function Members() {
 
     // keeps the application so they can be unmarked later
     const handleConfirmGraduate = () => {
+        // unmarking puts them back as a regular member
+        const status = selectedMemberApplication.status === "graduated" ? "approved_member_now" : "graduated";
         api
-            .put("/membership-applications/" + selectedMemberApplication.id, { status: "graduated" })
+            .put("/membership-applications/" + selectedMemberApplication.id, { status: status })
             .then(() => {
-                setSelectedMemberApplication({ ...selectedMemberApplication, status: "graduated" });
+                setSelectedMemberApplication({ ...selectedMemberApplication, status: status });
                 setMemberApplications(memberApplications.map((app) =>
-                    app.id === selectedMemberApplication.id ? { ...app, status: "graduated" } : app
+                    app.id === selectedMemberApplication.id ? { ...app, status: status } : app
                 ));
                 setIsConfirmGraduateDialogOpen(false);
             })
@@ -333,11 +335,13 @@ export default function Members() {
                                         school
                                     </span>
                                     <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                                        Mark as Graduated?
+                                        {selectedMemberApplication.status === "graduated" ? "Unmark as Graduated?" : "Mark as Graduated?"}
                                     </p>
                                 </div>
                                 <p className="font-geist text-text">
-                                    Marking {selectedMemberApplication.full_name} as graduated removes them from attendance.
+                                    {selectedMemberApplication.status === "graduated"
+                                        ? "Unmarking " + selectedMemberApplication.full_name + " as graduated brings them back to attendance."
+                                        : "Marking " + selectedMemberApplication.full_name + " as graduated removes them from attendance."}
                                 </p>
 
                                 <div className="w-full flex items-center mt-4">
@@ -347,7 +351,7 @@ export default function Members() {
                                         </button>
                                         <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                             <span className="material-symbols-outlined text-[20px]!">school</span>
-                                            <span>Mark as Graduated</span>
+                                            <span>{selectedMemberApplication.status === "graduated" ? "Unmark as Graduated" : "Mark as Graduated"}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -651,7 +655,7 @@ export default function Members() {
                             Waiting for applicant to register their account
                         </div>
                     </div>
-                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_member_now" && (
+                ) : selectedMemberApplication && (selectedMemberApplication.status === "approved_member_now" || selectedMemberApplication.status === "graduated") && (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="relative" ref={moreMenuRef}>
                             <button
@@ -671,7 +675,7 @@ export default function Members() {
                                         className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-low cursor-pointer"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">school</span>
-                                        Mark as graduated
+                                        {selectedMemberApplication.status === "graduated" ? "Unmark as graduated" : "Mark as graduated"}
                                     </button>
                                     <button
                                         type="button"
