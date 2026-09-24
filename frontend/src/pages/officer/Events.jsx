@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import { formatDate } from "../../utils/format";
 
@@ -13,6 +13,22 @@ export default function Events() {
   const [venueFilter, setVenueFilter] = useState("all");
   const [expandedIds, setExpandedIds] = useState([]);
   const [overflowIds, setOverflowIds] = useState([]);
+  const [menuId, setMenuId] = useState(null);
+  const navigate = useNavigate();
+
+  // the event waiting on the confirm delete dialog
+  const [deleteTarget, setDeleteTarget] = useState(null);
+
+  const deleteEvent = () => {
+    api
+      .delete(`/events/${deleteTarget.id}`)
+      .then(() => setEvents(events.filter((e) => e.id !== deleteTarget.id)))
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to delete event. Please try again.");
+      });
+    setDeleteTarget(null);
+  };
 
   // searching looks through all events, whatever the pill says
   const matchesVenue = (event) => {
@@ -157,9 +173,8 @@ export default function Events() {
                   onClick={(e) => {
                     if (!hasEventStarted(event) || !window.getSelection().isCollapsed) e.preventDefault();
                   }}
-                  className={`block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}
-                >
-                  <div className="flex-1 flex flex-col gap-1">
+                  className={`relative block select-text bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2 transition-all duration-300${hasEventStarted(event) ? " hover:border-blue" : ""}`}>
+                  <div className="flex-1 flex flex-col gap-1 pr-8">
                     {/* venue online */}
                     {event.venue_online && (
                       <div className="flex flex-row justify-between items-center gap-2">
@@ -291,6 +306,47 @@ export default function Events() {
                       </span>
                     </div>
                   )}
+
+                  {/* actions menu, kept last so space-y doesn't push it */}
+                  <div className="absolute top-3 right-2">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuId(menuId === event.id ? null : event.id);
+                      }}
+                      className="flex p-1 rounded-full text-subtext hover:bg-surface-container-high cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[20px]!">more_vert</span>
+                    </button>
+                    {menuId === event.id && (
+                      <div className="absolute right-0 mt-1 w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-10">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate("/officer/create-event", { state: { event } });
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-text hover:bg-surface-container-low cursor-pointer"
+                        >
+                          <span className="material-symbols-outlined text-[18px]!">edit</span>
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setMenuId(null);
+                            setDeleteTarget(event);
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-low cursor-pointer"
+                        >
+                          <span className="material-symbols-outlined text-[18px]!">delete</span>
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </Link>
               );
             })}
@@ -302,6 +358,40 @@ export default function Events() {
           </section>
         </main>
       </div>
+
+      {deleteTarget && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Delete Event?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Deleting "{deleteTarget.title}" will also delete all of its attendances. This can't be undone.
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setDeleteTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={deleteEvent} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">delete</span>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </>

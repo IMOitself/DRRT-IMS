@@ -51,7 +51,22 @@ class EventsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->update($request->only([
+            'title',
+            'description',
+            'type',
+            'date',
+            'time_hour',
+            'time_minute',
+            'time_ampm',
+            'participants',
+            'venue_online',
+            'venue_facetoface',
+            'require_proof_of_attendance',
+        ]));
+
+        return response()->json(['event_id' => $event->id], 200);
     }
 
     /**
@@ -59,6 +74,9 @@ class EventsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // TODO: officer role only
+        Event::destroy($id);
+
+        return response()->json(['event_id' => $id], 200);
     }
 }
