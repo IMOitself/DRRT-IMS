@@ -18,12 +18,12 @@ import OfficerMembers from './pages/officer/Members';
 import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerEvents from './pages/officer/Events';
 import OfficerEventAttendance from './pages/officer/EventAttendance';
-import OfficerIncidents from './pages/officer/Incidents';
-import OfficerCreateIncident from './pages/officer/CreateIncident';
 import OfficerCreateEvent from './pages/officer/CreateEvent';
 
 import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
+import MemberIncidents from './pages/member/Incidents';
+import MemberCreateIncident from './pages/member/CreateIncident';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
 import AdviserMembers from './pages/adviser/Members';
@@ -62,8 +62,6 @@ function App() {
         <Route path="/officer/events" element={<OfficerEvents />} />
         <Route path="/officer/events/:id" element={<OfficerEventAttendance />} />
         <Route path="/officer/members" element={<OfficerMembers />} />
-        <Route path="/officer/incidents" element={<OfficerIncidents />} />
-        <Route path="/officer/create-incident" element={<OfficerCreateIncident />} />
         <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
       </Route>
 
@@ -75,6 +73,8 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
         <Route path="/member/dashboard" element={<MemberDashboard />} />
         <Route path="/member/attendance" element={<MemberAttendance />} />
+        <Route path="/member/incidents" element={<MemberIncidents />} />
+        <Route path="/member/create-incident" element={<MemberCreateIncident />} />
       </Route>
     </Routes>
   );

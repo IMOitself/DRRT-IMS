@@ -57,7 +57,7 @@ export default function CreateIncident() {
     try {
       // field names like vitals[0][bp] are parsed into nested arrays by laravel
       await api.post("/incident-reports", new FormData(formRef.current));
-      navigate("/officer/incidents");
+      navigate("/member/incidents");
     } catch (error) {
       console.error(error);
       alert("Failed to submit incident report.");
@@ -67,14 +67,14 @@ export default function CreateIncident() {
 
   return (
     <>
-      <title>Create Incident Report - DRRT Officer Portal</title>
+      <title>Create Incident Report - DRRT Member Portal</title>
 
       <Header />
 
       <main className="grow pb-32">
         <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 space-y-4">
           {/* Back Link */}
-          <Link to="/officer/incidents" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
+          <Link to="/member/incidents" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
             <span className="material-symbols-outlined text-[18px]!">arrow_back</span>
             <span>Back to Incidents</span>
           </Link>
@@ -189,7 +189,7 @@ export default function CreateIncident() {
 
             {/* Submission Actions */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-              <Link to="/officer/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all">
+              <Link to="/member/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all">
                 <button type="button" className="w-full text-center">
                   Cancel
                 </button>

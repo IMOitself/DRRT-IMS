@@ -111,6 +111,12 @@ export default function Dashboard() {
                                 </span>{" "}
                                 Attendance Records
                             </Link>
+                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
+                                <span className="material-symbols-outlined text-[18px]!">
+                                    emergency
+                                </span>{" "}
+                                Create Incident Report
+                            </Link>
                         </div>
                     </section>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

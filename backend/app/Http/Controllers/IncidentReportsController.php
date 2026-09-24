@@ -10,9 +10,16 @@ class IncidentReportsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $incidentReports = IncidentReport::with('reporter')->latest()->get();
+        $query = IncidentReport::with('reporter')->latest();
+
+        // only the adviser sees every report, members only see the ones they filed
+        if ($request->user()->role !== 'adviser') {
+            $query->where('reporter_id', $request->user()->id);
+        }
+
+        $incidentReports = $query->get();
         return response()->json($incidentReports, 200);
     }
 

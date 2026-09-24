@@ -31,7 +31,7 @@ export default function Incidents() {
                   Incident Reports
                 </h2>
                 <p className="text-sm text-subtext mt-1">
-                  Incident reports filed by officers.
+                  Incident reports filed by members.
                 </p>
               </div>
             </div>

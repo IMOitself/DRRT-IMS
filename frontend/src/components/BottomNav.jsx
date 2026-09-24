@@ -113,23 +113,6 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/officer/incidents" className={() => {
-                    const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                    return isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive";
-                }}>
-                    {() => {
-                        const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                        return (
-                            <>
-                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
-                                <span className="bottom-nav-label">Vault</span>
-                            </>
-                        );
-                    }}
-                </NavLink>
-
                 <NavLink to="/officer/report" className={({ isActive }) =>
                     isActive
                         ? "bottom-nav-active"
@@ -173,6 +156,23 @@ export default function BottomNav() {
                             <span className="bottom-nav-label">Attendance</span>
                         </>
                     )}
+                </NavLink>
+
+                <NavLink to="/member/incidents" className={() => {
+                    const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
+                    return isActive
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive";
+                }}>
+                    {() => {
+                        const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
+                        return (
+                            <>
+                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
+                                <span className="bottom-nav-label">Vault</span>
+                            </>
+                        );
+                    }}
                 </NavLink>
             </nav>
         );

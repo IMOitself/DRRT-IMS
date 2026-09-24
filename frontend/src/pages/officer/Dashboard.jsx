@@ -11,7 +11,6 @@ export default function Dashboard() {
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
   const [attendances, setAttendances] = useState([]);
-  const [incidentReports, setIncidentReports] = useState([]);
   const [memberApplications, setMemberApplications] = useState([]);
   const { user } = useAuth();
 
@@ -29,11 +28,6 @@ export default function Dashboard() {
     api
       .get("/attendances", { params: { all: 1 } })
       .then((res) => setAttendances(res.data))
-      .catch((err) => console.error(err));
-
-    api
-      .get("/incident-reports")
-      .then((res) => setIncidentReports(res.data))
       .catch((err) => console.error(err));
 
     api
@@ -62,7 +56,6 @@ export default function Dashboard() {
   const lastEventAttendances = attendances.filter((attendance) => attendance.event_id === lastEvent?.id);
   const countByStatus = (status) => lastEventAttendances.filter((attendance) => attendance.status === status).length;
 
-  const myIncidentReportCount = incidentReports.filter((report) => report.reporter_id === user?.id).length;
   // reviewer_id only gets set when an officer approves an application
   const myReviewedApplicationCount = memberApplications.filter((application) => application.reviewer_id === user?.id).length;
 
@@ -92,16 +85,10 @@ export default function Dashboard() {
                 </span>{" "}
                 Manage Events & Attendance
               </Link>
-              <Link to="/officer/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
-                <span className="material-symbols-outlined text-[18px]!">
-                  emergency
-                </span>{" "}
-                Create Incident Report
-              </Link>
             </div>
           </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
               <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
                 <span className="material-symbols-outlined text-blue text-[20px]!">
@@ -164,21 +151,6 @@ export default function Dashboard() {
               </p>
               <p className="text-sm text-subtext mt-1">
                 membership applications you approved
-              </p>
-            </div>
-
-            <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
-              <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                <span className="material-symbols-outlined text-blue text-[20px]!">
-                  emergency
-                </span>{" "}
-                Incidents Reported
-              </h2>
-              <p className="font-geist text-4xl font-bold text-text">
-                {myIncidentReportCount}
-              </p>
-              <p className="text-sm text-subtext mt-1">
-                incident reports you have filed
               </p>
             </div>
           </div>

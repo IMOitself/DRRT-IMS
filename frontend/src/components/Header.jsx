@@ -96,14 +96,6 @@ export default function Header() {
                         }}>
                             Events
                         </NavLink>
-                        <NavLink to="/officer/incidents" className={() => {
-                            const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                            return isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }}>
-                            Incidents
-                        </NavLink>
                         <NavLink to="/officer/report" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
@@ -127,6 +119,14 @@ export default function Header() {
                                 : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
                         }>
                             Attendance
+                        </NavLink>
+                        <NavLink to="/member/incidents" className={() => {
+                            const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
+                            return isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }}>
+                            Incidents
                         </NavLink>
                     </nav>
                 ) : (
