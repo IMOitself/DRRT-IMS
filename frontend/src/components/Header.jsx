@@ -50,6 +50,14 @@ export default function Header() {
                         }>
                             Members
                         </NavLink>
+                        <NavLink to="/adviser/events" className={() => {
+                            const isActive = pathname.startsWith("/adviser/events");
+                            return isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }}>
+                            Events
+                        </NavLink>
                         <NavLink to="/adviser/incidents" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"

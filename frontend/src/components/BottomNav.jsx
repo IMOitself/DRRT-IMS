@@ -21,6 +21,23 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
+                <NavLink to="/adviser/events" className={() => {
+                    const isActive = pathname.startsWith("/adviser/events"); // include event attendance too e.g /adviser/events/67
+                    return isActive
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive";
+                }}>
+                    {() => {
+                        const isActive = pathname.startsWith("/adviser/events");
+                        return (
+                            <>
+                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>how_to_reg</span>
+                                <span className="bottom-nav-label">Events</span>
+                            </>
+                        );
+                    }}
+                </NavLink>
+
                 <NavLink to="/adviser/members" className={({ isActive }) =>
                     isActive
                         ? "bottom-nav-active"

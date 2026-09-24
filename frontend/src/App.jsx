@@ -28,6 +28,8 @@ import MemberAttendance from './pages/member/Attendance';
 import AdviserDashboard from './pages/adviser/Dashboard';
 import AdviserMembers from './pages/adviser/Members';
 import AdviserIncidents from './pages/adviser/Incidents';
+import AdviserEvents from './pages/adviser/Events';
+import AdviserEventAttendance from './pages/adviser/EventAttendance';
 
 function App() {
   const { pathname } = useLocation();
@@ -49,6 +51,8 @@ function App() {
       <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
 
       <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
+        <Route path="/adviser/events" element={<AdviserEvents />} />
+        <Route path="/adviser/events/:id" element={<AdviserEventAttendance />} />
         <Route path="/adviser/members" element={<AdviserMembers />} />
         <Route path="/adviser/incidents" element={<AdviserIncidents />} />
       </Route>
