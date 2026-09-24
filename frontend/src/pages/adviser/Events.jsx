@@ -273,6 +273,14 @@ export default function Events() {
                         </span>
                         <span>{formatDate(event.date)}</span>
                       </div>
+                      {event.time_hour && (
+                        <div className="flex items-center gap-2.5">
+                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                            schedule
+                          </span>
+                          <span>{event.time_hour}:{String(event.time_minute || 0).padStart(2, "0")} {event.time_ampm}</span>
+                        </div>
+                      )}
                       <div className="flex items-center gap-2.5">
                         <span className="material-symbols-outlined text-blue text-[18px]!">
                           people
@@ -290,17 +298,17 @@ export default function Events() {
                           <span>Pending Approval</span>
                         </div>
                       ) : hasEventStarted(event) ? (
-                        <div className="flex items-center gap-2.5">
+                        <div className="w-full md:w-auto flex items-center justify-center md:justify-start gap-2.5">
                           <div className="flex gap-4 font-geist">
-                            <div className=" flex items-center gap-1.5 text-green">
+                            <div className="flex items-center gap-1.5 whitespace-nowrap text-green">
                               <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
                               Present: {countByStatus("present")}
                             </div>
-                            <div className="flex items-center gap-1.5 text-red">
+                            <div className="flex items-center gap-1.5 whitespace-nowrap text-red">
                               <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
                               Absent: {countByStatus("absent")}
                             </div>
-                            <div className="flex items-center gap-1.5 text-yellow">
+                            <div className="flex items-center gap-1.5 whitespace-nowrap text-yellow">
                               <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
                               Late: {countByStatus("late")}
                             </div>
@@ -317,9 +325,9 @@ export default function Events() {
                     </div>
                   </div>
                   {canSeeAttendance(event) && (
-                    <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80 text-sm md:text-lg font-semibold group-hover:translate-x-1 transition-transform">
+                    <div className="w-full flex items-center justify-center md:justify-start gap-1 text-blue hover:text-blue/80 text-sm md:text-lg font-semibold group-hover:translate-x-1 transition-transform">
                       <span>See attendances</span>
-                      <span className="material-symbols-outlined text-[18px]!">
+                      <span className="hidden md:inline material-symbols-outlined text-[18px]!">
                         keyboard_arrow_right
                       </span>
                     </div>
