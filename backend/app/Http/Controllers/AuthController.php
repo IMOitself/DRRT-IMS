@@ -61,6 +61,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Could not send the verification email. Please try again or contact an officer.',
+                // expose the real mailer error only when APP_DEBUG=true
+                'error' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
 
@@ -85,6 +87,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Could not send the reset email. Please try again or contact an officer.',
+                // expose the real mailer error only when APP_DEBUG=true
+                'error' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
 
