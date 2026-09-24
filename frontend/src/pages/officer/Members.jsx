@@ -53,6 +53,7 @@ export default function Members() {
     const matchesFilter = (application) => {
         if (searchQuery.trim()) return true;
         if (memberFilter === "all") return true;
+        if (memberFilter === "graduated") return application.status === "graduated";
         return Number(application.year_level) === memberFilter;
     };
 
@@ -255,6 +256,10 @@ export default function Members() {
                                     {yearLabels[year]}
                                 </button>
                             ))}
+                            <div className="w-0.5 bg-blue-border shrink-0" />
+                            <button onClick={() => setMemberFilter("graduated")} className={pillClassName("graduated")}>
+                                Graduated
+                            </button>
                         </div>
                     </div>
                     {/* Member List Cards */}
