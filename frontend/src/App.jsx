@@ -26,6 +26,8 @@ import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
+import AdviserMembers from './pages/adviser/Members';
+import AdviserIncidents from './pages/adviser/Incidents';
 
 function App() {
   const { pathname } = useLocation();
@@ -45,6 +47,11 @@ function App() {
       <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
 
       <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
+
+      <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
+        <Route path="/adviser/members" element={<AdviserMembers />} />
+        <Route path="/adviser/incidents" element={<AdviserIncidents />} />
+      </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
         <Route path="/officer/report" element={<Report />} />

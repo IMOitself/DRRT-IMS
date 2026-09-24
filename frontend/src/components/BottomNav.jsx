@@ -20,6 +20,32 @@ export default function BottomNav() {
                         </>
                     )}
                 </NavLink>
+
+                <NavLink to="/adviser/members" className={({ isActive }) =>
+                    isActive
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>group</span>
+                            <span className="bottom-nav-label">Members</span>
+                        </>
+                    )}
+                </NavLink>
+
+                <NavLink to="/adviser/incidents" className={({ isActive }) =>
+                    isActive
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive"
+                }>
+                    {({ isActive }) => (
+                        <>
+                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
+                            <span className="bottom-nav-label">Vault</span>
+                        </>
+                    )}
+                </NavLink>
             </nav>
         );
     }

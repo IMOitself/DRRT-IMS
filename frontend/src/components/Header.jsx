@@ -43,6 +43,20 @@ export default function Header() {
                         }>
                             Dashboard
                         </NavLink>
+                        <NavLink to="/adviser/members" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Members
+                        </NavLink>
+                        <NavLink to="/adviser/incidents" className={({ isActive }) =>
+                            isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }>
+                            Incidents
+                        </NavLink>
                     </nav>
                 ) : pathname.startsWith("/officer") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
