@@ -7,6 +7,7 @@ export default function Header() {
     const { isLoggedIn, user } = useAuth();
 
     const is_public_pages = pathname === "/" || pathname === "/join" || pathname.startsWith("/join-form");
+    const is_no_nav_pages = ["/login", "/register", "/forgot-password", "/profile"].includes(pathname);
 
     let dashboardLink = "/member/dashboard";
     if (user?.role === "officer") dashboardLink = "/officer/dashboard";
@@ -33,7 +34,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                {pathname.startsWith("/adviser") ? (
+                {is_no_nav_pages ? null : pathname.startsWith("/adviser") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/adviser/dashboard" className={({ isActive }) =>
                             isActive

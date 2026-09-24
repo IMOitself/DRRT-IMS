@@ -3,6 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 export default function BottomNav() {
     const { pathname } = useLocation();
 
+    if (["/login", "/register", "/forgot-password", "/profile"].includes(pathname)) return null;
+
     if (pathname.startsWith("/adviser")) {
         return (
             <nav aria-label="Adviser Mobile Navigation" className="bottom-nav-container">
