@@ -13,6 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         // graduated keeps the application instead of deleting it, so it can be unmarked later
+        // postgres keeps enum as a check constraint that ->change() can't alter, so replace it directly
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('alter table membership_applications drop constraint membership_applications_status_check');
+            DB::statement("alter table membership_applications add constraint membership_applications_status_check check (status in ('pending', 'approved_need_register', 'approved_member_now', 'graduated'))");
+            return;
+        }
+
         Schema::table('membership_applications', function (Blueprint $table) {
             $table->enum('status', ['pending', 'approved_need_register', 'approved_member_now', 'graduated'])->default('pending')->change();
         });
