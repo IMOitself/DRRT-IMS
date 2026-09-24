@@ -103,7 +103,7 @@ export default function CreateEvent() {
                                         <input type="date" name="date" required value={formData.date} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                     </div>
                                     <div>
-                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Time <span className="text-red">*</span></label>
+                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Start Time <span className="text-red">*</span></label>
                                         <div className="flex items-center gap-1">
                                             <input type="text" inputMode="numeric" name="time_hour" required maxLength="2" placeholder="08" value={formData.time_hour} onChange={handleChange} onBlur={handleTimeMakeSure2Digits} className="w-18 px-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                             <span>:</span>
@@ -141,7 +141,7 @@ export default function CreateEvent() {
                                         <label className="block font-geist text-sm font-bold text-text mb-1.5">On-Site Venue</label>
                                         <div className="relative">
                                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">location_on</span>
-                                            <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleVenueFacetoface} placeholder="e.g. Main Quadrangle" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
+                                            <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleVenueFacetoface} placeholder="e.g. Audi Lobby" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                         </div>
                                     </div>
                                     <div>
