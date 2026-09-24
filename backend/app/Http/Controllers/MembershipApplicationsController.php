@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MembershipApplication;
 use App\Models\User;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\DB;
 
 class MembershipApplicationsController extends Controller
 {
@@ -78,9 +80,38 @@ class MembershipApplicationsController extends Controller
     {
         $application = MembershipApplication::find($id);
         // only what was sent, so marking as graduated doesn't wipe the reviewer
-        $application->update($request->only(['status', 'reviewer_id']));
+        $application->update($request->only(['status', 'reviewer_id', 'removal_requested']));
 
         return response()->json(['application_id' => $application->id], 200);
+    }
+
+    /**
+     * Remove the member, both their application and their account.
+     */
+    public function removeMember(string $id)
+    {
+        if (auth()->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can remove members.'], 403);
+        }
+
+        $application = MembershipApplication::find($id);
+
+        DB::transaction(function () use ($application) {
+            $user = $application->user_id ? User::find($application->user_id) : null;
+            $application->delete();
+
+            if (! $user) return;
+
+            // keep the records they touched, just forget who did it
+            Attendance::where('recorder_id', $user->id)->update(['recorder_id' => null]);
+            MembershipApplication::where('reviewer_id', $user->id)->update(['reviewer_id' => null]);
+
+            // their own attendances go with them
+            $user->tokens()->delete();
+            $user->delete();
+        });
+
+        return response()->json(['application_id' => $id], 200);
     }
 
     /**

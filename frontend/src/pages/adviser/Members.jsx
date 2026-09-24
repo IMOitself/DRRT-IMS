@@ -17,6 +17,7 @@ export default function Members() {
     const [copied, setCopied] = useState(false);
     const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
     const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
+    const [isConfirmRemoveDialogOpen, setIsConfirmRemoveDialogOpen] = useState(false);
     const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -187,6 +188,18 @@ export default function Members() {
             .catch((err) => console.error(err));
     };
 
+    // deletes both the application and the member's account
+    const removeMember = () => {
+        api
+            .delete("/membership-applications/" + selectedMemberApplication.id + "/member")
+            .then(() => {
+                setMemberApplications(memberApplications.filter((app) => app.id !== selectedMemberApplication.id));
+                setIsConfirmRemoveDialogOpen(false);
+                closeDrawer();
+            })
+            .catch((err) => console.error(err));
+    };
+
     const toggleSelectedForDelete = (id) => {
         setSelectedForDelete((selected) =>
             selected.includes(id) ? selected.filter((selectedId) => selectedId !== id) : [...selected, id]
@@ -311,6 +324,12 @@ export default function Members() {
                                             AWAITING REGISTRATION
                                         </span>
                                     ) : ('')}
+                                    {application.removal_requested && (
+                                        <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                            <span className="bg-red w-2 h-2 rounded-full" />
+                                            REMOVAL REQUESTED
+                                        </span>
+                                    )}
                                     <span className="material-symbols-outlined text-subtext text-[18px]">
                                         chevron_right
                                     </span>
@@ -352,6 +371,39 @@ export default function Members() {
                                         <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                             <span className="material-symbols-outlined text-[20px]!">school</span>
                                             <span>{selectedMemberApplication.status === "graduated" ? "Unmark as Graduated" : "Mark as Graduated"}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isConfirmRemoveDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-red mb-1 text-[30px]!">
+                                        warning
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Remove Member?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    This cannot be undone. {selectedMemberApplication.full_name}'s application, account and attendance records will be permanently deleted.
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmRemoveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={removeMember} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">person_remove</span>
+                                            <span>Remove</span>
                                         </button>
                                     </div>
                                 </div>
@@ -520,6 +572,9 @@ export default function Members() {
                                         ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
                                         : ""
                                 }
+                                {selectedMemberApplication.removal_requested && (
+                                    <span className="bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full mt-1">REMOVAL REQUESTED</span>
+                                )}
                             </div>
                             <div className="space-y-4">
                                 <div className="border-t border-blue-border pt-4">
@@ -656,7 +711,18 @@ export default function Members() {
                         </div>
                     </div>
                 ) : selectedMemberApplication && (selectedMemberApplication.status === "approved_member_now" || selectedMemberApplication.status === "graduated") && (
-                    <div className="p-4 border-t border-blue-border bg-surface">
+                    <div className="p-4 border-t border-blue-border bg-surface space-y-3">
+                        {/* an officer asked for this, so approving removes them right away */}
+                        {selectedMemberApplication.removal_requested && (
+                            <button
+                                type="button"
+                                onClick={removeMember}
+                                className="cursor-pointer w-full bg-red text-white px-4 py-2 rounded-lg font-geist text-md hover:bg-red/90 transition-colors shadow-sm flex items-center justify-center gap-2 font-semibold"
+                            >
+                                <span className="material-symbols-outlined text-[22px]!">check</span>
+                                Approve Removal Request
+                            </button>
+                        )}
                         <div className="relative" ref={moreMenuRef}>
                             <button
                                 type="button"
@@ -679,11 +745,11 @@ export default function Members() {
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        onClick={() => { setIsMoreMenuOpen(false); setIsConfirmRemoveDialogOpen(true); }}
                                         className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-low cursor-pointer border-t border-blue-border"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">person_remove</span>
-                                        Ask to remove member
+                                        Remove Member
                                     </button>
                                 </div>
                             )}

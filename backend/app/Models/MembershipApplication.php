@@ -14,6 +14,8 @@ class MembershipApplication extends Model
     // so the frontend still gets one ready-to-display name
     protected $appends = ['full_name'];
 
+    protected $casts = ['removal_requested' => 'boolean'];
+
     // "Ackerman, Levi A." from the separate name columns
     public function getFullNameAttribute()
     {

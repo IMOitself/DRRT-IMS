@@ -187,6 +187,19 @@ export default function Members() {
             .catch((err) => console.error(err));
     };
 
+    const toggleRemovalRequest = () => {
+        const removalRequested = !selectedMemberApplication.removal_requested;
+        api
+            .put("/membership-applications/" + selectedMemberApplication.id, { removal_requested: removalRequested })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, removal_requested: removalRequested });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, removal_requested: removalRequested } : app
+                ));
+            })
+            .catch((err) => console.error(err));
+    };
+
     const toggleSelectedForDelete = (id) => {
         setSelectedForDelete((selected) =>
             selected.includes(id) ? selected.filter((selectedId) => selectedId !== id) : [...selected, id]
@@ -311,6 +324,12 @@ export default function Members() {
                                             AWAITING REGISTRATION
                                         </span>
                                     ) : ('')}
+                                    {application.removal_requested && (
+                                        <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                                            <span className="bg-red w-2 h-2 rounded-full" />
+                                            REMOVAL REQUESTED
+                                        </span>
+                                    )}
                                     <span className="material-symbols-outlined text-subtext text-[18px]">
                                         chevron_right
                                     </span>
@@ -520,6 +539,9 @@ export default function Members() {
                                         ? <span className={'bg-yellow-bg text-yellow border border-yellow-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full'}>AWAITING REGISTRATION</span>
                                         : ""
                                 }
+                                {selectedMemberApplication.removal_requested && (
+                                    <span className="bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full mt-1">REMOVAL REQUESTED</span>
+                                )}
                             </div>
                             <div className="space-y-4">
                                 <div className="border-t border-blue-border pt-4">
@@ -679,11 +701,11 @@ export default function Members() {
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        onClick={() => { setIsMoreMenuOpen(false); toggleRemovalRequest(); }}
                                         className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-low cursor-pointer border-t border-blue-border"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">person_remove</span>
-                                        Ask to remove member
+                                        {selectedMemberApplication.removal_requested ? "Cancel removal request" : "Ask to remove member"}
                                     </button>
                                 </div>
                             )}
