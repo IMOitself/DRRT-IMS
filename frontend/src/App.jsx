@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PasswordForgot from './pages/PasswordForgot';
+import Profile from './pages/Profile';
 
 import OfficerMembers from './pages/officer/Members';
 import OfficerDashboard from './pages/officer/Dashboard';
@@ -62,6 +63,7 @@ function App() {
       </Route>
 
       <Route element={<ProtectedRoute />}>
+        <Route path="/profile" element={<Profile />} />
         <Route path="/member/dashboard" element={<MemberDashboard />} />
         <Route path="/member/attendance" element={<MemberAttendance />} />
       </Route>

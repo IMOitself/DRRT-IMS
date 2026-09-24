@@ -20,6 +20,7 @@ Route::get('/membership-applications/{application}', [MembershipApplicationsCont
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+    Route::put('/user', [AuthController::class, 'updateProfile']);
     
     // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);

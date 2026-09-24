@@ -15,7 +15,8 @@ class AuthController extends Controller
 {
     private function loadUserData($user)
     {
-        $user->membership_application = MembershipApplication::where('user_id', $user->id)->first();
+        // set as relation (not attribute) so a later $user->update() won't try to save it as a column
+        $user->setRelation('membership_application', MembershipApplication::where('user_id', $user->id)->first());
 
         return $user;
     }
@@ -181,6 +182,48 @@ class AuthController extends Controller
 
     public function user(Request $request){
         $user = $request->user();
+
+        return response()->json($this->loadUserData($user));
+    }
+
+    public function updateProfile(Request $request){
+        $user = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+        ]);
+
+        // members can also edit their membership application details
+        $application = MembershipApplication::where('user_id', $user->id)->first();
+        if ($application) {
+            $request->validate([
+                'student_id' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'first_name' => 'required|string|max:255',
+                'middle_name' => 'nullable|string|max:255',
+                'course' => 'required|string|max:255',
+                'year_level' => 'required|integer|between:1,4',
+                'phone_number' => 'required|string|max:20',
+                'emergency_person_name' => 'required|string|max:255',
+                'emergency_phone' => 'required|string|max:20',
+            ]);
+
+            $application->update([
+                'student_id' => $request->student_id,
+                'last_name' => $request->last_name,
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'course' => $request->course,
+                'year_level' => $request->year_level,
+                'phone_number' => $request->phone_number,
+                'emergency_person_name' => $request->emergency_person_name,
+                'emergency_phone' => $request->emergency_phone,
+            ]);
+        }
 
         return response()->json($this->loadUserData($user));
     }

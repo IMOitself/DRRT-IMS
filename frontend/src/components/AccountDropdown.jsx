@@ -40,7 +40,7 @@ export default function AccountDropdown() {
             {isOpen && (
                 <ul className="glass-bg absolute right-0 mt-2 w-48 bg-surface border border-blue-border rounded-lg shadow-lg z-50">
                     <li
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => { setIsOpen(false); navigate('/profile'); }}
                         className="px-4 py-2 hover:bg-surface-container-highest cursor-pointer text-subtext"
                     >
                         View Profile
