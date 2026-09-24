@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const isLocal = window.location.hostname === 'localhost';
+let isLocal = window.location.hostname === 'localhost';
+
+isLocal = false; // TODO: remove me :D
 
 const api = axios.create({
   baseURL: isLocal
