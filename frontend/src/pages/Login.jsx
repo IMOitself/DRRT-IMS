@@ -7,7 +7,7 @@ import BottomNav from "../components/BottomNav";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, user } = useAuth();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +27,8 @@ export default function Login() {
       .then((res) => {
         login(res.data.token, res.data.user);
         let dashboardLink = "/member/dashboard";
-        if (user?.role === "officer") dashboardLink = "/officer/dashboard";
-        if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
+        if (res.data.user?.role === "officer") dashboardLink = "/officer/dashboard";
+        if (res.data.user?.role === "adviser") dashboardLink = "/adviser/dashboard";
         navigate(dashboardLink);
       })
       .catch((err) => {

@@ -48,9 +48,8 @@ function App() {
       <Route path="/join-form" element={<JoinDRRTForm />} />
       <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
 
-      <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
-
       <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
+        <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
         <Route path="/adviser/events" element={<AdviserEvents />} />
         <Route path="/adviser/events/:id" element={<AdviserEventAttendance />} />
         <Route path="/adviser/members" element={<AdviserMembers />} />
@@ -70,6 +69,9 @@ function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Profile />} />
+      </Route>
+
+      <Route element={<ProtectedRoute allowedRoles={['member']} />}>
         <Route path="/member/dashboard" element={<MemberDashboard />} />
         <Route path="/member/attendance" element={<MemberAttendance />} />
       </Route>
