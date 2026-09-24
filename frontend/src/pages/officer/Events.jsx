@@ -252,36 +252,38 @@ export default function Events() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-lg">
+                    {hasEventStarted(event) ? (  
+                    <div className="flex flex-col flex-wrap py-3 gap-y-2 text-lg font-bold">
                       <div className="flex gap-4 font-geist">
-                        <div className="font-bold flex items-center gap-1.5 text-green">
+                        <div className=" flex items-center gap-1.5 text-green">
                           <span className="w-2 h-2 rounded-full bg-green"></span>{" "}
                           Present: {countByStatus("present")}
                         </div>
-                        <div className="font-bold flex items-center gap-1.5 text-red">
+                        <div className="flex items-center gap-1.5 text-red">
                           <span className="w-2 h-2 rounded-full bg-red"></span>{" "}
                           Absent: {countByStatus("absent")}
                         </div>
-                        <div className="font-bold flex items-center gap-1.5 text-yellow">
+                        <div className="flex items-center gap-1.5 text-yellow">
                           <span className="w-2 h-2 rounded-full bg-yellow"></span>{" "}
                           Late: {countByStatus("late")}
                         </div>
                       </div>
                     </div>
+                    ) : (
+                    <div className="flex flex-row items-center py-3 gap-2 text-lg font-semibold">
+                      <span className="material-symbols-outlined text-[18px]!">
+                        hourglass_top
+                      </span>
+                      <span>Not Started Yet</span>
+                    </div>
+                    )}
                   </div>
-                  {hasEventStarted(event) ? (
+                  {hasEventStarted(event) && (
                     <div className="w-full flex items-center gap-1 text-blue hover:text-blue/80  text-sm md:text-md font-semibold">
                       <span>See attendances</span>
                       <span className="material-symbols-outlined text-[18px]!">
                         keyboard_arrow_right
                       </span>
-                    </div>
-                  ) : (
-                    <div className="w-full flex items-center gap-1 text-subtext text-sm md:text-md font-semibold">
-                      <span className="material-symbols-outlined text-[18px]!">
-                        hourglass_top
-                      </span>
-                      <span>Not Started Yet</span>
                     </div>
                   )}
                 </Link>
