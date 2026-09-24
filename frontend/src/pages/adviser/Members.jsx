@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
@@ -15,6 +15,9 @@ export default function Members() {
     const [selectedForDelete, setSelectedForDelete] = useState([]);
     const [isConfirmDeleteDialogOpen, setIsConfirmDeleteDialogOpen] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+    const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
+    const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
     const { user } = useAuth();
@@ -50,7 +53,8 @@ export default function Members() {
 
     const matchesFilter = (application) => {
         if (searchQuery.trim()) return true;
-        if (memberFilter === "all") return true;
+        if (memberFilter === "all") return application.status !== "graduated";
+        if (memberFilter === "graduated") return application.status === "graduated";
         return Number(application.year_level) === memberFilter;
     };
 
@@ -85,7 +89,22 @@ export default function Members() {
 
     function closeDrawer() {
         setDrawerOpen(false);
+        setIsMoreMenuOpen(false);
     }
+
+    // close the options menu when clicking anywhere outside it
+    useEffect(() => {
+        if (!isMoreMenuOpen) return;
+
+        function handleClickOutside(e) {
+            if (moreMenuRef.current && !moreMenuRef.current.contains(e.target)) {
+                setIsMoreMenuOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isMoreMenuOpen]);
 
     useEffect(() => {
         api
@@ -148,6 +167,22 @@ export default function Members() {
                     app.id === selectedMemberApplication.id ? { ...app, status: status } : app
                 );
                 setMemberApplications(updatedList);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    // keeps the application so they can be unmarked later
+    const handleConfirmGraduate = () => {
+        // unmarking puts them back as a regular member
+        const status = selectedMemberApplication.status === "graduated" ? "approved_member_now" : "graduated";
+        api
+            .put("/membership-applications/" + selectedMemberApplication.id, { status: status })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, status: status });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, status: status } : app
+                ));
+                setIsConfirmGraduateDialogOpen(false);
             })
             .catch((err) => console.error(err));
     };
@@ -231,13 +266,17 @@ export default function Members() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
-                                All Members ({listedApplications.length})
+                                All Members ({listedApplications.filter((ma) => ma.status !== "graduated").length})
                             </button>
                             {[1, 2, 3, 4].map((year) => (
                                 <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
                                     {yearLabels[year]}
                                 </button>
                             ))}
+                            <div className="w-0.5 bg-blue-border shrink-0" />
+                            <button onClick={() => setMemberFilter("graduated")} className={pillClassName("graduated")}>
+                                Graduated ({listedApplications.filter((ma) => ma.status === "graduated").length})
+                            </button>
                         </div>
                     </div>
                     {/* Member List Cards */}
@@ -286,6 +325,41 @@ export default function Members() {
                     </section>
                 </div>
             </main>
+            {isConfirmGraduateDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-blue mb-1 text-[30px]!">
+                                        school
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        {selectedMemberApplication.status === "graduated" ? "Unmark as Graduated?" : "Mark as Graduated?"}
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    {selectedMemberApplication.status === "graduated"
+                                        ? "Unmarking " + selectedMemberApplication.full_name + " as graduated brings them back to attendance."
+                                        : "Marking " + selectedMemberApplication.full_name + " as graduated removes them from attendance."}
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmGraduateDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">school</span>
+                                            <span>{selectedMemberApplication.status === "graduated" ? "Unmark as Graduated" : "Mark as Graduated"}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             {isConfirmDeleteDialogOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                     <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
@@ -574,11 +648,45 @@ export default function Members() {
                             Approve
                         </button>
                     </div>
-                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" && (
+                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" ? (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="text-center text-sm text-subtext">
                             <span className="material-symbols-outlined text-yellow text-[18px] align-middle mr-1">schedule</span>
                             Waiting for applicant to register their account
+                        </div>
+                    </div>
+                ) : selectedMemberApplication && (selectedMemberApplication.status === "approved_member_now" || selectedMemberApplication.status === "graduated") && (
+                    <div className="p-4 border-t border-blue-border bg-surface">
+                        <div className="relative" ref={moreMenuRef}>
+                            <button
+                                type="button"
+                                onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                                className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+                            >
+                                <span className="material-symbols-outlined text-[24px]!">list</span>
+                                Options
+                            </button>
+                            {/* opens upward since the button sits at the bottom of the drawer */}
+                            {isMoreMenuOpen && (
+                                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-10">
+                                    <button
+                                        type="button"
+                                        onClick={() => { setIsMoreMenuOpen(false); setIsConfirmGraduateDialogOpen(true); }}
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-low cursor-pointer"
+                                    >
+                                        <span className="material-symbols-outlined text-[22px]!">school</span>
+                                        {selectedMemberApplication.status === "graduated" ? "Unmark as graduated" : "Mark as graduated"}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-low cursor-pointer border-t border-blue-border"
+                                    >
+                                        <span className="material-symbols-outlined text-[22px]!">person_remove</span>
+                                        Ask to remove member
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
