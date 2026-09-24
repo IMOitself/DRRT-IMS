@@ -44,9 +44,15 @@ export default function JoinDRRTForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // TODO: remove placeholders once file uploads are implemented
+        const payload = {
+            ...formData,
+            consent_form: formData.consent_form || "consent_forms/placeholder.pdf",
+            class_schedule: formData.class_schedule || "class_schedules/placeholder.pdf",
+        };
 
         api
-            .post("/membership-applications", formData)
+            .post("/membership-applications", payload)
             .then((res) => {
                 localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
                 navigate(`/join-form/${res.data.application_id}?token=${res.data.access_token}`);
@@ -66,8 +72,8 @@ export default function JoinDRRTForm() {
             phone_number: "09123456789",
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
-            consent_form: "C:\\fakepath\\consent_form.pdf",
-            class_schedule: "C:\\fakepath\\class_schedule.png",
+            consent_form: "consent_forms/background-character.pdf",
+            class_schedule: "class_schedules/background-character.pdf",
         });
     };
 
