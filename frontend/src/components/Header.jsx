@@ -13,6 +13,11 @@ export default function Header() {
     if (user?.role === "officer") dashboardLink = "/officer/dashboard";
     if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
 
+    // officers are members too, so they can switch between the officer and member pages
+    let switchTo = null;
+    if (user?.role === "officer" && pathname.startsWith("/officer")) switchTo = "member";
+    if (user?.role === "officer" && pathname.startsWith("/member")) switchTo = "officer";
+
     return (
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
@@ -156,7 +161,14 @@ export default function Header() {
                                     Dashboard
                                 </Link>
                             )}
-                            
+
+                            {switchTo && (
+                                <Link to={`/${switchTo}/dashboard`} className="font-geist text-xs md:text-sm bg-blue-bg text-blue transition-all px-3 md:px-4 py-2 rounded-full font-semibold shadow-sm active:scale-95 hover:bg-blue/20 cursor-pointer flex items-center gap-1">
+                                    <span className="material-symbols-outlined text-[18px]!">swap_horiz</span>
+                                    <span><span className="hidden md:inline">Switch to </span><span className="capitalize">{switchTo}</span></span>
+                                </Link>
+                            )}
+
                             <AccountDropdown />
                         </div>
                     )}

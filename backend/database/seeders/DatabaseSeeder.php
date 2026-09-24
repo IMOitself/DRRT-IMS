@@ -31,6 +31,23 @@ class DatabaseSeeder extends Seeder
             'password' => 'shinzousasageyo',
             'role' => 'officer'
         ]);
+        // officers are members first, so they have a membership application too
+        MembershipApplication::create([
+            'status' => 'approved_member_now',
+            'user_id' => $officer->id,
+            'student_id' => '2026-00000',
+            'last_name' => 'Smith',
+            'first_name' => 'Erwin',
+            'middle_name' => null,
+            'course' => 'BSIS',
+            'year_level' => 4,
+            'email' => $officer->email,
+            'phone_number' => '09111111111',
+            'emergency_person_name' => 'Levi Ackerman',
+            'emergency_phone' => '09222222222',
+            'consent_form' => 'consent_forms/captain-erwin.pdf',
+            'class_schedule' => 'class_schedules/captain-erwin.pdf',
+        ]);
         User::factory()->create([
             'name' => 'King Fritz',
             'email' => 'king.fritz@gmail.com',

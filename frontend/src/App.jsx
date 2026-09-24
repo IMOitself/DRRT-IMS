@@ -71,7 +71,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
-      <Route element={<ProtectedRoute allowedRoles={['member']} />}>
+      {/* officers are members too, so they can switch to the member pages */}
+      <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
         <Route path="/member/dashboard" element={<MemberDashboard />} />
         <Route path="/member/attendance" element={<MemberAttendance />} />
       </Route>

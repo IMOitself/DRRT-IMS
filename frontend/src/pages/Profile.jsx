@@ -182,8 +182,8 @@ export default function Profile() {
                     </button>
                 </div>
 
-                {/* Membership Details (members only) */}
-                {user?.role === "member" && (
+                {/* Membership Details (members and officers, officers are members too) */}
+                {application && (
                     <div className="bg-white border border-blue-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm space-y-4">
                         <div className="flex items-center gap-3.5">
                             <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
@@ -199,30 +199,26 @@ export default function Profile() {
                             </div>
                         </div>
 
-                        {application ? (
-                            <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 space-y-3">
-                                {applicationDetails.map(([label, value]) => (
-                                    <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                        <span className="text-subtext">{label}:</span>
-                                        <span className="font-bold text-blue font-mono text-base break-all">{value}</span>
-                                    </div>
-                                ))}
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                    <span className="text-subtext">Consent Form:</span>
-                                    <a href={application.consent_form} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
-                                        View Consent Form
-                                    </a>
+                        <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 space-y-3">
+                            {applicationDetails.map(([label, value]) => (
+                                <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
+                                    <span className="text-subtext">{label}:</span>
+                                    <span className="font-bold text-blue font-mono text-base break-all">{value}</span>
                                 </div>
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                    <span className="text-subtext">Class Schedule:</span>
-                                    <a href={application.class_schedule} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
-                                        View Class Schedule
-                                    </a>
-                                </div>
+                            ))}
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
+                                <span className="text-subtext">Consent Form:</span>
+                                <a href={application.consent_form} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
+                                    View Consent Form
+                                </a>
                             </div>
-                        ) : (
-                            <p className="text-sm text-subtext">No membership application linked to this account.</p>
-                        )}
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                <span className="text-subtext">Class Schedule:</span>
+                                <a href={application.class_schedule} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
+                                    View Class Schedule
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 )}
                 </>) : (
