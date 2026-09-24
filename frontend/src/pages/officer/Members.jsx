@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
@@ -15,6 +15,8 @@ export default function Members() {
     const [selectedForDelete, setSelectedForDelete] = useState([]);
     const [isConfirmDeleteDialogOpen, setIsConfirmDeleteDialogOpen] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+    const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
     const { user } = useAuth();
@@ -85,7 +87,22 @@ export default function Members() {
 
     function closeDrawer() {
         setDrawerOpen(false);
+        setIsMoreMenuOpen(false);
     }
+
+    // close the options menu when clicking anywhere outside it
+    useEffect(() => {
+        if (!isMoreMenuOpen) return;
+
+        function handleClickOutside(e) {
+            if (moreMenuRef.current && !moreMenuRef.current.contains(e.target)) {
+                setIsMoreMenuOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isMoreMenuOpen]);
 
     useEffect(() => {
         api
@@ -574,11 +591,45 @@ export default function Members() {
                             Approve
                         </button>
                     </div>
-                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" && (
+                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_need_register" ? (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="text-center text-sm text-subtext">
                             <span className="material-symbols-outlined text-yellow text-[18px] align-middle mr-1">schedule</span>
                             Waiting for applicant to register their account
+                        </div>
+                    </div>
+                ) : selectedMemberApplication && (
+                    <div className="p-4 border-t border-blue-border bg-surface">
+                        <div className="relative" ref={moreMenuRef}>
+                            <button
+                                type="button"
+                                onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                                className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+                            >
+                                <span className="material-symbols-outlined text-[24px]!">list</span>
+                                Options
+                            </button>
+                            {/* opens upward since the button sits at the bottom of the drawer */}
+                            {isMoreMenuOpen && (
+                                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-10">
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-low cursor-pointer"
+                                    >
+                                        <span className="material-symbols-outlined text-[22px]!">school</span>
+                                        Mark as graduated
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-low cursor-pointer border-t border-blue-border"
+                                    >
+                                        <span className="material-symbols-outlined text-[22px]!">person_remove</span>
+                                        Ask to remove member
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
