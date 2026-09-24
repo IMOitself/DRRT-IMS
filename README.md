@@ -7,6 +7,7 @@
 - https://console.firebase.google.com/u/1/project/drrt-ims
 - https://dashboard.render.com/web/srv-dah5q2ijnfac738e7p6g/
 - https://supabase.com/dashboard/project/pnvqgbxrfxbrvbonwrrb
+- https://app.brevo.com/
 
 </details>
 
