@@ -62,6 +62,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Event::create([
+            'title' => 'Earthquake Drill',
+            'description' => 'earthquake drill and stuff',
+            'date' => '2026-09-24',
+            'time_hour' => '08',
+            'time_minute' => '00',
+            'time_ampm' => 'AM',
+            'type' => 'drill',
+            'participants' => 'All students',
+            'venue_online' => 'gmeet',
+            'require_proof_of_attendance' => false,
+        ]);
+
+        Event::create([
             'title' => 'Foundation Week 2027',
             'description' => 'just the foundation week idk',
             'date' => '2027-01-01',
@@ -72,18 +85,6 @@ class DatabaseSeeder extends Seeder
             'participants' => 'All students',
             'venue_facetoface' => 'School Grounds',
             'require_proof_of_attendance' => true,
-        ]);
-        Event::create([
-            'title' => 'Seminar',
-            'description' => 'just a seminar idk',
-            'date' => '2026-11-01',
-            'time_hour' => '08',
-            'time_minute' => '00',
-            'time_ampm' => 'AM',
-            'type' => 'drill',
-            'participants' => 'All students',
-            'venue_online' => 'gmeet',
-            'require_proof_of_attendance' => false,
         ]);
     }
 }
