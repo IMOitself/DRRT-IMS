@@ -77,10 +77,8 @@ class MembershipApplicationsController extends Controller
     public function update(Request $request, string $id)
     {
         $application = MembershipApplication::find($id);
-        $application->update([
-            'status' => $request->input('status'),
-            'reviewer_id' => $request->input('reviewer_id')
-        ]);
+        // only what was sent, so marking as graduated doesn't wipe the reviewer
+        $application->update($request->only(['status', 'reviewer_id']));
 
         return response()->json(['application_id' => $application->id], 200);
     }

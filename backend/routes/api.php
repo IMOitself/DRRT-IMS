@@ -28,7 +28,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/membership-applications/{application}', [MembershipApplicationsController::class, 'destroy']);
     
     Route::get('/members', function () {
-        return User::where('role', 'member')->with('membershipApplication')->get();
+        // graduated members are no longer part of attendance
+        return User::where('role', 'member')
+            ->whereDoesntHave('membershipApplication', fn ($query) => $query->where('status', 'graduated'))
+            ->with('membershipApplication')
+            ->get();
     });
 
     Route::get('/officers', function () {

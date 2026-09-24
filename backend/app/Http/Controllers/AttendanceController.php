@@ -14,7 +14,12 @@ class AttendanceController extends Controller
     {
         // TODO: officer role only
         if ($request->filled('all')) {
-            return response()->json(Attendance::with('recorder')->get(), 200);
+            // graduated members' records are kept but left out, so unmarking brings them back
+            $attendances = Attendance::with('recorder')
+                ->whereDoesntHave('user.membershipApplication', fn ($query) => $query->where('status', 'graduated'))
+                ->get();
+
+            return response()->json($attendances, 200);
         }
 
         $attendances = Attendance::where('user_id', $request->user()->id)->get();

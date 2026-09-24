@@ -16,6 +16,7 @@ export default function Members() {
     const [isConfirmDeleteDialogOpen, setIsConfirmDeleteDialogOpen] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+    const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
     const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -170,6 +171,20 @@ export default function Members() {
             .catch((err) => console.error(err));
     };
 
+    // keeps the application so they can be unmarked later
+    const handleConfirmGraduate = () => {
+        api
+            .put("/membership-applications/" + selectedMemberApplication.id, { status: "graduated" })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, status: "graduated" });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, status: "graduated" } : app
+                ));
+                setIsConfirmGraduateDialogOpen(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
     const toggleSelectedForDelete = (id) => {
         setSelectedForDelete((selected) =>
             selected.includes(id) ? selected.filter((selectedId) => selectedId !== id) : [...selected, id]
@@ -308,6 +323,39 @@ export default function Members() {
                     </section>
                 </div>
             </main>
+            {isConfirmGraduateDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-blue mb-1 text-[30px]!">
+                                        school
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Mark as Graduated?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    Marking {selectedMemberApplication.full_name} as graduated removes them from attendance.
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmGraduateDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">school</span>
+                                            <span>Mark as Graduated</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             {isConfirmDeleteDialogOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                     <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
@@ -603,7 +651,7 @@ export default function Members() {
                             Waiting for applicant to register their account
                         </div>
                     </div>
-                ) : selectedMemberApplication && (
+                ) : selectedMemberApplication && selectedMemberApplication.status === "approved_member_now" && (
                     <div className="p-4 border-t border-blue-border bg-surface">
                         <div className="relative" ref={moreMenuRef}>
                             <button
@@ -619,7 +667,7 @@ export default function Members() {
                                 <div className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-10">
                                     <button
                                         type="button"
-                                        onClick={() => setIsMoreMenuOpen(false)}
+                                        onClick={() => { setIsMoreMenuOpen(false); setIsConfirmGraduateDialogOpen(true); }}
                                         className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-low cursor-pointer"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">school</span>
