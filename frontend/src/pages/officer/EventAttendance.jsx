@@ -507,9 +507,9 @@ export default function EventAttendance() {
       )}
 
       {isConfirmSaveDialogOpen && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
                   <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
@@ -568,9 +568,9 @@ export default function EventAttendance() {
       )}
 
       {isConfirmUnsetDialogOpen && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
                   <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
@@ -602,9 +602,9 @@ export default function EventAttendance() {
       )}
 
       {isCorrectionDialogOpen && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
                   <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
@@ -640,9 +640,9 @@ export default function EventAttendance() {
       )}
 
       {isConfirmRejectDialogOpen && (
-        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
                   <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
@@ -676,9 +676,9 @@ export default function EventAttendance() {
       )}
 
       {isConfirmApproveDialogOpen && (
-        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
                   <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">

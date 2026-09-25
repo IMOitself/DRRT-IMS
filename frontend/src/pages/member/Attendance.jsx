@@ -435,9 +435,9 @@ export default function Attendance() {
 
             {/* present attendance dialog */}
             {isPresentAttendanceDialogOpen && (
-                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-text/20 p-4">
                     <form key={selectedEvent.id} onSubmit={(e) => handlePresentAttendanceDialogSubmit(e)}
-                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
                         <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                             <button type="button" className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-sm font-bold flex items-center justify-center gap-1">
                                 <span className="material-symbols-outlined text-[16px]!">check</span>
@@ -535,9 +535,9 @@ export default function Attendance() {
 
             {/* absent attendance dialog */}
             {isAbsentAttendanceDialogOpen && (
-                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-text/20 p-4">
                     <form key={selectedEvent.id} onSubmit={(e) => handleAbsentAttendanceDialogSubmit(e)}
-                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
                         <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                             <button type="button" className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-sm font-bold flex items-center justify-center gap-1">
                                 <span className="material-symbols-outlined text-[16px]!">close</span>
@@ -603,9 +603,9 @@ export default function Attendance() {
 
             {/* late attendance dialog */}
             {isLateAttendanceDialogOpen && (
-                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                <div onClick={() => { }} className="fixed inset-0 z-50 flex items-center justify-center bg-text/20 p-4">
                     <form key={selectedEvent.id} onSubmit={(e) => handleLateAttendanceDialogSubmit(e)}
-                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                        className="w-full max-w-xl max-h-[90vh] overflow-y-auto glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
                         <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                             <button type="button" className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-sm font-bold flex items-center justify-center gap-1">
                                 <span className="material-symbols-outlined text-[16px]!">schedule</span>
@@ -674,9 +674,9 @@ export default function Attendance() {
 
             {/* confirm save dialog  */}
             {isConfirmSaveDialogOpen && (
-                <div onClick={() => { }} className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4">
+                <div onClick={() => { }} className="fixed inset-0 z-60 flex items-center justify-center bg-text/20 p-4">
                     <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-                        <div className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                        <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
                             <div className="flex flex-col gap-1">
                                 <div className="flex flex-row gap-2 items-center">
                                     <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">

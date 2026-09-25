@@ -19,8 +19,8 @@ export default function ProtectedRoute({ allowedRoles }) {
     }
     if (allowedRoles && !allowedRoles.includes(user.role)) {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-                <div className="bg-white border border-blue-border rounded-xl shadow-sm p-6 max-w-sm w-full space-y-4">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-text/20 px-4">
+                <div className="glass-bg border border-blue-border rounded-xl shadow-sm p-6 max-w-sm w-full space-y-4">
                     <h2 className="font-geist text-lg font-bold text-text flex items-center gap-2">
                         <span className="material-symbols-outlined text-red">lock</span>
                         Access Denied
