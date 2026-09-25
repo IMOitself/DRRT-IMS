@@ -315,7 +315,7 @@ export default function Members() {
                                             {application.full_name}
                                         </p>
                                         <p className="text-[11px] text-subtext truncate">
-                                            ID: {application.student_id} • {application.course + " " + application.year_level}
+                                            {application.course + " " + application.year_level}
                                         </p>
                                     </div>
                                 </div>
@@ -468,7 +468,7 @@ export default function Members() {
                                                         {application.full_name}
                                                     </p>
                                                     <p className="text-[11px] text-subtext truncate">
-                                                        ID: {application.student_id} &bull; {application.course + " " + application.year_level}
+                                                        {application.course + " " + application.year_level}
                                                     </p>
                                                 </div>
                                             </div>
