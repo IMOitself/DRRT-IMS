@@ -1,13 +1,14 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
 import { formatDate, getInitials } from "../../utils/format";
 
 export default function EventAttendance() {
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const eventId = Number(id);
 
   const [event, setEvent] = useState(null);
@@ -497,6 +498,18 @@ export default function EventAttendance() {
             </button>
           </div>
         ) : ""}
+        {selectedMember && (
+          <div className="p-4 border-t border-blue-border bg-surface">
+            <button
+              type="button"
+              onClick={() => navigate("/officer/members", { state: { openMemberUserId: selectedMember.id } })}
+              className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+            >
+              <span className="material-symbols-outlined text-[24px]!">person</span>
+              View Member Profile
+            </button>
+          </div>
+        )}
       </aside>
       {/* Drawer Overlay */}
       {drawerOpen && (

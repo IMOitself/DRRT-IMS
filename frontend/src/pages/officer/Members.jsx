@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
@@ -21,6 +22,7 @@ export default function Members() {
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
     const { user } = useAuth();
+    const location = useLocation();
 
     const incomingApplications = memberApplications.filter(
         (ma) => ma.status === 'pending' || ma.status === 'approved_need_register'
@@ -111,6 +113,11 @@ export default function Members() {
             .get("/membership-applications")
             .then((res) => {
                 setMemberApplications(res.data.data);
+
+                // opened from another page (e.g. attendance details) to show a specific member
+                const openMemberUserId = location.state?.openMemberUserId;
+                const application = res.data.data.find((ma) => ma.user_id === openMemberUserId);
+                if (openMemberUserId && application) openDrawer(application);
             })
             .catch((err) => console.error(err));
 
