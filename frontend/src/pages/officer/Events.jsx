@@ -307,7 +307,7 @@ export default function Events() {
                           </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-2.5">
+                        <div className="w-fit px-3 h-9 rounded bg-surface-container-low border border-blue-border flex items-center gap-2.5">
                           <span className="material-symbols-outlined text-blue text-[18px]!">
                             schedule
                           </span>
