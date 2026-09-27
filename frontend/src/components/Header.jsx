@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import AccountDropdown from "./AccountDropdown";
+import WIP from "./WIP";
 import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
@@ -167,6 +168,7 @@ export default function Header() {
                     )}
                 </div>
             </div>
+            {(pathname.startsWith("/adviser") || pathname.startsWith("/member/incidents")) && <WIP />}
         </header>
     );
 }
