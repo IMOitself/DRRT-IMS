@@ -13,8 +13,7 @@ export default function Events() {
   const [venueFilter, setVenueFilter] = useState("all");
   const [expandedIds, setExpandedIds] = useState([]);
   const [overflowIds, setOverflowIds] = useState([]);
-  const [menuId, setMenuId] = useState(null);
-  const navigate = useNavigate();
+  const [menuId, setMenuId] = useState(null);  const navigate = useNavigate();
 
   // the event waiting on the confirm delete dialog
   const [deleteTarget, setDeleteTarget] = useState(null);
@@ -307,8 +306,8 @@ export default function Events() {
                           </div>
                         </div>
                       ) : (
-                        <div className="w-fit px-3 h-9 rounded bg-surface-container-low border border-blue-border flex items-center gap-2.5">
-                          <span className="material-symbols-outlined text-blue text-[18px]!">
+                        <div className="w-fit px-3 h-9 rounded bg-surface-container-low border border-blue-border flex items-center gap-2.5 transition-all group-active:scale-105 group-active:bg-red/10 group-active:border-yellow group-active:text-yellow">
+                          <span className="material-symbols-outlined text-blue text-[18px]! group-active:text-yellow">
                             schedule
                           </span>
                           <span>Not Started Yet</span>
@@ -325,8 +324,7 @@ export default function Events() {
                     </div>
                   )}
 
-                  {/* actions menu, kept last so space-y doesn't push it */}
-                  <div className="absolute top-3 right-2">
+                  <div className="absolute top-3 right-2" onMouseDown={(e) => e.preventDefault()}>
                     <button
                       type="button"
                       onClick={(e) => {
