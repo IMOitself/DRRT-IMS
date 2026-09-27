@@ -338,7 +338,16 @@ export default function Events() {
                       <span className="material-symbols-outlined text-[20px]!">more_vert</span>
                     </button>
                     {menuId === event.id && (
-                      <div className="absolute right-0 mt-1 w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-10">
+                      <>
+                      {/* invisible backdrop: clicking outside the menu closes it */}
+                      <div
+                        className="fixed inset-0 z-10 cursor-default"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMenuId(null);
+                        }}
+                      />
+                      <div className="absolute right-0 mt-1 w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-20">
                         <button
                           type="button"
                           onClick={(e) => {
@@ -363,6 +372,7 @@ export default function Events() {
                           Delete
                         </button>
                       </div>
+                      </>
                     )}
                   </div>
                 </Link>
