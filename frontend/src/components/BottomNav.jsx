@@ -112,19 +112,6 @@ export default function BottomNav() {
                         </>
                     )}
                 </NavLink>
-
-                <NavLink to="/officer/report" className={({ isActive }) =>
-                    isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive"
-                }>
-                    {({ isActive }) => (
-                        <>
-                            <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>description</span>
-                            <span className="bottom-nav-label">Report</span>
-                        </>
-                    )}
-                </NavLink>
             </nav>
         );
     }

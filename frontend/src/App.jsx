@@ -2,8 +2,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
-import Report from './pages/officer/Report';
-
 import JoinDRRT from './pages/JoinDRRT';
 import JoinDRRTForm from './pages/JoinDRRTForm';
 import JoinDRRTFormStatus from './pages/JoinDRRTFormStatus';
@@ -57,7 +55,6 @@ function App() {
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
-        <Route path="/officer/report" element={<Report />} />
         <Route path="/officer/dashboard" element={<OfficerDashboard />} />
         <Route path="/officer/events" element={<OfficerEvents />} />
         <Route path="/officer/events/:id" element={<OfficerEventAttendance />} />
