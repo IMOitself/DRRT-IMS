@@ -37,7 +37,6 @@ class EventsController extends Controller
             'participants' => $request->input('participants'),
             'venue_online' => $request->input('venue_online'),
             'venue_facetoface' => $request->input('venue_facetoface'),
-            'require_proof_of_attendance' => $request->input('require_proof_of_attendance', false),
             // waits for an adviser to approve it
             'pending_approval' => true,
         ]);
@@ -70,7 +69,6 @@ class EventsController extends Controller
             'participants',
             'venue_online',
             'venue_facetoface',
-            'require_proof_of_attendance',
         ]));
 
         return response()->json(['event_id' => $event->id], 200);

@@ -22,7 +22,6 @@ export default function CreateEvent() {
             participants: "",
             venue_facetoface: "",
             venue_online: "",
-            require_proof_of_attendance: false,
         };
         if (!editEvent) return defaults;
         // keep only form fields, nulls fall back to defaults
@@ -32,8 +31,7 @@ export default function CreateEvent() {
     });
 
     const handleChange = (e) => {
-        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-        setFormData({ ...formData, [e.target.name]: value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleVenueOnline = (platform) =>
@@ -171,17 +169,6 @@ export default function CreateEvent() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Options */}
-                            <div className="pt-4 border-t border-blue-border/40">
-                                <label className="flex items-center gap-3 cursor-pointer p-4 rounded-xl border border-blue-border bg-surface hover:bg-surface-container-highest transition-colors">
-                                    <input type="checkbox" name="require_proof_of_attendance" checked={formData.require_proof_of_attendance} onChange={handleChange} className="w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
-                                    <div>
-                                        <p className="font-geist text-sm font-bold text-text">Require Proof of Attendance</p>
-                                        <p className="text-xs text-subtext mt-0.5">Members must upload a selfie/screenshot when logging their attendance.</p>
-                                    </div>
-                                </label>
                             </div>
 
                             {/* Submit */}

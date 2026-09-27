@@ -450,25 +450,23 @@ export default function Attendance() {
                         </div>
 
                         {/* proof of attendance */}
-                        {selectedEvent.require_proof_of_attendance ? (
-                            <div>
-                                <label className="block font-geist text-sm font-semibold text-text mb-1">
-                                    Proof of Attendance{" "}
-                                    <span className="text-red">*</span>
-                                </label>
-                                <p className="text-sm text-subtext mb-2">
-                                    This event is set to need a proof of attendance. Kindly upload a screenshot or a photo captured during event.
-                                </p>
-                                <input
-                                    type="file"
-                                    name="proof_of_attendance"
-                                    onChange={handleChange}
-                                    // required
-                                    accept=".pdf,.png,.jpg,.jpeg"
-                                    className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
-                                />
-                            </div>
-                        ) : ""}
+                        <div>
+                            <label className="block font-geist text-sm font-semibold text-text mb-1">
+                                Proof of Attendance{" "}
+                                <span className="text-red">*</span>
+                            </label>
+                            <p className="text-sm text-subtext mb-2">
+                                Kindly upload a screenshot or a photo captured during event.
+                            </p>
+                            <input
+                                type="file"
+                                name="proof_of_attendance"
+                                onChange={handleChange}
+                                // required
+                                accept=".pdf,.png,.jpg,.jpeg"
+                                className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
+                            />
+                        </div>
 
                         <div className="flex flex-col gap-1">
                             <label htmlFor="timein_hour" className="w-fit font-geist text-md font-semibold text-text mb-1">

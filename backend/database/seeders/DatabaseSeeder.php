@@ -88,7 +88,6 @@ class DatabaseSeeder extends Seeder
             'type' => 'drill',
             'participants' => 'All students',
             'venue_online' => 'gmeet',
-            'require_proof_of_attendance' => false,
         ]);
 
         Event::create([
@@ -101,7 +100,6 @@ class DatabaseSeeder extends Seeder
             'type' => 'meeting',
             'participants' => 'All students',
             'venue_facetoface' => 'School Grounds',
-            'require_proof_of_attendance' => true,
         ]);
     }
 }
