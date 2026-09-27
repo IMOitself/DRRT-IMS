@@ -40,7 +40,7 @@ export default function Events() {
   const pillClassName = (filter) =>
     venueFilter === filter && !searchQuery.trim()
       ? "shrink-0 bg-blue text-white font-geist text-sm px-4 py-2 rounded-full font-semibold shadow-sm cursor-pointer"
-      : "shrink-0 bg-surface text-subtext border border-blue-border/80 font-geist text-sm px-4 py-2 rounded-full hover:bg-surface-container-low transition-colors font-semibold cursor-pointer";
+      : "shrink-0 bg-surface text-subtext border border-blue-border/80 font-geist text-sm px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors font-semibold cursor-pointer";
 
   const matchesSearch = (event) => {
     const query = searchQuery.trim().toLowerCase();
@@ -331,7 +331,7 @@ export default function Events() {
                         e.preventDefault();
                         setMenuId(menuId === event.id ? null : event.id);
                       }}
-                      className="flex p-1 rounded-full text-subtext hover:bg-surface-container-high cursor-pointer"
+                      className="flex p-1 rounded-full text-subtext hover:bg-surface-container-highest cursor-pointer"
                     >
                       <span className="material-symbols-outlined text-[20px]!">more_vert</span>
                     </button>
@@ -352,7 +352,7 @@ export default function Events() {
                             e.preventDefault();
                             navigate("/officer/create-event", { state: { event } });
                           }}
-                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-text hover:bg-surface-container-low cursor-pointer"
+                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-text hover:bg-surface-container-highest cursor-pointer"
                         >
                           <span className="material-symbols-outlined text-[18px]!">edit</span>
                           Edit
@@ -364,7 +364,7 @@ export default function Events() {
                             setMenuId(null);
                             setDeleteTarget(event);
                           }}
-                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-low cursor-pointer"
+                          className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer"
                         >
                           <span className="material-symbols-outlined text-[18px]!">delete</span>
                           Delete
@@ -404,7 +404,7 @@ export default function Events() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={() => setDeleteTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={() => setDeleteTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={deleteEvent} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">

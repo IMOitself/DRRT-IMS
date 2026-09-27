@@ -111,7 +111,7 @@ export default function Dashboard() {
                                 </span>{" "}
                                 Attendance Records
                             </Link>
-                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
+                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]!">
                                     emergency
                                 </span>{" "}
@@ -228,7 +228,7 @@ export default function Dashboard() {
                                 href={upcomingEvent ? googleCalendarUrl(upcomingEvent) : "#"}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors font-semibold"
+                                className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors font-semibold"
                             >
                                 <span className="material-symbols-outlined text-[18px]!">
                                     calendar_add_on

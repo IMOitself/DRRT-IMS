@@ -198,7 +198,7 @@ export default function EventAttendance() {
           </h3>
           <button
             aria-label="Close"
-            className="cursor-pointer hover:bg-surface-container-high p-2 transition-colors text-subtext"
+            className="cursor-pointer hover:bg-surface-container-highest p-2 transition-colors text-subtext"
             onClick={closeDrawer}
           >
             <span className="material-symbols-outlined">close</span>
@@ -320,7 +320,7 @@ export default function EventAttendance() {
             <button
               type="button"
               onClick={() => navigate("/adviser/members", { state: { openMemberUserId: selectedMember.id } })}
-              className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+              className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2 font-semibold"
             >
               <span className="material-symbols-outlined text-[24px]!">person</span>
               View Member Profile

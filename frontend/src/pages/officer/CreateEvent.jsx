@@ -132,7 +132,7 @@ export default function CreateEvent() {
                                 <label className="block font-geist text-sm font-bold text-text mb-3">Event Classification</label>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                     {['drill', 'meeting', 'deployment', 'others'].map((typeOption) => (
-                                        <label key={typeOption} className={`border rounded-xl p-3 flex flex-col items-center gap-1 cursor-pointer transition-all ${formData.type === typeOption ? 'border-blue bg-blue-bg text-blue' : 'border-blue-border bg-white text-subtext hover:bg-surface-container-low'}`}>
+                                        <label key={typeOption} className={`border rounded-xl p-3 flex flex-col items-center gap-1 cursor-pointer transition-all ${formData.type === typeOption ? 'border-blue bg-blue-bg text-blue' : 'border-blue-border bg-white text-subtext hover:bg-surface-container-highest'}`}>
                                             <input type="radio" name="type" value={typeOption} checked={formData.type === typeOption} onChange={handleChange} className="hidden" />
                                             <span className="font-geist text-xs font-bold uppercase tracking-wider">{typeOption}</span>
                                         </label>
@@ -175,7 +175,7 @@ export default function CreateEvent() {
 
                             {/* Options */}
                             <div className="pt-4 border-t border-blue-border/40">
-                                <label className="flex items-center gap-3 cursor-pointer p-4 rounded-xl border border-blue-border bg-surface hover:bg-surface-container-low transition-colors">
+                                <label className="flex items-center gap-3 cursor-pointer p-4 rounded-xl border border-blue-border bg-surface hover:bg-surface-container-highest transition-colors">
                                     <input type="checkbox" name="require_proof_of_attendance" checked={formData.require_proof_of_attendance} onChange={handleChange} className="w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md" />
                                     <div>
                                         <p className="font-geist text-sm font-bold text-text">Require Proof of Attendance</p>

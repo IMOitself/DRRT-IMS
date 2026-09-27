@@ -339,7 +339,7 @@ export default function EventAttendance() {
             <div className="flex w-full sm:w-auto gap-3">
               <button
                 onClick={() => setUnsavedChanges({})}
-                className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-surface text-text border border-blue-border font-geist text-sm font-semibold hover:bg-surface-container-highest transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer">
                 <span className="material-symbols-outlined text-[18px]!">
                   history
                 </span>{" "}
@@ -368,7 +368,7 @@ export default function EventAttendance() {
           </h3>
           <button
             aria-label="Close"
-            className="cursor-pointer hover:bg-surface-container-high p-2 transition-colors text-subtext"
+            className="cursor-pointer hover:bg-surface-container-highest p-2 transition-colors text-subtext"
             onClick={closeDrawer}
           >
             <span className="material-symbols-outlined">close</span>
@@ -503,7 +503,7 @@ export default function EventAttendance() {
             <button
               type="button"
               onClick={() => navigate("/officer/members", { state: { openMemberUserId: selectedMember.id } })}
-              className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+              className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2 font-semibold"
             >
               <span className="material-symbols-outlined text-[24px]!">person</span>
               View Member Profile
@@ -565,7 +565,7 @@ export default function EventAttendance() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={() => setIsConfirmSaveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={() => setIsConfirmSaveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={handleConfirmSaveDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -599,7 +599,7 @@ export default function EventAttendance() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={closeUnsetDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={unsetAttendance} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -633,7 +633,7 @@ export default function EventAttendance() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeCorrectionDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={closeCorrectionDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Close
                     </button>
                     <button className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -673,7 +673,7 @@ export default function EventAttendance() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeRejectDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={closeRejectDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={rejectPendingAttendance} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -709,7 +709,7 @@ export default function EventAttendance() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeApproveDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={closeApproveDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={approvePendingAttendance} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -889,7 +889,7 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                     <div className="flex items-center gap-0.5">
                       <button
                         onClick={(e) => { e.stopPropagation(); openCorrectionDialog(member.id); }}
-                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
                         wants correction
                       </button>
                     </div>
@@ -898,16 +898,16 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                     <div className="flex items-center gap-0.5">
                       <button
                         onClick={() => openDrawer(member)}
-                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
+                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
                         update attendance
                         <span className="material-symbols-outlined text-[18px]!">more_vert</span>
                       </button>
                       <button
                         onClick={(e) => { e.stopPropagation(); openRejectDialog(member.id); }}
-                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
+                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
                       <button
                         onClick={(e) => { e.stopPropagation(); openApproveDialog(member.id); }}
-                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors font-bold flex items-center justify-center cursor-pointer">check</button>
+                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors font-bold flex items-center justify-center cursor-pointer">check</button>
                     </div>
                   )}
                 </div>
@@ -929,7 +929,7 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                   ) : (
                     <button
                       onClick={() => changeStatus(member.id, "present")}
-                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
                       Present
                     </button>
                   )}
@@ -941,7 +941,7 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                   ) : (
                     <button
                       onClick={() => changeStatus(member.id, "absent")}
-                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
                       Absent
                     </button>
                   )}
@@ -953,7 +953,7 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                   ) : (
                     <button
                       onClick={() => changeStatus(member.id, "late")}
-                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer">
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
                       Late
                     </button>
                   )}

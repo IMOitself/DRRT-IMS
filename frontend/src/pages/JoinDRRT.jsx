@@ -240,7 +240,7 @@ export default function JoinDRRT() {
                                 <div className="space-y-3">
                                     {/* FAQ Item 1 */}
                                     <details className="group bg-surface border border-blue-border/80 rounded-xl overflow-hidden transition-all duration-200 [&_summary::-webkit-details-marker]:hidden">
-                                        <summary className="flex items-center justify-between p-4 cursor-pointer font-geist text-sm font-bold text-text hover:bg-surface-container-low transition-colors select-none">
+                                        <summary className="flex items-center justify-between p-4 cursor-pointer font-geist text-sm font-bold text-text hover:bg-surface-container-highest transition-colors select-none">
                                             <span>Do I need prior medical experience?</span>
                                             <span className="material-symbols-outlined text-subtext transition-transform duration-300 group-open:-rotate-180">
                                                 expand_more
@@ -254,7 +254,7 @@ export default function JoinDRRT() {
                                     </details>
                                     {/* FAQ Item 2 */}
                                     <details className="group bg-surface border border-blue-border/80 rounded-xl overflow-hidden transition-all duration-200 [&_summary::-webkit-details-marker]:hidden">
-                                        <summary className="flex items-center justify-between p-4 cursor-pointer font-geist text-sm font-bold text-text hover:bg-surface-container-low transition-colors select-none">
+                                        <summary className="flex items-center justify-between p-4 cursor-pointer font-geist text-sm font-bold text-text hover:bg-surface-container-highest transition-colors select-none">
                                             <span>Will DRRT duty conflict with academics?</span>
                                             <span className="material-symbols-outlined text-subtext transition-transform duration-300 group-open:-rotate-180">
                                                 expand_more

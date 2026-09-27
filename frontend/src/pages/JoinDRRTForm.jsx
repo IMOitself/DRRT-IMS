@@ -464,7 +464,7 @@ export default function JoinDRRTForm() {
                         </fieldset>
                         {/* Submission Actions */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-                            <Link to="/join" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all">
+                            <Link to="/join" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all">
                                 <button type="button" className="w-full text-center">
                                     Cancel
                                 </button>

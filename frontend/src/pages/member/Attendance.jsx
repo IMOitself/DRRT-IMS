@@ -362,7 +362,7 @@ export default function Attendance() {
                                                         ) : (
                                                             <button
                                                                 onClick={() => handleSelectEvent(event, "present")}
-                                                                className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                                className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer"
                                                             >
                                                                 <span>Present</span>
                                                             </button>
@@ -375,7 +375,7 @@ export default function Attendance() {
                                                         ) : (
                                                             <button
                                                                 onClick={() => handleSelectEvent(event, "absent")}
-                                                                className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-high transition-colors text-xs font-bold cursor-pointer"
+                                                                className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer"
                                                             >
                                                                 <span>Absent</span>
                                                             </button>
@@ -523,7 +523,7 @@ export default function Attendance() {
                                         <span className="material-symbols-outlined text-[16px]!">save</span>
                                         <span>Save</span>
                                     </button>
-                                    <button type="button" onClick={() => setIsPresentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                    <button type="button" onClick={() => setIsPresentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                         <span>Cancel</span>
                                     </button>
                                 </div>
@@ -593,7 +593,7 @@ export default function Attendance() {
                                 <span className="material-symbols-outlined text-[16px]!">save</span>
                                 <span>Save</span>
                             </button>
-                            <button type="button" onClick={() => setIsAbsentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                            <button type="button" onClick={() => setIsAbsentAttendanceDialogOpen(false)} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                 <span>Cancel</span>
                             </button>
                         </div>
@@ -659,7 +659,7 @@ export default function Attendance() {
 
                         {/* dialog buttons */}
                         <div className="w-full flex flex-row items-center justify-end gap-2">
-                            <button type="button" onClick={() => { setIsLateAttendanceDialogOpen(false); setIsPresentAttendanceDialogOpen(true); }} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                            <button type="button" onClick={() => { setIsLateAttendanceDialogOpen(false); setIsPresentAttendanceDialogOpen(true); }} className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                 <span>Back</span>
                             </button>
                             <button type="submit" className="gap-2 flex items-center justify-center px-4 py-2.5 rounded-xl border bg-blue text-white font-geist font-bold hover:bg-blue/80 transition-all active:scale-[0.98] cursor-pointer">
@@ -715,7 +715,7 @@ export default function Attendance() {
                                 </div>
                                 <div className="w-full flex items-center">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => { setIsConfirmSaveDialogOpen(false) }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => { setIsConfirmSaveDialogOpen(false) }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Cancel
                                         </button>
                                         <button onClick={handleConfirmSaveDialogSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">

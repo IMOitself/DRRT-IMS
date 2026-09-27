@@ -267,7 +267,7 @@ export default function JoinDRRTFormStatus() {
                         </div>
                         {/* Action Buttons */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <Link to="/" className="w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all text-center">
+                            <Link to="/" className="w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all text-center">
                                 Back to Home
                             </Link>
                         </div>

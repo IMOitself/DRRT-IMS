@@ -166,7 +166,7 @@ export default function Dashboard() {
                   Trends breakdown by year level (Jan - May)
                 </p>
               </div>
-              <button className="text-subtext hover:text-blue p-2 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer">
+              <button className="text-subtext hover:text-blue p-2 rounded-full hover:bg-surface-container-highest transition-colors cursor-pointer">
                 <span className="material-symbols-outlined text-[20px]!">more_vert</span>
               </button>
             </div>

@@ -372,7 +372,7 @@ export default function Members() {
 
                                 <div className="w-full flex items-center mt-4">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => setIsConfirmGraduateDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => setIsConfirmGraduateDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Cancel
                                         </button>
                                         <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -405,7 +405,7 @@ export default function Members() {
 
                                 <div className="w-full flex items-center mt-4">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => setIsConfirmRemoveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => setIsConfirmRemoveDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Cancel
                                         </button>
                                         <button onClick={removeMember} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -449,7 +449,7 @@ export default function Members() {
 
                                 <div className="w-full flex items-center mt-4">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => setIsConfirmDeleteDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => setIsConfirmDeleteDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Cancel
                                         </button>
                                         <button onClick={handleConfirmDelete} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
@@ -526,7 +526,7 @@ export default function Members() {
                                 </div>
                                 <div className="w-full flex items-center">
                                     <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                                        <button onClick={() => { setSelectedForDelete([]); setIsAddMemberDialogOpen(false); }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                                        <button onClick={() => { setSelectedForDelete([]); setIsAddMemberDialogOpen(false); }} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Close
                                         </button>
                                         {selectedForDelete.length > 0 && (
@@ -552,7 +552,7 @@ export default function Members() {
                     </h3>
                     <button
                         aria-label="Close"
-                        className="cursor-pointer hover:bg-surface-container-high p-2 transition-colors text-subtext"
+                        className="cursor-pointer hover:bg-surface-container-highest p-2 transition-colors text-subtext"
                         onClick={closeDrawer}
                     >
                         <span className="material-symbols-outlined">close</span>
@@ -734,7 +734,7 @@ export default function Members() {
                             <button
                                 type="button"
                                 onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
-                                className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 font-semibold"
+                                className="cursor-pointer w-full border border-blue-border text-text px-4 py-2 rounded-lg font-geist text-md hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2 font-semibold"
                             >
                                 <span className="material-symbols-outlined text-[24px]!">list</span>
                                 Options
@@ -745,7 +745,7 @@ export default function Members() {
                                     <button
                                         type="button"
                                         onClick={() => { setIsMoreMenuOpen(false); setIsConfirmGraduateDialogOpen(true); }}
-                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-low cursor-pointer"
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-highest cursor-pointer"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">school</span>
                                         {selectedMemberApplication.status === "graduated" ? "Unmark as graduated" : "Mark as graduated"}
@@ -753,7 +753,7 @@ export default function Members() {
                                     <button
                                         type="button"
                                         onClick={() => { setIsMoreMenuOpen(false); setIsConfirmRemoveDialogOpen(true); }}
-                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-low cursor-pointer border-t border-blue-border"
+                                        className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
                                     >
                                         <span className="material-symbols-outlined text-[22px]!">person_remove</span>
                                         Remove Member

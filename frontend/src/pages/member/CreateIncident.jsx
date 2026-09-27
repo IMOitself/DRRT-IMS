@@ -189,7 +189,7 @@ export default function CreateIncident() {
 
             {/* Submission Actions */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-              <Link to="/member/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+              <Link to="/member/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                 <button type="button" className="w-full text-center">
                   Cancel
                 </button>
@@ -222,7 +222,7 @@ export default function CreateIncident() {
 
                 <div className="w-full flex items-center mt-4">
                   <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={() => setIsConfirmSubmitDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-low transition-all cursor-pointer">
+                    <button onClick={() => setIsConfirmSubmitDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                       Cancel
                     </button>
                     <button onClick={handleConfirmSubmit} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
