@@ -178,7 +178,7 @@ export default function Dashboard() {
           </div>
 
           <section className="bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col min-h-100">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between md:items-center mb-6 flex-col md:flex-row gap-2">
               <div>
                 <h3 className="font-geist text-xl font-bold text-text">
                   Attendance Per Events
@@ -204,13 +204,11 @@ export default function Dashboard() {
                   <div className="h-56 w-full flex items-end justify-center gap-1">
                     {chartBars.map((bar) => {
                       const count = countForEvent(event, bar.status);
-                      // the highest count gets the full 224px (h-56), the rest are scaled from it
                       const height = (count / highestCount) * 224;
                       return (
                         <div key={bar.status}
                           className={`group relative w-4 rounded-t ${bar.color}`}
                           style={{ height: `${height}px` }}>
-                          {/* label shown right away on hover, above the bar */}
                           <span className="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-1 whitespace-nowrap bg-text text-white text-xs font-geist font-semibold px-2 py-1 rounded">
                             {bar.label}: {count}
                           </span>
