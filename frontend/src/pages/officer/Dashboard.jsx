@@ -56,6 +56,26 @@ export default function Dashboard() {
   const lastEventAttendances = attendances.filter((attendance) => attendance.event_id === lastEvent?.id);
   const countByStatus = (status) => lastEventAttendances.filter((attendance) => attendance.status === status).length;
 
+  // last 6 events that already started, oldest first for the bar graph
+  const chartEvents = events
+    .filter((event) => eventStartDate(event) <= new Date())
+    .sort((a, b) => eventStartDate(a) - eventStartDate(b))
+    .slice(-6);
+  const countForEvent = (event, status) =>
+    attendances.filter((attendance) => attendance.event_id === event.id && attendance.status === status).length;
+  const chartBars = [
+    { status: "late", label: "Late", color: "bg-yellow" },
+    { status: "present", label: "Present", color: "bg-green" },
+    { status: "absent", label: "Absent", color: "bg-red" },
+  ];
+  // biggest bar in the graph, at least 1 so we never divide by 0
+  let highestCount = 1;
+  chartEvents.forEach((event) => {
+    chartBars.forEach((bar) => {
+      highestCount = Math.max(highestCount, countForEvent(event, bar.status));
+    });
+  });
+
   // reviewer_id only gets set when an officer approves an application
   const myReviewedApplicationCount = memberApplications.filter((application) => application.reviewer_id === user?.id).length;
 
@@ -157,23 +177,50 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Analytics Chart */}
-          <section className="lg:col-span-2 bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col min-h-100">
+          <section className="bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col min-h-100">
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h3 className="font-geist text-xl font-bold text-text">
-                  Monthly Activity Attendance
+                  Attendance Per Events
                 </h3>
                 <p className="text-xs md:text-sm text-subtext">
-                  Trends breakdown by year level (Jan - May)
+                  Present, late and absent members of the last {chartEvents.length} events
                 </p>
               </div>
-              <button className="text-subtext hover:text-blue p-2 rounded-full hover:bg-surface-container-highest transition-colors cursor-pointer">
-                <span className="material-symbols-outlined text-[20px]!">more_vert</span>
-              </button>
+              <div className="flex gap-3 text-xs font-geist text-subtext font-semibold">
+                {chartBars.map((bar) => (
+                  <span key={bar.status} className="flex items-center gap-1">
+                    <span className={`w-2 h-2 rounded-full ${bar.color}`} /> {bar.label}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="flex-1 relative w-full h-70">
-              <canvas id="attendanceChart" />
+            <div className="w-full flex items-end gap-4 overflow-x-auto pt-8">
+              {chartEvents.length === 0 && (
+                <p className="w-full self-center text-sm text-subtext text-center">No events yet.</p>
+              )}
+              {chartEvents.map((event) => (
+                <div key={event.id} className="flex-1 min-w-20 flex flex-col items-center gap-2">
+                  <div className="h-56 w-full flex items-end justify-center gap-1">
+                    {chartBars.map((bar) => {
+                      const count = countForEvent(event, bar.status);
+                      // the highest count gets the full 224px (h-56), the rest are scaled from it
+                      const height = (count / highestCount) * 224;
+                      return (
+                        <div key={bar.status}
+                          className={`group relative w-4 rounded-t ${bar.color}`}
+                          style={{ height: `${height}px` }}>
+                          {/* label shown right away on hover, above the bar */}
+                          <span className="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-1 whitespace-nowrap bg-text text-white text-xs font-geist font-semibold px-2 py-1 rounded">
+                            {bar.label}: {count}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="text-xs text-subtext text-center line-clamp-1">{event.title}</p>
+                </div>
+              ))}
             </div>
           </section>
         </div>
