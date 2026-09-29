@@ -98,8 +98,8 @@ export default function Dashboard() {
                                     Welcome back, {user?.membership_application?.first_name}
                                 </h1>
                             </div>
-                            <p className="text-base text-subtext mt-1">
-                                Student ID: {user?.membership_application?.student_id || "loading.."} • {" "}
+                            <p className="text-subtext mt-1">
+                                <span className="font-bold">{user?.role.toUpperCase() || "loading.."}</span> • {" "}
                                 {user?.membership_application?.course || "..."}
                                 {user?.membership_application?.year_level || "..."}
                             </p>
@@ -109,7 +109,7 @@ export default function Dashboard() {
                                 <span className="material-symbols-outlined text-[18px]!">
                                     calendar_month
                                 </span>{" "}
-                                Attendance Records
+                                Attendance
                             </Link>
                             <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]!">
@@ -179,7 +179,7 @@ export default function Dashboard() {
                                 <span className="material-symbols-outlined text-blue text-[20px]!">
                                     hourglass_top
                                 </span>{" "}
-                                Pending Officer Review
+                                Pending Attendance
                             </h2>
                             <p className="flex font-geist text-4xl font-bold text-text">
                                 {pendingAttendanceApprovalCount}
