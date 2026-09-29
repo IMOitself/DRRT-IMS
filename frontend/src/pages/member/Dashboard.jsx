@@ -105,15 +105,15 @@ export default function Dashboard() {
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                            <Link to="/member/attendance" className="bg-blue text-white h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
+                            <Link to="/member/attendance" className="bg-blue text-white p-3 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-blue transition-colors shadow-sm font-semibold active:scale-95 hover:bg-blue/70 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]!">
                                     calendar_month
                                 </span>{" "}
                                 Attendance
                             </Link>
-                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text h-11 px-5 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
+                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text text-center p-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
                                 <span className="material-symbols-outlined text-[18px]!">
-                                    emergency
+                                    medication
                                 </span>{" "}
                                 Create Incident Report
                             </Link>
