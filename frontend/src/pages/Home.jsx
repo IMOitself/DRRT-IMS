@@ -11,6 +11,10 @@ export default function Home() {
 
     const { user, isLoggedIn } = useAuth();
     const [copied, setCopied] = useState(false);
+
+    let dashboardLink = "/member/dashboard";
+    if (user?.role === "officer") dashboardLink = "/officer/dashboard";
+    if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
     const [events, setEvents] = useState([]);
     const contact1 = "09123456789";
     const contact2 = "09123456789";
@@ -60,11 +64,11 @@ export default function Home() {
                                 proactive safety across our entire campus community.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center md:justify-start">
-                                <Link to="/join" className="bg-blue text-white hover:bg-blue/70 transition-all font-geist text-md font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
+                                <Link to={isLoggedIn ? dashboardLink : "/join"} className="bg-blue text-white hover:bg-blue/70 transition-all font-geist text-md font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98]">
                                     <span className="material-symbols-outlined text-[18px]!">
-                                        person_add
+                                        {isLoggedIn ? "dashboard" : "person_add"}
                                     </span>
-                                    <span>Join DRRT Team</span>
+                                    <span>{isLoggedIn ? "Go To Dashboard" : "Join DRRT Team"}</span>
                                 </Link>
                             </div>
                         </div>
