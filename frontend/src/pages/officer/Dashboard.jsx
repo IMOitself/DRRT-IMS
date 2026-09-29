@@ -74,8 +74,10 @@ export default function Dashboard() {
               <h1 className="font-geist text-3xl md:text-5xl text-text font-bold">
                 Welcome back, {user?.membership_application?.first_name}
               </h1>
-              <p className="text-base text-subtext mt-1">
-                Officer • {user?.email || "loading.."}
+              <p className="text-subtext mt-1">
+                <span className="font-bold">{user?.role.toUpperCase() || "loading.."}</span> • {" "}
+                {user?.membership_application?.course || "..."}
+                {user?.membership_application?.year_level || "..."}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
