@@ -27,12 +27,8 @@ export default function EventAttendance() {
     setDrawerOpen(false);
   }
 
-  // a pending attendance is not set yet, it still needs an officer to approve it
-  const getStatus = (memberId) => {
-    const attendance = attendances.find((a) => a.user_id === memberId);
-    if (attendance?.pending_approval) return undefined;
-    return attendance?.status;
-  };
+  const getStatus = (memberId) =>
+    attendances.find((a) => a.user_id === memberId)?.status;
 
   const getTimein = (memberId) => {
     const attendance = attendances.find((a) => a.user_id === memberId);
@@ -231,16 +227,7 @@ export default function EventAttendance() {
                   Attendance Record
                 </p>
 
-                {selectedAttendance?.pending_approval ? (
-                  <p className="text-xs text-subtext font-medium my-2">
-                    <span className="text-text font-semibold">
-                      {selectedMember.name}
-                    </span>{" "}
-                    wants to set their attendance
-                  </p>
-                ) : ""}
-
-                {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
+                {selectedAttendance?.recorder && (
                   <p className="text-xs text-subtext font-medium my-2">
                     This was recorded by:{" "}
                     <span className="text-text font-semibold">

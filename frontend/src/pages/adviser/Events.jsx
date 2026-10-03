@@ -173,7 +173,7 @@ export default function Events() {
             {filteredEvents.map((event) => {
               const countByStatus = (status) =>
                 attendances.filter(
-                  (a) => a.event_id === event.id && !a.pending_approval && a.status === status
+                  (a) => a.event_id === event.id && a.status === status
                 ).length;
               return (
                 <Link
