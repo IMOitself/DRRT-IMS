@@ -38,7 +38,6 @@ class AttendanceController extends Controller
             'event_id' => $request->input('event_id'),
         ], [
             'recorder_id' => $request->user()->id,
-            'pending_approval' => $request->input('user_id') == $request->user()->id,
             'status' => $request->input('status'),
             'proof_of_attendance' => $request->input('proof_of_attendance'),
             'absent_reason' => $request->input('absent_reason'),
@@ -70,28 +69,12 @@ class AttendanceController extends Controller
     }
 
     /**
-     * Officer approves an attendance a member set for themselves.
-     */
-    public function approve(Attendance $attendance)
-    {
-        // TODO: officer role only
-        $attendance->update(['pending_approval' => false]);
-
-        return response()->json($attendance, 200);
-    }
-
-    /**
      * Member asks an officer to correct their own attendance record.
      */
     public function requestCorrection(Request $request, Attendance $attendance)
     {
         if ($attendance->user_id !== $request->user()->id) {
             return response()->json(['message' => 'Forbidden'], 403);
-        }
-
-        // still waiting for an officer, so there is nothing to correct yet
-        if ($attendance->pending_approval) {
-            return response()->json(['message' => 'Attendance is still pending approval'], 422);
         }
 
         $attendance->update(['correction_requested' => true]);
