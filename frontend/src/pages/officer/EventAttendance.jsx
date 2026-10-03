@@ -28,18 +28,11 @@ export default function EventAttendance() {
     setDrawerOpen(false);
   }
 
-  // a pending attendance is not set yet, it still needs an officer to approve it
-  const getSavedStatus = (memberId) => {
-    const attendance = attendances.find((a) => a.user_id === memberId);
-    if (attendance?.pending_approval) return undefined;
-    return attendance?.status;
-  };
+  const getSavedStatus = (memberId) =>
+    attendances.find((a) => a.user_id === memberId)?.status;
 
   const wantsCorrection = (memberId) =>
     !!attendances.find((a) => a.user_id === memberId)?.correction_requested;
-
-  const pendingApproval = (memberId) =>
-    !!attendances.find((a) => a.user_id === memberId)?.pending_approval;
 
   const getStatus = (memberId) => {
     const unsaved = unsavedChanges[memberId];
@@ -98,55 +91,6 @@ export default function EventAttendance() {
 
     closeUnsetDialog();
     closeCorrectionDialog();
-  };
-
-  const [isConfirmRejectDialogOpen, setIsConfirmRejectDialogOpen] = useState(false);
-  const [isConfirmApproveDialogOpen, setIsConfirmApproveDialogOpen] = useState(false);
-  const [pendingTarget, setPendingTarget] = useState(null);
-
-  const openRejectDialog = (memberId) => {
-    setPendingTarget(memberId);
-    setIsConfirmRejectDialogOpen(true);
-  };
-
-  const closeRejectDialog = () => setIsConfirmRejectDialogOpen(false);
-
-  const openApproveDialog = (memberId) => {
-    setPendingTarget(memberId);
-    setIsConfirmApproveDialogOpen(true);
-  };
-
-  const closeApproveDialog = () => setIsConfirmApproveDialogOpen(false);
-
-  // what the member submitted, for both dialogs to list
-  const pendingAttendance = attendances.find((a) => a.user_id === pendingTarget);
-
-  // approving just clears the pending flag, the attendance is now set
-  const approvePendingAttendance = async () => {
-    try {
-      await api.put(`/attendances/${pendingAttendance.id}/approve`);
-      const res = await api.get("/attendances", { params: { all: 1 } });
-      setAttendances(res.data.filter((a) => a.event_id === eventId));
-    } catch (err) {
-      console.error(err);
-    }
-
-    closeApproveDialog();
-    closeDrawer();
-  };
-
-  const rejectPendingAttendance = async () => {
-    const attendance = pendingAttendance;
-
-    try {
-      if (attendance) await api.delete(`/attendances/${attendance.id}`);
-      setAttendances(attendances.filter((a) => a.id !== attendance?.id));
-    } catch (err) {
-      console.error(err);
-    }
-
-    closeRejectDialog();
-    closeDrawer();
   };
 
   const handleConfirmSaveDialogSubmit = async () => {
@@ -313,9 +257,6 @@ export default function EventAttendance() {
             getStatus={getStatus}
             getTimein={getTimein}
             wantsCorrection={wantsCorrection}
-            pendingApproval={pendingApproval}
-            openRejectDialog={openRejectDialog}
-            openApproveDialog={openApproveDialog}
             changeStatus={changeStatus}
             openUnsetDialog={openUnsetDialog}
             openCorrectionDialog={openCorrectionDialog}
@@ -401,16 +342,7 @@ export default function EventAttendance() {
                   Attendance Record
                 </p>
 
-                {selectedAttendance?.pending_approval ? (
-                  <p className="text-xs text-subtext font-medium my-2">
-                    <span className="text-text font-semibold">
-                      {selectedMember.name}
-                    </span>{" "}
-                    wants to set their attendance
-                  </p>
-                ) : ""}
-
-                {selectedAttendance?.recorder && !selectedAttendance?.pending_approval && (
+                {selectedAttendance?.recorder && (
                   <p className="text-xs text-subtext font-medium my-2">
                     This was recorded by:{" "}
                     <span className="text-text font-semibold">
@@ -486,18 +418,6 @@ export default function EventAttendance() {
           )}
         </div>
         {/* Drawer Actions */}
-        {selectedAttendance?.pending_approval ? (
-          <div className="p-4 border-t border-blue-border bg-surface flex gap-3">
-            <button onClick={() => openRejectDialog(selectedMember.id)} className="cursor-pointer flex-1 bg-red text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-red transition-colors flex items-center justify-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">close</span>
-              Reject
-            </button>
-            <button onClick={() => openApproveDialog(selectedMember.id)} className="cursor-pointer flex-1 bg-green text-white px-4 py-2 rounded-lg font-geist text-sm hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">check</span>
-              Approve
-            </button>
-          </div>
-        ) : ""}
         {selectedMember && (
           <div className="p-4 border-t border-blue-border bg-surface">
             <button
@@ -652,129 +572,12 @@ export default function EventAttendance() {
         </div>
       )}
 
-      {isConfirmRejectDialogOpen && (
-        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
-          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-              <div className="flex flex-col gap-1">
-                <div className="flex flex-row gap-2 items-center">
-                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
-                    warning
-                  </span>
-                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                    Reject Attendance?
-                  </p>
-                </div>
-                <p className="font-geist text-text">
-                  Rejecting this will delete what {getMemberName(pendingTarget)} submitted. They can set their attendance again.
-                </p>
-
-                <SubmittedAttendance attendance={pendingAttendance} />
-
-                <div className="w-full flex items-center mt-4">
-                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeRejectDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
-                      Cancel
-                    </button>
-                    <button onClick={rejectPendingAttendance} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
-                      <span className="material-symbols-outlined text-[20px]!">close</span>
-                      <span>Reject</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isConfirmApproveDialogOpen && (
-        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
-          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-              <div className="flex flex-col gap-1">
-                <div className="flex flex-row gap-2 items-center">
-                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
-                    warning
-                  </span>
-                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                    Approve Attendance?
-                  </p>
-                </div>
-                <p className="font-geist text-text">
-                  Approving this will set what {getMemberName(pendingTarget)} submitted as their attendance.
-                </p>
-
-                <SubmittedAttendance attendance={pendingAttendance} />
-
-                <div className="w-full flex items-center mt-4">
-                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
-                    <button onClick={closeApproveDialog} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
-                      Cancel
-                    </button>
-                    <button onClick={approvePendingAttendance} className="w-full sm:w-auto bg-green text-white hover:bg-green transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
-                      <span className="material-symbols-outlined text-[20px]!">check</span>
-                      <span>Approve</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       <BottomNav />
     </>
   );
 }
 
-function SubmittedAttendance({ attendance }) {
-  return (
-    <ul className="mt-3 ml-5 list-disc space-y-0.5 text-sm text-subtext">
-      <li>
-        Status:{" "}
-        <span className="font-semibold capitalize text-text">
-          {attendance?.status ?? "none"}
-        </span>
-      </li>
-      {attendance?.timein_hour && (
-        <li>
-          Time In:{" "}
-          <span className="font-semibold text-text">
-            {attendance.timein_hour}:{attendance.timein_minute} {attendance.timein_ampm}
-          </span>
-        </li>
-      )}
-      {attendance?.proof_of_attendance && (
-        <li>
-          Proof of Attendance:{" "}
-          <span className="font-semibold text-text wrap-break-word">
-            {attendance.proof_of_attendance}
-          </span>
-        </li>
-      )}
-      {attendance?.absent_reason && (
-        <li>
-          Reason:{" "}
-          <span className="font-semibold text-text wrap-break-word">
-            {attendance.absent_reason}
-          </span>
-        </li>
-      )}
-      {attendance?.absent_supporting_image && (
-        <li>
-          Supporting Image:{" "}
-          <span className="font-semibold text-text wrap-break-word">
-            {attendance.absent_supporting_image}
-          </span>
-        </li>
-      )}
-    </ul>
-  );
-}
-
-function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendingApproval, openRejectDialog, openApproveDialog, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ members, getStatus, getTimein, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(member.id)
@@ -892,22 +695,6 @@ function AttendanceList({ members, getStatus, getTimein, wantsCorrection, pendin
                         className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
                         wants correction
                       </button>
-                    </div>
-                  )}
-                  {pendingApproval(member.id) && (
-                    <div className="flex items-center gap-0.5">
-                      <button
-                        onClick={() => openDrawer(member)}
-                        className="px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold flex items-center justify-center cursor-pointer">
-                        update attendance
-                        <span className="material-symbols-outlined text-[18px]!">more_vert</span>
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openRejectDialog(member.id); }}
-                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors font-bold flex items-center justify-center cursor-pointer">close</button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openApproveDialog(member.id); }}
-                        className="material-symbols-outlined text-[18px]! px-1 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors font-bold flex items-center justify-center cursor-pointer">check</button>
                     </div>
                   )}
                 </div>

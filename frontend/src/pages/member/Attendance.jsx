@@ -384,11 +384,7 @@ export default function Attendance() {
                                                 )}
                                             </div>
                                             {userAlreadyHaveRecord ? (
-                                                currentAttendance?.pending_approval ? (
-                                                    <span className="font-geist text-xs text-subtext font-bold">
-                                                        Waiting for Officer Review
-                                                    </span>
-                                                ) : currentAttendance?.correction_requested ? (
+                                                currentAttendance?.correction_requested ? (
                                                     <span className="font-geist text-xs text-subtext font-bold">
                                                         Correction Requested
                                                     </span>
