@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
+import EventCard from "../../components/EventCard";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
@@ -11,8 +12,6 @@ export default function Dashboard() {
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState([]);
-    const [expandedIds, setExpandedIds] = useState([]);
-    const [overflowIds, setOverflowIds] = useState([]);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -231,108 +230,7 @@ export default function Dashboard() {
 
                         <div className="space-y-6 md:space-y-8">
                             {events.map((event) => (
-                                <div
-                                    key={event.id}
-                                    className="block bg-white border border-blue-border p-4 rounded-xl shadow-sm space-y-2"
-                                >
-                                    <div className="flex-1">
-                                        {/* venue online */}
-                                        {event.venue_online && (
-                                            <div className="flex flex-row justify-between items-center gap-2">
-                                                <div className="flex items-center gap-1.5 text-blue">
-                                                    <span className="material-symbols-outlined text-[16px]!">
-                                                        videocam
-                                                    </span>
-                                                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                                                        {event.venue_online}
-                                                    </span>
-                                                </div>
-                                                <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
-                                                    Online
-                                                </span>
-                                            </div>
-                                        )}
-
-                                        {/* venue face to face */}
-                                        {event.venue_facetoface && (
-                                            <div className="flex flex-row items-center justify-between gap-2">
-                                                <div className="flex items-center gap-1.5 text-blue">
-                                                    <span className="material-symbols-outlined text-[16px]!">
-                                                        location_on
-                                                    </span>
-                                                    <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                                                        {event.venue_facetoface}
-                                                    </span>
-                                                </div>
-                                                <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
-                                                    Face to Face
-                                                </span>
-                                            </div>
-                                        )}
-
-                                        {!event.venue_online && !event.venue_facetoface && (
-                                            <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
-                                                Event
-                                            </p>
-                                        )}
-
-                                        <h2 className="font-geist text-2xl font-semibold text-text mt-1">
-                                            {event.title}
-                                        </h2>
-                                        <p
-                                            ref={(el) => {
-                                                if (!el || overflowIds.includes(event.id)) return;
-                                                if (el.scrollHeight > el.clientHeight + 1)
-                                                    setOverflowIds((ids) => [...ids, event.id]);
-                                            }}
-                                            className={`font-geist text-sm text-subtext ${expandedIds.includes(event.id) ? "" : "line-clamp-2"}`}
-                                        >
-                                            {event.description}
-                                        </p>
-                                        {overflowIds.includes(event.id) && (
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    setExpandedIds(
-                                                        expandedIds.includes(event.id)
-                                                            ? expandedIds.filter((id) => id !== event.id)
-                                                            : [...expandedIds, event.id]
-                                                    )
-                                                }
-                                                className="font-geist text-sm text-blue font-semibold cursor-pointer"
-                                            >
-                                                {expandedIds.includes(event.id) ? "See Less" : "See More..."}
-                                            </button>
-                                        )}
-                                    </div>
-
-                                    <div className="flex flex-wrap px-0 md:px-2 gap-4 my-3 text-subtext text-xs md:text-md font-semibold">
-                                        <div className="flex items-center gap-2.5">
-                                            <span className="material-symbols-outlined text-blue text-[18px]!">
-                                                event
-                                            </span>
-                                            <span className="capitalize">{event.type}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2.5">
-                                            <span className="material-symbols-outlined text-blue text-[18px]!">
-                                                calendar_today
-                                            </span>
-                                            <span>{formatDate(event.date)}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2.5">
-                                            <span className="material-symbols-outlined text-blue text-[18px]!">
-                                                people
-                                            </span>
-                                            <span>{event.participants}</span>
-                                        </div>
-                                        {!hasEventStarted(event) && (
-                                            <div className="px-3 h-9 rounded bg-surface-container-low border border-blue-border text-subtext text-xs font-bold flex items-center justify-center gap-1">
-                                                <span className="material-symbols-outlined text-[14px]!">hourglass_top</span>
-                                                <span>Not Yet Started</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
+                                <EventCard key={event.id} event={event} />
                             ))}
                             {events.length === 0 && (
                                 <p className="font-geist text-sm text-subtext text-center py-4">
