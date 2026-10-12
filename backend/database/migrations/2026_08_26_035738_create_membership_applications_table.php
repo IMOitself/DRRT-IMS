@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('membership_applications', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pending', 'approved_need_register', 'approved_member_now'])->default('pending');
+            $table->enum('status', ['pending', 'approved_need_register', 'approved_member_now', 'graduated'])->default('pending');
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('reviewer_id')->nullable()->constrained('users');
             $table->timestamp('date_applied')->useCurrent();
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('emergency_phone', 20);
             $table->string('consent_form'); // TODO: for now its a file path, but we need this to be an actual file
             $table->string('class_schedule'); // TODO: for now its a file path, but we need this to be an actual file
+            $table->boolean('removal_requested')->default(false);
             $table->timestamps();
         });
     }
