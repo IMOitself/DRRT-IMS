@@ -18,6 +18,7 @@ export default function Members() {
     const [copied, setCopied] = useState(false);
     const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
     const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
+    const [isConfirmPromoteDialogOpen, setIsConfirmPromoteDialogOpen] = useState(false);
     const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -207,6 +208,19 @@ export default function Members() {
             .catch((err) => console.error(err));
     };
 
+    const promoteToOfficer = () => {
+        api
+            .put("/users/" + selectedMemberApplication.user_id + "/role", { role: "officer" })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, user_role: "officer" });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, user_role: "officer" } : app
+                ));
+                setIsConfirmPromoteDialogOpen(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
     const toggleSelectedForDelete = (id) => {
         setSelectedForDelete((selected) =>
             selected.includes(id) ? selected.filter((selectedId) => selectedId !== id) : [...selected, id]
@@ -378,6 +392,39 @@ export default function Members() {
                                         <button onClick={handleConfirmGraduate} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                             <span className="material-symbols-outlined text-[20px]!">school</span>
                                             <span>{selectedMemberApplication.status === "graduated" ? "Unmark as Graduated" : "Mark as Graduated"}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isConfirmPromoteDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-blue mb-1 text-[30px]!">
+                                        military_tech
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Promote to Officer?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    Are you sure you want to promote {selectedMemberApplication.full_name} to Officer? This will grant them officer-level permissions and access to manage the organization.
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmPromoteDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={promoteToOfficer} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">military_tech</span>
+                                            <span>Promote to Officer</span>
                                         </button>
                                     </div>
                                 </div>
@@ -706,6 +753,16 @@ export default function Members() {
                                         <span className="material-symbols-outlined text-[22px]!">school</span>
                                         {selectedMemberApplication.status === "graduated" ? "Unmark as graduated" : "Mark as graduated"}
                                     </button>
+                                    {selectedMemberApplication.status === "approved_member_now" && selectedMemberApplication.user_id && selectedMemberApplication.user_role !== "officer" && (
+                                        <button
+                                            type="button"
+                                            onClick={() => { setIsMoreMenuOpen(false); setIsConfirmPromoteDialogOpen(true); }}
+                                            className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-blue hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
+                                        >
+                                            <span className="material-symbols-outlined text-[22px]!">military_tech</span>
+                                            Promote to Officer
+                                        </button>
+                                    )}
                                     <button
                                         type="button"
                                         onClick={() => { setIsMoreMenuOpen(false); toggleRemovalRequest(); }}
