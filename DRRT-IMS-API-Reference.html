@@ -581,31 +581,31 @@ body {
     <div class="sidebar-base">Base URL: <span>https://drrt-ims-backend.onrender.com/api/</span></div>
     <nav class="sidebar-nav">
       <div class="nav-section-label">Documentation</div>
-      <a class="nav-item active" onclick="show('overview')" href="#">
+      <a class="nav-item active" data-section="overview" href="#overview">
         <span class="nav-dot"></span> Overview
       </a>
       <div class="nav-section-label">Endpoints</div>
-      <a class="nav-item" onclick="show('membership')" href="#">
+      <a class="nav-item" data-section="membership" href="#membership">
         <span class="nav-dot"></span> Membership
         <span class="nav-count">6</span>
       </a>
-      <a class="nav-item" onclick="show('members')" href="#">
+      <a class="nav-item" data-section="members" href="#members">
         <span class="nav-dot"></span> Members & Officers
         <span class="nav-count">2</span>
       </a>
-      <a class="nav-item" onclick="show('events')" href="#">
+      <a class="nav-item" data-section="events" href="#events">
         <span class="nav-dot"></span> Events
         <span class="nav-count">5</span>
       </a>
-      <a class="nav-item" onclick="show('attendance')" href="#">
+      <a class="nav-item" data-section="attendance" href="#attendance">
         <span class="nav-dot"></span> Attendance
         <span class="nav-count">4</span>
       </a>
-      <a class="nav-item" onclick="show('incidents')" href="#">
+      <a class="nav-item" data-section="incidents" href="#incidents">
         <span class="nav-dot"></span> Incident Reports
         <span class="nav-count">2</span>
       </a>
-      <a class="nav-item" onclick="show('auth')" href="#">
+      <a class="nav-item" data-section="auth" href="#auth">
         <span class="nav-dot"></span> Authentication
         <span class="nav-count">8</span>
       </a>
@@ -660,9 +660,9 @@ body {
           <span><b class="k-uk">UK</b> unique</span>
           <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30"/></svg> FK constraint</span>
           <span><svg width="30" height="12"><path class="erd-rel weak" d="M0,6 H30"/></svg> no DB constraint</span>
-          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30" marker-end="url(#erd-one)"/></svg> exactly one</span>
-          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30" marker-end="url(#erd-zeroOne)"/></svg> zero or one</span>
-          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30" marker-end="url(#erd-many0)"/></svg> zero or many</span>
+          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30"/><path class="erd-mark" d="M26,1 V11 M22,1 V11"/></svg> exactly one</span>
+          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30"/><path class="erd-mark" d="M26,1 V11"/><circle class="erd-mark" cx="19" cy="6" r="3.5"/></svg> zero or one</span>
+          <span><svg width="30" height="12"><path class="erd-rel" d="M0,6 H30"/><path class="erd-mark" d="M20,6 L30,1 M20,6 L30,11"/><circle class="erd-mark" cx="16" cy="6" r="3.5"/></svg> zero or many</span>
         </div>
         <p class="diagram-note">Laravel framework tables with no relationships: <code>password_reset_tokens</code>, <code>cache</code>, <code>cache_locks</code>, <code>jobs</code>, <code>job_batches</code>, <code>failed_jobs</code>.</p>
       </div>
@@ -1443,13 +1443,21 @@ body {
 </div>
 
 <script>
-function show(id) {
+function show(id, navItem) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('s-' + id).classList.add('active');
-  event.currentTarget.classList.add('active');
-  event.preventDefault();
+  navItem.classList.add('active');
 }
+
+// listeners instead of inline onclick + window.event, so links never navigate away
+// (htmlpreview.github.io rewrites "#" links to point at its own URL)
+document.querySelectorAll('.nav-item[data-section]').forEach((item) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    show(item.dataset.section, item);
+  });
+});
 
 function toggle(header) {
   const card = header.closest('.endpoint');
@@ -1467,35 +1475,21 @@ function svgEl(tag, attrs, parent, text) {
   return node;
 }
 
-// markers live in one hidden svg so every diagram (and the legends) can use them
-(function defineMarkers() {
-  const svg = svgEl('svg', { width: 0, height: 0, 'aria-hidden': 'true', style: 'position:absolute' });
-  const defs = svgEl('defs', {}, svg);
-  const erdMarker = (id) => svgEl('marker', {
-    id, viewBox: '-20 -8 22 16', refX: 0, refY: 0, markerWidth: 22, markerHeight: 16,
-    markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse',
-  }, defs);
-
-  const many0 = erdMarker('erd-many0');
-  svgEl('path', { class: 'erd-mark', d: 'M-10,0 L0,-5 M-10,0 L0,5 M-10,0 L0,0' }, many0);
-  svgEl('circle', { class: 'erd-mark', cx: -14, cy: 0, r: 3.5 }, many0);
-
-  const one = erdMarker('erd-one');
-  svgEl('path', { class: 'erd-mark', d: 'M-4,-5 V5 M-8,-5 V5' }, one);
-
-  const zeroOne = erdMarker('erd-zeroOne');
-  svgEl('path', { class: 'erd-mark', d: 'M-4,-5 V5' }, zeroOne);
-  svgEl('circle', { class: 'erd-mark', cx: -11, cy: 0, r: 3.5 }, zeroOne);
-
-  for (const tone of ['public', 'member', 'officer', 'adviser']) {
-    const m = svgEl('marker', {
-      id: 'arrow-' + tone, viewBox: '0 0 8 8', refX: 8, refY: 4, markerWidth: 8, markerHeight: 8,
-      markerUnits: 'userSpaceOnUse', orient: 'auto',
-    }, defs);
-    svgEl('path', { class: 'arrowhead tone-' + tone, d: 'M0,0 L8,4 L0,8 z' }, m);
+// ERD line ends are drawn as plain shapes, not <marker>s: htmlpreview.github.io adds a <base href>,
+// which makes url(#id) references resolve against GitHub's URL in some browsers and vanish.
+// Shapes are drawn with the tip at (0,0) and the body toward -x, then flipped by `dir`.
+function drawErdEnd(parent, x, y, dir, kind) {
+  const g = svgEl('g', { transform: `translate(${x},${y}) scale(${dir},1)` }, parent);
+  if (kind === 'many0') {
+    svgEl('path', { class: 'erd-mark', d: 'M-10,0 L0,-5 M-10,0 L0,5 M-10,0 L0,0' }, g);
+    svgEl('circle', { class: 'erd-mark', cx: -14, cy: 0, r: 3.5 }, g);
+  } else if (kind === 'one') {
+    svgEl('path', { class: 'erd-mark', d: 'M-4,-5 V5 M-8,-5 V5' }, g);
+  } else {
+    svgEl('path', { class: 'erd-mark', d: 'M-4,-5 V5' }, g);
+    svgEl('circle', { class: 'erd-mark', cx: -11, cy: 0, r: 3.5 }, g);
   }
-  document.body.appendChild(svg);
-})();
+}
 
 // ─── ERD (mirrors A.md) ───
 const TIMESTAMPS = [['timestamp', 'created_at', '', 'nullable'], ['timestamp', 'updated_at', '', 'nullable']];
@@ -1654,13 +1648,17 @@ function drawErd() {
       pts: [[880, rowY('events', 'id')], [900, rowY('events', 'id')], [900, rowY(AT, 'event_id')], [880, rowY(AT, 'event_id')]] },
   ];
   for (const rel of rels) {
-    const path = svgEl('path', {
+    const g = svgEl('g', {}, svg);
+    svgEl('path', {
       class: 'erd-rel' + (rel.weak ? ' weak' : ''),
       d: 'M' + rel.pts.map((p) => p.join(',')).join(' L'),
-      'marker-start': `url(#erd-${rel.start})`,
-      'marker-end': 'url(#erd-many0)',
-    }, svg);
-    svgEl('title', {}, path, rel.title);
+    }, g);
+    // every end segment is horizontal, so the direction is just the sign of the x step
+    const [first, second] = rel.pts;
+    const [beforeLast, last] = rel.pts.slice(-2);
+    drawErdEnd(g, first[0], first[1], Math.sign(first[0] - second[0]), rel.start);
+    drawErdEnd(g, last[0], last[1], Math.sign(last[0] - beforeLast[0]), 'many0');
+    svgEl('title', {}, g, rel.title);
   }
 }
 
@@ -1816,7 +1814,8 @@ function drawFlow() {
         const tone = BADGE[endpoint.split('?')[0]];
         const [method, path] = endpoint.split(' ');
         const g = svgEl('g', { class: 'tone-' + tone }, svg);
-        svgEl('path', { class: 'wire-line', d: `M3,${cy} H${TABLE_X - 1}`, 'marker-end': `url(#arrow-${tone})` }, g);
+        svgEl('path', { class: 'wire-line', d: `M3,${cy} H${TABLE_X - 8}` }, g);
+        svgEl('path', { class: 'arrowhead', d: `M${TABLE_X - 9},${cy - 4} L${TABLE_X - 1},${cy} L${TABLE_X - 9},${cy + 4} Z` }, g);
         const label = svgEl('text', { class: 'wire-label', x: 16, y: cy + 4 }, g);
         svgEl('tspan', { class: 'wire-method' }, label, method);
         svgEl('tspan', {}, label, ' ' + path);

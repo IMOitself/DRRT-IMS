@@ -13,12 +13,6 @@
 
 <br><br>
 
-> [!NOTE]
-> current progress:<br>
-> (screenshot is outdated, check the trello link directly)
-> <img width="1850" height="762" alt="Screenshot 2026-09-14 132137" src="https://github.com/user-attachments/assets/7e578a8e-802d-4a54-803a-bbccca3d730d" />
-> https://trello.com/b/rcb0FEpP
-
 
 ## installation
 ```
@@ -48,8 +42,25 @@ ctrl + click the link on frontend. goodluck :D
 ## essential stuff for development
 the stuffs are placed here to make it faster to view. <br>
 might be outdated, view the [docs](https://docs.google.com/document/d/1ITqkJaaK1XKY5Td46PzvDUZHkkc6rVnZNlhvShZtH2Y/edit?usp=sharing) 
+
+### api reference: [html preview](http://htmlpreview.github.io/?https://github.com/IMOitself/DRRT-IMS-ui-designs/blob/master/DRRT-IMS-API-Reference.html)
+
+### old resources (outdated):
+
 <details>
-<summary>ui designs from mel [OLD]</summary>
+<summary>trello</summary>
+
+> [!NOTE]
+> current progress:<br>
+> (screenshot is outdated, check the trello link directly)
+> <img width="1850" height="762" alt="Screenshot 2026-09-14 132137" src="https://github.com/user-attachments/assets/7e578a8e-802d-4a54-803a-bbccca3d730d" />
+> https://trello.com/b/rcb0FEpP
+
+
+</details>
+
+<details>
+<summary>ui designs from mel</summary>
 
 ### [figma](https://www.figma.com/proto/cXKbJkVcVyjgO4n7lHXyyY/DRRT-PROTOTYPE?node-id=86-1478&t=gx2O0FedSpD7iMKI-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=86%3A1872&show-proto-sidebar=1)
 
