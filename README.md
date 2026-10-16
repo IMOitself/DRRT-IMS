@@ -11,8 +11,7 @@
 
 </details>
 
-<br><br>
-
+<img width="1920" height="1263" alt="FireShot Capture 009 - Home - DRRT Portal -  drrt-ims web app" src="https://github.com/user-attachments/assets/3ff22667-4491-457f-a60c-65c129da791a" />
 
 ## installation
 ```
