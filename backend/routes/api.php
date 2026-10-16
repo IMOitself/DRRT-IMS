@@ -47,7 +47,6 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/attendances', [AttendanceController::class, 'index']);
     Route::post('/attendances', [AttendanceController::class, 'store']);
-    // Route::put('/attendances/{attendance}', [AttendanceController::class, 'update']);
     Route::put('/attendances/{attendance}/correction-request', [AttendanceController::class, 'requestCorrection']);
     Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy']);
 

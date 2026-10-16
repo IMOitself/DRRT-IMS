@@ -37,7 +37,6 @@ class EventsController extends Controller
             'participants' => $request->input('participants'),
             'venue_online' => $request->input('venue_online'),
             'venue_facetoface' => $request->input('venue_facetoface'),
-            // waits for an adviser to approve it
             'pending_approval' => true,
         ]);
 
