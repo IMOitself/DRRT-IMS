@@ -25,6 +25,7 @@ import MemberCreateIncident from './pages/member/CreateIncident';
 
 import AdviserDashboard from './pages/adviser/Dashboard';
 import AdviserMembers from './pages/adviser/Members';
+import AdviserApprovals from './pages/adviser/Approvals';
 import AdviserIncidents from './pages/adviser/Incidents';
 import AdviserEvents from './pages/adviser/Events';
 import AdviserEventAttendance from './pages/adviser/EventAttendance';
@@ -48,6 +49,7 @@ function App() {
 
       <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
         <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
+        <Route path="/adviser/approvals" element={<AdviserApprovals />} />
         <Route path="/adviser/events" element={<AdviserEvents />} />
         <Route path="/adviser/events/:id" element={<AdviserEventAttendance />} />
         <Route path="/adviser/members" element={<AdviserMembers />} />

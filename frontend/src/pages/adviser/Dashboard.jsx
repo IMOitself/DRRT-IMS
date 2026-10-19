@@ -154,12 +154,10 @@ export default function Dashboard() {
               </h1>
               <p className="text-subtext mt-1 text-sm md:text-base flex items-center gap-2">
                 <span className="font-bold text-blue tracking-wide uppercase">
-                  CHAPTER ADVISER
+                  ADVISER
                 </span>
                 <span>•</span>
                 <span>LVCC Apalit Chapter</span>
-                <span>•</span>
-                <span className="hidden sm:inline">Executive Governance Hub</span>
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
@@ -170,7 +168,7 @@ export default function Dashboard() {
                 <span className="material-symbols-outlined text-[18px]!">
                   fact_check
                 </span>
-                Approvals Center
+                Approvals
               </Link>
               <Link
                 to="/adviser/members"
@@ -179,13 +177,13 @@ export default function Dashboard() {
                 <span className="material-symbols-outlined text-[18px]!">
                   group
                 </span>
-                Roster Audit
+                Members
               </Link>
             </div>
           </section>
 
           {/* KPI Summary Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4">
             {/* Card 1: Active Member Overview */}
             <Link
               to="/adviser/members"
@@ -196,7 +194,7 @@ export default function Dashboard() {
                   <span className="material-symbols-outlined text-blue text-[20px]!">
                     groups
                   </span>
-                  Active Roster
+                  Active Member
                 </h2>
                 <span className="material-symbols-outlined text-subtext text-[18px]! opacity-0 group-hover:opacity-100 transition-opacity">
                   arrow_forward
@@ -210,39 +208,6 @@ export default function Dashboard() {
                 <span className="font-semibold text-text">{graduatedCount}</span> graduated
               </p>
             </Link>
-
-            {/* Card 2: Attendance Compliance Overview ("50 / 65") */}
-            <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <h2 className="font-geist text-xs text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-blue text-[20px]!">
-                    verified
-                  </span>
-                  Attendance Compliance
-                </h2>
-                <span
-                  className={`text-xs px-2 py-0.5 rounded-full font-bold font-geist ${
-                    Number(compliancePercentage) >= 80
-                      ? "bg-green/10 text-green"
-                      : "bg-yellow/10 text-yellow"
-                  }`}
-                >
-                  {Number(compliancePercentage) >= 80 ? "Safe Standing" : "Needs Review"}
-                </span>
-              </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-geist text-4xl font-bold text-text">
-                  {compliantMembersCount}
-                </span>
-                <span className="font-geist text-2xl font-normal text-subtext">
-                  / {members.length}
-                </span>
-              </div>
-              <p className="text-xs text-subtext mt-auto">
-                <span className="font-semibold text-text">{compliancePercentage}%</span>{" "}
-                meeting bylaws threshold (&ge;80%)
-              </p>
-            </div>
 
             {/* Card 3: Total Incidents Overview */}
             <Link
@@ -272,7 +237,7 @@ export default function Dashboard() {
             <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <h2 className="font-geist text-xs text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-yellow text-[20px]!">
+                  <span className="material-symbols-outlined text-blue text-[20px]!">
                     pending_actions
                   </span>
                   Pending Authorizations
@@ -284,7 +249,6 @@ export default function Dashboard() {
                       : "bg-green/10 text-green"
                   }`}
                 >
-                  {totalPendingActions > 0 ? `${totalPendingActions} Action Required` : "All Clear"}
                 </span>
               </div>
               <p className="font-geist text-4xl font-bold text-text">
