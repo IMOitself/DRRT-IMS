@@ -24,7 +24,6 @@ export default function JoinDRRTForm() {
         emergency_person_name: '',
         emergency_phone: '',
         consent_form: null, // TODO: for now its a file path, but we need this to be an actual file
-        class_schedule: null, // TODO: for now its a file path, but we need this to be an actual file
     };
 
     const [formData, setFormData] = useState(() => {
@@ -48,7 +47,6 @@ export default function JoinDRRTForm() {
         const payload = {
             ...formData,
             consent_form: formData.consent_form || "consent_forms/placeholder.pdf",
-            class_schedule: formData.class_schedule || "class_schedules/placeholder.pdf",
         };
 
         api
@@ -73,7 +71,6 @@ export default function JoinDRRTForm() {
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
             consent_form: "consent_forms/background-character.pdf",
-            class_schedule: "class_schedules/background-character.pdf",
         });
     };
 
@@ -398,23 +395,7 @@ export default function JoinDRRTForm() {
                                         className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                                     />
                                 </div>
-                                {/* Class Schedule Upload */}
-                                <div>
-                                    <label className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Current Class Schedule <span className="text-red">*</span>
-                                    </label>
-                                    <p className="text-sm text-subtext mb-2">
-                                        Upload official schedule copy to verify duty availability
-                                    </p>
-                                    <input
-                                        onChange={handleChange}
-                                        type="file"
-                                        name="class_schedule"
-                                        // required
-                                        accept=".pdf,.png,.jpg,.jpeg"
-                                        className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
-                                    />
-                                </div>
+
                             </div>
                         </fieldset>
                         {/* Section 4: Bylaws & Code of Conduct Agreements */}

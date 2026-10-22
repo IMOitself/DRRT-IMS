@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('emergency_person_name');
             $table->string('emergency_phone', 20);
             $table->string('consent_form'); // TODO: for now its a file path, but we need this to be an actual file
-            $table->string('class_schedule'); // TODO: for now its a file path, but we need this to be an actual file
             $table->boolean('removal_requested')->default(false);
             $table->timestamps();
         });

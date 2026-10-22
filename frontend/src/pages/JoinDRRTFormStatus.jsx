@@ -254,16 +254,7 @@ export default function JoinDRRTFormStatus() {
                                     </a>
                                 </span>
                             </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                <span className="text-subtext">
-                                    Class Schedule:
-                                </span>
-                                <span className="font-bold text-blue font-mono text-base">
-                                    <a href={application.data?.class_schedule} target="_blank" rel="noopener noreferrer">
-                                        View Class Schedule
-                                    </a>
-                                </span>
-                            </div>
+
                         </div>
                         {/* Action Buttons */}
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">

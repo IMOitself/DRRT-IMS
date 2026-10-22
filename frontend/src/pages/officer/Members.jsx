@@ -651,14 +651,7 @@ export default function Members() {
                                                 {selectedMemberApplication.consent_form}
                                             </p>
                                         </div>
-                                        <div>
-                                            <p className="text-xs text-subtext font-medium">
-                                                Class Schedule
-                                            </p>
-                                            <p className="text-text font-semibold truncate">
-                                                {selectedMemberApplication.class_schedule}
-                                            </p>
-                                        </div>
+
                                     </div>
                                 </div>
                                 {selectedMemberApplication.status === "approved_need_register" && (

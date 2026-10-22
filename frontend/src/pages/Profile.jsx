@@ -212,12 +212,7 @@ export default function Profile() {
                                     View Consent Form
                                 </a>
                             </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                <span className="text-subtext">Class Schedule:</span>
-                                <a href={application.class_schedule} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
-                                    View Class Schedule
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 )}

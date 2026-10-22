@@ -46,7 +46,6 @@ class DatabaseSeeder extends Seeder
             'emergency_person_name' => 'Levi Ackerman',
             'emergency_phone' => '09222222222',
             'consent_form' => 'consent_forms/captain-erwin.pdf',
-            'class_schedule' => 'class_schedules/captain-erwin.pdf',
         ]);
         User::factory()->create([
             'name' => 'King Fritz',
@@ -75,7 +74,6 @@ class DatabaseSeeder extends Seeder
             'emergency_person_name' => 'some relative',
             'emergency_phone' => '09987654321',
             'consent_form' => 'consent_forms/background-character.pdf',
-            'class_schedule' => 'class_schedules/background-character.pdf',
         ]);
 
         Event::create([
