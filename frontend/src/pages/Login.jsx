@@ -41,13 +41,13 @@ export default function Login() {
       });
   };
 
-  const testLoginAsOfficer = () => {
+  const testLoginAsOfficer = (email) => {
     setIsLoading(true);
     setErrorMessage("");
 
     api
       .post("/login", {
-        email: "captain.erwin@gmail.com",
+        email: email,
         password: "shinzousasageyo",
       })
       .then((res) => {
@@ -70,7 +70,7 @@ export default function Login() {
 
     api
       .post("/login", {
-        email: "king.fritz@gmail.com",
+        email: "kethleenonato@dummy.com",
         password: "foundingtitan",
       })
       .then((res) => {
@@ -87,14 +87,14 @@ export default function Login() {
       });
   };
 
-  const testLoginAsMember = () => {
+  const testLoginAsMember = (email) => {
     setIsLoading(true);
     setErrorMessage("");
 
     api
       .post("/login", {
-        email: "imabackgroundcharacter@gmail.com",
-        password: "background",
+        email: email,
+        password: "shinzousasageyo",
       })
       .then((res) => {
         login(res.data.token, res.data.user);
@@ -217,14 +217,23 @@ export default function Login() {
             </div>
           </div>
 
-          <button onClick={testLoginAsMember} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as member hehe
+          <button onClick={() => testLoginAsMember("eren.yeager@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as member (Eren Yeager)
           </button>
-          <button onClick={testLoginAsOfficer} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as officer hehe
+          <button onClick={() => testLoginAsMember("mikasa.ackerman@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as member (Mikasa Ackerman)
+          </button>
+          <button onClick={() => testLoginAsMember("armin.arlert@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as member (Armin Arlert)
+          </button>
+          <button onClick={() => testLoginAsOfficer("captain.erwin@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as officer (Erwin Smith)
+          </button>
+          <button onClick={() => testLoginAsOfficer("captain.levi@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
+            test: login as officer (Levi Ackerman)
           </button>
           <button onClick={testLoginAsAdviser} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as adviser hehe
+            test: login as adviser
           </button>
 
         </main>
