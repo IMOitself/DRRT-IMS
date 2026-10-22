@@ -747,7 +747,7 @@ class DatabaseSeeder extends Seeder
             'time_ampm' => 'PM',
             'type' => 'meeting',
             'participants' => 'All DRRT Members',
-            'venue_online' => 'Google Meet',
+            'venue_online' => 'gmeet',
         ]);
 
         $event3 = Event::create([
@@ -757,7 +757,7 @@ class DatabaseSeeder extends Seeder
             'time_hour' => '09',
             'time_minute' => '00',
             'time_ampm' => 'AM',
-            'type' => 'seminar',
+            'type' => 'others',
             'participants' => 'All DRRT Members',
             'venue_facetoface' => 'Audio Visual Room',
         ]);
