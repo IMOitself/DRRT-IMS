@@ -1,7 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function BottomNav() {
     const { pathname } = useLocation();
+    const { user } = useAuth();
+    const hasIncidentAccess = user?.has_incident_access ?? user?.role === "officer";
 
     if (["/login", "/register", "/forgot-password", "/profile"].includes(pathname)) return null;
 
@@ -126,22 +129,24 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/officer/incidents" className={() => {
-                    const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                    return isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive";
-                }}>
-                    {() => {
+                {hasIncidentAccess && (
+                    <NavLink to="/officer/incidents" className={() => {
                         const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                        return (
-                            <>
-                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
-                                <span className="bottom-nav-label">Vault</span>
-                            </>
-                        );
-                    }}
-                </NavLink>
+                        return isActive
+                            ? "bottom-nav-active"
+                            : "bottom-nav-inactive";
+                    }}>
+                        {() => {
+                            const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
+                            return (
+                                <>
+                                    <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
+                                    <span className="bottom-nav-label">Vault</span>
+                                </>
+                            );
+                        }}
+                    </NavLink>
+                )}
             </nav>
         );
     }
@@ -175,22 +180,24 @@ export default function BottomNav() {
                     )}
                 </NavLink>
 
-                <NavLink to="/member/incidents" className={() => {
-                    const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
-                    return isActive
-                        ? "bottom-nav-active"
-                        : "bottom-nav-inactive";
-                }}>
-                    {() => {
+                {hasIncidentAccess && (
+                    <NavLink to="/member/incidents" className={() => {
                         const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
-                        return (
-                            <>
-                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
-                                <span className="bottom-nav-label">Vault</span>
-                            </>
-                        );
-                    }}
-                </NavLink>
+                        return isActive
+                            ? "bottom-nav-active"
+                            : "bottom-nav-inactive";
+                    }}>
+                        {() => {
+                            const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
+                            return (
+                                <>
+                                    <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
+                                    <span className="bottom-nav-label">Vault</span>
+                                </>
+                            );
+                        }}
+                    </NavLink>
+                )}
             </nav>
         );
     }

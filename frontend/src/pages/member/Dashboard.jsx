@@ -13,6 +13,7 @@ export default function Dashboard() {
     const [attendances, setAttendances] = useState([]);
     const [upcomingEvent, setUpcomingEvent] = useState([]);
     const { user } = useAuth();
+    const hasIncidentAccess = user?.has_incident_access ?? user?.role === "officer";
 
     useEffect(() => {
         api
@@ -109,12 +110,14 @@ export default function Dashboard() {
                                 </span>{" "}
                                 Attendance
                             </Link>
-                            <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text text-center p-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
-                                <span className="material-symbols-outlined text-[18px]!">
-                                    medication
-                                </span>{" "}
-                                Create Incident Report
-                            </Link>
+                            {hasIncidentAccess && (
+                                <Link to="/member/incidents" className="bg-surface-container-low border border-blue-border text-text text-center p-4 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors shadow-sm font-semibold active:scale-95 cursor-pointer">
+                                    <span className="material-symbols-outlined text-[18px]!">
+                                        medication
+                                    </span>{" "}
+                                    Create Incident Report
+                                </Link>
+                            )}
                         </div>
                     </section>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

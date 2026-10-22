@@ -40,6 +40,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/officers', function () {
         return User::where('role', 'officer')->get();
     });
+
+    Route::put('/users/{user}/role', function (\Illuminate\Http\Request $request, User $user) {
+        $data = ['role' => $request->input('role')];
+        if ($request->input('role') === 'officer') {
+            $data['has_incident_access'] = true;
+        }
+        $user->update($data);
+        return response()->json($user, 200);
+    });
+
+    Route::put('/users/{user}/incident-access', function (\Illuminate\Http\Request $request, User $user) {
+        if ($request->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can edit incident access.'], 403);
+        }
+        $user->update(['has_incident_access' => $request->boolean('has_incident_access')]);
+        return response()->json($user, 200);
+    });
     
     Route::post('/events', [EventsController::class, 'store']);
     Route::put('/events/{event}', [EventsController::class, 'update']);

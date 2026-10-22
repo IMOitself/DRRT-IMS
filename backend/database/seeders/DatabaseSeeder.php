@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'captain.erwin@gmail.com',
             'password' => 'shinzousasageyo',
             'role' => 'officer',
+            'has_incident_access' => true,
         ]);
         MembershipApplication::create([
             'status' => 'approved_member_now',
@@ -58,6 +59,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'captain.levi@gmail.com',
             'password' => 'shinzousasageyo',
             'role' => 'officer',
+            'has_incident_access' => true,
         ]);
         MembershipApplication::create([
             'status' => 'approved_member_now',
@@ -81,6 +83,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'commander.hange@gmail.com',
             'password' => 'shinzousasageyo',
             'role' => 'officer',
+            'has_incident_access' => true,
         ]);
         MembershipApplication::create([
             'status' => 'approved_member_now',

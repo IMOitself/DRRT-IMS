@@ -26,4 +26,9 @@ class MembershipApplication extends Model
 
         return $name;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -19,6 +19,8 @@ export default function Header() {
     if (user?.role === "officer" && pathname.startsWith("/officer")) switchTo = "member";
     if (user?.role === "officer" && pathname.startsWith("/member")) switchTo = "officer";
 
+    const hasIncidentAccess = user?.has_incident_access ?? user?.role === "officer";
+
     return (
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
@@ -104,14 +106,16 @@ export default function Header() {
                         }}>
                             Events
                         </NavLink>
-                        <NavLink to="/officer/incidents" className={() => {
-                            const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
-                            return isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }}>
-                            Incidents
-                        </NavLink>
+                        {hasIncidentAccess && (
+                            <NavLink to="/officer/incidents" className={() => {
+                                const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
+                                return isActive
+                                    ? "text-blue font-bold border-b-2 border-blue py-1"
+                                    : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                            }}>
+                                Incidents
+                            </NavLink>
+                        )}
                     </nav>
                 ) : pathname.startsWith("/member") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
@@ -129,14 +133,16 @@ export default function Header() {
                         }>
                             Attendance
                         </NavLink>
-                        <NavLink to="/member/incidents" className={() => {
-                            const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
-                            return isActive
-                                ? "text-blue font-bold border-b-2 border-blue py-1"
-                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
-                        }}>
-                            Incidents
-                        </NavLink>
+                        {hasIncidentAccess && (
+                            <NavLink to="/member/incidents" className={() => {
+                                const isActive = pathname.startsWith("/member/incidents") || pathname === "/member/create-incident";
+                                return isActive
+                                    ? "text-blue font-bold border-b-2 border-blue py-1"
+                                    : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                            }}>
+                                Incidents
+                            </NavLink>
+                        )}
                     </nav>
                 ) : (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">

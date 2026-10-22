@@ -20,6 +20,7 @@ export default function Members() {
     const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
     const [isConfirmPromoteDialogOpen, setIsConfirmPromoteDialogOpen] = useState(false);
     const [isConfirmRemoveDialogOpen, setIsConfirmRemoveDialogOpen] = useState(false);
+    const [isConfirmIncidentAccessDialogOpen, setIsConfirmIncidentAccessDialogOpen] = useState(false);
     const moreMenuRef = useRef(null);
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
@@ -215,11 +216,28 @@ export default function Members() {
         api
             .put("/users/" + selectedMemberApplication.user_id + "/role", { role: "officer" })
             .then(() => {
-                setSelectedMemberApplication({ ...selectedMemberApplication, user_role: "officer" });
+                setSelectedMemberApplication({ ...selectedMemberApplication, user_role: "officer", has_incident_access: true });
                 setMemberApplications(memberApplications.map((app) =>
-                    app.id === selectedMemberApplication.id ? { ...app, user_role: "officer" } : app
+                    app.id === selectedMemberApplication.id ? { ...app, user_role: "officer", has_incident_access: true } : app
                 ));
                 setIsConfirmPromoteDialogOpen(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const hasIncidentAccess = (app) =>
+        app?.has_incident_access ?? app?.user_role === "officer";
+
+    const toggleIncidentAccess = () => {
+        const hasAccess = !hasIncidentAccess(selectedMemberApplication);
+        api
+            .put("/users/" + selectedMemberApplication.user_id + "/incident-access", { has_incident_access: hasAccess })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, has_incident_access: hasAccess });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, has_incident_access: hasAccess } : app
+                ));
+                setIsConfirmIncidentAccessDialogOpen(false);
             })
             .catch((err) => console.error(err));
     };
@@ -440,6 +458,41 @@ export default function Members() {
                                         <button onClick={promoteToOfficer} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                             <span className="material-symbols-outlined text-[20px]!">military_tech</span>
                                             <span>Promote to Officer</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isConfirmIncidentAccessDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className={`material-symbols-outlined ${hasIncidentAccess(selectedMemberApplication) ? "text-red" : "text-blue"} mb-1 text-[30px]!`}>
+                                        security
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        {hasIncidentAccess(selectedMemberApplication) ? "Remove Incident Report Access?" : "Grant Incident Report Access?"}
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    {hasIncidentAccess(selectedMemberApplication)
+                                        ? "Removing access will prevent " + selectedMemberApplication.full_name + " from viewing or creating incident reports."
+                                        : "Granting access will allow " + selectedMemberApplication.full_name + " to view the Incident Report page and create incident reports."}
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmIncidentAccessDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={toggleIncidentAccess} className={`w-full sm:w-auto ${hasIncidentAccess(selectedMemberApplication) ? "bg-red hover:bg-red/90" : "bg-blue hover:bg-blue/90"} text-white transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer`}>
+                                            <span className="material-symbols-outlined text-[20px]!">security</span>
+                                            <span>{hasIncidentAccess(selectedMemberApplication) ? "Remove Access" : "Grant Access"}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -825,6 +878,21 @@ export default function Members() {
                                         >
                                             <span className="material-symbols-outlined text-[22px]!">military_tech</span>
                                             Promote to Officer
+                                        </button>
+                                    )}
+                                    {isAdviser && (
+                                        <button
+                                            type="button"
+                                            onClick={() => { setIsMoreMenuOpen(false); setIsConfirmIncidentAccessDialogOpen(true); }}
+                                            className="w-full flex items-center justify-between gap-3 px-4 py-3.5 font-geist text-base font-semibold text-text hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
+                                        >
+                                            <span className="flex items-center gap-3">
+                                                <span className="material-symbols-outlined text-[22px]!">security</span>
+                                                Incident Report Access
+                                            </span>
+                                            <span className={`w-10 h-6 flex items-center rounded-full p-1 transition-colors ${hasIncidentAccess(selectedMemberApplication) ? "bg-blue justify-end" : "bg-surface-container-high justify-start"}`}>
+                                                <span className="bg-white w-4 h-4 rounded-full shadow-sm" />
+                                            </span>
                                         </button>
                                     )}
                                     {isAdviser ? (
