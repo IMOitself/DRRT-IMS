@@ -724,7 +724,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // ==========================================
-        // 4. EVENTS (10 Events before 2026-10-23)
+        // 4. events - 10
         // ==========================================
         $event1 = Event::create([
             'title' => 'Earthquake Drill',
@@ -759,7 +759,7 @@ class DatabaseSeeder extends Seeder
             'time_ampm' => 'AM',
             'type' => 'others',
             'participants' => 'All DRRT Members',
-            'venue_facetoface' => 'Audio Visual Room',
+            'venue_facetoface' => 'School Grounds',
         ]);
 
         $event4 = Event::create([
@@ -783,7 +783,7 @@ class DatabaseSeeder extends Seeder
             'time_ampm' => 'AM',
             'type' => 'deployment',
             'participants' => 'All DRRT Members',
-            'venue_facetoface' => 'University Gymnasium',
+            'venue_facetoface' => 'Behind Chapel',
         ]);
 
         $event6 = Event::create([
@@ -847,7 +847,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // ==========================================
-        // 5. ATTENDANCES
+        // 5. attendances
         // ==========================================
         $allMembers = [
             $officer1, $officer2, $officer3,
