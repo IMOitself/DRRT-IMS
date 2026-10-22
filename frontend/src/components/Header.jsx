@@ -176,7 +176,8 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            {(pathname.startsWith("/adviser") || pathname.startsWith("/member/incidents")) && <WIP />}
+            {/* {(pathname.startsWith("/adviser") || pathname.startsWith("/member/incidents")) && <WIP />} */}
+            {(pathname.startsWith("/member/incidents")) && <WIP />}
         </header>
     );
 }
