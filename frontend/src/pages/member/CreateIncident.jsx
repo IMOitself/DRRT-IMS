@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
@@ -47,6 +47,9 @@ export default function CreateIncident() {
   const [isConfirmSubmitDialogOpen, setIsConfirmSubmitDialogOpen] = useState(false);
   const formRef = useRef(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isOfficerPath = pathname.startsWith("/officer");
+  const incidentsPath = isOfficerPath ? "/officer/incidents" : "/member/incidents";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,7 +60,7 @@ export default function CreateIncident() {
     try {
       // field names like vitals[0][bp] are parsed into nested arrays by laravel
       await api.post("/incident-reports", new FormData(formRef.current));
-      navigate("/member/incidents");
+      navigate(incidentsPath);
     } catch (error) {
       console.error(error);
       alert("Failed to submit incident report.");
@@ -67,14 +70,14 @@ export default function CreateIncident() {
 
   return (
     <>
-      <title>Create Incident Report - DRRT Member Portal</title>
+      <title>{`Create Incident Report - DRRT ${isOfficerPath ? "Officer" : "Member"} Portal`}</title>
 
       <Header />
 
       <main className="grow pb-32">
         <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 space-y-4">
           {/* Back Link */}
-          <Link to="/member/incidents" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
+          <Link to={incidentsPath} className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
             <span className="material-symbols-outlined text-[18px]!">arrow_back</span>
             <span>Back to Incidents</span>
           </Link>
@@ -87,7 +90,7 @@ export default function CreateIncident() {
                   Create Incident Report
                 </h2>
                 <p className="text-sm text-subtext mt-1">
-                  Fill out to create an incident report below. Once submitted, the report is locked and only the adviser can view it.
+                  Fill out to create an incident report below. Once submitted, the report is locked and cannot be edited.
                 </p>
               </div>
             </div>
@@ -189,7 +192,7 @@ export default function CreateIncident() {
 
             {/* Submission Actions */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3">
-              <Link to="/member/incidents" className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+              <Link to={incidentsPath} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                 <button type="button" className="w-full text-center">
                   Cancel
                 </button>
@@ -217,7 +220,7 @@ export default function CreateIncident() {
                   </p>
                 </div>
                 <p className="font-geist text-text">
-                  Once submitted, the report is locked and only the adviser can view it.
+                  Once submitted, the report is locked and cannot be edited.
                 </p>
 
                 <div className="w-full flex items-center mt-4">

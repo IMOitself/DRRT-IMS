@@ -17,6 +17,7 @@ import OfficerDashboard from './pages/officer/Dashboard';
 import OfficerEvents from './pages/officer/Events';
 import OfficerEventAttendance from './pages/officer/EventAttendance';
 import OfficerCreateEvent from './pages/officer/CreateEvent';
+import OfficerIncidents from './pages/officer/Incidents';
 
 import MemberDashboard from './pages/member/Dashboard';
 import MemberAttendance from './pages/member/Attendance';
@@ -62,6 +63,8 @@ function App() {
         <Route path="/officer/events/:id" element={<OfficerEventAttendance />} />
         <Route path="/officer/members" element={<OfficerMembers />} />
         <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
+        <Route path="/officer/incidents" element={<OfficerIncidents />} />
+        <Route path="/officer/create-incident" element={<MemberCreateIncident />} />
       </Route>
 
       <Route element={<ProtectedRoute />}>

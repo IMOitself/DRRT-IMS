@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AccountDropdown from "./AccountDropdown";
-import WIP from "./WIP";
 import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
@@ -105,6 +104,14 @@ export default function Header() {
                         }}>
                             Events
                         </NavLink>
+                        <NavLink to="/officer/incidents" className={() => {
+                            const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
+                            return isActive
+                                ? "text-blue font-bold border-b-2 border-blue py-1"
+                                : "hover:text-blue hover:font-bold hover:border-b-2 border-blue py-1"
+                        }}>
+                            Incidents
+                        </NavLink>
                     </nav>
                 ) : pathname.startsWith("/member") ? (
                     <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
@@ -176,8 +183,6 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            {/* {(pathname.startsWith("/adviser") || pathname.startsWith("/member/incidents")) && <WIP />} */}
-            {(pathname.startsWith("/member/incidents")) && <WIP />}
         </header>
     );
 }

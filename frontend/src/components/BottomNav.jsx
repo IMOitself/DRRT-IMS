@@ -125,6 +125,23 @@ export default function BottomNav() {
                         </>
                     )}
                 </NavLink>
+
+                <NavLink to="/officer/incidents" className={() => {
+                    const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
+                    return isActive
+                        ? "bottom-nav-active"
+                        : "bottom-nav-inactive";
+                }}>
+                    {() => {
+                        const isActive = pathname.startsWith("/officer/incidents") || pathname === "/officer/create-incident";
+                        return (
+                            <>
+                                <span className={`material-symbols-outlined ${isActive ? "filled-icon" : ""}`}>security</span>
+                                <span className="bottom-nav-label">Vault</span>
+                            </>
+                        );
+                    }}
+                </NavLink>
             </nav>
         );
     }
