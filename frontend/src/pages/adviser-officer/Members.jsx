@@ -4,7 +4,7 @@ import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
-import { getInitials } from "../../utils/format";
+import { formatDate, getInitials } from "../../utils/format";
 
 export default function Members() {
     const [memberApplications, setMemberApplications] = useState([]);
@@ -154,7 +154,8 @@ export default function Members() {
     const presentAttendances = attendances.filter(
         (attendance) =>
             attendance.user_id === selectedMemberApplication?.user_id &&
-            attendance.status === "present"
+            (attendance.status === "present" || attendance.status === "late") &&
+            startedEvents.some((event) => event.id === attendance.event_id)
     );
     const attendanceRatePercentage = startedEvents.length
         ? ((presentAttendances.length / startedEvents.length) * 100).toFixed(2)
@@ -790,27 +791,60 @@ export default function Members() {
                                 {selectedMemberApplication.status === "approved_member_now" && (
                                     <div className="border-t border-blue-border pt-4">
                                         <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mb-3">
-                                            Duty Performance
+                                            Attendance Rate
                                         </p>
 
                                         <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 space-y-3">
                                             <div className="flex justify-between items-end">
                                                 <span className="font-geist text-sm font-semibold text-subtext">
-                                                    Attendance Rate
+                                                    Present on
                                                 </span>
                                                 <span className="font-geist text-3xl font-bold text-blue leading-none">
-                                                    {attendanceRatePercentage}%
+                                                     {presentAttendances.length} of {startedEvents.length}
                                                 </span>
                                             </div>
                                             <div className="h-3.5 w-full bg-progress-ring-track rounded-full overflow-hidden relative">
-                                                {/* 80% threshold marker */}
-                                                <div className="absolute h-full w-0.5 bg-red z-10 left-[80%]" />
-                                                {/* progress bar */}
                                                 <div className="h-full bg-blue rounded-full transition-all duration-500" style={{ width: attendanceRatePercentage + "%" }} />
                                             </div>
-                                            <p className="font-geist text-xs text-subtext">
-                                                Present on {presentAttendances.length} of {startedEvents.length} Events
-                                            </p>
+                                        </div>
+
+                                        <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold mt-4 mb-2">
+                                            Events Attended
+                                        </p>
+                                        <div className="space-y-2">
+                                            {presentAttendances.map((attendance) => {
+                                                const event = startedEvents.find((e) => e.id === attendance.event_id);
+                                                if (!event) return null;
+                                                return (
+                                                    <div key={attendance.id} className="bg-surface-container-low border border-blue-border rounded-lg p-3 flex items-center justify-between gap-2">
+                                                        <div className="min-w-0">
+                                                            <p className="font-geist text-sm font-bold text-text truncate">
+                                                                {event.title}
+                                                            </p>
+                                                            <p className="text-xs text-subtext">
+                                                                {formatDate(event.date)}
+                                                            </p>
+                                                        </div>
+                                                        <div className="text-right shrink-0">
+                                                            <p className="font-geist text-xs font-semibold text-blue">
+                                                                {attendance.timein_hour
+                                                                    ? `Time In: ${attendance.timein_hour}:${attendance.timein_minute} ${attendance.timein_ampm}`
+                                                                    : "Present"}
+                                                            </p>
+                                                            {attendance.status === "late" && (
+                                                                <span className="font-geist text-[11px] font-bold text-yellow uppercase">
+                                                                    Late
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                            {presentAttendances.length === 0 && (
+                                                <p className="font-geist text-xs text-subtext text-center py-2">
+                                                    No events attended yet.
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                 )}
