@@ -37,7 +37,15 @@ export default function JoinDRRTForm() {
     }, [formData]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, files } = e.target;
+        if (type === "file") {
+            const file = files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => setFormData({ ...formData, [name]: reader.result });
+            reader.readAsDataURL(file);
+            return;
+        }
         setFormData({
             ...formData,
             [name]: value,
@@ -48,14 +56,8 @@ export default function JoinDRRTForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // TODO: remove placeholders once file uploads are implemented
-        const payload = {
-            ...formData,
-            consent_form: formData.consent_form || "consent_forms/placeholder.pdf",
-        };
-
         api
-            .post("/membership-applications", payload)
+            .post("/membership-applications", formData)
             .then((res) => {
                 localStorage.removeItem(AUTO_SAVED_FORM_DATA_KEY);
                 navigate(`/join-form/${res.data.application_id}?token=${res.data.access_token}`);
@@ -75,7 +77,7 @@ export default function JoinDRRTForm() {
             phone_number: "09123456789",
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
-            consent_form: "consent_forms/background-character.pdf",
+            consent_form: null,
         });
     };
 
@@ -353,7 +355,7 @@ export default function JoinDRRTForm() {
                                 </h2>
                             </div>
                             <div className="space-y-3">
-                                <a href="#" className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
+                                <a href="/consent.pdf" download className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
                                     <div className="flex items-center gap-3">
                                         <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
                                             picture_as_pdf
@@ -400,7 +402,7 @@ export default function JoinDRRTForm() {
                                         onChange={handleChange}
                                         type="file"
                                         name="consent_form"
-                                        // required
+                                        required
                                         accept=".pdf,.png,.jpg,.jpeg"
                                         className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                                     />

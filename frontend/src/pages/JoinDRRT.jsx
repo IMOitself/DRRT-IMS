@@ -205,7 +205,7 @@ export default function JoinDRRT() {
                                     </h2>
                                 </div>
                                 <div className="space-y-3">
-                                    <a href="#" className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
+                                    <a href="/consent.pdf" download className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
                                         <div className="flex items-center gap-3">
                                             <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
                                                 picture_as_pdf

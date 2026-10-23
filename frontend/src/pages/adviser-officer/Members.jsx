@@ -746,7 +746,11 @@ export default function Members() {
                                             </p>
                                         </div>
                                         <div className="space-y-3 col-span-2">
-                                            <a href="#" className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
+                                            <a
+                                                href={selectedMemberApplication.consent_form?.startsWith("data:") ? selectedMemberApplication.consent_form : "/consent.pdf"}
+                                                download={`${selectedMemberApplication.last_name}_Consent_Form`}
+                                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group"
+                                            >
                                                 <div className="flex items-center gap-3">
                                                     <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
                                                         picture_as_pdf
@@ -756,7 +760,7 @@ export default function Members() {
                                                             Parent Consent Form
                                                         </h3>
                                                         <p className="text-[12px] text-subtext">
-                                                            PDF Document • 450 KB
+                                                            Signed Consent Form
                                                         </p>
                                                     </div>
                                                 </div>
