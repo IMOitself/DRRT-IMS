@@ -21,13 +21,18 @@ class MembershipApplicationsController extends Controller
      */
     public function index()
     {
-        $applications = MembershipApplication::with('user:id,role,has_incident_access')->get()->map(function ($application) {
-            // officers share this link with applicants who have no account yet
-            $application->access_token = $this->accessToken($application);
-            $application->user_role = $application->user?->role;
-            $application->has_incident_access = $application->user?->has_incident_access;
-            return $application;
-        });
+        $applications = MembershipApplication::with('user:id,role,has_incident_access')
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->orderBy('middle_name')
+            ->get()
+            ->map(function ($application) {
+                // officers share this link with applicants who have no account yet
+                $application->access_token = $this->accessToken($application);
+                $application->user_role = $application->user?->role;
+                $application->has_incident_access = $application->user?->has_incident_access;
+                return $application;
+            });
         return response()->json(['data' => $applications], 200);
     }
 

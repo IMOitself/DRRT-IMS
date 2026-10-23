@@ -29,12 +29,12 @@ export default function Members() {
 
     const isAdviser = user?.role === "adviser";
 
-    const incomingApplications = memberApplications.filter(
-        (ma) => ma.status === 'pending' || ma.status === 'approved_need_register'
-    );
-    const listedApplications = memberApplications.filter(
-        (ma) => !(ma.status === 'pending' || ma.status === 'approved_need_register')
-    );
+    const incomingApplications = memberApplications
+        .filter((ma) => ma.status === 'pending' || ma.status === 'approved_need_register')
+        .sort((a, b) => (a.full_name || "").localeCompare(b.full_name || ""));
+    const listedApplications = memberApplications
+        .filter((ma) => !(ma.status === 'pending' || ma.status === 'approved_need_register'))
+        .sort((a, b) => (a.full_name || "").localeCompare(b.full_name || ""));
 
     const yearLabels = ["", "1st Year", "2nd Year", "3rd Year", "4th Year"];
 

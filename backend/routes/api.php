@@ -34,11 +34,12 @@ Route::middleware('auth:sanctum')->group(function () {
         return User::whereIn('role', ['member', 'officer'])
             ->whereDoesntHave('membershipApplication', fn ($query) => $query->where('status', 'graduated'))
             ->with('membershipApplication')
+            ->orderBy('name')
             ->get();
     });
 
     Route::get('/officers', function () {
-        return User::where('role', 'officer')->get();
+        return User::where('role', 'officer')->orderBy('name')->get();
     });
 
     Route::put('/users/{user}/role', function (\Illuminate\Http\Request $request, User $user) {

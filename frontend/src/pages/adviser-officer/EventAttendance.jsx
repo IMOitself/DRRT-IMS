@@ -115,7 +115,9 @@ export default function EventAttendance() {
   const getMemberName = (memberId) =>
     members.find((m) => m.id === memberId)?.name;
 
-  const changes = Object.values(unsavedChanges);
+  const changes = Object.values(unsavedChanges).sort((a, b) =>
+    (getMemberName(a.user_id) || "").localeCompare(getMemberName(b.user_id) || "")
+  );
 
   useEffect(() => {
 
@@ -623,7 +625,9 @@ function AttendanceList({ isAdviser, members, getStatus, getTimein, wantsCorrect
       ? "whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer"
       : "whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer";
 
-  const filteredMembers = members.filter((member) => matchesSearch(member) && matchesFilter(member));
+  const filteredMembers = members
+    .filter((member) => matchesSearch(member) && matchesFilter(member))
+    .sort((a, b) => (a.name || "").localeCompare(b.name || ""));
 
   return (
     <div className="space-y-6">
