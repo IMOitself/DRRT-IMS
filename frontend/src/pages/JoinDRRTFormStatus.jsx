@@ -199,6 +199,7 @@ export default function JoinDRRTFormStatus() {
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
                                 <span className="text-subtext">
+                                    Course:
                                 </span>
                                 <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.course}
@@ -249,8 +250,12 @@ export default function JoinDRRTFormStatus() {
                                     Consent Form:
                                 </span>
                                 <span className="font-bold text-blue font-mono text-base">
-                                    <a href={application.data?.consent_form} target="_blank" rel="noopener noreferrer">
-                                        View Consent Form
+                                    <a
+                                        href={application.data?.consent_form?.startsWith("data:") ? application.data?.consent_form : "/consent.pdf"}
+                                        download={`${application.data?.last_name}_Consent_Form`}
+                                        className="hover:underline"
+                                    >
+                                        Download Consent Form
                                     </a>
                                 </span>
                             </div>
