@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
-            $table->string('course');
+            $table->enum('course', ['BSIS', 'BSA', 'BSAIS', 'BSSW', 'BAB', 'ACT']);
             $table->integer('year_level');
             $table->string('email');
             $table->string('phone_number', 20);

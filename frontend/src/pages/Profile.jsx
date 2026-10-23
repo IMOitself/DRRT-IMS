@@ -41,7 +41,12 @@ export default function Profile() {
     };
 
     const handleProfileChange = (e) => {
-        setProfileForm({ ...profileForm, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setProfileForm({
+            ...profileForm,
+            [name]: value,
+            ...(name === "course" && value === "ACT" && profileForm.year_level > 2 ? { year_level: "" } : {}),
+        });
     };
 
     const handleSaveProfile = (e) => {
@@ -270,10 +275,11 @@ export default function Profile() {
                                     </label>
                                     <select id="course" name="course" required value={profileForm.course} onChange={handleProfileChange} className={fieldCss}>
                                         <option value="" disabled>Select Course</option>
-                                        <option value="BSIS">BS Information Systems</option>
-                                        <option value="BSA">BS Accountancy</option>
-                                        <option value="BSBA">BS Business Administration</option>
-                                        <option value="BSSW">BS Social Work</option>
+                                        <option value="BSIS">Bachelor of Science in Information Systems</option>
+                                        <option value="BSA">Bachelor of Science in Accountancy</option>
+                                        <option value="BSAIS">Bachelor of Science in Accounting Information System</option>
+                                        <option value="BSSW">Bachelor of Science in Social Work</option>
+                                        <option value="BAB">Bachelor of Arts in Broadcasting</option>
                                         <option value="ACT">Associate in Computer Technology</option>
                                     </select>
                                 </div>
@@ -285,8 +291,12 @@ export default function Profile() {
                                         <option value="" disabled>Select Year Level</option>
                                         <option value={1}>1st Year</option>
                                         <option value={2}>2nd Year</option>
-                                        <option value={3}>3rd Year</option>
-                                        <option value={4}>4th Year</option>
+                                        {profileForm.course !== "ACT" && (
+                                            <>
+                                                <option value={3}>3rd Year</option>
+                                                <option value={4}>4th Year</option>
+                                            </>
+                                        )}
                                     </select>
                                 </div>
                             </>)}

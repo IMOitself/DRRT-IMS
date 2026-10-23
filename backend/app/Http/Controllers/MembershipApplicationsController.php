@@ -41,6 +41,11 @@ class MembershipApplicationsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'course' => 'required|in:BSIS,BSA,BSAIS,BSSW,BAB,ACT',
+            'year_level' => 'required|integer|between:1,' . ($request->course === 'ACT' ? 2 : 4),
+        ]);
+
         $application = MembershipApplication::create([
             'student_id' => $request->input('student_id'),
             'last_name' => $request->input('last_name'),
