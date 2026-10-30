@@ -31,14 +31,20 @@ export default function Home() {
 
     useEffect(() => {
         api
-        .get("/events")
-        .then((res) => {
-            setEvents(res.data.reverse());
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-    
+            .get("/events")
+            .then((res) => {
+                const today = new Date().setHours(0, 0, 0, 0);
+                setEvents(
+                    res.data
+                        .filter((event) => new Date(event.date).setHours(0, 0, 0, 0) >= today)
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 4)
+                );
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
     }, [isLoggedIn, user]);
 
     return (
@@ -78,7 +84,7 @@ export default function Home() {
                             </span>
                         </div>
                     </section>
-                    
+
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 group">
                             <div>
@@ -152,8 +158,8 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <p className="text-md text-subtext leading-relaxed">
-                                    Do you have a passion in helping others and want to volunteer on something meaningful? <br/>
-                                    Become a DRRT member now! <br/>
+                                    Do you have a passion in helping others and want to volunteer on something meaningful? <br />
+                                    Become a DRRT member now! <br />
                                     Click the button below to learn more.
                                 </p>
                             </div>
