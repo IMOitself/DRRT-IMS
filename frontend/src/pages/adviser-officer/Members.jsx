@@ -20,6 +20,7 @@ export default function Members() {
     const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
     const [isConfirmGraduateDialogOpen, setIsConfirmGraduateDialogOpen] = useState(false);
     const [isConfirmPromoteDialogOpen, setIsConfirmPromoteDialogOpen] = useState(false);
+    const [isConfirmRemoveOfficerDialogOpen, setIsConfirmRemoveOfficerDialogOpen] = useState(false);
     const [isConfirmRemoveDialogOpen, setIsConfirmRemoveDialogOpen] = useState(false);
     const [isConfirmIncidentAccessDialogOpen, setIsConfirmIncidentAccessDialogOpen] = useState(false);
     const moreMenuRef = useRef(null);
@@ -224,6 +225,19 @@ export default function Members() {
                     app.id === selectedMemberApplication.id ? { ...app, user_role: "officer", has_incident_access: true } : app
                 ));
                 setIsConfirmPromoteDialogOpen(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const removeOfficerRole = () => {
+        api
+            .put("/users/" + selectedMemberApplication.user_id + "/role", { role: "member" })
+            .then(() => {
+                setSelectedMemberApplication({ ...selectedMemberApplication, user_role: "member" });
+                setMemberApplications(memberApplications.map((app) =>
+                    app.id === selectedMemberApplication.id ? { ...app, user_role: "member" } : app
+                ));
+                setIsConfirmRemoveOfficerDialogOpen(false);
             })
             .catch((err) => console.error(err));
     };
@@ -470,6 +484,39 @@ export default function Members() {
                                         <button onClick={promoteToOfficer} className="w-full sm:w-auto bg-blue text-white hover:bg-blue/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
                                             <span className="material-symbols-outlined text-[20px]!">military_tech</span>
                                             <span>Promote to Officer</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isConfirmRemoveOfficerDialogOpen && selectedMemberApplication && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+                    <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+                        <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="material-symbols-outlined text-red mb-1 text-[30px]!">
+                                        military_tech
+                                    </span>
+                                    <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                                        Remove Officer Role?
+                                    </p>
+                                </div>
+                                <p className="font-geist text-text">
+                                    Are you sure you want to remove the Officer role from {selectedMemberApplication.full_name}? They will return to being a regular member.
+                                </p>
+
+                                <div className="w-full flex items-center mt-4">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                        <button onClick={() => setIsConfirmRemoveOfficerDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                                            Cancel
+                                        </button>
+                                        <button onClick={removeOfficerRole} className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                                            <span className="material-symbols-outlined text-[20px]!">military_tech</span>
+                                            <span>Remove Officer Role</span>
                                         </button>
                                     </div>
                                 </div>
@@ -906,16 +953,6 @@ export default function Members() {
                                         <span className="material-symbols-outlined text-[22px]!">school</span>
                                         {selectedMemberApplication.status === "graduated" ? "Unmark as graduated" : "Mark as graduated"}
                                     </button>
-                                    {selectedMemberApplication.status === "approved_member_now" && selectedMemberApplication.user_id && selectedMemberApplication.user_role !== "officer" && (
-                                        <button
-                                            type="button"
-                                            onClick={() => { setIsMoreMenuOpen(false); setIsConfirmPromoteDialogOpen(true); }}
-                                            className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-blue hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
-                                        >
-                                            <span className="material-symbols-outlined text-[22px]!">military_tech</span>
-                                            Promote to Officer
-                                        </button>
-                                    )}
                                     {isAdviser && (
                                         <button
                                             type="button"
@@ -929,6 +966,26 @@ export default function Members() {
                                             <span className={`w-10 h-6 flex items-center rounded-full p-1 transition-colors ${hasIncidentAccess(selectedMemberApplication) ? "bg-blue justify-end" : "bg-surface-container-high justify-start"}`}>
                                                 <span className="bg-white w-4 h-4 rounded-full shadow-sm" />
                                             </span>
+                                        </button>
+                                    )}
+                                    {selectedMemberApplication.status === "approved_member_now" && selectedMemberApplication.user_id && selectedMemberApplication.user_role !== "officer" && (
+                                        <button
+                                            type="button"
+                                            onClick={() => { setIsMoreMenuOpen(false); setIsConfirmPromoteDialogOpen(true); }}
+                                            className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-blue hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
+                                        >
+                                            <span className="material-symbols-outlined text-[22px]!">military_tech</span>
+                                            Promote to Officer
+                                        </button>
+                                    )}
+                                    {selectedMemberApplication.user_id && selectedMemberApplication.user_role === "officer" && (
+                                        <button
+                                            type="button"
+                                            onClick={() => { setIsMoreMenuOpen(false); setIsConfirmRemoveOfficerDialogOpen(true); }}
+                                            className="w-full flex items-center gap-3 px-4 py-3.5 font-geist text-base font-semibold text-red hover:bg-surface-container-highest cursor-pointer border-t border-blue-border"
+                                        >
+                                            <span className="material-symbols-outlined text-[22px]!">military_tech</span>
+                                            Remove Officer Role
                                         </button>
                                     )}
                                     {isAdviser ? (
