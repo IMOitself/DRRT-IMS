@@ -745,30 +745,6 @@ export default function Members() {
                                                 {selectedMemberApplication.emergency_phone}
                                             </p>
                                         </div>
-                                        <div className="space-y-3 col-span-2">
-                                            <a
-                                                href={selectedMemberApplication.consent_form?.startsWith("data:") ? selectedMemberApplication.consent_form : "/consent.pdf"}
-                                                download={`${selectedMemberApplication.last_name}_Consent_Form`}
-                                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group"
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
-                                                        picture_as_pdf
-                                                    </span>
-                                                    <div>
-                                                        <h3 className="font-geist text-sm font-bold text-text group-hover:text-blue transition-colors">
-                                                            Parent Consent Form
-                                                        </h3>
-                                                        <p className="text-[12px] text-subtext">
-                                                            Signed Consent Form
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <span className="material-symbols-outlined text-[24px]! text-subtext group-hover:text-blue transition-colors">
-                                                    download
-                                                </span>
-                                            </a>
-                                        </div>
 
                                     </div>
                                 </div>

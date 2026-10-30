@@ -23,7 +23,6 @@ export default function JoinDRRTForm() {
         phone_number: '',
         emergency_person_name: '',
         emergency_phone: '',
-        consent_form: null, // TODO: for now its a file path, but we need this to be an actual file
     };
 
     const [formData, setFormData] = useState(() => {
@@ -37,15 +36,7 @@ export default function JoinDRRTForm() {
     }, [formData]);
 
     const handleChange = (e) => {
-        const { name, value, type, files } = e.target;
-        if (type === "file") {
-            const file = files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = () => setFormData({ ...formData, [name]: reader.result });
-            reader.readAsDataURL(file);
-            return;
-        }
+        const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -77,7 +68,6 @@ export default function JoinDRRTForm() {
             phone_number: "09123456789",
             emergency_person_name: "Jean Kirstein",
             emergency_phone: "09123456789",
-            consent_form: null,
         });
     };
 
@@ -341,76 +331,7 @@ export default function JoinDRRTForm() {
                                 </div>
                             </div>
                         </fieldset>
-                        {/* Section 3: Document Attachments */}
-                        {/* Required Downloads Card */}
-                        <article className="bg-surface-container border border-blue-border/80 rounded-2xl p-6 shadow-sm">
-                            <div className="flex items-center gap-3 mb-5">
-                                <div className="w-9 h-9 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]! filled-icon">
-                                        folder
-                                    </span>
-                                </div>
-                                <h2 className="font-geist text-lg font-bold text-text">
-                                    Required Resources
-                                </h2>
-                            </div>
-                            <div className="space-y-3">
-                                <a href="/consent.pdf" download className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
-                                    <div className="flex items-center gap-3">
-                                        <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
-                                            picture_as_pdf
-                                        </span>
-                                        <div>
-                                            <h3 className="font-geist text-sm font-bold text-text group-hover:text-blue transition-colors">
-                                                Parent Consent Form
-                                            </h3>
-                                            <p className="text-[12px] text-subtext">
-                                                PDF Document • 450 KB
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <span className="material-symbols-outlined text-[24px]! text-subtext group-hover:text-blue transition-colors">
-                                        download
-                                    </span>
-                                </a>
-                            </div>
-                        </article>
-
-                        <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
-                            <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
-                                <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                    <span className="material-symbols-outlined text-[20px]!">
-                                        upload_file
-                                    </span>
-                                </div>
-                                <legend className="font-geist text-lg font-bold text-text">
-                                    Required Attachments
-                                </legend>
-                            </div>
-                            <div className="space-y-4">
-                                {/* Parent Consent Form Upload */}
-                                <div>
-                                    <label className="block font-geist text-sm font-semibold text-text mb-1">
-                                        Signed Parent/Guardian Consent Form{" "}
-                                        <span className="text-red">*</span>
-                                    </label>
-                                    <p className="text-sm text-subtext mb-2">
-                                        Download Parent Consent Form above and ask your parents to sign it. Then upload the signed document. <br />
-                                        Accepted formats: PDF, PNG, JPG, JPEG (Max 5MB)
-                                    </p>
-                                    <input
-                                        onChange={handleChange}
-                                        type="file"
-                                        name="consent_form"
-                                        required
-                                        accept=".pdf,.png,.jpg,.jpeg"
-                                        className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
-                                    />
-                                </div>
-
-                            </div>
-                        </fieldset>
-                        {/* Section 4: Bylaws & Code of Conduct Agreements */}
+                        {/* Section 3: Bylaws & Code of Conduct Agreements */}
                         <fieldset className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                             <div className="flex items-center gap-3 mb-2 border-b border-blue-border/40 pb-3">
                                 <div className="w-8 h-8 rounded-lg bg-blue/10 flex items-center justify-center text-blue shrink-0">

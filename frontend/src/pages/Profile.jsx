@@ -206,18 +206,11 @@ export default function Profile() {
 
                         <div className="bg-surface-container-low border border-blue-border/50 rounded-xl p-4 space-y-3">
                             {applicationDetails.map(([label, value]) => (
-                                <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
+                                <div key={label} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3 last:border-b-0 last:pb-0">
                                     <span className="text-subtext">{label}:</span>
                                     <span className="font-bold text-blue font-mono text-base break-all">{value}</span>
                                 </div>
                             ))}
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="text-subtext">Consent Form:</span>
-                                <a href={application.consent_form} target="_blank" rel="noopener noreferrer" className="font-bold text-blue font-mono text-base hover:underline">
-                                    View Consent Form
-                                </a>
-                            </div>
-
                         </div>
                     </div>
                 )}

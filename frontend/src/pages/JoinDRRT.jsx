@@ -30,71 +30,8 @@ export default function JoinDRRT() {
                     </section>
                     {/* Main Content Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                        {/* Left Column: Requirements & Application Roadmap */}
+                        {/* Left Column: Application Roadmap */}
                         <div className="lg:col-span-7 space-y-6 md:space-y-8">
-                            {/* Eligibility Requirements Card */}
-                            <article className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                        <span className="material-symbols-outlined text-[22px]! filled-icon">
-                                            checklist
-                                        </span>
-                                    </div>
-                                    <h2 className="font-geist text-xl font-bold text-text">
-                                        Eligibility Requirements
-                                    </h2>
-                                </div>
-                                <ul className="space-y-5">
-                                    <li className="flex items-start gap-3.5">
-                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]! font-bold">
-                                                check
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-geist text-sm font-bold text-text">
-                                                Enrolled Student
-                                            </h3>
-                                            <p className="text-sm text-subtext mt-0.5">
-                                                Must be currently enrolled at LVCC with at least two
-                                                semesters remaining in your program.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li className="flex items-start gap-3.5">
-                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]! font-bold">
-                                                check
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-geist text-sm font-bold text-text">
-                                                Good Moral Character
-                                            </h3>
-                                            <p className="text-sm text-subtext mt-0.5">
-                                                Clean disciplinary record verified and endorsed by the
-                                                Office of Student Affairs.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li className="flex items-start gap-3.5">
-                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
-                                            <span className="material-symbols-outlined text-[16px]! font-bold">
-                                                check
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-geist text-sm font-bold text-text">
-                                                Commitment to Drills
-                                            </h3>
-                                            <p className="text-sm text-subtext mt-0.5">
-                                                Ability to attend mandatory safety training sessions and
-                                                weekend drills (min. 10 hours/month).
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </article>
                             {/* Application Roadmap Card */}
                             <article className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm">
                                 <div className="flex items-center gap-3 mb-8">
@@ -122,8 +59,8 @@ export default function JoinDRRT() {
                                             Registration
                                         </h3>
                                         <p className="text-sm text-subtext mt-1 leading-relaxed">
-                                            Submit the online application form along with your parent
-                                            consent form and official class schedule.
+                                            Submit the online application form along with your official
+                                            class schedule.
                                         </p>
                                     </div>
                                     {/* Step 2 */}
@@ -190,40 +127,70 @@ export default function JoinDRRT() {
                                 </div>
                             </article>
                         </div>
-                        {/* Right Column: Resources & FAQ */}
+                        {/* Right Column: Requirements & FAQ */}
                         <div className="lg:col-span-5 space-y-6 md:space-y-8">
-                            {/* Required Downloads Card */}
-                            <article className="bg-surface-container border border-blue-border/80 rounded-2xl p-6 shadow-sm">
-                                <div className="flex items-center gap-3 mb-5">
-                                    <div className="w-9 h-9 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                                        <span className="material-symbols-outlined text-[20px]! filled-icon">
-                                            folder
+                            {/* Eligibility Requirements Card */}
+                            <article className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
+                                        <span className="material-symbols-outlined text-[22px]! filled-icon">
+                                            checklist
                                         </span>
                                     </div>
-                                    <h2 className="font-geist text-lg font-bold text-text">
-                                        Required Resources
+                                    <h2 className="font-geist text-xl font-bold text-text">
+                                        Eligibility Requirements
                                     </h2>
                                 </div>
-                                <div className="space-y-3">
-                                    <a href="/consent.pdf" download className="flex items-center justify-between p-4 bg-white rounded-xl border border-blue-border/80 card-hover transition-all group">
-                                        <div className="flex items-center gap-3">
-                                            <span className="material-symbols-outlined text-red text-[24px]! filled-icon">
-                                                picture_as_pdf
+                                <ul className="space-y-5">
+                                    <li className="flex items-start gap-3.5">
+                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]! font-bold">
+                                                check
                                             </span>
-                                            <div>
-                                                <h3 className="font-geist text-sm font-bold text-text group-hover:text-blue transition-colors">
-                                                    Parent Consent Form
-                                                </h3>
-                                                <p className="text-[12px] text-subtext">
-                                                    PDF Document • 450 KB
-                                                </p>
-                                            </div>
                                         </div>
-                                        <span className="material-symbols-outlined text-[24px]! text-subtext group-hover:text-blue transition-colors">
-                                            download
-                                        </span>
-                                    </a>
-                                </div>
+                                        <div>
+                                            <h3 className="font-geist text-sm font-bold text-text">
+                                                Enrolled Student
+                                            </h3>
+                                            <p className="text-sm text-subtext mt-0.5">
+                                                Must be currently enrolled at LVCC with at least two
+                                                semesters remaining in your program.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3.5">
+                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]! font-bold">
+                                                check
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-geist text-sm font-bold text-text">
+                                                Good Moral Character
+                                            </h3>
+                                            <p className="text-sm text-subtext mt-0.5">
+                                                Clean disciplinary record verified and endorsed by the
+                                                Office of Student Affairs.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3.5">
+                                        <div className="w-6 h-6 rounded-full bg-green-bg flex items-center justify-center text-green shrink-0 mt-0.5">
+                                            <span className="material-symbols-outlined text-[16px]! font-bold">
+                                                check
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-geist text-sm font-bold text-text">
+                                                Commitment to Drills
+                                            </h3>
+                                            <p className="text-sm text-subtext mt-0.5">
+                                                Ability to attend mandatory safety training sessions and
+                                                weekend drills (min. 10 hours/month).
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </article>
                             {/* FAQ Accordion Card */}
                             <article className="bg-white border border-blue-border/80 rounded-2xl p-6 shadow-sm">

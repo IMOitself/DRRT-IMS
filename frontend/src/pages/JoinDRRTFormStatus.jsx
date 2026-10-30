@@ -142,10 +142,10 @@ export default function JoinDRRTFormStatus() {
                                         </div>
                                         <div>
                                             <strong className="text-text">
-                                                Document Verification:
+                                                Application Review:
                                             </strong>{" "}
-                                            The DRRT Officers and Adviser will review your details, signed
-                                            consent form, and class schedule.
+                                            The DRRT Officers and Adviser will review your submitted
+                                            details and class schedule.
                                         </div>
                                     </li>
                                     <li className="flex items-start gap-3">
@@ -237,26 +237,12 @@ export default function JoinDRRTFormStatus() {
                                     {application.data?.emergency_person_name}
                                 </span>
                             </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                                 <span className="text-subtext">
                                     Emergency Phone:
                                 </span>
                                 <span className="font-bold text-blue font-mono text-base">
                                     {application.data?.emergency_phone}
-                                </span>
-                            </div>
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-blue-border/40 pb-3">
-                                <span className="text-subtext">
-                                    Consent Form:
-                                </span>
-                                <span className="font-bold text-blue font-mono text-base">
-                                    <a
-                                        href={application.data?.consent_form?.startsWith("data:") ? application.data?.consent_form : "/consent.pdf"}
-                                        download={`${application.data?.last_name}_Consent_Form`}
-                                        className="hover:underline"
-                                    >
-                                        Download Consent Form
-                                    </a>
                                 </span>
                             </div>
 
