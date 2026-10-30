@@ -160,7 +160,7 @@ export default function Login() {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="student@lvcc.edu.ph"
+                    placeholder="Email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -191,7 +191,7 @@ export default function Login() {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="********"
+                    placeholder="Enter your password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
