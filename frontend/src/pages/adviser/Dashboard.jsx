@@ -170,7 +170,7 @@ export default function Dashboard() {
                 <span className="material-symbols-outlined text-[18px]!">
                   fact_check
                 </span>
-                Approvals
+                Approval Requests
               </Link>
               <Link
                 to="/adviser/members"
