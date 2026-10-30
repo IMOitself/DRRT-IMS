@@ -183,7 +183,7 @@ export default function Attendance() {
                             <div className="flex justify-between items-start mb-4">
                                 <div>
                                     <h3 className="font-geist text-2xl font-bold text-text">
-                                        Bylaw Compliance
+                                        Attendance Compliance
                                     </h3>
                                     <p className="text-sm text-subtext mt-0.5">
                                         Current Standing Period: 2026
