@@ -10,6 +10,7 @@ export default function Dashboard() {
 
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [attendances, setAttendances] = useState([]);
   const [memberApplications, setMemberApplications] = useState([]);
   const { user } = useAuth();
@@ -23,6 +24,7 @@ export default function Dashboard() {
     api
       .get("/events")
       .then((res) => setEvents(res.data))
+      .finally(() => setLoading(false))
       .catch((err) => console.error(err));
 
     api
@@ -196,7 +198,15 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="w-full flex items-end gap-4 overflow-x-auto pt-8">
-              {chartEvents.length === 0 && (
+              {loading && (
+                <div className="w-full flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                  <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                    progress_activity
+                  </span>
+                  <p className="font-geist text-sm">Loading events...</p>
+                </div>
+              )}
+              {!loading && chartEvents.length === 0 && (
                 <p className="w-full self-center text-sm text-subtext text-center">No events yet.</p>
               )}
               {chartEvents.map((event) => (

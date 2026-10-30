@@ -33,6 +33,7 @@ export default function Attendance() {
     const [isLateAttendanceDialogOpen, setIsLateAttendanceDialogOpen] = useState(false);
     const [isConfirmSaveDialogOpen, setIsConfirmSaveDialogOpen] = useState(false);
     const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [attendances, setAttendances] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState({ id: null, unsaved_status: null });
 
@@ -116,6 +117,7 @@ export default function Attendance() {
             .get("/events")
             .then((res) => {
                 setEvents(res.data);
+                setLoading(false);
             })
             .catch((err) => {
                 console.error(err);
@@ -255,6 +257,14 @@ export default function Attendance() {
                     {/* attendance list*/}
                     <div className="lg:col-span-7 flex flex-col gap-4">
                         <div className="space-y-4">
+                            {loading && (
+                                <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                                    <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                                        progress_activity
+                                    </span>
+                                    <p className="font-geist text-sm">Loading attendance records...</p>
+                                </div>
+                            )}
                             {sortedEvents.map((event) => {
                                 const started = hasEventStarted(event);
                                 let currentStatus = "unset";

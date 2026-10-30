@@ -26,6 +26,7 @@ const painLabels = [
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedIncident, setSelectedIncident] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -55,7 +56,8 @@ export default function Incidents() {
           }
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }, [location.state?.openIncidentId]);
 
   const openDrawer = (incident) => {
@@ -234,10 +236,19 @@ export default function Incidents() {
               </div>
             ))}
 
-            {filteredIncidents.length === 0 && (
-              <p className="font-geist text-sm text-subtext text-center py-8">
-                {searchQuery ? "No matching incident reports found." : "No incidents reported yet."}
-              </p>
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                  progress_activity
+                </span>
+                <p className="font-geist text-sm">Loading incident reports...</p>
+              </div>
+            ) : (
+              filteredIncidents.length === 0 && (
+                <p className="font-geist text-sm text-subtext text-center py-8">
+                  {searchQuery ? "No matching incident reports found." : "No incidents reported yet."}
+                </p>
+              )
             )}
           </section>
         </div>

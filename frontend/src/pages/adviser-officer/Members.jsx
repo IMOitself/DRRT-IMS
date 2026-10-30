@@ -8,6 +8,7 @@ import { formatDate, getInitials } from "../../utils/format";
 
 export default function Members() {
     const [memberApplications, setMemberApplications] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isAddMemberDialogOpen, setIsAddMemberDialogOpen] = useState(false);
     const [selectedMemberApplication, setSelectedMemberApplication] = useState(null);
@@ -124,7 +125,8 @@ export default function Members() {
                 const application = res.data.data.find((ma) => ma.user_id === openMemberUserId);
                 if (openMemberUserId && application) openDrawer(application);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
 
         api
             .get("/events")
@@ -391,10 +393,19 @@ export default function Members() {
                                 </div>
                             </div>
                         )}
-                        {filteredApplications.length === 0 && (
-                            <p className="font-geist text-sm text-subtext text-center py-4">
-                                No members found.
-                            </p>
+                        {loading ? (
+                            <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                                <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                                    progress_activity
+                                </span>
+                                <p className="font-geist text-sm">Loading members...</p>
+                            </div>
+                        ) : (
+                            filteredApplications.length === 0 && (
+                                <p className="font-geist text-sm text-subtext text-center py-4">
+                                    No members found.
+                                </p>
+                            )
                         )}
                     </section>
                 </div>

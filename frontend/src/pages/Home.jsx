@@ -16,6 +16,7 @@ export default function Home() {
     if (user?.role === "officer") dashboardLink = "/officer/dashboard";
     if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
     const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
     const contact1 = "09123456789";
     const contact2 = "09123456789";
     const contact3 = "09123456789";
@@ -43,7 +44,8 @@ export default function Home() {
             })
             .catch((err) => {
                 console.error(err);
-            });
+            })
+            .finally(() => setLoading(false));
 
     }, [isLoggedIn, user]);
 
@@ -84,7 +86,7 @@ export default function Home() {
                             </span>
                         </div>
                     </section>
-
+                    
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <article className="bg-white rounded-2xl p-6 border border-blue-border/80 shadow-sm card-hover transition-all flex flex-col justify-between space-y-4 group">
                             <div>
@@ -158,8 +160,8 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <p className="text-md text-subtext leading-relaxed">
-                                    Do you have a passion in helping others and want to volunteer on something meaningful? <br />
-                                    Become a DRRT member now! <br />
+                                    Do you have a passion in helping others and want to volunteer on something meaningful? <br/>
+                                    Become a DRRT member now! <br/>
                                     Click the button below to learn more.
                                 </p>
                             </div>
@@ -183,7 +185,14 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
-                                    {events.length === 0 ? (
+                                    {loading ? (
+                                        <div className="flex flex-col items-center justify-center py-8 text-subtext gap-3">
+                                            <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                                                progress_activity
+                                            </span>
+                                            <p className="font-geist text-sm">Loading upcoming events...</p>
+                                        </div>
+                                    ) : events.length === 0 ? (
                                         <p className="text-xs text-subtext text-center">No upcoming events.</p>
                                     ) : (
                                         events.map((event) => {

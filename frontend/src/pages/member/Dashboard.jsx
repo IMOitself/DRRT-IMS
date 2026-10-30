@@ -241,13 +241,24 @@ export default function Dashboard() {
                         </div>
 
                         <div className="space-y-6 md:space-y-8">
-                            {events.map((event) => (
-                                <EventCard key={event.id} event={event} />
-                            ))}
-                            {events.length === 0 && (
-                                <p className="font-geist text-sm text-subtext text-center py-4">
-                                    No events found.
-                                </p>
+                            {upcomingEvent === undefined ? (
+                                <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                                    <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                                        progress_activity
+                                    </span>
+                                    <p className="font-geist text-sm">Loading events...</p>
+                                </div>
+                            ) : (
+                                <>
+                                    {events.map((event) => (
+                                        <EventCard key={event.id} event={event} />
+                                    ))}
+                                    {events.length === 0 && (
+                                        <p className="font-geist text-sm text-subtext text-center py-4">
+                                            No events found.
+                                        </p>
+                                    )}
+                                </>
                             )}
                         </div>
                     </section>

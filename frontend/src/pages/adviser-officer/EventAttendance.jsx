@@ -17,6 +17,7 @@ export default function EventAttendance() {
 
   const [event, setEvent] = useState(null);
   const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [attendances, setAttendances] = useState([]);
   const [unsavedChanges, setUnsavedChanges] = useState({});
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -146,7 +147,8 @@ export default function EventAttendance() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => setLoading(false));
 
   }, [eventId]);
 
@@ -260,6 +262,7 @@ export default function EventAttendance() {
 
           <AttendanceList
             isAdviser={isAdviser}
+            loading={loading}
             members={members}
             getStatus={getStatus}
             getTimein={getTimein}
@@ -584,7 +587,7 @@ export default function EventAttendance() {
   );
 }
 
-function AttendanceList({ isAdviser, members, getStatus, getTimein, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
+function AttendanceList({ isAdviser, loading, members, getStatus, getTimein, wantsCorrection, changeStatus, openUnsetDialog, openCorrectionDialog, openDrawer }) {
 
   const noRecordCount = members.filter(
     (member) => !getStatus(member.id)
@@ -768,10 +771,19 @@ function AttendanceList({ isAdviser, members, getStatus, getTimein, wantsCorrect
               </div>
             );
           })}
-          {filteredMembers.length === 0 && (
-            <p className="font-geist text-sm text-subtext text-center py-4">
-              No members found.
-            </p>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+              <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                progress_activity
+              </span>
+              <p className="font-geist text-sm">Loading members...</p>
+            </div>
+          ) : (
+            filteredMembers.length === 0 && (
+              <p className="font-geist text-sm text-subtext text-center py-4">
+                No members found.
+              </p>
+            )
           )}
         </div>
       </section>

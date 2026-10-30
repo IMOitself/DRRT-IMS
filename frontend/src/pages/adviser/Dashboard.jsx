@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 export default function Dashboard() {
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [attendances, setAttendances] = useState([]);
   const [memberApplications, setMemberApplications] = useState([]);
   const [incidentReports, setIncidentReports] = useState([]);
@@ -24,6 +25,7 @@ export default function Dashboard() {
     api
       .get("/events", { params: { all: 1 } })
       .then((res) => setEvents(res.data))
+      .finally(() => setLoading(false))
       .catch((err) => console.error(err));
 
     api
@@ -285,7 +287,14 @@ export default function Dashboard() {
                 </Link>
               </div>
 
-              {pendingEvents.length === 0 ? (
+              {loading ? (
+                <div className="flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                  <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                    progress_activity
+                  </span>
+                  <p className="font-geist text-sm">Loading event authorizations...</p>
+                </div>
+              ) : pendingEvents.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center gap-2 text-subtext">
                   <span className="material-symbols-outlined text-green text-[36px]!">
                     check_circle
@@ -381,7 +390,14 @@ export default function Dashboard() {
                   </span>
                 </div>
 
-                {removalRequests.length === 0 ? (
+                {loading ? (
+                  <div className="flex flex-col items-center justify-center py-8 text-subtext gap-3">
+                    <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                      progress_activity
+                    </span>
+                    <p className="font-geist text-sm">Loading removal requests...</p>
+                  </div>
+                ) : removalRequests.length === 0 ? (
                   <p className="text-xs text-subtext py-3">
                     No active members have been flagged for removal by officers.
                   </p>
@@ -435,7 +451,14 @@ export default function Dashboard() {
                   </Link>
                 </div>
 
-                {incidentReports.length === 0 ? (
+                {loading ? (
+                  <div className="flex flex-col items-center justify-center py-8 text-subtext gap-3">
+                    <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                      progress_activity
+                    </span>
+                    <p className="font-geist text-sm">Loading incident reports...</p>
+                  </div>
+                ) : incidentReports.length === 0 ? (
                   <p className="text-xs text-subtext py-3">
                     No incident or first-aid reports logged yet.
                   </p>
@@ -494,7 +517,14 @@ export default function Dashboard() {
             </div>
 
             <div className="w-full flex items-end gap-4 overflow-x-auto pt-8">
-              {chartEvents.length === 0 ? (
+              {loading ? (
+                <div className="w-full flex flex-col items-center justify-center py-16 text-subtext gap-3">
+                  <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
+                    progress_activity
+                  </span>
+                  <p className="font-geist text-sm">Loading events...</p>
+                </div>
+              ) : chartEvents.length === 0 ? (
                 <p className="w-full self-center text-sm text-subtext text-center py-10">
                   No completed events recorded yet.
                 </p>
