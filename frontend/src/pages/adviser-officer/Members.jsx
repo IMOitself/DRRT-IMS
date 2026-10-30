@@ -707,7 +707,29 @@ export default function Members() {
                                         : ""
                                 }
                                 {selectedMemberApplication.removal_requested && (
-                                    <span className="bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full mt-1">REMOVAL REQUESTED</span>
+                                    <>
+                                        <span className="bg-red-bg text-red border border-red-border inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full mt-1">REMOVAL REQUESTED</span>
+                                        {isAdviser && (
+                                            <div className="flex gap-3 mt-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={toggleRemovalRequest}
+                                                    className="cursor-pointer bg-red text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-red/90 transition-colors shadow-sm flex items-center justify-center gap-2"
+                                                >
+                                                    <span className="material-symbols-outlined text-[18px]!">close</span>
+                                                    Reject
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={removeMember}
+                                                    className="cursor-pointer bg-green text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-green/90 transition-colors shadow-sm flex items-center justify-center gap-2"
+                                                >
+                                                    <span className="material-symbols-outlined text-[18px]!">check</span>
+                                                    Approve
+                                                </button>
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
                             <div className="space-y-4">
@@ -864,17 +886,6 @@ export default function Members() {
                     </div>
                 ) : selectedMemberApplication && (selectedMemberApplication.status === "approved_member_now" || selectedMemberApplication.status === "graduated") && (
                     <div className="p-4 border-t border-blue-border bg-surface space-y-3">
-                        {/* an officer asked for this, so adviser approving removes them right away */}
-                        {isAdviser && selectedMemberApplication.removal_requested && (
-                            <button
-                                type="button"
-                                onClick={removeMember}
-                                className="cursor-pointer w-full bg-red text-white px-4 py-2 rounded-lg font-geist text-md hover:bg-red/90 transition-colors shadow-sm flex items-center justify-center gap-2 font-semibold"
-                            >
-                                <span className="material-symbols-outlined text-[22px]!">check</span>
-                                Approve Removal Request
-                            </button>
-                        )}
                         <div className="relative" ref={moreMenuRef}>
                             <button
                                 type="button"
