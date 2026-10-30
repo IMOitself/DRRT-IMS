@@ -43,7 +43,7 @@ export default function Header() {
                 </div>
 
                 {is_no_nav_pages ? null : pathname.startsWith("/adviser") ? (
-                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                    <nav className="hidden lg:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/adviser/dashboard" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
@@ -82,7 +82,7 @@ export default function Header() {
                         </NavLink>
                     </nav>
                 ) : pathname.startsWith("/officer") ? (
-                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                    <nav className="hidden lg:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/officer/dashboard" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
@@ -118,7 +118,7 @@ export default function Header() {
                         )}
                     </nav>
                 ) : pathname.startsWith("/member") ? (
-                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                    <nav className="hidden lg:flex items-center gap-8 font-geist text-subtext">
                         <NavLink to="/member/dashboard" className={({ isActive }) =>
                             isActive
                                 ? "text-blue font-bold border-b-2 border-blue py-1"
@@ -145,7 +145,7 @@ export default function Header() {
                         )}
                     </nav>
                 ) : (
-                    <nav className="hidden md:flex items-center gap-8 font-geist text-subtext">
+                    <nav className="hidden lg:flex items-center gap-8 font-geist text-subtext">
                         {/* public */}
                         <NavLink to="/" className={({ isActive }) =>
                             isActive
