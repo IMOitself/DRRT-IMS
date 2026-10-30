@@ -380,6 +380,9 @@ export default function Members() {
                                         </p>
                                         <p className="text-[11px] text-subtext truncate">
                                             {application.course + " " + application.year_level}
+                                            {application.user_role === "officer" && (
+                                                <span className="text-blue font-bold"> • Officer</span>
+                                            )}
                                         </p>
                                     </div>
                                 </div>
