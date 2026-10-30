@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('phone_number', 20);
             $table->string('emergency_person_name');
             $table->string('emergency_phone', 20);
-            $table->longText('consent_form');
             $table->boolean('removal_requested')->default(false);
             $table->timestamps();
         });

@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09111111111',
             'emergency_person_name' => 'Marie Smith',
             'emergency_phone' => '09222222221',
-            'consent_form' => 'consent_forms/erwin-smith.pdf',
         ]);
 
         $officer2 = User::create([
@@ -75,7 +74,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09111111112',
             'emergency_person_name' => 'Kenny Ackerman',
             'emergency_phone' => '09222222222',
-            'consent_form' => 'consent_forms/levi-ackerman.pdf',
         ]);
 
         $officer3 = User::create([
@@ -99,7 +97,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09111111113',
             'emergency_person_name' => 'Moblit Berner',
             'emergency_phone' => '09222222223',
-            'consent_form' => 'consent_forms/hange-zoe.pdf',
         ]);
 
         // ==========================================
@@ -125,7 +122,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000101',
             'emergency_person_name' => 'Carla Yeager',
             'emergency_phone' => '09180000101',
-            'consent_form' => 'consent_forms/eren-yeager.pdf',
         ]);
 
         $member2 = User::create([
@@ -148,7 +144,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000102',
             'emergency_person_name' => 'Eren Yeager',
             'emergency_phone' => '09180000102',
-            'consent_form' => 'consent_forms/mikasa-ackerman.pdf',
         ]);
 
         $member3 = User::create([
@@ -171,7 +166,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000103',
             'emergency_person_name' => 'Grandpa Arlert',
             'emergency_phone' => '09180000103',
-            'consent_form' => 'consent_forms/armin-arlert.pdf',
         ]);
 
         $member4 = User::create([
@@ -194,7 +188,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000104',
             'emergency_person_name' => 'Mrs. Kirstein',
             'emergency_phone' => '09180000104',
-            'consent_form' => 'consent_forms/jean-kirstein.pdf',
         ]);
 
         $member5 = User::create([
@@ -217,7 +210,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000105',
             'emergency_person_name' => 'Artur Braus',
             'emergency_phone' => '09180000105',
-            'consent_form' => 'consent_forms/sasha-braus.pdf',
         ]);
 
         $member6 = User::create([
@@ -240,7 +232,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000106',
             'emergency_person_name' => ' Mrs. Springer',
             'emergency_phone' => '09180000106',
-            'consent_form' => 'consent_forms/connie-springer.pdf',
         ]);
 
         $member7 = User::create([
@@ -263,7 +254,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000107',
             'emergency_person_name' => 'Karina Braun',
             'emergency_phone' => '09180000107',
-            'consent_form' => 'consent_forms/reiner-braun.pdf',
         ]);
 
         $member8 = User::create([
@@ -286,7 +276,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000108',
             'emergency_person_name' => 'Reiner Braun',
             'emergency_phone' => '09180000108',
-            'consent_form' => 'consent_forms/bertholdt-hoover.pdf',
         ]);
 
         $member9 = User::create([
@@ -309,7 +298,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000109',
             'emergency_person_name' => 'Mr. Leonhart',
             'emergency_phone' => '09180000109',
-            'consent_form' => 'consent_forms/annie-leonhart.pdf',
         ]);
 
         $member10 = User::create([
@@ -332,7 +320,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000110',
             'emergency_person_name' => 'Frieda Reiss',
             'emergency_phone' => '09180000110',
-            'consent_form' => 'consent_forms/historia-reiss.pdf',
         ]);
 
         $member11 = User::create([
@@ -355,7 +342,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000111',
             'emergency_person_name' => 'Historia Reiss',
             'emergency_phone' => '09180000111',
-            'consent_form' => 'consent_forms/ymir-freckles.pdf',
         ]);
 
         $member12 = User::create([
@@ -378,7 +364,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000112',
             'emergency_person_name' => 'Jean Kirstein',
             'emergency_phone' => '09180000112',
-            'consent_form' => 'consent_forms/marco-bott.pdf',
         ]);
 
         $member13 = User::create([
@@ -401,7 +386,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000113',
             'emergency_person_name' => 'Erwin Smith',
             'emergency_phone' => '09180000113',
-            'consent_form' => 'consent_forms/floch-forster.pdf',
         ]);
 
         $member14 = User::create([
@@ -424,7 +408,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000114',
             'emergency_person_name' => 'Marlo Freudenberg',
             'emergency_phone' => '09180000114',
-            'consent_form' => 'consent_forms/hitch-dreyse.pdf',
         ]);
 
         $member15 = User::create([
@@ -447,7 +430,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000115',
             'emergency_person_name' => 'Hitch Blouse',
             'emergency_phone' => '09180000115',
-            'consent_form' => 'consent_forms/marlo-freudenberg.pdf',
         ]);
 
         $member16 = User::create([
@@ -470,7 +452,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000116',
             'emergency_person_name' => 'Mr. Ral',
             'emergency_phone' => '09180000116',
-            'consent_form' => 'consent_forms/petra-ral.pdf',
         ]);
 
         $member17 = User::create([
@@ -493,7 +474,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000117',
             'emergency_person_name' => 'Petra Ral',
             'emergency_phone' => '09180000117',
-            'consent_form' => 'consent_forms/oluo-bozado.pdf',
         ]);
 
         $member18 = User::create([
@@ -516,7 +496,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000118',
             'emergency_person_name' => 'Gunther Schultz',
             'emergency_phone' => '09180000118',
-            'consent_form' => 'consent_forms/eld-jinn.pdf',
         ]);
 
         $member19 = User::create([
@@ -539,7 +518,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000119',
             'emergency_person_name' => 'Eld Jinn',
             'emergency_phone' => '09180000119',
-            'consent_form' => 'consent_forms/gunther-schultz.pdf',
         ]);
 
         $member20 = User::create([
@@ -562,7 +540,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000120',
             'emergency_person_name' => 'Hange Zoe',
             'emergency_phone' => '09180000120',
-            'consent_form' => 'consent_forms/moblit-berner.pdf',
         ]);
 
         $member21 = User::create([
@@ -585,7 +562,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000121',
             'emergency_person_name' => 'Nanaba',
             'emergency_phone' => '09180000121',
-            'consent_form' => 'consent_forms/miche-zacharias.pdf',
         ]);
 
         $member22 = User::create([
@@ -608,7 +584,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000122',
             'emergency_person_name' => 'Mr. Finger',
             'emergency_phone' => '09180000122',
-            'consent_form' => 'consent_forms/pieck-finger.pdf',
         ]);
 
         $member23 = User::create([
@@ -631,7 +606,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000123',
             'emergency_person_name' => 'Marcel Galliard',
             'emergency_phone' => '09180000123',
-            'consent_form' => 'consent_forms/porco-galliard.pdf',
         ]);
 
         $member24 = User::create([
@@ -654,7 +628,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000124',
             'emergency_person_name' => 'Colt Grice',
             'emergency_phone' => '09180000124',
-            'consent_form' => 'consent_forms/falco-grice.pdf',
         ]);
 
         $member25 = User::create([
@@ -677,7 +650,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000125',
             'emergency_person_name' => 'Reiner Braun',
             'emergency_phone' => '09180000125',
-            'consent_form' => 'consent_forms/gabi-braun.pdf',
         ]);
 
         $member26 = User::create([
@@ -700,7 +672,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000126',
             'emergency_person_name' => 'Falco Grice',
             'emergency_phone' => '09180000126',
-            'consent_form' => 'consent_forms/colt-grice.pdf',
         ]);
 
         $member27 = User::create([
@@ -723,7 +694,6 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '09170000127',
             'emergency_person_name' => 'Mikasa Ackerman',
             'emergency_phone' => '09180000127',
-            'consent_form' => 'consent_forms/kiyomi-azumabito.pdf',
         ]);
 
         // ==========================================

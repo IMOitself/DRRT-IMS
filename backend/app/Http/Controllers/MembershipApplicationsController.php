@@ -57,7 +57,6 @@ class MembershipApplicationsController extends Controller
             'phone_number' => $request->input('phone_number'),
             'emergency_person_name' => $request->input('emergency_person_name'),
             'emergency_phone' => $request->input('emergency_phone'),
-            'consent_form' => $request->input('consent_form')
         ]);
 
         return response()->json([
