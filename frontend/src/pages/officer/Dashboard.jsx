@@ -113,7 +113,7 @@ export default function Dashboard() {
           </section>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2">
+            <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col gap-2 md:row-span-2 lg:row-span-1">
               <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
                 <span className="material-symbols-outlined text-blue text-[20px]!">
                   how_to_reg
