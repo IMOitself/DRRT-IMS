@@ -11,13 +11,12 @@ export default function Approvals() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all_pending"); // 'all_pending', 'events', 'removals', 'approved'
-  
+
   // Reject/Decline modal target
   const [rejectTarget, setRejectTarget] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
 
-  function fetchData() {
-    setLoading(true);
+  useEffect(() => {
     Promise.all([
       api.get("/events", { params: { all: 1 } }),
       api.get("/membership-applications"),
@@ -26,38 +25,28 @@ export default function Approvals() {
         setEvents(eventsRes.data || []);
         setApplications(appsRes.data.data || []);
       })
-      .catch((err) => {
-        console.error("Error loading approvals:", err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
-  useEffect(() => {
-    fetchData();
+      .catch((err) => console.error("Error loading approvals:", err))
+      .finally(() => setLoading(false));
   }, []);
 
-  const pendingEvents = events.filter((e) => Boolean(e.pending_approval));
+  const pendingEvents = events.filter((e) => e.pending_approval);
   const approvedEvents = events.filter((e) => !e.pending_approval);
-  const removalRequests = applications.filter((a) => Boolean(a.removal_requested));
+  const removalRequests = applications.filter((a) => a.removal_requested);
 
   const approveEvent = (event) => {
     setActionLoading(true);
     api
       .put(`/events/${event.id}/approve`)
-      .then(() => {
+      .then(() =>
         setEvents((prev) =>
           prev.map((e) => (e.id === event.id ? { ...e, pending_approval: false } : e))
-        );
-      })
+        )
+      )
       .catch((err) => {
         console.error(err);
         alert("Failed to approve event. Please try again.");
       })
-      .finally(() => {
-        setActionLoading(false);
-      });
+      .finally(() => setActionLoading(false));
   };
 
   const rejectEvent = () => {
@@ -73,57 +62,47 @@ export default function Approvals() {
         console.error(err);
         alert("Failed to decline event. Please try again.");
       })
-      .finally(() => {
-        setActionLoading(false);
-      });
+      .finally(() => setActionLoading(false));
   };
 
   const dismissRemovalRequest = (application) => {
     api
       .put(`/membership-applications/${application.id}`, { removal_requested: false })
-      .then(() => {
+      .then(() =>
         setApplications((prev) =>
           prev.map((a) => (a.id === application.id ? { ...a, removal_requested: false } : a))
-        );
-      })
+        )
+      )
       .catch((err) => {
         console.error(err);
         alert("Failed to dismiss removal request.");
       });
   };
 
-  const matchesSearch = (text) => {
-    if (!searchQuery.trim()) return true;
-    return text.toLowerCase().includes(searchQuery.trim().toLowerCase());
-  };
+  const query = searchQuery.trim().toLowerCase();
+  const matchesSearch = (...fields) =>
+    !query || fields.some((f) => String(f || "").toLowerCase().includes(query));
 
-  const filteredPendingEvents = pendingEvents.filter(
-    (e) =>
-      matchesSearch(e.title || "") ||
-      matchesSearch(e.description || "") ||
-      matchesSearch(e.type || "") ||
-      matchesSearch(e.venue_online || "") ||
-      matchesSearch(e.venue_facetoface || "") ||
-      matchesSearch(formatDate(e.date))
+  const filteredPendingEvents = pendingEvents.filter((e) =>
+    matchesSearch(e.title, e.description, e.type, e.venue_online, e.venue_facetoface, formatDate(e.date))
   );
-
-  const filteredRemovalRequests = removalRequests.filter(
-    (a) =>
-      matchesSearch(a.full_name || "") ||
-      matchesSearch(a.student_id || "") ||
-      matchesSearch(a.course || "") ||
-      matchesSearch(a.email || "")
+  const filteredRemovalRequests = removalRequests.filter((a) =>
+    matchesSearch(a.full_name, a.student_id, a.course, a.email)
   );
-
-  const filteredApprovedEvents = approvedEvents.filter(
-    (e) =>
-      matchesSearch(e.title || "") ||
-      matchesSearch(e.description || "") ||
-      matchesSearch(e.type || "") ||
-      matchesSearch(formatDate(e.date))
+  const filteredApprovedEvents = approvedEvents.filter((e) =>
+    matchesSearch(e.title, e.description, e.type, formatDate(e.date))
   );
 
   const totalPending = pendingEvents.length + removalRequests.length;
+
+  const tabs = [
+    { id: "all_pending", label: "All Pending", count: totalPending, badge: "bg-blue-bg text-blue font-bold" },
+    { id: "events", label: "Pending Events", count: pendingEvents.length, badge: "bg-blue-bg text-blue font-bold" },
+    ...(removalRequests.length > 0
+      ? [{ id: "removals", label: "Member Removals", count: removalRequests.length, badge: "bg-red-bg text-red font-bold" }]
+      : []),
+    { id: "approved", label: "Approved Events History", count: approvedEvents.length, badge: "bg-surface-container-high text-subtext font-bold" },
+  ];
 
   return (
     <>
@@ -181,67 +160,23 @@ export default function Approvals() {
 
             {/* Filter Tabs */}
             <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar mt-6 border-t border-blue-border/40 pt-4">
-              <button
-                type="button"
-                onClick={() => setActiveTab("all_pending")}
-                className={`shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === "all_pending"
-                    ? "bg-blue text-white shadow-sm"
-                    : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
-                }`}
-              >
-                <span>All Pending</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-[11px] ${activeTab === "all_pending" ? "bg-white/20 text-white" : "bg-blue-bg text-blue font-bold"}`}>
-                  {totalPending}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("events")}
-                className={`shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === "events"
-                    ? "bg-blue text-white shadow-sm"
-                    : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
-                }`}
-              >
-                <span>Pending Events</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-[11px] ${activeTab === "events" ? "bg-white/20 text-white" : "bg-blue-bg text-blue font-bold"}`}>
-                  {pendingEvents.length}
-                </span>
-              </button>
-
-              {removalRequests.length > 0 && (
+              {tabs.map((tab) => (
                 <button
+                  key={tab.id}
                   type="button"
-                  onClick={() => setActiveTab("removals")}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                    activeTab === "removals"
+                    activeTab === tab.id
                       ? "bg-blue text-white shadow-sm"
                       : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
                   }`}
                 >
-                  <span>Member Removals</span>
-                  <span className={`px-1.5 py-0.2 rounded-full text-[11px] ${activeTab === "removals" ? "bg-white/20 text-white" : "bg-red-bg text-red font-bold"}`}>
-                    {removalRequests.length}
+                  <span>{tab.label}</span>
+                  <span className={`px-1.5 py-0.2 rounded-full text-[11px] ${activeTab === tab.id ? "bg-white/20 text-white" : tab.badge}`}>
+                    {tab.count}
                   </span>
                 </button>
-              )}
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("approved")}
-                className={`shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === "approved"
-                    ? "bg-blue text-white shadow-sm"
-                    : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
-                }`}
-              >
-                <span>Approved Events History</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-[11px] ${activeTab === "approved" ? "bg-white/20 text-white" : "bg-surface-container-high text-subtext font-bold"}`}>
-                  {approvedEvents.length}
-                </span>
-              </button>
+              ))}
             </div>
           </section>
 
