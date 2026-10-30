@@ -981,7 +981,7 @@ export default function Members() {
                                             Promote to Officer
                                         </button>
                                     )}
-                                    {selectedMemberApplication.user_id && selectedMemberApplication.user_role === "officer" && (
+                                    {isAdviser && selectedMemberApplication.user_id && selectedMemberApplication.user_role === "officer" && (
                                         <button
                                             type="button"
                                             onClick={() => { setIsMoreMenuOpen(false); setIsConfirmRemoveOfficerDialogOpen(true); }}
