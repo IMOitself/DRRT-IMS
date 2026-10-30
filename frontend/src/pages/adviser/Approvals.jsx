@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
+import EventCard from "../../components/EventCard";
 import api from "../../api/axios";
 import { formatDate } from "../../utils/format";
 
@@ -120,7 +121,7 @@ export default function Approvals() {
                     fact_check
                   </span>
                   <h1 className="font-geist text-2xl md:text-3xl font-bold text-text">
-                    Event Approvals &amp; Governance
+                    Approval Requests
                   </h1>
                 </div>
                 <p className="text-sm text-subtext mt-1.5">
@@ -216,97 +217,35 @@ export default function Approvals() {
                   ) : (
                     <div className="space-y-4">
                       {filteredPendingEvents.map((event) => (
-                        <div
+                        <EventCard
                           key={event.id}
-                          className="bg-white border-2 border-yellow/40 hover:border-yellow rounded-2xl p-5 md:p-6 shadow-sm transition-all space-y-4"
+                          event={event}
                         >
-                          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div className="space-y-2 flex-1">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <span className="font-geist text-xs font-bold uppercase tracking-wider bg-blue-bg text-blue px-2.5 py-0.5 rounded-full">
-                                  {event.type || "Event"}
-                                </span>
-                                <span className="bg-yellow/15 text-yellow border border-yellow/30 font-geist text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
-                                  Pending Authorization
-                                </span>
-                                {event.venue_online && (
-                                  <span className="bg-surface-container-high text-subtext font-geist text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-[14px]!">videocam</span>
-                                    Online: {event.venue_online}
-                                  </span>
-                                )}
-                                {event.venue_facetoface && (
-                                  <span className="bg-surface-container-high text-subtext font-geist text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-[14px]!">location_on</span>
-                                    {event.venue_facetoface}
-                                  </span>
-                                )}
-                              </div>
-
-                              <h3 className="font-geist text-xl md:text-2xl font-bold text-text">
-                                {event.title}
-                              </h3>
-
-                              <div className="flex flex-wrap gap-4 text-xs md:text-sm font-semibold text-subtext">
-                                <div className="flex items-center gap-1.5">
-                                  <span className="material-symbols-outlined text-blue text-[18px]!">
-                                    calendar_today
-                                  </span>
-                                  <span>{formatDate(event.date)}</span>
-                                </div>
-                                {event.time_hour && (
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="material-symbols-outlined text-blue text-[18px]!">
-                                      schedule
-                                    </span>
-                                    <span>
-                                      {event.time_hour}:{String(event.time_minute || 0).padStart(2, "0")}{" "}
-                                      {event.time_ampm}
-                                    </span>
-                                  </div>
-                                )}
-                                {event.participants && (
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="material-symbols-outlined text-blue text-[18px]!">
-                                      groups
-                                    </span>
-                                    <span>{event.participants}</span>
-                                  </div>
-                                )}
-                              </div>
-
-                              {event.description && (
-                                <p className="font-geist text-sm text-subtext/90 whitespace-pre-line bg-surface p-3 rounded-xl border border-blue-border/50">
-                                  {event.description}
-                                </p>
-                              )}
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div className="flex sm:flex-row md:flex-col gap-2 shrink-0 pt-2 md:pt-0">
-                              <button
-                                type="button"
-                                onClick={() => setRejectTarget(event)}
-                                disabled={actionLoading}
-                                className="cursor-pointer flex-1 md:flex-initial bg-red-bg text-red border border-red/30 hover:bg-red hover:text-white px-5 py-2.5 rounded-xl font-geist text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95"
-                              >
-                                <span className="material-symbols-outlined text-[18px]!">close</span>
-                                Decline
-                              </button>
-
-                              <button
-                                type="button"
-                                onClick={() => approveEvent(event)}
-                                disabled={actionLoading}
-                                className="cursor-pointer flex-1 md:flex-initial bg-green text-white hover:bg-green/90 px-6 py-2.5 rounded-xl font-geist text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95"
-                              >
-                                <span className="material-symbols-outlined text-[18px]!">check_circle</span>
-                                Approve Event
-                              </button>
-                            </div>
+                          <div className="flex gap-3 pt-2">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setRejectTarget(event);
+                              }}
+                              className="cursor-pointer flex-1 sm:flex-none bg-red text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-red transition-colors flex items-center justify-center gap-2"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">close</span>
+                              Reject
+                            </button>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                approveEvent(event);
+                              }}
+                              className="cursor-pointer flex-1 sm:flex-none bg-green text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">check</span>
+                              Approve
+                            </button>
                           </div>
-                        </div>
+                        </EventCard>
                       ))}
                     </div>
                   )}
