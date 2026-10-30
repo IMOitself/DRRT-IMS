@@ -711,63 +711,61 @@ function AttendanceList({ isAdviser, loading, members, getStatus, getTimein, wan
                   )}
                 </div>
                 {/* stop the click here so the drawer doesn't open */}
-                {!isAdviser && (
-                  <div onClick={(e) => e.stopPropagation()} className="flex items-center gap-1 shrink-0">
-                    {status && (
-                      <button
-                        title="Unset"
-                        onClick={() => openUnsetDialog(member.id)}
-                        className="hidden md:flex w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
-                        <span className="material-symbols-outlined text-[18px]!">refresh</span>
-                      </button>
-                    )}
+                <div onClick={(e) => e.stopPropagation()} className="flex items-center gap-1 shrink-0">
+                  {!isAdviser && status && (
+                    <button
+                      title="Unset"
+                      onClick={() => openUnsetDialog(member.id)}
+                      className="hidden md:flex w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-[18px]!">refresh</span>
+                    </button>
+                  )}
 
-                    {status === "present" ? (
-                      <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
-                        <span>Present</span>
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => changeStatus(member.id, "present")}
-                        className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
-                        Present
-                      </button>
-                    )}
+                  {status === "present" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-green-bg border border-green-border text-green text-xs font-bold flex items-center justify-center gap-1">
+                      <span>Present</span>
+                    </button>
+                  ) : !isAdviser && (
+                    <button
+                      onClick={() => changeStatus(member.id, "present")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
+                      Present
+                    </button>
+                  )}
 
-                    {status === "absent" ? (
-                      <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
-                        <span>Absent</span>
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => changeStatus(member.id, "absent")}
-                        className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
-                        Absent
-                      </button>
-                    )}
+                  {status === "absent" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-red-bg border border-red-border text-red text-xs font-bold flex items-center justify-center gap-1">
+                      <span>Absent</span>
+                    </button>
+                  ) : !isAdviser && (
+                    <button
+                      onClick={() => changeStatus(member.id, "absent")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
+                      Absent
+                    </button>
+                  )}
 
-                    {status === "late" ? (
-                      <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
-                        <span>Late</span>
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => changeStatus(member.id, "late")}
-                        className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
-                        Late
-                      </button>
-                    )}
+                  {status === "late" ? (
+                    <button className="min-w-10 px-2 h-9 rounded bg-yellow-bg border border-yellow-border text-yellow text-xs font-bold flex items-center justify-center gap-1">
+                      <span>Late</span>
+                    </button>
+                  ) : !isAdviser && (
+                    <button
+                      onClick={() => changeStatus(member.id, "late")}
+                      className="min-w-10 px-2 h-9 rounded bg-surface-container-highest text-subtext hover:bg-surface-container-highest transition-colors text-xs font-bold cursor-pointer">
+                      Late
+                    </button>
+                  )}
 
-                    {status && (
-                      <button
-                        title="Unset"
-                        onClick={() => openUnsetDialog(member.id)}
-                        className="flex md:hidden w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
-                        <span className="material-symbols-outlined text-[18px]!">refresh</span>
-                      </button>
-                    )}
-                  </div>
-                )}
+                  {!isAdviser && status && (
+                    <button
+                      title="Unset"
+                      onClick={() => openUnsetDialog(member.id)}
+                      className="flex md:hidden w-9 h-9 rounded items-center justify-center text-subtext hover:bg-surface-container-highest hover:text-text transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-[18px]!">refresh</span>
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
