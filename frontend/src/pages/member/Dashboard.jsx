@@ -11,7 +11,7 @@ export default function Dashboard() {
 
     const [events, setEvents] = useState([]);
     const [attendances, setAttendances] = useState([]);
-    const [upcomingEvent, setUpcomingEvent] = useState([]);
+    const [upcomingEvent, setUpcomingEvent] = useState(undefined);
     const { user } = useAuth();
     const hasIncidentAccess = user?.has_incident_access ?? user?.role === "officer";
 
@@ -29,6 +29,7 @@ export default function Dashboard() {
             })
             .catch((err) => {
                 console.error(err);
+                setUpcomingEvent(null);
             });
 
         api
@@ -201,26 +202,34 @@ export default function Dashboard() {
                                     </h2>
                                 </div>
                                 <h3 className="font-geist text-2xl-mobile font-bold text-text mt-2">
-                                    {upcomingEvent?.title || "Loading..."}
+                                    {upcomingEvent === undefined
+                                        ? "Loading..."
+                                        : upcomingEvent
+                                        ? upcomingEvent.title
+                                        : "No upcoming event."}
                                 </h3>
                                 <p className="text-base text-subtext flex items-center gap-1.5 mt-1">
                                     <span className="material-symbols-outlined text-[18px]!">
                                         schedule
                                     </span>{" "}
-                                    {upcomingEvent ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}` : "..."}
+                                    {upcomingEvent
+                                        ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}`
+                                        : "--"}
                                 </p>
                             </div>
-                            <a
-                                href={upcomingEvent ? googleCalendarUrl(upcomingEvent) : "#"}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors font-semibold"
-                            >
-                                <span className="material-symbols-outlined text-[18px]!">
-                                    calendar_add_on
-                                </span>{" "}
-                                Add to Google Calendar
-                            </a>
+                            {upcomingEvent ? (
+                                <a
+                                    href={googleCalendarUrl(upcomingEvent)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors font-semibold"
+                                >
+                                    <span className="material-symbols-outlined text-[18px]!">
+                                        calendar_add_on
+                                    </span>{" "}
+                                    Add to Google Calendar
+                                </a>
+                            ) : null}
                         </div>
                     </div>
 
