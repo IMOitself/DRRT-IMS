@@ -15,6 +15,7 @@ export default function Approvals() {
 
   // Reject/Decline modal target
   const [rejectTarget, setRejectTarget] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function Approvals() {
   }, []);
 
   const pendingEvents = events.filter((e) => e.pending_approval);
+  const eventRemovalRequests = events.filter((e) => e.removal_requested);
   const removalRequests = applications.filter((a) => a.removal_requested);
 
   const approveEvent = (event) => {
@@ -46,6 +48,35 @@ export default function Approvals() {
         console.error(err);
         alert("Failed to approve event. Please try again.");
       })
+      .finally(() => setActionLoading(false));
+  };
+
+  const deleteEvent = () => {
+    if (!deleteTarget) return;
+    setActionLoading(true);
+    api
+      .delete(`/events/${deleteTarget.id}`)
+      .then(() => {
+        setEvents((prev) => prev.filter((e) => e.id !== deleteTarget.id));
+        setDeleteTarget(null);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to delete event. Please try again.");
+      })
+      .finally(() => setActionLoading(false));
+  };
+
+  const rejectEventRemoval = (event) => {
+    setActionLoading(true);
+    api
+      .put(`/events/${event.id}`, { removal_requested: false })
+      .then(() =>
+        setEvents((prev) =>
+          prev.map((e) => (e.id === event.id ? { ...e, removal_requested: false } : e))
+        )
+      )
+      .catch((err) => console.error(err))
       .finally(() => setActionLoading(false));
   };
 
@@ -72,15 +103,19 @@ export default function Approvals() {
   const filteredPendingEvents = pendingEvents.filter((e) =>
     matchesSearch(e.title, e.description, e.type, e.venue_online, e.venue_facetoface, formatDate(e.date))
   );
+  const filteredEventRemovalRequests = eventRemovalRequests.filter((e) =>
+    matchesSearch(e.title, e.description, e.type, e.venue_online, e.venue_facetoface, formatDate(e.date))
+  );
   const filteredRemovalRequests = removalRequests.filter((a) =>
     matchesSearch(a.full_name, a.student_id, a.course, a.email)
   );
 
-  const totalPending = pendingEvents.length + removalRequests.length;
+  const totalPending = pendingEvents.length + eventRemovalRequests.length + removalRequests.length;
 
   const tabs = [
     { id: "all_pending", label: "All Approvals", count: totalPending, badge: "bg-blue-bg text-blue font-bold" },
     { id: "events", label: "Created Events", count: pendingEvents.length, badge: "bg-blue-bg text-blue font-bold" },
+    { id: "event_removals", label: "Event Removals", count: eventRemovalRequests.length, badge: "bg-blue-bg text-blue font-bold" },
     { id: "removals", label: "Member Removals", count: removalRequests.length, badge: "bg-blue-bg text-blue font-bold" },
   ];
 
@@ -231,7 +266,69 @@ export default function Approvals() {
                 </section>
               )}
 
-              {/* Section 2: Member Removal Requests */}
+              {/* Section 2: Event Removals */}
+              {(activeTab === "all_pending" || activeTab === "event_removals") && (
+                <section className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h2 className="font-geist text-base md:text-lg font-bold text-text flex items-center gap-2">
+                      <span className="material-symbols-outlined text-blue text-[22px]!">
+                        event_busy
+                      </span>
+                      Event Removal Requests ({filteredEventRemovalRequests.length})
+                    </h2>
+                  </div>
+
+                  {filteredEventRemovalRequests.length === 0 ? (
+                    <div className="bg-white border border-blue-border rounded-xl p-8 text-center flex flex-col items-center justify-center gap-2 text-subtext">
+                      <span className="material-symbols-outlined text-green text-[40px]!">
+                        check_circle
+                      </span>
+                      <p className="font-geist text-base font-bold text-text">
+                        No Event Removal Requests
+                      </p>
+                      <p className="text-xs text-subtext max-w-md">
+                        No events have been flagged for removal by officers.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {filteredEventRemovalRequests.map((event) => (
+                        <EventCard
+                          key={event.id}
+                          event={event}
+                        >
+                          <div className="flex gap-3 pt-2">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                rejectEventRemoval(event);
+                              }}
+                              className="cursor-pointer flex-1 sm:flex-none bg-red text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-red transition-colors flex items-center justify-center gap-2"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">close</span>
+                              Reject
+                            </button>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setDeleteTarget(event);
+                              }}
+                              className="cursor-pointer flex-1 sm:flex-none bg-green text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">check</span>
+                              Approve
+                            </button>
+                          </div>
+                        </EventCard>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              )}
+
+              {/* Section 3: Member Removal Requests */}
               {(activeTab === "all_pending" || activeTab === "removals") && (
                 <section className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -333,6 +430,51 @@ export default function Approvals() {
                     >
                       <span className="material-symbols-outlined text-[20px]!">close</span>
                       <span>Reject</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Dialog Modal */}
+      {deleteTarget && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Delete Event?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Deleting "{deleteTarget.title}" can't be undone.
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setDeleteTarget(null)}
+                      disabled={actionLoading}
+                      className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      onClick={deleteEvent}
+                      disabled={actionLoading}
+                      className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[20px]!">delete</span>
+                      <span>Delete</span>
                     </button>
                   </div>
                 </div>

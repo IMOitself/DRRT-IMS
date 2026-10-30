@@ -46,13 +46,21 @@ export default function EventCard({ event, to, attendances, menu, children }) {
         {/* venue online */}
         {event.venue_online && (
           <div className="flex flex-row justify-between items-center gap-2">
-            <div className="flex items-center gap-1.5 text-blue">
-              <span className="material-symbols-outlined text-[16px]!">
-                videocam
-              </span>
-              <span className="font-geist text-xs font-bold uppercase tracking-wider">
-                {event.venue_online}
-              </span>
+            <div className="flex items-center gap-2 text-blue">
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]!">
+                  videocam
+                </span>
+                <span className="font-geist text-xs font-bold uppercase tracking-wider">
+                  {event.venue_online}
+                </span>
+              </div>
+              {Boolean(event.removal_requested) && (
+                <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full text-xs w-fit">
+                  <span className="bg-red w-2 h-2 rounded-full" />
+                  Removal Requested
+                </span>
+              )}
             </div>
             <span className="font-geist text-xs font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full">
               Online
@@ -63,13 +71,21 @@ export default function EventCard({ event, to, attendances, menu, children }) {
         {/* venue face to face */}
         {event.venue_facetoface && (
           <div className="flex flex-row items-center justify-between gap-2 text-sm">
-            <div className="flex items-center gap-1.5 text-blue">
-              <span className="material-symbols-outlined text-[16px]!">
-                location_on
-              </span>
-              <span className="font-geist font-bold uppercase tracking-wider">
-                {event.venue_facetoface}
-              </span>
+            <div className="flex items-center gap-2 text-blue">
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]!">
+                  location_on
+                </span>
+                <span className="font-geist font-bold uppercase tracking-wider">
+                  {event.venue_facetoface}
+                </span>
+              </div>
+              {Boolean(event.removal_requested) && (
+                <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full text-xs w-fit">
+                  <span className="bg-red w-2 h-2 rounded-full" />
+                  Removal Requested
+                </span>
+              )}
             </div>
             <span className="font-geist font-semibold text-subtext bg-surface-container-high px-2 py-0.5 rounded-full text-center">
               Face to Face
@@ -78,9 +94,17 @@ export default function EventCard({ event, to, attendances, menu, children }) {
         )}
 
         {!event.venue_online && !event.venue_facetoface && (
-          <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
-            Event
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="font-geist text-xs text-blue uppercase tracking-wider font-bold">
+              Event
+            </p>
+            {Boolean(event.removal_requested) && (
+              <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full text-xs w-fit">
+                <span className="bg-red w-2 h-2 rounded-full" />
+                Removal Requested
+              </span>
+            )}
+          </div>
         )}
 
         <h2 className="font-geist text-2xl font-semibold text-text mt-2 w-full truncate">

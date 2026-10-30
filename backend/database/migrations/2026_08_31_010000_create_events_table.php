@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('venue_online', ['zoom', 'gmeet'])->nullable();
             $table->string('venue_facetoface')->nullable();
             $table->boolean('pending_approval')->default(false);
+            $table->boolean('removal_requested')->default(false);
             $table->timestamps();
         });
     }

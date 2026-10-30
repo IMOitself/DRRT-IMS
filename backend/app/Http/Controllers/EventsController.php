@@ -68,6 +68,7 @@ class EventsController extends Controller
             'participants',
             'venue_online',
             'venue_facetoface',
+            'removal_requested',
         ]));
 
         return response()->json(['event_id' => $event->id], 200);
@@ -89,7 +90,9 @@ class EventsController extends Controller
      */
     public function destroy(string $id)
     {
-        // TODO: officer role only
+        if (auth()->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can delete events.'], 403);
+        }
         Event::destroy($id);
 
         return response()->json(['event_id' => $id], 200);

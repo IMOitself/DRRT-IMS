@@ -23,6 +23,9 @@ export default function Events() {
   // the event waiting on the confirm delete dialog
   const [deleteTarget, setDeleteTarget] = useState(null);
 
+  // the event waiting on the officer's confirm removal request dialog
+  const [requestRemoveTarget, setRequestRemoveTarget] = useState(null);
+
   // the pending event waiting on the confirm reject dialog
   const [rejectTarget, setRejectTarget] = useState(null);
 
@@ -35,6 +38,19 @@ export default function Events() {
         alert("Failed to delete event. Please try again.");
       });
     setDeleteTarget(null);
+  };
+
+  const toggleRemovalRequest = (event) => {
+    const removalRequested = !event.removal_requested;
+    api
+      .put(`/events/${event.id}`, { removal_requested: removalRequested })
+      .then(() =>
+        setEvents(
+          events.map((e) => (e.id === event.id ? { ...e, removal_requested: removalRequested } : e))
+        )
+      )
+      .catch((err) => console.error(err));
+    setRequestRemoveTarget(null);
   };
 
   const approveEvent = (event) => {
@@ -187,29 +203,29 @@ export default function Events() {
                 to={isAdviser ? `/adviser/events/${event.id}` : `/officer/events/${event.id}`}
                 attendances={attendances}
                 menu={
-                  !isAdviser && (
-                    <>
-                      <button
-                        type="button"
+                  <>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuId(menuId === event.id ? null : event.id);
+                      }}
+                      className="flex p-1 rounded-full text-subtext hover:bg-surface-container-highest cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[20px]!">more_vert</span>
+                    </button>
+                    {menuId === event.id && (
+                      <>
+                      {/* invisible backdrop: clicking outside the menu closes it */}
+                      <div
+                        className="fixed inset-0 z-10 cursor-default"
                         onClick={(e) => {
                           e.preventDefault();
-                          setMenuId(menuId === event.id ? null : event.id);
+                          setMenuId(null);
                         }}
-                        className="flex p-1 rounded-full text-subtext hover:bg-surface-container-highest cursor-pointer"
-                      >
-                        <span className="material-symbols-outlined text-[20px]!">more_vert</span>
-                      </button>
-                      {menuId === event.id && (
-                        <>
-                        {/* invisible backdrop: clicking outside the menu closes it */}
-                        <div
-                          className="fixed inset-0 z-10 cursor-default"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setMenuId(null);
-                          }}
-                        />
-                        <div className="absolute right-0 mt-1 w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-20">
+                      />
+                      <div className="absolute right-0 mt-1 w-max min-w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-20">
+                        {!isAdviser && (
                           <button
                             type="button"
                             onClick={(e) => {
@@ -221,6 +237,8 @@ export default function Events() {
                             <span className="material-symbols-outlined text-[18px]!">edit</span>
                             Edit
                           </button>
+                        )}
+                        {isAdviser ? (
                           <button
                             type="button"
                             onClick={(e) => {
@@ -228,25 +246,46 @@ export default function Events() {
                               setMenuId(null);
                               setDeleteTarget(event);
                             }}
-                            className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer"
+                            className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer whitespace-nowrap"
                           >
                             <span className="material-symbols-outlined text-[18px]!">delete</span>
                             Delete
                           </button>
-                        </div>
-                        </>
-                      )}
-                    </>
-                  )
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setMenuId(null);
+                              if (event.removal_requested) {
+                                toggleRemovalRequest(event);
+                              } else {
+                                setRequestRemoveTarget(event);
+                              }
+                            }}
+                            className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer whitespace-nowrap"
+                          >
+                            <span className="material-symbols-outlined text-[18px]!">delete</span>
+                            {event.removal_requested ? "Cancel removal request" : "Ask to remove event"}
+                          </button>
+                        )}
+                      </div>
+                      </>
+                    )}
+                  </>
                 }
               >
-                {isAdviser && Boolean(event.pending_approval) && (
+                {isAdviser && (Boolean(event.pending_approval) || Boolean(event.removal_requested)) && (
                   <div className="flex gap-3 pt-2">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.preventDefault();
-                        setRejectTarget(event);
+                        if (event.pending_approval) {
+                          setRejectTarget(event);
+                        } else {
+                          toggleRemovalRequest(event);
+                        }
                       }}
                       className="cursor-pointer flex-1 sm:flex-none bg-red text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-red transition-colors flex items-center justify-center gap-2"
                     >
@@ -257,7 +296,11 @@ export default function Events() {
                       type="button"
                       onClick={(e) => {
                         e.preventDefault();
-                        approveEvent(event);
+                        if (event.pending_approval) {
+                          approveEvent(event);
+                        } else {
+                          setDeleteTarget(event);
+                        }
                       }}
                       className="cursor-pointer flex-1 sm:flex-none bg-green text-white px-4 py-2 rounded-lg font-geist text-sm font-semibold hover:bg-green transition-colors shadow-sm flex items-center justify-center gap-2"
                     >
@@ -285,6 +328,40 @@ export default function Events() {
           </section>
         </main>
       </div>
+
+      {requestRemoveTarget && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Ask to Remove Event?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Are you sure you want to ask the adviser to remove "{requestRemoveTarget.title}"?
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setRequestRemoveTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={() => toggleRemovalRequest(requestRemoveTarget)} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">delete</span>
+                      <span>Ask to Remove</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {deleteTarget && (
         <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
