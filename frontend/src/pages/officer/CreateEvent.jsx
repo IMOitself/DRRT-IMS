@@ -146,14 +146,20 @@ export default function CreateEvent() {
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">On-Site Venue</label>
+                                        <label className="flex items-center gap-2 font-geist text-sm font-bold text-text mb-1.5">
+                                            <input type="radio" readOnly checked={Boolean(formData.venue_facetoface)} className="accent-blue" />
+                                            On-Site Venue
+                                        </label>
                                         <div className="relative">
                                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext text-[20px]!">location_on</span>
                                             <input type="text" name="venue_facetoface" value={formData.venue_facetoface} onChange={handleVenueFacetoface} placeholder="e.g. Audi Lobby" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-blue-border bg-surface text-text focus:ring-2 focus:ring-blue/30 focus:border-blue outline-none transition-all" />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block font-geist text-sm font-bold text-text mb-1.5">Online Platform</label>
+                                        <label className="flex items-center gap-2 font-geist text-sm font-bold text-text mb-1.5">
+                                            <input type="radio" readOnly checked={Boolean(formData.venue_online)} className="accent-blue" />
+                                            Online Platform
+                                        </label>
                                         <div className="grid grid-cols-2 gap-2">
                                             {[["gmeet", "Google Meet"], ["zoom", "Zoom"]].map(([value, label]) => (
                                                 <button
