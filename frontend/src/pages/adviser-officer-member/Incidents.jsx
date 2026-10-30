@@ -137,7 +137,7 @@ export default function Incidents() {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                {!isAdviser && (
+                {!isAdviser ? (
                   <Link
                     to={createIncidentPath}
                     className="flex font-geist text-xs md:text-sm bg-blue-bg text-blue border border-blue-border transition-all px-4 py-2 rounded-full font-bold shadow-sm active:scale-95 hover:bg-blue hover:text-white cursor-pointer items-center gap-1.5"
@@ -145,10 +145,11 @@ export default function Incidents() {
                     <span className="material-symbols-outlined text-[18px]!">add</span>
                     Create Incident Report
                   </Link>
+                ) : (
+                  <span className="font-geist text-xs font-bold bg-blue-bg text-blue border border-blue-border px-3 py-1.5 rounded-full">
+                    {incidents.length} Total Reports
+                  </span>
                 )}
-                <span className="font-geist text-xs font-bold bg-blue-bg text-blue border border-blue-border px-3 py-1.5 rounded-full">
-                  {incidents.length} Total Reports
-                </span>
               </div>
             </div>
           </section>
@@ -264,9 +265,8 @@ export default function Incidents() {
 
       {/* Incident Details Slide-over Drawer */}
       <aside
-        className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-160 max-w-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${
-          drawerOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-160 max-w-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between p-4 border-b border-blue-border bg-surface-container-low/40">
