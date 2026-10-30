@@ -4,14 +4,14 @@ import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import EventCard from "../../components/EventCard";
 import api from "../../api/axios";
-import { formatDate } from "../../utils/format";
+import { formatDate, getInitials } from "../../utils/format";
 
 export default function Approvals() {
   const [events, setEvents] = useState([]);
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("all_pending"); // 'all_pending', 'events', 'removals', 'approved'
+  const [activeTab, setActiveTab] = useState("all_pending"); // 'all_pending', 'events', 'removals'
 
   // Reject/Decline modal target
   const [rejectTarget, setRejectTarget] = useState(null);
@@ -31,7 +31,6 @@ export default function Approvals() {
   }, []);
 
   const pendingEvents = events.filter((e) => e.pending_approval);
-  const approvedEvents = events.filter((e) => !e.pending_approval);
   const removalRequests = applications.filter((a) => a.removal_requested);
 
   const approveEvent = (event) => {
@@ -66,20 +65,6 @@ export default function Approvals() {
       .finally(() => setActionLoading(false));
   };
 
-  const dismissRemovalRequest = (application) => {
-    api
-      .put(`/membership-applications/${application.id}`, { removal_requested: false })
-      .then(() =>
-        setApplications((prev) =>
-          prev.map((a) => (a.id === application.id ? { ...a, removal_requested: false } : a))
-        )
-      )
-      .catch((err) => {
-        console.error(err);
-        alert("Failed to dismiss removal request.");
-      });
-  };
-
   const query = searchQuery.trim().toLowerCase();
   const matchesSearch = (...fields) =>
     !query || fields.some((f) => String(f || "").toLowerCase().includes(query));
@@ -90,19 +75,13 @@ export default function Approvals() {
   const filteredRemovalRequests = removalRequests.filter((a) =>
     matchesSearch(a.full_name, a.student_id, a.course, a.email)
   );
-  const filteredApprovedEvents = approvedEvents.filter((e) =>
-    matchesSearch(e.title, e.description, e.type, formatDate(e.date))
-  );
 
   const totalPending = pendingEvents.length + removalRequests.length;
 
   const tabs = [
-    { id: "all_pending", label: "All Pending", count: totalPending, badge: "bg-blue-bg text-blue font-bold" },
-    { id: "events", label: "Pending Events", count: pendingEvents.length, badge: "bg-blue-bg text-blue font-bold" },
-    ...(removalRequests.length > 0
-      ? [{ id: "removals", label: "Member Removals", count: removalRequests.length, badge: "bg-red-bg text-red font-bold" }]
-      : []),
-    { id: "approved", label: "Approved Events History", count: approvedEvents.length, badge: "bg-surface-container-high text-subtext font-bold" },
+    { id: "all_pending", label: "All Approvals", count: totalPending, badge: "bg-blue-bg text-blue font-bold" },
+    { id: "events", label: "Created Events", count: pendingEvents.length, badge: "bg-blue-bg text-blue font-bold" },
+    { id: "removals", label: "Member Removals", count: removalRequests.length, badge: "bg-blue-bg text-blue font-bold" },
   ];
 
   return (
@@ -125,7 +104,7 @@ export default function Approvals() {
                   </h1>
                 </div>
                 <p className="text-sm text-subtext mt-1.5">
-                  Review and authorize events created by officers before they are published to members.
+                  Review and authorize created events and member removal requests submitted by officers.
                 </p>
               </div>
 
@@ -186,7 +165,7 @@ export default function Approvals() {
               <span className="material-symbols-outlined text-[36px]! animate-spin text-blue">
                 progress_activity
               </span>
-              <p className="font-geist text-sm">Loading event authorizations...</p>
+              <p className="font-geist text-sm">Loading approvals...</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -195,7 +174,7 @@ export default function Approvals() {
                 <section className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h2 className="font-geist text-base md:text-lg font-bold text-text flex items-center gap-2">
-                      <span className="material-symbols-outlined text-yellow text-[22px]!">
+                      <span className="material-symbols-outlined text-blue text-[22px]!">
                         hourglass_top
                       </span>
                       Events Awaiting Your Approval ({filteredPendingEvents.length})
@@ -253,96 +232,57 @@ export default function Approvals() {
               )}
 
               {/* Section 2: Member Removal Requests */}
-              {(activeTab === "all_pending" || activeTab === "removals") && removalRequests.length > 0 && (
-                <section className="space-y-4 pt-4">
-                  <div className="flex items-center justify-between">
-                    <h2 className="font-geist text-base md:text-lg font-bold text-text flex items-center gap-2">
-                      <span className="material-symbols-outlined text-red text-[22px]!">
-                        person_remove
-                      </span>
-                      Flagged Member Removal Requests ({filteredRemovalRequests.length})
-                    </h2>
-                  </div>
-
-                  <div className="space-y-3">
-                    {filteredRemovalRequests.map((application) => (
-                      <div
-                        key={application.id}
-                        className="bg-white border border-red-border rounded-xl p-4 md:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm"
-                      >
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <span className="font-geist text-base font-bold text-text">
-                              {application.full_name}
-                            </span>
-                            <span className="bg-red-bg text-red border border-red-border text-[11px] font-bold px-2 py-0.5 rounded-full">
-                              Removal Requested
-                            </span>
-                          </div>
-                          <p className="text-xs text-subtext">
-                            ID: {application.student_id} • {application.course} Year {application.year_level} • {application.email}
-                          </p>
-                        </div>
-
-                        <div className="flex items-center gap-2 shrink-0">
-                          <button
-                            type="button"
-                            onClick={() => dismissRemovalRequest(application)}
-                            className="bg-surface text-subtext border border-blue-border hover:bg-surface-container-highest px-3.5 py-2 rounded-lg font-geist text-xs font-semibold cursor-pointer"
-                          >
-                            Dismiss Request
-                          </button>
-                          <Link
-                            to="/adviser/members"
-                            className="bg-red text-white hover:bg-red/90 px-4 py-2 rounded-lg font-geist text-xs font-bold inline-flex items-center gap-1.5 shadow-sm"
-                          >
-                            <span className="material-symbols-outlined text-[16px]!">open_in_new</span>
-                            Audit in Roster
-                          </Link>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* Section 3: Approved Events History */}
-              {activeTab === "approved" && (
+              {(activeTab === "all_pending" || activeTab === "removals") && (
                 <section className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h2 className="font-geist text-base md:text-lg font-bold text-text flex items-center gap-2">
-                      <span className="material-symbols-outlined text-green text-[22px]!">
-                        verified
+                      <span className="material-symbols-outlined text-blue text-[22px]!">
+                        person_remove
                       </span>
-                      Approved Events History ({filteredApprovedEvents.length})
+                      Member Removal Requests ({filteredRemovalRequests.length})
                     </h2>
                   </div>
 
-                  {filteredApprovedEvents.length === 0 ? (
-                    <p className="text-sm text-subtext text-center py-6">No approved events found.</p>
+                  {filteredRemovalRequests.length === 0 ? (
+                    <div className="bg-white border border-blue-border rounded-xl p-8 text-center flex flex-col items-center justify-center gap-2 text-subtext">
+                      <span className="material-symbols-outlined text-green text-[40px]!">
+                        check_circle
+                      </span>
+                      <p className="font-geist text-base font-bold text-text">
+                        No Member Removal Requests
+                      </p>
+                      <p className="text-xs text-subtext max-w-md">
+                        No active members have been flagged for removal by officers.
+                      </p>
+                    </div>
                   ) : (
-                    <div className="space-y-3">
-                      {filteredApprovedEvents.map((event) => (
+                    <div className="space-y-2">
+                      {filteredRemovalRequests.map((application) => (
                         <Link
-                          key={event.id}
-                          to={`/adviser/events/${event.id}`}
-                          className="block bg-white border border-blue-border hover:border-blue p-4 rounded-xl shadow-sm transition-all group"
+                          key={application.id}
+                          to="/adviser/members"
+                          state={{ openMemberUserId: application.user_id }}
+                          className="member-card bg-white border border-blue-border rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-blue transition-colors cursor-pointer group"
                         >
-                          <div className="flex items-center justify-between gap-2">
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="font-geist text-xs font-bold uppercase tracking-wider bg-green/10 text-green px-2 py-0.5 rounded-full">
-                                  Approved
-                                </span>
-                                <span className="text-xs text-subtext">
-                                  {formatDate(event.date)}
-                                </span>
-                              </div>
-                              <h3 className="font-geist text-lg font-bold text-text mt-1 group-hover:text-blue transition-colors">
-                                {event.title}
-                              </h3>
+                          <div className="flex items-center gap-3 overflow-hidden">
+                            <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-blue shrink-0">
+                              {getInitials(application.full_name)}
                             </div>
-                            <span className="material-symbols-outlined text-subtext group-hover:text-blue group-hover:translate-x-1 transition-all">
+                            <div className="min-w-0">
+                              <p className="font-geist text-text truncate group-hover:text-blue transition-colors">
+                                {application.full_name}
+                              </p>
+                              <p className="text-[11px] text-subtext truncate">
+                                {application.course + " " + application.year_level}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full w-fit">
+                              <span className="bg-red w-2 h-2 rounded-full" />
+                              REMOVAL REQUESTED
+                            </span>
+                            <span className="material-symbols-outlined text-subtext text-[18px]">
                               chevron_right
                             </span>
                           </div>
@@ -357,22 +297,22 @@ export default function Approvals() {
         </main>
       </div>
 
-      {/* Decline / Reject Confirmation Dialog Modal */}
+      {/* Reject Confirmation Dialog Modal */}
       {rejectTarget && (
         <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
           <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
             <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-row gap-2 items-center">
-                  <span className="material-symbols-outlined text-red mb-1 text-[30px]!">
-                    cancel
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
                   </span>
                   <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
-                    Decline Event Submission?
+                    Reject Event?
                   </p>
                 </div>
                 <p className="font-geist text-text">
-                  Are you sure you want to decline <strong>"{rejectTarget.title}"</strong>? Declining will reject the proposal and remove it from the scheduling queue.
+                  Rejecting "{rejectTarget.title}" will delete it. This can't be undone.
                 </p>
 
                 <div className="w-full flex items-center mt-4">
@@ -392,7 +332,7 @@ export default function Approvals() {
                       className="w-full sm:w-auto bg-red text-white hover:bg-red/90 transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
                     >
                       <span className="material-symbols-outlined text-[20px]!">close</span>
-                      <span>Decline Event</span>
+                      <span>Reject</span>
                     </button>
                   </div>
                 </div>

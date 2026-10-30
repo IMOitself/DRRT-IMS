@@ -218,7 +218,7 @@ export default function Dashboard() {
             >
               <div className="flex items-center justify-between">
                 <h2 className="font-geist text-xs text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-red text-[20px]!">
+                  <span className="material-symbols-outlined text-blue text-[20px]!">
                     shield_lock
                   </span>
                   Total Incidents
@@ -273,7 +273,7 @@ export default function Dashboard() {
                     event_upcoming
                   </span>
                   <h3 className="font-geist text-lg md:text-xl font-bold text-text">
-                    Event Authorizations
+                    Created Event Approvals
                   </h3>
                 </div>
                 <Link
@@ -378,11 +378,11 @@ export default function Dashboard() {
               <section className="bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col gap-3">
                 <div className="flex items-center justify-between border-b border-blue-border/40 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-red text-[22px]!">
+                    <span className="material-symbols-outlined text-blue text-[22px]!">
                       person_remove
                     </span>
                     <h3 className="font-geist text-lg md:text-xl font-bold text-text">
-                      Flagged Member Removals
+                      Member Removals
                     </h3>
                   </div>
                   <span className="font-geist text-xs font-bold text-subtext">
@@ -406,7 +406,7 @@ export default function Dashboard() {
                     {removalRequests.slice(0, 2).map((app) => (
                       <div
                         key={app.id}
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-red-bg/40 border border-red-border/60"
+                        className="flex items-center justify-between p-2.5 rounded-lg border border-blue-border/60 bg-surface"
                       >
                         <div className="min-w-0">
                           <p className="font-geist text-sm font-bold text-text truncate">
@@ -419,9 +419,9 @@ export default function Dashboard() {
                         <Link
                           to="/adviser/members"
                           state={{ openMemberUserId: app.user_id }}
-                          className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-red text-white hover:bg-red/90 transition-colors shadow-sm shrink-0 cursor-pointer"
+                          className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue text-white hover:bg-blue/90 transition-colors shadow-sm shrink-0 cursor-pointer"
                         >
-                          Review in Roster
+                          Review
                         </Link>
                       </div>
                     ))}
@@ -433,7 +433,7 @@ export default function Dashboard() {
               <section className="bg-white border border-blue-border rounded-xl shadow-sm p-4 md:p-6 flex flex-col gap-3">
                 <div className="flex items-center justify-between border-b border-blue-border/40 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-red text-[22px]!">
+                    <span className="material-symbols-outlined text-blue text-[22px]!">
                       medical_services
                     </span>
                     <h3 className="font-geist text-lg md:text-xl font-bold text-text">
@@ -444,7 +444,7 @@ export default function Dashboard() {
                     to="/adviser/incidents"
                     className="font-geist text-xs font-semibold text-blue hover:underline inline-flex items-center gap-1"
                   >
-                    Open Vault
+                    Incident Reports
                     <span className="material-symbols-outlined text-[14px]!">
                       arrow_forward
                     </span>
@@ -577,7 +577,7 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <p className="font-geist text-text">
-                  Rejecting "{rejectTarget.title}" will delete it from the roster. This action cannot be undone.
+                  Rejecting "{rejectTarget.title}" will delete it. This action cannot be undone.
                 </p>
 
                 <div className="w-full flex items-center mt-4">
