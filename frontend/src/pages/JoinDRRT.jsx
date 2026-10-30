@@ -35,7 +35,7 @@ export default function JoinDRRT() {
                             {/* Application Roadmap Card */}
                             <article className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm">
                                 <div className="flex items-center gap-3 mb-8">
-                                    <div className="w-10 h-10 rounded-xl bg-blue-bg/10 flex items-center justify-center text-subtext shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
                                         <span className="material-symbols-outlined text-[22px]! filled-icon">
                                             route
                                         </span>
@@ -46,13 +46,12 @@ export default function JoinDRRT() {
                                 </div>
                                 {/* Timeline Steps */}
                                 <div className="relative pl-8 space-y-8">
-                                    {/* Step 1 (Current / Active) */}
+                                    {/* Step 1 */}
                                     <div className="relative">
-                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
-                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs ring-4 ring-background shadow-md">
+                                        <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             1
                                         </div>
-                                        <span className="font-geist text-xs font-bold text-blue uppercase tracking-wider">
+                                        <span className="font-geist text-xs font-semibold text-subtext uppercase tracking-wider">
                                             Step 1
                                         </span>
                                         <h3 className="font-geist text-lg font-bold text-text mt-0.5">
@@ -65,7 +64,6 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 2 */}
                                     <div className="relative">
-                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
                                         <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             2
                                         </div>
@@ -82,7 +80,6 @@ export default function JoinDRRT() {
                                     </div>
                                     {/* Step 3 */}
                                     <div className="relative">
-                                        <div className="absolute -left-6.5 top-8 -bottom-8 w-0.5 bg-blue-border/60"></div>
                                         <div className="absolute -left-10.25 top-0 w-8 h-8 rounded-full bg-surface-container-high text-subtext border border-blue-border flex items-center justify-center font-bold text-xs">
                                             3
                                         </div>
