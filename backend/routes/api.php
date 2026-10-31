@@ -71,4 +71,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/incident-reports', [IncidentReportsController::class, 'index']);
     Route::post('/incident-reports', [IncidentReportsController::class, 'store']);
+    Route::put('/incident-reports/{incidentReport}', [IncidentReportsController::class, 'update']);
+    Route::delete('/incident-reports/{incidentReport}', [IncidentReportsController::class, 'destroy']);
 });

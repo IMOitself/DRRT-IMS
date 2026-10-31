@@ -30,6 +30,9 @@ export default function Incidents() {
   const [selectedIncident, setSelectedIncident] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [menuId, setMenuId] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [requestRemoveTarget, setRequestRemoveTarget] = useState(null);
   const location = useLocation();
   const { user } = useAuth();
 
@@ -67,6 +70,37 @@ export default function Incidents() {
 
   const closeDrawer = () => {
     setDrawerOpen(false);
+  };
+
+  const toggleRemovalRequest = (incident) => {
+    const requested = !incident.removal_requested;
+    api
+      .put(`/incident-reports/${incident.id}`, { removal_requested: requested })
+      .then(() => {
+        setIncidents((prev) =>
+          prev.map((i) => (i.id === incident.id ? { ...i, removal_requested: requested } : i))
+        );
+        if (selectedIncident?.id === incident.id) {
+          setSelectedIncident((prev) => ({ ...prev, removal_requested: requested }));
+        }
+        setRequestRemoveTarget(null);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const deleteIncident = () => {
+    if (!deleteTarget) return;
+    api
+      .delete(`/incident-reports/${deleteTarget.id}`)
+      .then(() => {
+        setIncidents((prev) => prev.filter((i) => i.id !== deleteTarget.id));
+        if (selectedIncident?.id === deleteTarget.id) closeDrawer();
+        setDeleteTarget(null);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to delete incident report. Please try again.");
+      });
   };
 
   // Close drawer on Esc key
@@ -207,6 +241,12 @@ export default function Incidents() {
                           ({incident.age} yrs old)
                         </span>
                       )}
+                      {Boolean(incident.removal_requested) && (
+                        <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full text-xs w-fit">
+                          <span className="bg-red w-2 h-2 rounded-full" />
+                          Removal Requested
+                        </span>
+                      )}
                     </div>
                     <p className="text-xs text-subtext truncate">
                       <span className="font-medium text-text">
@@ -230,9 +270,63 @@ export default function Incidents() {
                     </span>
                     View Report
                   </span>
-                  <span className="material-symbols-outlined text-subtext group-hover:text-blue transition-colors text-[20px]!">
-                    chevron_right
-                  </span>
+                  <div className="relative" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuId(menuId === incident.id ? null : incident.id);
+                      }}
+                      className="flex p-1 rounded-full text-subtext hover:bg-surface-container-highest cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[20px]!">more_vert</span>
+                    </button>
+                    {menuId === incident.id && (
+                      <>
+                        {/* invisible backdrop: clicking outside the menu closes it */}
+                        <div
+                          className="fixed inset-0 z-10 cursor-default"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setMenuId(null);
+                          }}
+                        />
+                        <div className="absolute right-0 mt-1 w-max min-w-32 bg-white border border-blue-border rounded-xl shadow-md overflow-hidden z-20">
+                          {isAdviser ? (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMenuId(null);
+                                setDeleteTarget(incident);
+                              }}
+                              className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer whitespace-nowrap"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">delete</span>
+                              Delete
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMenuId(null);
+                                if (incident.removal_requested) {
+                                  toggleRemovalRequest(incident);
+                                } else {
+                                  setRequestRemoveTarget(incident);
+                                }
+                              }}
+                              className="w-full flex items-center gap-2 px-3 py-2 font-geist text-sm font-semibold text-red hover:bg-surface-container-highest cursor-pointer whitespace-nowrap"
+                            >
+                              <span className="material-symbols-outlined text-[18px]!">delete</span>
+                              {incident.removal_requested ? "Cancel removal request" : "Ask to remove incident report"}
+                            </button>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -296,6 +390,35 @@ export default function Incidents() {
         {/* Drawer Content */}
         {selectedIncident && (
           <div className="grow overflow-y-auto p-5 md:p-6 space-y-6">
+            {Boolean(selectedIncident.removal_requested) && (
+              <div className="flex flex-col items-center gap-2">
+                <span className="bg-red-bg text-red inline-flex items-center gap-1.5 font-geist font-semibold px-2.5 py-0.5 rounded-full text-xs w-fit">
+                  <span className="bg-red w-2 h-2 rounded-full" />
+                  REMOVAL REQUESTED
+                </span>
+                {isAdviser && (
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => toggleRemovalRequest(selectedIncident)}
+                      className="cursor-pointer bg-red text-white px-4 py-1.5 rounded-lg font-geist text-sm font-semibold hover:bg-red/90 transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[18px]!">close</span>
+                      Reject
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDeleteTarget(selectedIncident)}
+                      className="cursor-pointer bg-green text-white px-4 py-1.5 rounded-lg font-geist text-sm font-semibold hover:bg-green/90 transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[18px]!">check</span>
+                      Approve
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Section 1: Patient Demographics */}
             <section className="bg-surface rounded-xl p-4 border border-blue-border/70 space-y-3">
               <h4 className="font-geist text-xs font-bold uppercase tracking-wider text-blue flex items-center gap-1.5">
@@ -462,6 +585,74 @@ export default function Incidents() {
           </div>
         )}
       </aside>
+
+      {requestRemoveTarget && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Ask to Remove Incident Report?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Are you sure you want to ask the adviser to remove the incident report for "{requestRemoveTarget.name || "Unnamed Patient"}"?
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setRequestRemoveTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={() => toggleRemovalRequest(requestRemoveTarget)} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">delete</span>
+                      <span>Ask to Remove</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {deleteTarget && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-text/20 p-4">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="glass-bg border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-row gap-2 items-center">
+                  <span className="material-symbols-outlined text-yellow mb-1 text-[30px]!">
+                    warning
+                  </span>
+                  <p className="w-fit font-geist text-lg font-semibold text-text mb-1">
+                    Delete Incident Report?
+                  </p>
+                </div>
+                <p className="font-geist text-text">
+                  Deleting the incident report for "{deleteTarget.name || "Unnamed Patient"}" can't be undone.
+                </p>
+
+                <div className="w-full flex items-center mt-4">
+                  <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                    <button onClick={() => setDeleteTarget(null)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
+                      Cancel
+                    </button>
+                    <button onClick={deleteIncident} className="w-full sm:w-auto bg-red text-white hover:bg-red transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer">
+                      <span className="material-symbols-outlined text-[20px]!">delete</span>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </>

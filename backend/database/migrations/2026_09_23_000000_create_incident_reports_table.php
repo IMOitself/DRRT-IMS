@@ -45,6 +45,7 @@ return new class extends Migration
             $table->text('treatment')->nullable();
             $table->string('team_leader')->nullable();
             $table->string('endorsed_to')->nullable();
+            $table->boolean('removal_requested')->default(false);
 
             $table->timestamps();
         });

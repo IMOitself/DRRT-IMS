@@ -34,4 +34,22 @@ class IncidentReportsController extends Controller
 
         return response()->json(['incident_report_id' => $incidentReport->id], 201);
     }
+
+    public function update(Request $request, IncidentReport $incidentReport)
+    {
+        $incidentReport->update($request->only(['removal_requested']));
+
+        return response()->json($incidentReport, 200);
+    }
+
+    public function destroy(IncidentReport $incidentReport)
+    {
+        if (auth()->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can delete incident reports.'], 403);
+        }
+
+        $incidentReport->delete();
+
+        return response()->json(['incident_report_id' => $incidentReport->id], 200);
+    }
 }
