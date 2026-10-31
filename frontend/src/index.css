@@ -120,3 +120,12 @@ body {
 .bottom-nav-container {
   @apply lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-2 py-2.5 bg-surface border-t border-blue-border shadow-lg;
 }
+
+
+* {
+  scrollbar-color: var(--color-blue-border) transparent;
+}
+
+body:has(aside.translate-x-0) {
+  overflow: hidden;
+}

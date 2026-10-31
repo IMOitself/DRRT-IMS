@@ -311,7 +311,7 @@ export default function EventAttendance() {
 
 
       {/* Attendance Details Drawer */}
-      <aside className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <aside className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-100 bg-white transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         {/* Drawer Header */}
         <div className="flex items-center justify-between p-4 border-b border-blue-border">
           <h3 className="font-geist text-lg font-bold text-text m-0">
@@ -626,7 +626,7 @@ function AttendanceList({ isAdviser, loading, members, getStatus, getTimein, wan
   const pillClassName = (filter) =>
     `shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
       memberFilter === filter && !searchQuery.trim()
-        ? "bg-blue text-white shadow-sm"
+        ? "bg-blue text-white"
         : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
     }`;
 

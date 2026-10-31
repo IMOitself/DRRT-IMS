@@ -265,7 +265,7 @@ export default function Incidents() {
 
       {/* Incident Details Slide-over Drawer */}
       <aside
-        className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-160 max-w-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? "translate-x-0" : "translate-x-full"
+        className={`glass-bg fixed inset-y-0 right-0 z-70 w-full md:w-160 max-w-full bg-white transform transition-transform duration-300 ease-in-out border-l border-blue-border flex flex-col ${drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         {/* Drawer Header */}
