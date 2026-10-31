@@ -192,45 +192,51 @@ export default function Dashboard() {
                         </div>
 
                         <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
-                            <div>
-                                <div className="flex justify-between items-start mb-1">
+                            <div className="space-y-2">
+                                <div className="flex justify-between items-center gap-2">
                                     <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
                                         <span className="material-symbols-outlined text-blue text-[20px]!">
                                             event_upcoming
                                         </span>{" "}
                                         Upcoming Event
                                     </h2>
+                                    {upcomingEvent?.type && (
+                                        <span className="font-geist text-xs font-semibold text-blue bg-blue-bg px-2.5 py-0.5 rounded-full capitalize">
+                                            {upcomingEvent.type}
+                                        </span>
+                                    )}
                                 </div>
-                                <h3 className="text-sm text-subtext mt-1">
+                                <h3 className={upcomingEvent ? "font-geist text-xl font-bold text-text truncate" : "text-sm text-subtext"}>
                                     {upcomingEvent === undefined
                                         ? "Loading..."
                                         : upcomingEvent
                                             ? upcomingEvent.title
                                             : "No upcoming event."}
                                 </h3>
-                                {upcomingEvent &&
-                                    <p className="text-base text-subtext flex items-center gap-1.5 mt-1">
-                                        <span className="material-symbols-outlined text-[18px]!">
-                                            schedule
-                                        </span>{" "}
-
-                                        `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}`
-                                    </p>
-                                }
+                                {upcomingEvent && (
+                                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-subtext font-semibold">
+                                        <span className="flex items-center gap-1.5">
+                                            <span className="material-symbols-outlined text-blue text-[16px]!">calendar_today</span>
+                                            {formatDate(upcomingEvent.date)}
+                                            {upcomingEvent.time_hour && ` • ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}`}
+                                        </span>
+                                        {(upcomingEvent.venue_facetoface || upcomingEvent.venue_online) && (
+                                            <span className="flex items-center gap-1.5 uppercase">
+                                                <span className="material-symbols-outlined text-blue text-[16px]!">
+                                                    {upcomingEvent.venue_online ? "videocam" : "location_on"}
+                                                </span>
+                                                {upcomingEvent.venue_facetoface || upcomingEvent.venue_online}
+                                            </span>
+                                        )}
+                                        {upcomingEvent.participants && (
+                                            <span className="flex items-center gap-1.5">
+                                                <span className="material-symbols-outlined text-blue text-[16px]!">people</span>
+                                                {upcomingEvent.participants}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
                             </div>
-                            {upcomingEvent ? (
-                                <a
-                                    href={googleCalendarUrl(upcomingEvent)}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full mt-4 bg-surface-container-low border border-blue-border text-text h-10 rounded-lg font-geist text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors font-semibold"
-                                >
-                                    <span className="material-symbols-outlined text-[18px]!">
-                                        calendar_add_on
-                                    </span>{" "}
-                                    Add to Google Calendar
-                                </a>
-                            ) : null}
                         </div>
                     </div>
 
