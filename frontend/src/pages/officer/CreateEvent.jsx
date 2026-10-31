@@ -31,7 +31,13 @@ export default function CreateEvent() {
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        let { name, value } = e.target;
+        if (name === "time_hour" || name === "time_minute") {
+            value = value.replace(/\D/g, "");
+            const max = name === "time_hour" ? 12 : 59;
+            if (value !== "" && Number(value) > max) value = String(max);
+        }
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleVenueOnline = (platform) =>
@@ -50,7 +56,12 @@ export default function CreateEvent() {
 
     // time fields are always 2 digits
     const handleTimeMakeSure2Digits = (e) =>
-        setFormData({ ...formData, [e.target.name]: e.target.value.padStart(2, "0") });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+                ? String(Math.min(e.target.name === "time_hour" ? 12 : 59, Math.max(e.target.name === "time_hour" ? 1 : 0, Number(e.target.value)))).padStart(2, "0")
+                : "",
+        });
 
     const handleSubmit = async (e) => {
         e.preventDefault();

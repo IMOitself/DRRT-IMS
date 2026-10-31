@@ -22,11 +22,24 @@ export default function Attendance() {
         timein_ampm: "AM",
     };
     const [formData, setFormData] = useState(initialFormData);
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (e) => {
+        let { name, value } = e.target;
+        if (name === "timein_hour" || name === "timein_minute") {
+            value = value.replace(/\D/g, "");
+            const max = name === "timein_hour" ? 12 : 59;
+            if (value !== "" && Number(value) > max) value = String(max);
+        }
+        setFormData({ ...formData, [name]: value });
+    };
 
     // time fields are always 2 digits
     const handleTimeMakeSure2Digits = (e) =>
-        setFormData({ ...formData, [e.target.name]: e.target.value.padStart(2, "0") });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+                ? String(Math.min(e.target.name === "timein_hour" ? 12 : 59, Math.max(e.target.name === "timein_hour" ? 1 : 0, Number(e.target.value)))).padStart(2, "0")
+                : "",
+        });
 
     const [isPresentAttendanceDialogOpen, setIsPresentAttendanceDialogOpen] = useState(false);
     const [isAbsentAttendanceDialogOpen, setIsAbsentAttendanceDialogOpen] = useState(false);
