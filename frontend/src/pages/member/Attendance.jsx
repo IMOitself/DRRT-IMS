@@ -23,7 +23,26 @@ export default function Attendance() {
     };
     const [formData, setFormData] = useState(initialFormData);
     const handleChange = (e) => {
-        let { name, value } = e.target;
+        let { name, value, type, files } = e.target;
+        if (type === "file") {
+            const file = files?.[0];
+            if (!file) return setFormData((prev) => ({ ...prev, [name]: null }));
+            const reader = new FileReader();
+            reader.onload = () => {
+                const img = new Image();
+                img.onload = () => {
+                    const scale = Math.min(1, 1024 / Math.max(img.width, img.height));
+                    const canvas = document.createElement("canvas");
+                    canvas.width = img.width * scale;
+                    canvas.height = img.height * scale;
+                    canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+                    setFormData((prev) => ({ ...prev, [name]: canvas.toDataURL("image/jpeg", 0.8) }));
+                };
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+            return;
+        }
         if (name === "timein_hour" || name === "timein_minute") {
             value = value.replace(/\D/g, "");
             const max = name === "timein_hour" ? 12 : 59;
@@ -100,7 +119,7 @@ export default function Attendance() {
         api
             .post("/attendances", formData)
             .then((res) => {
-                console.log(res);
+                return api.get("/attendances").then((r) => setAttendances(r.data));
             })
             .catch((err) => console.error(err));
 
@@ -481,7 +500,7 @@ export default function Attendance() {
                                 type="file"
                                 name="proof_of_attendance"
                                 onChange={handleChange}
-                                // required
+                                required
                                 accept=".pdf,.png,.jpg,.jpeg"
                                 className="block w-full text-sm text-subtext file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-geist file:font-bold file:bg-blue/10 file:text-blue hover:file:bg-blue/20 file:transition-all cursor-pointer border border-blue-border rounded-xl p-1"
                             />

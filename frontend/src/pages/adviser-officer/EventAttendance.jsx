@@ -379,9 +379,11 @@ export default function EventAttendance() {
                     </div>
                     {selectedAttendance.proof_of_attendance && (
                       <div className="bg-surface-container-low border border-blue-border rounded-lg p-3 text-center">
-                        <p className="font-geist text-lg text-blue font-bold m-0 wrap-break-word">
-                          {selectedAttendance.proof_of_attendance}
-                        </p>
+                        <img
+                          src={selectedAttendance.proof_of_attendance}
+                          alt="Proof of Attendance"
+                          className="w-full max-h-64 object-contain rounded-lg mx-auto"
+                        />
                         <p className="font-geist text-xs text-subtext mt-1">
                           Proof of Attendance
                         </p>
