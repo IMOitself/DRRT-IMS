@@ -1,6 +1,8 @@
 import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import JoinDRRT from './pages/JoinDRRT';
 import JoinDRRTForm from './pages/JoinDRRTForm';
@@ -39,46 +41,49 @@ function App() {
   }, [pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<PasswordForgot />} />
-      <Route path="/join" element={<JoinDRRT />} />
-      <Route path="/join-form" element={<JoinDRRTForm />} />
-      <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<PasswordForgot />} />
+        <Route path="/join" element={<JoinDRRT />} />
+        <Route path="/join-form" element={<JoinDRRTForm />} />
+        <Route path="/join-form/:id" element={<JoinDRRTFormStatus />} />
 
-      <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
-        <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
-        <Route path="/adviser/approvals" element={<AdviserApprovals />} />
-        <Route path="/adviser/events" element={<AdviserEvents />} />
-        <Route path="/adviser/events/:id" element={<AdviserEventAttendance />} />
-        <Route path="/adviser/members" element={<AdviserMembers />} />
-        <Route path="/adviser/incidents" element={<AdviserIncidents />} />
-      </Route>
+        <Route element={<ProtectedRoute allowedRoles={['adviser']} />}>
+          <Route path="/adviser/dashboard" element={<AdviserDashboard />} />
+          <Route path="/adviser/approvals" element={<AdviserApprovals />} />
+          <Route path="/adviser/events" element={<AdviserEvents />} />
+          <Route path="/adviser/events/:id" element={<AdviserEventAttendance />} />
+          <Route path="/adviser/members" element={<AdviserMembers />} />
+          <Route path="/adviser/incidents" element={<AdviserIncidents />} />
+        </Route>
 
-      <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
-        <Route path="/officer/dashboard" element={<OfficerDashboard />} />
-        <Route path="/officer/events" element={<OfficerEvents />} />
-        <Route path="/officer/events/:id" element={<OfficerEventAttendance />} />
-        <Route path="/officer/members" element={<OfficerMembers />} />
-        <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
-        <Route path="/officer/incidents" element={<OfficerIncidents />} />
-        <Route path="/officer/create-incident" element={<MemberCreateIncident />} />
-      </Route>
+        <Route element={<ProtectedRoute allowedRoles={['officer']} />}>
+          <Route path="/officer/dashboard" element={<OfficerDashboard />} />
+          <Route path="/officer/events" element={<OfficerEvents />} />
+          <Route path="/officer/events/:id" element={<OfficerEventAttendance />} />
+          <Route path="/officer/members" element={<OfficerMembers />} />
+          <Route path="/officer/create-event" element={<OfficerCreateEvent />} />
+          <Route path="/officer/incidents" element={<OfficerIncidents />} />
+          <Route path="/officer/create-incident" element={<MemberCreateIncident />} />
+        </Route>
 
-      <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />} />
-      </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
-      {/* officers are members too, so they can switch to the member pages */}
-      <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
-        <Route path="/member/dashboard" element={<MemberDashboard />} />
-        <Route path="/member/attendance" element={<MemberAttendance />} />
-        <Route path="/member/incidents" element={<MemberIncidents />} />
-        <Route path="/member/create-incident" element={<MemberCreateIncident />} />
-      </Route>
-    </Routes>
+        {/* officers are members too, so they can switch to the member pages */}
+        <Route element={<ProtectedRoute allowedRoles={['member', 'officer']} />}>
+          <Route path="/member/dashboard" element={<MemberDashboard />} />
+          <Route path="/member/attendance" element={<MemberAttendance />} />
+          <Route path="/member/incidents" element={<MemberIncidents />} />
+          <Route path="/member/create-incident" element={<MemberCreateIncident />} />
+        </Route>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 }
 
