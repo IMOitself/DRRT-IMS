@@ -44,7 +44,10 @@ export default function JoinDRRTForm() {
         });
     };
 
+    const isSamePhone = Boolean(formData.phone_number && formData.phone_number === formData.emergency_phone);
+
     const handleSubmit = (e) => {
+        if (isSamePhone) return e.preventDefault();
         e.preventDefault();
 
         api
@@ -325,6 +328,7 @@ export default function JoinDRRTForm() {
                                         required
                                         pattern="[0-9]{11}"
                                         title="Emergency contact person's number for example: 09123456789 (11 digits)"
+                                        ref={(el) => el?.setCustomValidity(isSamePhone ? "Emergency contact number cannot be the same as your personal number." : "")}
                                         placeholder="09123456789"
                                         className="w-full px-4 py-2.5 rounded-xl border border-blue-border bg-white text-text focus:ring-1 focus:ring-blue outline-none transition-all"
                                     />
