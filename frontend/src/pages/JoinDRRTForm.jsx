@@ -46,6 +46,13 @@ export default function JoinDRRTForm() {
 
     const isSamePhone = Boolean(formData.phone_number && formData.phone_number === formData.emergency_phone);
     const [isDataPrivacyDialogOpen, setIsDataPrivacyDialogOpen] = useState(false);
+    const [hasScrolledPrivacy, setHasScrolledPrivacy] = useState(false);
+    const [agreedDataPrivacy, setAgreedDataPrivacy] = useState(false);
+
+    const openDataPrivacyDialog = () => {
+        setHasScrolledPrivacy(false);
+        setIsDataPrivacyDialogOpen(true);
+    };
 
     const handleSubmit = (e) => {
         if (isSamePhone) return e.preventDefault();
@@ -351,11 +358,12 @@ export default function JoinDRRTForm() {
                             <div className="space-y-3">
                                 <label className="flex items-start gap-3 cursor-pointer">
                                     <input
-                                        onChange={handleChange}
+                                        checked={agreedDataPrivacy}
+                                        onChange={() => (agreedDataPrivacy ? setAgreedDataPrivacy(false) : openDataPrivacyDialog())}
                                         type="checkbox"
                                         name="agreed_data_privacy"
                                         required
-                                        className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md"
+                                        className="mt-1 w-5 h-5 border-blue-border text-blue focus:ring-blue rounded-md cursor-pointer"
                                     />
                                     <span className="text-sm text-text leading-relaxed">
                                         I have read and understood the{" "}
@@ -363,7 +371,7 @@ export default function JoinDRRTForm() {
                                             type="button"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                setIsDataPrivacyDialogOpen(true);
+                                                openDataPrivacyDialog();
                                             }}
                                             className="font-bold text-blue hover:underline cursor-pointer"
                                         >
@@ -403,7 +411,15 @@ export default function JoinDRRTForm() {
                                         Data Privacy Agreement
                                     </p>
                                 </div>
-                                <div className="mt-2 space-y-3 max-h-[55vh] overflow-y-auto pr-2 font-geist text-sm text-text">
+                                <div
+                                    onScroll={(e) => {
+                                        const el = e.currentTarget;
+                                        if (el.scrollHeight - el.scrollTop - el.clientHeight <= 8) {
+                                            setHasScrolledPrivacy(true);
+                                        }
+                                    }}
+                                    className="mt-2 space-y-3 max-h-[55vh] overflow-y-auto pr-2 font-geist text-sm text-text"
+                                >
                                     <div className="space-y-0.5 text-xs text-subtext font-semibold">
                                         <p className="text-text font-bold">Disaster Response and Rescue Team Information Management System (DRRT-IMS)</p>
                                         <p>La Verdad Christian College – Apalit Chapter</p>
@@ -471,12 +487,24 @@ export default function JoinDRRTForm() {
                                     <p>For questions, concerns, or requests regarding your personal information, please contact the DRRT's designated privacy representative through the official contact information provided by the organization.</p>
 
                                     <h3 className="font-bold text-text pt-1">10. Acknowledgment and Consent</h3>
-                                    <p>By selecting <strong>"I Agree"</strong>, you confirm that you have read and understood this Data Privacy Agreement.</p>
+                                    <p>By selecting <strong>"Agree"</strong>, you confirm that you have read and understood this Data Privacy Agreement.</p>
                                     <p>Where consent is the applicable lawful basis, you voluntarily agree to the collection and processing of your personal information for the specific purposes described above. Processing that relies on another lawful basis will be handled in accordance with applicable law.</p>
                                 </div>
 
                                 <div className="w-full flex items-center mt-4">
-                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-end gap-2">
+                                    <div className="flex flex-col sm:flex-row flex-1 items-center justify-between gap-2">
+                                        <button
+                                            type="button"
+                                            title={!hasScrolledPrivacy ? "Please scroll to the bottom to enable this button" : undefined}
+                                            onClick={() => {
+                                                if (!hasScrolledPrivacy) return;
+                                                setAgreedDataPrivacy(true);
+                                                setIsDataPrivacyDialogOpen(false);
+                                            }}
+                                            className={`w-full sm:w-auto bg-blue text-white transition-all font-geist font-bold px-6 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 ${hasScrolledPrivacy ? "hover:bg-blue/90 active:scale-[0.98] cursor-pointer" : "opacity-50 cursor-not-allowed"}`}
+                                        >
+                                            <span>Agree</span>
+                                        </button>
                                         <button type="button" onClick={() => setIsDataPrivacyDialogOpen(false)} className="flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-xl border border-blue-border text-subtext font-geist font-bold hover:bg-surface-container-highest transition-all cursor-pointer">
                                             Close
                                         </button>
