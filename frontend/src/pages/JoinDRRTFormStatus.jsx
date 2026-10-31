@@ -3,6 +3,7 @@ import BottomNav from '../components/BottomNav';
 import { useParams, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { toast } from "react-toastify";
 
 export default function JoinDRRTFormStatus() {
     const { id } = useParams();
@@ -32,7 +33,7 @@ export default function JoinDRRTFormStatus() {
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
-            console.error("Failed to copy:", err);
+            toast.error("Failed to copy: " + (err?.message || err));
         }
     };
 
@@ -42,7 +43,7 @@ export default function JoinDRRTFormStatus() {
             .then((res) => setApplication(res.data))
             .catch((err) => {
                 if (err.response?.status === 403) setForbidden(true);
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to load application");
             });
     }, [id, token]);
 

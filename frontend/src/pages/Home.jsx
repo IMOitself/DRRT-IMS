@@ -27,7 +27,7 @@ export default function Home() {
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
-            console.error("Failed to copy:", err);
+            toast.error("Failed to copy to clipboard");
         }
     };
 
@@ -44,7 +44,7 @@ export default function Home() {
                 );
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to load events");
             })
             .finally(() => setLoading(false));
 

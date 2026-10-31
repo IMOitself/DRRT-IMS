@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
 import api from "../../api/axios";
@@ -121,7 +122,7 @@ export default function Attendance() {
             .then((res) => {
                 return api.get("/attendances").then((r) => setAttendances(r.data));
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process attendance"));
 
         api
             .get("/attendances")
@@ -129,7 +130,7 @@ export default function Attendance() {
                 setAttendances(res.data);
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to process attendance");
             });
 
         setIsConfirmSaveDialogOpen(false);
@@ -141,7 +142,7 @@ export default function Attendance() {
             .put(`/attendances/${attendanceId}/correction-request`)
             .then(() => api.get("/attendances"))
             .then((res) => setAttendances(res.data))
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process attendance"));
     }
 
     useEffect(() => {
@@ -152,17 +153,17 @@ export default function Attendance() {
                 setLoading(false);
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to process attendance");
             });
 
         api
             .get("/attendances")
             .then((res) => {
                 setAttendances(res.data);
-                console.log(res.data)
+                toast.info("Attendance records updated")
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to process attendance");
             });
     }, [user]);
 

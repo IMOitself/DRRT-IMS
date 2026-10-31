@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import { toast } from "react-toastify";
 import BottomNav from "../../components/BottomNav";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
@@ -20,28 +21,28 @@ export default function Dashboard() {
     api
       .get("/members")
       .then((res) => setMembers(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading data"));
 
     api
       .get("/events", { params: { all: 1 } })
       .then((res) => setEvents(res.data))
       .finally(() => setLoading(false))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading data"));
 
     api
       .get("/attendances", { params: { all: 1 } })
       .then((res) => setAttendances(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading data"));
 
     api
       .get("/membership-applications")
       .then((res) => setMemberApplications(res.data.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading data"));
 
     api
       .get("/incident-reports")
       .then((res) => setIncidentReports(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading data"));
   }, []);
 
   const eventStartDate = (event) => {
@@ -68,7 +69,7 @@ export default function Dashboard() {
         );
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to approve event. Please try again.");
       });
   };
@@ -82,7 +83,7 @@ export default function Dashboard() {
         setRejectTarget(null);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to reject event. Please try again.");
       });
   };

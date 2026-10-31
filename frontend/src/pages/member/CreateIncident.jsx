@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import Header from "../../components/Header";
@@ -62,8 +63,7 @@ export default function CreateIncident() {
       await api.post("/incident-reports", new FormData(formRef.current));
       navigate(incidentsPath);
     } catch (error) {
-      console.error(error);
-      alert("Failed to submit incident report.");
+      toast.error(error?.response?.data?.message || "Failed to submit incident report.");
       setIsConfirmSubmitDialogOpen(false);
     }
   };

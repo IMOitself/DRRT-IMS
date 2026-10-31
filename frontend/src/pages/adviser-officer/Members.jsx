@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
@@ -93,7 +94,7 @@ export default function Members() {
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
-            console.error("Failed to copy:", err);
+            toast.error("Failed to copy: " + (err?.message || err));
         }
     };
 
@@ -133,18 +134,18 @@ export default function Members() {
                 const application = res.data.data.find((ma) => ma.user_id === openMemberUserId);
                 if (openMemberUserId && application) openDrawer(application);
             })
-            .catch((err) => console.error(err))
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"))
             .finally(() => setLoading(false));
 
         api
             .get("/events")
             .then((res) => setEvents(res.data))
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
 
         api
             .get("/attendances", { params: { all: 1 } })
             .then((res) => setAttendances(res.data))
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     }, []);
 
     const hasEventStarted = (event) => {
@@ -191,7 +192,7 @@ export default function Members() {
                 );
                 setMemberApplications(updatedList);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     // keeps the application so they can be unmarked later
@@ -207,7 +208,7 @@ export default function Members() {
                 ));
                 setIsConfirmGraduateDialogOpen(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     const toggleRemovalRequest = () => {
@@ -220,7 +221,7 @@ export default function Members() {
                     app.id === selectedMemberApplication.id ? { ...app, removal_requested: removalRequested } : app
                 ));
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     const promoteToOfficer = () => {
@@ -233,7 +234,7 @@ export default function Members() {
                 ));
                 setIsConfirmPromoteDialogOpen(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     const removeOfficerRole = () => {
@@ -246,7 +247,7 @@ export default function Members() {
                 ));
                 setIsConfirmRemoveOfficerDialogOpen(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     const hasIncidentAccess = (app) =>
@@ -263,7 +264,7 @@ export default function Members() {
                 ));
                 setIsConfirmIncidentAccessDialogOpen(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     // deletes both the application and the member's account
@@ -275,7 +276,7 @@ export default function Members() {
                 setIsConfirmRemoveDialogOpen(false);
                 closeDrawer();
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     const toggleSelectedForDelete = (id) => {
@@ -294,7 +295,7 @@ export default function Members() {
                 setIsConfirmDeleteDialogOpen(false);
                 if (selectedMemberApplication && selectedForDelete.includes(selectedMemberApplication.id)) closeDrawer();
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err?.response?.data?.message || "Failed to process member request"));
     };
 
     return (

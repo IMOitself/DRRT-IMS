@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
@@ -34,7 +35,7 @@ export default function Register() {
           }
         })
         .catch((err) => {
-          console.error("Failed to load application details:", err);
+          toast.error("Failed to load application details");
         });
     }
   }, [applicationId, token]);

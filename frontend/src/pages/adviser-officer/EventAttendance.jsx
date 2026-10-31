@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import { toast } from "react-toastify";
 import BottomNav from "../../components/BottomNav";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -87,7 +88,7 @@ export default function EventAttendance() {
       if (attendance) await api.delete(`/attendances/${attendance.id}`);
       setAttendances(attendances.filter((a) => a.id !== attendance?.id));
     } catch (err) {
-      console.error(err);
+      toast.error(err?.response?.data?.message || "An error occurred");
     }
 
     // drop the pending change too, there is nothing left to save
@@ -107,7 +108,7 @@ export default function EventAttendance() {
       setAttendances(res.data.filter((a) => a.event_id === eventId));
       setUnsavedChanges({});
     } catch (err) {
-      console.error(err);
+      toast.error(err?.response?.data?.message || "An error occurred");
     }
 
     setIsConfirmSaveDialogOpen(false);
@@ -128,7 +129,7 @@ export default function EventAttendance() {
         setEvent(res.data.find((e) => e.id === eventId));
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
       });
 
     api
@@ -137,7 +138,7 @@ export default function EventAttendance() {
         setAttendances(res.data.filter((a) => a.event_id === eventId));
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
       });
 
     api
@@ -146,7 +147,7 @@ export default function EventAttendance() {
         setMembers(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
       })
       .finally(() => setLoading(false));
 

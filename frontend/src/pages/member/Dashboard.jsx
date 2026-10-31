@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import { toast } from "react-toastify";
 import BottomNav from "../../components/BottomNav";
 import EventCard from "../../components/EventCard";
 import { useEffect, useState } from "react";
@@ -28,7 +29,7 @@ export default function Dashboard() {
                 setEvents(res.data.reverse());
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to load dashboard data");
                 setUpcomingEvent(null);
             });
 
@@ -38,7 +39,7 @@ export default function Dashboard() {
                 setAttendances(res.data);
             })
             .catch((err) => {
-                console.error(err);
+                toast.error(err?.response?.data?.message || "Failed to load dashboard data");
             });
     }, [])
 

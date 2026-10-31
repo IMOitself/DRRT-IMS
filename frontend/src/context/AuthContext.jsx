@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../api/axios";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
@@ -39,7 +40,7 @@ export function AuthProvider({ children }) {
                 const res = await api.get("/user");
                 setUser(res.data);
             } catch (err) {
-                console.error("Failed to fetch full user profile:", err);
+                toast.error(err?.response?.data?.message || "Failed to fetch full user profile");
             }
         }
     };
@@ -48,7 +49,7 @@ export function AuthProvider({ children }) {
         try {
             await api.post("/logout");
         } catch (err) {
-            console.error("Logout error:", err);
+            toast.error(err?.response?.data?.message || "Logout error");
         } finally {
             localStorage.removeItem("token");
             setUser(null);

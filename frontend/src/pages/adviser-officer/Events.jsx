@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import { toast } from "react-toastify";
 import BottomNav from "../../components/BottomNav";
 import EventCard from "../../components/EventCard";
 import { useState, useEffect } from "react";
@@ -34,7 +35,7 @@ export default function Events() {
       .delete(`/events/${deleteTarget.id}`)
       .then(() => setEvents(events.filter((e) => e.id !== deleteTarget.id)))
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
         alert("Failed to delete event. Please try again.");
       });
     setDeleteTarget(null);
@@ -49,7 +50,7 @@ export default function Events() {
           events.map((e) => (e.id === event.id ? { ...e, removal_requested: removalRequested } : e))
         )
       )
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "An error occurred"));
     setRequestRemoveTarget(null);
   };
 
@@ -60,7 +61,7 @@ export default function Events() {
         setEvents(events.map((e) => (e.id === event.id ? { ...e, pending_approval: false } : e)))
       )
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
         alert("Failed to approve event. Please try again.");
       });
   };
@@ -71,7 +72,7 @@ export default function Events() {
       .delete(`/events/${rejectTarget.id}`)
       .then(() => setEvents(events.filter((e) => e.id !== rejectTarget.id)))
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
         alert("Failed to reject event. Please try again.");
       });
     setRejectTarget(null);
@@ -118,7 +119,7 @@ export default function Events() {
         setEvents(res.data.reverse());
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
       })
       .finally(() => setLoading(false));
 
@@ -128,7 +129,7 @@ export default function Events() {
         setAttendances(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "An error occurred");
       });
 
   }, []);

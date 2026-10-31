@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import api from "../../api/axios";
 import Header from "../../components/Header";
@@ -72,7 +73,7 @@ export default function CreateEvent() {
             else await api.post("/events", formData);
             navigate("/officer/events");
         } catch (err) {
-            console.error(err);
+            toast.error(err?.response?.data?.message || `Failed to ${editEvent ? "save" : "create"} event.`);
             alert(`Failed to ${editEvent ? "save" : "create"} event. Please try again.`);
             setIsSubmitting(false);
         }

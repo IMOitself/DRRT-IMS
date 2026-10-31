@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import { toast } from "react-toastify";
 import BottomNav from "../../components/BottomNav";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
@@ -19,23 +20,23 @@ export default function Dashboard() {
     api
       .get("/members")
       .then((res) => setMembers(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to load dashboard data"));
 
     api
       .get("/events")
       .then((res) => setEvents(res.data))
       .finally(() => setLoading(false))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to load dashboard data"));
 
     api
       .get("/attendances", { params: { all: 1 } })
       .then((res) => setAttendances(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to load dashboard data"));
 
     api
       .get("/membership-applications")
       .then((res) => setMemberApplications(res.data.data))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to load dashboard data"));
   }, [])
 
   const eventStartDate = (event) => {

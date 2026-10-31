@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import BottomNav from "../../components/BottomNav";
@@ -27,7 +28,7 @@ export default function Approvals() {
         setEvents(eventsRes.data || []);
         setApplications(appsRes.data.data || []);
       })
-      .catch((err) => console.error("Error loading approvals:", err))
+      .catch((err) => toast.error(err?.response?.data?.message || "Error loading approvals"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -45,7 +46,7 @@ export default function Approvals() {
         )
       )
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to approve event. Please try again.");
       })
       .finally(() => setActionLoading(false));
@@ -61,7 +62,7 @@ export default function Approvals() {
         setDeleteTarget(null);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to delete event. Please try again.");
       })
       .finally(() => setActionLoading(false));
@@ -76,7 +77,7 @@ export default function Approvals() {
           prev.map((e) => (e.id === event.id ? { ...e, removal_requested: false } : e))
         )
       )
-      .catch((err) => console.error(err))
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to reject event removal"))
       .finally(() => setActionLoading(false));
   };
 
@@ -90,7 +91,7 @@ export default function Approvals() {
         setRejectTarget(null);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to decline event. Please try again.");
       })
       .finally(() => setActionLoading(false));

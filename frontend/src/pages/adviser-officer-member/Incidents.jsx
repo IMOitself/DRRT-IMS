@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Link, useLocation } from "react-router-dom";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
@@ -59,7 +60,7 @@ export default function Incidents() {
           }
         }
       })
-      .catch((error) => console.error(error))
+      .catch((error) => toast.error(error?.response?.data?.message || "Failed to load incident reports"))
       .finally(() => setLoading(false));
   }, [location.state?.openIncidentId]);
 
@@ -85,7 +86,7 @@ export default function Incidents() {
         }
         setRequestRemoveTarget(null);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err?.response?.data?.message || "Failed to update incident report"));
   };
 
   const deleteIncident = () => {
@@ -98,7 +99,7 @@ export default function Incidents() {
         setDeleteTarget(null);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err?.response?.data?.message || "Operation failed");
         alert("Failed to delete incident report. Please try again.");
       });
   };

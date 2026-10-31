@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 let isLocal = window.location.hostname === 'localhost';
 
@@ -26,7 +27,7 @@ export async function logout(navigate) {
   try {
     await api.post('/logout');
   } catch (err) {
-    console.error(err);
+    toast.error(err?.response?.data?.message || err?.message || "Logout failed");
   } finally {
     localStorage.removeItem('token');
     if (navigate) {
