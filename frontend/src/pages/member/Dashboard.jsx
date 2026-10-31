@@ -23,7 +23,7 @@ export default function Dashboard() {
                 setUpcomingEvent(
                     res.data
                         .filter((event) => new Date(event.date).setHours(0, 0, 0, 0) >= today)
-                        .sort((a, b) => new Date(a.date) - new Date(b.date))[0]
+                        .sort((a, b) => new Date(a.date) - new Date(b.date))[0] ?? null
                 );
                 setEvents(res.data.reverse());
             })
