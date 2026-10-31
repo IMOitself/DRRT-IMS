@@ -2,4 +2,5 @@
   "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.lint.invalidApply": "ignore",
   "tailwindCSS.lint.cssConflict": "ignore",
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
 }
