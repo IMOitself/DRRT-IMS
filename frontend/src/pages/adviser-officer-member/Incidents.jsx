@@ -155,16 +155,16 @@ export default function Incidents() {
           </section>
 
           {/* Confidentiality Notice */}
-          <div className="bg-red-bg text-red border border-red-border rounded-lg p-4 flex items-start gap-3 shadow-sm">
-            <span className="material-symbols-outlined filled-icon text-red text-[24px]! mt-0.5">
+          <div className="bg-yellow-bg text-yellow border border-yellow-border rounded-lg p-4 flex items-start gap-3 shadow-sm">
+            <span className="material-symbols-outlined filled-icon text-yellow text-[24px]! mt-0.5">
               shield_lock
             </span>
             <div>
               <h2 className="font-geist text-xs md:text-sm font-bold uppercase tracking-wider mb-1">
                 CONFIDENTIALITY NOTICE: DATA PRIVACY ACT OF 2012 (R.A. 10173)
               </h2>
-              <p className="font-geist text-xs md:text-sm text-red/90">
-                You are accessing restricted emergency and medical records. All access is logged and strictly monitored.
+              <p className="font-geist text-xs md:text-sm text-yellow/90">
+                You are accessing restricted emergency and medical records.
               </p>
             </div>
           </div>

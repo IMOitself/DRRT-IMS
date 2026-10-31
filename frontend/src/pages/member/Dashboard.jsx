@@ -191,31 +191,32 @@ export default function Dashboard() {
                             </p>
                         </div>
 
-                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-yellow transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                        <div className="bg-white border border-blue-border rounded-xl p-4 shadow-sm hover:border-blue transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
                             <div>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="font-geist text-sm text-subtext flex items-center gap-2 font-bold uppercase tracking-wider">
-                                        <span className="material-symbols-outlined text-yellow text-[20px]!">
+                                        <span className="material-symbols-outlined text-blue text-[20px]!">
                                             event_upcoming
                                         </span>{" "}
                                         Upcoming Event
                                     </h2>
                                 </div>
-                                <h3 className="font-geist text-2xl-mobile font-bold text-text mt-2">
+                                <h3 className="text-sm text-subtext mt-1">
                                     {upcomingEvent === undefined
                                         ? "Loading..."
                                         : upcomingEvent
-                                        ? upcomingEvent.title
-                                        : "No upcoming event."}
+                                            ? upcomingEvent.title
+                                            : "No upcoming event."}
                                 </h3>
-                                <p className="text-base text-subtext flex items-center gap-1.5 mt-1">
-                                    <span className="material-symbols-outlined text-[18px]!">
-                                        schedule
-                                    </span>{" "}
-                                    {upcomingEvent
-                                        ? `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}`
-                                        : "--"}
-                                </p>
+                                {upcomingEvent &&
+                                    <p className="text-base text-subtext flex items-center gap-1.5 mt-1">
+                                        <span className="material-symbols-outlined text-[18px]!">
+                                            schedule
+                                        </span>{" "}
+
+                                        `${formatDate(upcomingEvent.date)} ${upcomingEvent.time_hour}:${upcomingEvent.time_minute} ${upcomingEvent.time_ampm}`
+                                    </p>
+                                }
                             </div>
                             {upcomingEvent ? (
                                 <a
