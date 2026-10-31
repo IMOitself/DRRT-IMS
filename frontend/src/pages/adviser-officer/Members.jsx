@@ -68,9 +68,16 @@ export default function Members() {
     };
 
     const pillClassName = (filter) =>
-        memberFilter === filter && !searchQuery.trim()
-            ? "whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist text-xs shrink-0 hover:bg-blue/80 cursor-pointer"
-            : "whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist text-xs hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer";
+        `shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            memberFilter === filter && !searchQuery.trim()
+                ? "bg-blue text-white shadow-sm"
+                : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
+        }`;
+
+    const pillBadgeClassName = (filter) =>
+        `px-1.5 py-0.2 rounded-full text-[11px] ${
+            memberFilter === filter && !searchQuery.trim() ? "bg-white/20 text-white" : "bg-blue-bg text-blue font-bold"
+        }`;
 
     const filteredApplications = listedApplications.filter(
         (application) => matchesSearch(application) && matchesFilter(application)
@@ -350,16 +357,25 @@ export default function Members() {
                         {/* Rapid Filter Pills */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
                             <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
-                                All Members ({listedApplications.filter((ma) => ma.status !== "graduated").length})
+                                <span>All Members</span>
+                                <span className={pillBadgeClassName("all")}>
+                                    {listedApplications.filter((ma) => ma.status !== "graduated").length}
+                                </span>
                             </button>
                             {[1, 2, 3, 4].map((year) => (
                                 <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
-                                    {yearLabels[year]}
+                                    <span>{yearLabels[year]}</span>
+                                    <span className={pillBadgeClassName(year)}>
+                                        {listedApplications.filter((ma) => Number(ma.year_level) === year).length}
+                                    </span>
                                 </button>
                             ))}
                             <div className="w-0.5 bg-blue-border shrink-0" />
                             <button onClick={() => setMemberFilter("graduated")} className={pillClassName("graduated")}>
-                                Graduated ({listedApplications.filter((ma) => ma.status === "graduated").length})
+                                <span>Graduated</span>
+                                <span className={pillBadgeClassName("graduated")}>
+                                    {listedApplications.filter((ma) => ma.status === "graduated").length}
+                                </span>
                             </button>
                         </div>
                     </div>

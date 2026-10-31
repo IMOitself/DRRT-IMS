@@ -624,9 +624,16 @@ function AttendanceList({ isAdviser, loading, members, getStatus, getTimein, wan
   };
 
   const pillClassName = (filter) =>
-    memberFilter === filter && !searchQuery.trim()
-      ? "whitespace-nowrap px-4 py-1.5 rounded-full bg-blue text-white font-geist shrink-0 hover:bg-blue/80 cursor-pointer"
-      : "whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container-highest border border-blue-border text-text font-geist hover:bg-blue/80 hover:text-white transition-colors shrink-0 cursor-pointer";
+    `shrink-0 font-geist text-xs md:text-sm px-4 py-2 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+      memberFilter === filter && !searchQuery.trim()
+        ? "bg-blue text-white shadow-sm"
+        : "bg-surface text-subtext border border-blue-border/80 hover:bg-surface-container-highest"
+    }`;
+
+  const pillBadgeClassName = (filter) =>
+    `px-1.5 py-0.2 rounded-full text-[11px] ${
+      memberFilter === filter && !searchQuery.trim() ? "bg-white/20 text-white" : "bg-blue-bg text-blue font-bold"
+    }`;
 
   const filteredMembers = members
     .filter((member) => matchesSearch(member) && matchesFilter(member))
@@ -657,14 +664,19 @@ function AttendanceList({ isAdviser, loading, members, getStatus, getTimein, wan
         {/* Rapid Level Filters */}
         <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-semibold">
           <button onClick={() => setMemberFilter("all")} className={pillClassName("all")}>
-            All Members ({members.length})
+            <span>All Members</span>
+            <span className={pillBadgeClassName("all")}>{members.length}</span>
           </button>
           <button onClick={() => setMemberFilter("no_record")} className={pillClassName("no_record")}>
-            No Record ({noRecordCount})
+            <span>No Record</span>
+            <span className={pillBadgeClassName("no_record")}>{noRecordCount}</span>
           </button>
           {[1, 2, 3, 4].map((year) => (
             <button key={year} onClick={() => setMemberFilter(year)} className={pillClassName(year)}>
-              {yearLabels[year]}
+              <span>{yearLabels[year]}</span>
+              <span className={pillBadgeClassName(year)}>
+                {members.filter((m) => Number(m.membership_application?.year_level) === year).length}
+              </span>
             </button>
           ))}
         </div>
