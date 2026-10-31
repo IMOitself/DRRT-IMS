@@ -7,11 +7,20 @@ use App\Models\IncidentReport;
 
 class IncidentReportsController extends Controller
 {
+    private function canAccessIncidents($user): bool
+    {
+        return in_array($user->role, ['officer', 'adviser']) || $user->has_incident_access;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (! $this->canAccessIncidents($request->user())) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $incidentReports = IncidentReport::with('reporter')->latest()->get();
         return response()->json($incidentReports, 200);
     }
@@ -21,6 +30,10 @@ class IncidentReportsController extends Controller
      */
     public function store(Request $request)
     {
+        if (! $this->canAccessIncidents($request->user())) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $incidentReport = IncidentReport::create([
             'reporter_id' => $request->user()->id,
             ...$request->only([
@@ -37,6 +50,10 @@ class IncidentReportsController extends Controller
 
     public function update(Request $request, IncidentReport $incidentReport)
     {
+        if (! $this->canAccessIncidents($request->user())) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $incidentReport->update($request->only(['removal_requested']));
 
         return response()->json($incidentReport, 200);

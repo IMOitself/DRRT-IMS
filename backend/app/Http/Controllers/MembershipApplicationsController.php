@@ -21,6 +21,10 @@ class MembershipApplicationsController extends Controller
      */
     public function index()
     {
+        if (! in_array(auth()->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $applications = MembershipApplication::with('user:id,role,has_incident_access')
             ->orderBy('last_name')
             ->orderBy('first_name')
@@ -73,7 +77,7 @@ class MembershipApplicationsController extends Controller
         // only officers, the member who owns the application, and whoever holds its link token may view it
         $user = auth('sanctum')->user();
         $isOwner = $user && $user->id === $application->user_id;
-        $isOfficer = $user && $user->role === 'officer';
+        $isOfficer = $user && in_array($user->role, ['officer', 'adviser']);
         $hasToken = hash_equals($this->accessToken($application), (string) $request->query('token'));
 
         if (! $isOwner && ! $isOfficer && ! $hasToken) {
@@ -88,6 +92,10 @@ class MembershipApplicationsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $application = MembershipApplication::find($id);
         // only what was sent, so marking as graduated doesn't wipe the reviewer
         $application->update($request->only(['status', 'reviewer_id', 'removal_requested']));
@@ -129,6 +137,10 @@ class MembershipApplicationsController extends Controller
      */
     public function destroy(string $id)
     {
+        if (! in_array(auth()->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         $application = MembershipApplication::find($id);
         $application->delete();
 

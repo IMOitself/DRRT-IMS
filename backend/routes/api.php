@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\MembershipApplicationsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AttendanceController;
@@ -23,13 +24,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::put('/user', [AuthController::class, 'updateProfile']);
     
-    // TODO: officer role only
     Route::get('/membership-applications', [MembershipApplicationsController::class, 'index']);
     Route::put('/membership-applications/{application}', [MembershipApplicationsController::class, 'update']);
     Route::delete('/membership-applications/{application}', [MembershipApplicationsController::class, 'destroy']);
     Route::delete('/membership-applications/{application}/member', [MembershipApplicationsController::class, 'removeMember']);
 
-    Route::get('/members', function () {
+    Route::get('/members', function (Request $request) {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         // officers are members too, graduated members are no longer part of attendance
         return User::whereIn('role', ['member', 'officer'])
             ->whereDoesntHave('membershipApplication', fn ($query) => $query->where('status', 'graduated'))
@@ -38,11 +41,20 @@ Route::middleware('auth:sanctum')->group(function () {
             ->get();
     });
 
-    Route::get('/officers', function () {
+    Route::get('/officers', function (Request $request) {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         return User::where('role', 'officer')->orderBy('name')->get();
     });
 
-    Route::put('/users/{user}/role', function (\Illuminate\Http\Request $request, User $user) {
+    Route::put('/users/{user}/role', function (Request $request, User $user) {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+        if ($request->input('role') !== 'officer' && $request->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can remove the officer role.'], 403);
+        }
         $data = ['role' => $request->input('role')];
         if ($request->input('role') === 'officer') {
             $data['has_incident_access'] = true;
@@ -51,7 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return response()->json($user, 200);
     });
 
-    Route::put('/users/{user}/incident-access', function (\Illuminate\Http\Request $request, User $user) {
+    Route::put('/users/{user}/incident-access', function (Request $request, User $user) {
         if ($request->user()->role !== 'adviser') {
             return response()->json(['message' => 'Only the adviser can edit incident access.'], 403);
         }

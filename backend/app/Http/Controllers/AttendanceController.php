@@ -12,8 +12,10 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
-        // TODO: officer role only
         if ($request->filled('all')) {
+            if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+                return response()->json(['message' => 'Forbidden'], 403);
+            }
             // graduated members' records are kept but left out, so unmarking brings them back
             $attendances = Attendance::with('recorder')
                 ->whereDoesntHave('user.membershipApplication', fn ($query) => $query->where('status', 'graduated'))
@@ -32,6 +34,10 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->user()->role === 'member' && (int) $request->input('user_id') !== $request->user()->id) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         // one attendance per member per event, so update it if it already exists
         $attendance = Attendance::updateOrCreate([
             'user_id' => $request->input('user_id'),
@@ -87,7 +93,10 @@ class AttendanceController extends Controller
      */
     public function destroy(string $id)
     {
-        // TODO: officer role only
+        if (! in_array(auth()->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
         Attendance::destroy($id);
 
         return response()->json(null, 204);

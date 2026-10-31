@@ -13,7 +13,7 @@ class EventsController extends Controller
     public function index(Request $request)
     {
         // pending events are only for officers and advisers to see
-        if ($request->filled('all')) {
+        if ($request->filled('all') && in_array(auth('sanctum')->user()?->role, ['officer', 'adviser'])) {
             return response()->json(Event::all(), 200);
         }
 
@@ -26,6 +26,9 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $event = Event::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -56,6 +59,9 @@ class EventsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (! in_array($request->user()->role, ['officer', 'adviser'])) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
         $event = Event::findOrFail($id);
         $event->update($request->only([
             'title',
@@ -79,7 +85,9 @@ class EventsController extends Controller
      */
     public function approve(Event $event)
     {
-        // TODO: adviser role only
+        if (auth()->user()->role !== 'adviser') {
+            return response()->json(['message' => 'Only the adviser can approve events.'], 403);
+        }
         $event->update(['pending_approval' => false]);
 
         return response()->json($event, 200);
