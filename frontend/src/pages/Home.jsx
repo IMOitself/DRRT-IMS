@@ -79,9 +79,6 @@ export default function Home() {
                                     </span>
                                     <span>{isLoggedIn ? "Go To Dashboard" : "Join DRRT Team"}</span>
                                 </Link>
-                                <button type="button" onClick={() => toast.success("Test Toast Notification!")}>
-                                    Test Toast
-                                </button>
                             </div>
                         </div>
                         <div className="hidden lg:flex shrink-0 w-44 h-44 rounded-full bg-blue/10 border-2 border-blue/20 items-center justify-center text-blue shadow-inner">
