@@ -18,9 +18,9 @@ export default function Home() {
     if (user?.role === "adviser") dashboardLink = "/adviser/dashboard";
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
-    const contact1 = "09123456789";
-    const contact2 = "09123456789";
-    const contact3 = "09123456789";
+    const contact1 = "09981809077";
+    const contact2 = "09985985449";
+    const contact3 = "09310475410";
     const copyToClipboard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
@@ -101,14 +101,14 @@ export default function Home() {
                                         </span>
                                     </div>
                                     <h3 className="font-geist text-lg font-bold text-text">
-                                        Emergency Hotline
+                                        Emergency Hotlines
                                     </h3>
                                 </div>
                                 <div className="space-y-3 text-sm">
 
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
                                         <span className="font-semibold text-text shrink-0">
-                                            Change Me
+                                            MDRRMO
                                         </span>
                                         <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline group-hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
                                             onClick={() => copyToClipboard(contact1)}>
@@ -122,7 +122,7 @@ export default function Home() {
                                     </div>
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
                                         <span className="font-semibold text-text shrink-0">
-                                            Change Me
+                                            PNP
                                         </span>
                                         <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
                                             onClick={() => copyToClipboard(contact2)}>
@@ -136,7 +136,7 @@ export default function Home() {
                                     </div>
                                     <div className="flex items-center justify-between p-2.5 bg-surface rounded-xl border border-blue-border/40">
                                         <span className="font-semibold text-text shrink-0">
-                                            Change Me
+                                            BFP
                                         </span>
                                         <button className="flex min-w-0 text-sm items-center gap-1 font-bold text-blue hover:underline cursor-pointer bg-blue-bg px-2 py-1 rounded-lg active:scale-95"
                                             onClick={() => copyToClipboard(contact3)}>
