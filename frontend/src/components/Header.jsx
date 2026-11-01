@@ -25,9 +25,9 @@ export default function Header() {
         <header className="glass-bg sticky top-0 w-full z-50 border-b border-blue-border/60 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex justify-between items-center">
                 <div className="flex items-center gap-1 md:gap-3 cursor-pointer" onClick={() => navigate("/")}>
-                    <div className="flex w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">
+                    {/* <div className="flex w-9 h-9 rounded-full bg-blue/10 flex items-center justify-center text-blue">
                         <span className="material-symbols-outlined text-[24px]!">shield</span>
-                    </div>
+                    </div> */}
                     <div>
                         <h1 className="font-geist text-lg md:text-xl font-bold text-blue flex items-center gap-2">
                             DRRT 
