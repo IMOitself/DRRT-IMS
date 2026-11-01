@@ -41,75 +41,6 @@ export default function Login() {
       });
   };
 
-  const testLoginAsOfficer = (email) => {
-    setIsLoading(true);
-    setErrorMessage("");
-
-    api
-      .post("/login", {
-        email: email,
-        password: "shinzousasageyo",
-      })
-      .then((res) => {
-        login(res.data.token, res.data.user);
-        navigate("/officer/dashboard");
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        if (err.response && err.response.data && err.response.data.message) {
-          setErrorMessage(err.response.data.message);
-        } else {
-          setErrorMessage("Something went wrong. Please try again.");
-        }
-      });
-  };
-
-  const testLoginAsAdviser = () => {
-    setIsLoading(true);
-    setErrorMessage("");
-
-    api
-      .post("/login", {
-        email: "kethleenonato@dummy.com",
-        password: "foundingtitan",
-      })
-      .then((res) => {
-        login(res.data.token, res.data.user);
-        navigate("/adviser/dashboard");
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        if (err.response && err.response.data && err.response.data.message) {
-          setErrorMessage(err.response.data.message);
-        } else {
-          setErrorMessage("Something went wrong. Please try again.");
-        }
-      });
-  };
-
-  const testLoginAsMember = (email) => {
-    setIsLoading(true);
-    setErrorMessage("");
-
-    api
-      .post("/login", {
-        email: email,
-        password: "shinzousasageyo",
-      })
-      .then((res) => {
-        login(res.data.token, res.data.user);
-        navigate("/member/dashboard");
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        if (err.response && err.response.data && err.response.data.message) {
-          setErrorMessage(err.response.data.message);
-        } else {
-          setErrorMessage("Something went wrong. Please try again.");
-        }
-      });
-  };
-
   return (
     <>
       <title>Login - DRRT Member Portal</title>
@@ -204,7 +135,6 @@ export default function Login() {
                 <span>{isLoading ? "Signing In..." : "Sign In"}</span>
               </button>
             </form>
-            {/* Test Login Button */}
 
             {/* Footer Prompt */}
             <div className="mt-6 pt-4 border-t border-blue-border/40 text-center">
@@ -216,26 +146,6 @@ export default function Login() {
               </p>
             </div>
           </div>
-
-          <button onClick={() => testLoginAsMember("eren.yeager@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as member (Eren Yeager)
-          </button>
-          <button onClick={() => testLoginAsMember("mikasa.ackerman@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as member (Mikasa Ackerman)
-          </button>
-          <button onClick={() => testLoginAsMember("armin.arlert@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as member (Armin Arlert)
-          </button>
-          <button onClick={() => testLoginAsOfficer("captain.erwin@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as officer (Erwin Smith)
-          </button>
-          <button onClick={() => testLoginAsOfficer("captain.levi@gmail.com")} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as officer (Levi Ackerman)
-          </button>
-          <button onClick={testLoginAsAdviser} disabled={isLoading} className="w-full mt-3 bg-surface border border-blue-border text-subtext hover:bg-surface-container-highest transition-all font-geist font-bold py-2 rounded-xl flex items-center justify-center gap-2 cursor-pointer text-sm disabled:opacity-50">
-            test: login as adviser
-          </button>
-
         </main>
       </div>
 
