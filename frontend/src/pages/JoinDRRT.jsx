@@ -103,7 +103,7 @@ export default function JoinDRRT() {
                                             Step 4
                                         </span>
                                         <h3 className="font-geist text-lg font-bold text-text mt-0.5">
-                                            Roster Activation
+                                            Member Activation
                                         </h3>
                                         <p className="text-sm text-subtext mt-1 leading-relaxed">
                                             Receive your official DRRT responder uniform, ID badge, and
