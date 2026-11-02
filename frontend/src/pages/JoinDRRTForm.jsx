@@ -77,7 +77,7 @@ export default function JoinDRRTForm() {
 
             <div className="grow w-full">
                 {/* Main Form Container */}
-                <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-12 space-y-6">
+                <main className="max-w-3xl mx-auto w-full px-4 md:px-8 py-6 md:py-8 pb-28 md:pb-32 space-y-6">
                     {/* Navigation Back Link */}
                     <Link to="/join" className="inline-flex items-center gap-2 text-blue font-geist font-semibold hover:underline">
                         <span className="material-symbols-outlined text-[18px]!">
