@@ -70,21 +70,6 @@ export default function JoinDRRTForm() {
             });
     }
 
-    const testAutoFillEveryField = () => {
-        setFormData({
-            student_id: "24-00123ABC",
-            last_name: "Braus",
-            first_name: "Sasha",
-            middle_name: "Blouse",
-            course: "BSIS",
-            year_level: "1",
-            email: "sasha.braus@gmail.com",
-            phone_number: "09123456789",
-            emergency_person_name: "Jean Kirstein",
-            emergency_phone: "09123456789",
-        });
-    };
-
     return (
         <>
             <title>Join Form - DRRT Portal</title>
@@ -100,8 +85,6 @@ export default function JoinDRRTForm() {
                         </span>
                         <span>Back to Recruitment Overview</span>
                     </Link>
-
-                    <br /><button onClick={testAutoFillEveryField}>test auto fill hehe</button>
 
                     {/* Form Banner Header */}
                     <section className="bg-white border border-blue-border/80 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
