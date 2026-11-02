@@ -160,7 +160,6 @@ export default function Attendance() {
             .get("/attendances")
             .then((res) => {
                 setAttendances(res.data);
-                toast.info("Attendance records updated")
             })
             .catch((err) => {
                 toast.error(err?.response?.data?.message || "Failed to process attendance");
