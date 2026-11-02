@@ -66,23 +66,6 @@ export default function Dashboard() {
 
     const attendanceCorrectionRequestedCount = attendances.filter((attendance) => attendance.correction_requested).length;
 
-    function googleCalendarUrl(event) {
-        if (!event?.date) return "#";
-        // convert 12-hour parts into a floating local time Google Calendar understands
-        let hour = parseInt(event.time_hour || "0", 10) % 12;
-        if ((event.time_ampm || "").toUpperCase() === "PM") hour += 12;
-        const start = `${event.date.replaceAll("-", "")}T${String(hour).padStart(2, "0")}${String(event.time_minute || "00").padStart(2, "0")}00`;
-        const end = `${event.date.replaceAll("-", "")}T${String((hour + 1) % 24).padStart(2, "0")}${String(event.time_minute || "00").padStart(2, "0")}00`;
-        const params = new URLSearchParams({
-            action: "TEMPLATE",
-            text: event.title || "",
-            dates: `${start}/${end}`,
-            details: event.description || "",
-            location: event.venue_facetoface || event.venue_online || "",
-        });
-        return `https://calendar.google.com/calendar/render?${params.toString()}`;
-    }
-
     return (
         <>
             <title>Dashboard - DRRT Member Portal</title>
