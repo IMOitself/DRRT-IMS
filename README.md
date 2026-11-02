@@ -13,6 +13,14 @@
 
 <img width="1920" height="1263" alt="FireShot Capture 009 - Home - DRRT Portal -  drrt-ims web app" src="https://github.com/user-attachments/assets/3ff22667-4491-457f-a60c-65c129da791a" />
 
+## about
+* Disaster Response and Rescue Team Information Management System (DRRT-IMS) for the LVCC Apalit Chapter
+
+The **Disaster Response and Rescue Team** (DRRT) – LVCC Apalit Chapter is a **student organization(club)** of La Verdad Christian College that promotes **disaster preparedness, emergency response, and community service within the school.** Guided by its mission and objectives, the organization conducts t**raining activities, monitors member participation, responds to emergencies** during school events, and helps strengthen disaster awareness among students. The organization also **maintains records related to membership, attendance, and incident reports** to support its daily operations and fulfill its responsibilities.
+
+At the moment, these **records** are managed through a **combination of paper documents, Google Sheets, and Google Drive.** Membership information and training records are **manually encoded** into spreadsheets, while attendance monitoring requires officers to copy information from attendance sheets submitted to the Student Organization Office. I**ncident reports** are documented separately because they contain **confidential information** such as patient details, diagnosis, and treatment records. As the organization continues to manage these records manually, retrieving information, updating member records, and monitoring attendance become t**ime-consuming and repetitive tasks.*
+
+
 ## installation
 ```
 cd frontend
@@ -156,7 +164,7 @@ status: 🟩 (done) | ⬜ (not yet done)
 
 </details>
 
-<details><summary>about</summary>
+<details><summary>about (old)</summary>
 
 ## **1\. Proposed Title**
 
