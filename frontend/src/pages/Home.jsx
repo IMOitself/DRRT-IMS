@@ -11,7 +11,7 @@ export default function Home() {
     const navigate = useNavigate();
 
     const { user, isLoggedIn } = useAuth();
-    const [copied, setCopied] = useState(false);
+    const [copied, setCopied] = useState(null);
 
     let dashboardLink = "/member/dashboard";
     if (user?.role === "officer") dashboardLink = "/officer/dashboard";
@@ -24,8 +24,8 @@ export default function Home() {
     const copyToClipboard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
+            setCopied(text);
+            setTimeout(() => setCopied(null), 2000);
         } catch (err) {
             toast.error("Failed to copy to clipboard");
         }
@@ -113,7 +113,7 @@ export default function Home() {
                                                 {contact1}
                                             </span>
                                             <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
-                                                {copied ? "" : "content_copy"}
+                                                {copied === contact1 ? "" : "content_copy"}
                                             </span>
                                         </button>
                                     </div>
@@ -127,7 +127,7 @@ export default function Home() {
                                                 {contact2}
                                             </span>
                                             <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
-                                                {copied ? "" : "content_copy"}
+                                                {copied === contact2 ? "" : "content_copy"}
                                             </span>
                                         </button>
                                     </div>
@@ -141,7 +141,7 @@ export default function Home() {
                                                 {contact3}
                                             </span>
                                             <span className="material-symbols-outlined text-blue text-[16px]! hover:bg-blue-bg rounded-lg">
-                                                {copied ? "" : "content_copy"}
+                                                {copied === contact3 ? "" : "content_copy"}
                                             </span>
                                         </button>
                                     </div>
